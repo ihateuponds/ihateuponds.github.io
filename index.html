@@ -3,23 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ihateuponds — Tech Support & Schedule</title>
+  <title>ihateuponds — Tech Support & Availability</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #0e1117;
-      --card-bg: rgba(22, 27, 34, 0.8);
+      --bg: #090b10;
+      --card-bg: rgba(18, 22, 31, 0.7);
       --card-border: rgba(255, 255, 255, 0.08);
+      --card-hover-border: rgba(88, 101, 242, 0.35);
       --text: #f0f6fc;
       --text-muted: #8b949e;
-      --accent: #5865F2; /* Discord blurple */
-      --accent-hover: #4752c4;
+      --accent: #5865F2;
+      --accent-glow: rgba(88, 101, 242, 0.3);
       --green: #23a55a;
-      --green-light: #57f287;
-      --amber: #f0b232;
-      --radius: 14px;
+      --green-glow: rgba(35, 165, 90, 0.25);
+      --purple: #8b5cf6;
+      --radius: 16px;
     }
 
     * {
@@ -29,116 +30,216 @@
     }
 
     body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
       background-color: var(--bg);
-      background-image: 
-        radial-gradient(circle at 10% 10%, rgba(88, 101, 242, 0.15), transparent 40%),
-        radial-gradient(circle at 90% 90%, rgba(35, 165, 90, 0.1), transparent 45%);
-      background-attachment: fixed;
       color: var(--text);
       min-height: 100vh;
       display: flex;
       justify-content: center;
-      padding: 32px 16px 64px 16px;
+      padding: 36px 16px 72px 16px;
       line-height: 1.5;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Animated Ambient Glowing Orbs in Background */
+    .ambient-bg {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(90px);
+      opacity: 0.45;
+      animation: float 14s ease-in-out infinite alternate;
+    }
+
+    .orb-1 {
+      width: 420px;
+      height: 420px;
+      background: radial-gradient(circle, #5865F2, #3b429f);
+      top: -100px;
+      left: -80px;
+      animation-duration: 16s;
+    }
+
+    .orb-2 {
+      width: 380px;
+      height: 380px;
+      background: radial-gradient(circle, #23a55a, #0d5f30);
+      bottom: 5%;
+      right: -80px;
+      animation-duration: 20s;
+      animation-delay: -5s;
+    }
+
+    .orb-3 {
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, #8b5cf6, #5b21b6);
+      top: 45%;
+      left: 60%;
+      animation-duration: 18s;
+      animation-delay: -9s;
+      opacity: 0.3;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translate(0, 0) scale(1);
+      }
+      50% {
+        transform: translate(30px, 40px) scale(1.08);
+      }
+      100% {
+        transform: translate(-20px, 60px) scale(0.95);
+      }
     }
 
     .container {
       width: 100%;
-      max-width: 580px;
+      max-width: 590px;
       display: flex;
       flex-direction: column;
-      gap: 18px;
+      gap: 20px;
+      position: relative;
+      z-index: 1;
     }
 
-    /* Profile Header */
-    .header-card {
+    /* Glass Cards */
+    .card {
       background: var(--card-bg);
-      backdrop-filter: blur(12px);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
       border: 1px solid var(--card-border);
       border-radius: var(--radius);
       padding: 24px;
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+      transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
     }
 
+    .card:hover {
+      border-color: var(--card-hover-border);
+      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.45), 0 0 24px rgba(88, 101, 242, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    }
+
+    /* Header Profile */
     .profile-info {
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 18px;
     }
 
-    .avatar {
-      width: 58px;
-      height: 58px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #5865F2, #854ce6);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 26px;
-      font-weight: 700;
-      color: #fff;
-      box-shadow: 0 4px 14px rgba(88, 101, 242, 0.4);
+    .avatar-wrapper {
+      position: relative;
       flex-shrink: 0;
     }
 
+    .avatar {
+      width: 66px;
+      height: 66px;
+      border-radius: 50%;
+      border: 2px solid rgba(88, 101, 242, 0.6);
+      box-shadow: 0 0 20px rgba(88, 101, 242, 0.4);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #161b22;
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .card:hover .avatar {
+      transform: scale(1.05) rotate(2deg);
+    }
+
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
     .names h1 {
-      font-size: 1.3rem;
-      font-weight: 700;
-      letter-spacing: -0.01em;
+      font-size: 1.4rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #fff;
     }
 
     .names p {
       font-size: 0.9rem;
       color: var(--text-muted);
+      margin-top: 2px;
     }
 
-    /* Status Pill */
+    /* Live Meta Badges Row */
+    .meta-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      margin-top: 2px;
+    }
+
     .status-badge {
       display: inline-flex;
       align-items: center;
       gap: 8px;
       padding: 6px 14px;
-      background: rgba(35, 165, 90, 0.12);
-      border: 1px solid rgba(35, 165, 90, 0.3);
+      background: rgba(35, 165, 90, 0.14);
+      border: 1px solid rgba(35, 165, 90, 0.35);
       border-radius: 999px;
       font-size: 0.82rem;
       font-weight: 600;
-      color: var(--green-light);
-      width: fit-content;
+      color: #57f287;
+      box-shadow: 0 0 12px rgba(35, 165, 90, 0.15);
     }
 
     .pulse-dot {
       width: 8px;
       height: 8px;
       border-radius: 50%;
-      background: var(--green-light);
+      background: #57f287;
       box-shadow: 0 0 0 rgba(87, 242, 135, 0.7);
       animation: pulse 2s infinite;
     }
 
     @keyframes pulse {
-      0% { box-shadow: 0 0 0 0 rgba(87, 242, 135, 0.7); }
+      0% { box-shadow: 0 0 0 0 rgba(87, 242, 135, 0.8); }
       70% { box-shadow: 0 0 0 8px rgba(87, 242, 135, 0); }
       100% { box-shadow: 0 0 0 0 rgba(87, 242, 135, 0); }
     }
 
-    /* Cards */
-    .card {
-      background: var(--card-bg);
-      backdrop-filter: blur(12px);
+    .clock-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      background: rgba(255, 255, 255, 0.04);
       border: 1px solid var(--card-border);
-      border-radius: var(--radius);
-      padding: 22px;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text-muted);
     }
 
+    .clock-badge span {
+      color: #e6edf3;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Card Titles */
     .card-title {
-      font-size: 0.98rem;
+      font-size: 1rem;
       font-weight: 700;
       display: flex;
       align-items: center;
@@ -148,11 +249,12 @@
 
     .week-tag {
       font-size: 0.78rem;
-      font-weight: 500;
-      color: var(--text-muted);
-      background: rgba(255, 255, 255, 0.05);
-      padding: 3px 9px;
-      border-radius: 6px;
+      font-weight: 600;
+      color: #d1d5db;
+      background: rgba(88, 101, 242, 0.15);
+      border: 1px solid rgba(88, 101, 242, 0.3);
+      padding: 3px 10px;
+      border-radius: 20px;
     }
 
     /* Schedule List */
@@ -166,17 +268,29 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 11px 14px;
-      background: rgba(255, 255, 255, 0.03);
-      border-radius: 8px;
+      padding: 12px 16px;
+      background: rgba(255, 255, 255, 0.025);
+      border-radius: 10px;
       font-size: 0.88rem;
       border: 1px solid transparent;
-      transition: all 0.2s ease;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .day-row:hover {
+      background: rgba(255, 255, 255, 0.05);
+      transform: translateX(3px);
+    }
+
+    /* Highlight Today */
+    .day-row.is-today {
+      border-color: rgba(88, 101, 242, 0.45);
+      background: linear-gradient(90deg, rgba(88, 101, 242, 0.14), rgba(88, 101, 242, 0.04));
+      box-shadow: 0 4px 16px rgba(88, 101, 242, 0.15);
     }
 
     .day-row.day-off {
       border-color: rgba(35, 165, 90, 0.3);
-      background: rgba(35, 165, 90, 0.07);
+      background: linear-gradient(90deg, rgba(35, 165, 90, 0.12), rgba(35, 165, 90, 0.03));
     }
 
     .day-left {
@@ -185,9 +299,27 @@
       gap: 2px;
     }
 
+    .day-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
     .day-name {
-      font-weight: 600;
+      font-weight: 700;
       color: #fff;
+    }
+
+    .today-pill {
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 2px 7px;
+      border-radius: 4px;
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 0 10px var(--accent-glow);
     }
 
     .day-sub {
@@ -204,24 +336,36 @@
 
     .avail-text {
       font-size: 0.82rem;
-      color: #d1d5db;
+      color: #e6edf3;
+      font-weight: 500;
     }
 
     .badge-open {
-      color: var(--green-light);
-      background: rgba(35, 165, 90, 0.18);
-      padding: 2px 8px;
-      border-radius: 5px;
+      color: #57f287;
+      background: rgba(35, 165, 90, 0.2);
+      border: 1px solid rgba(35, 165, 90, 0.35);
+      padding: 3px 9px;
+      border-radius: 6px;
+      font-size: 0.72rem;
+      font-weight: 700;
+    }
+
+    .badge-split {
+      color: #c4b5fd;
+      background: rgba(139, 92, 246, 0.18);
+      border: 1px solid rgba(139, 92, 246, 0.3);
+      padding: 3px 9px;
+      border-radius: 6px;
       font-size: 0.72rem;
       font-weight: 600;
     }
 
-    .badge-evening {
-      color: #e5e7eb;
-      background: rgba(88, 101, 242, 0.18);
-      border: 1px solid rgba(88, 101, 242, 0.3);
-      padding: 2px 8px;
-      border-radius: 5px;
+    .badge-night {
+      color: #93c5fd;
+      background: rgba(59, 130, 246, 0.18);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      padding: 3px 9px;
+      border-radius: 6px;
       font-size: 0.72rem;
       font-weight: 600;
     }
@@ -234,73 +378,123 @@
     }
 
     .tag {
-      background: rgba(255, 255, 255, 0.04);
+      background: rgba(255, 255, 255, 0.035);
       border: 1px solid var(--card-border);
-      padding: 5px 12px;
+      padding: 6px 14px;
       border-radius: 20px;
       font-size: 0.82rem;
+      font-weight: 500;
       color: #d1d5db;
+      transition: all 0.2s ease;
+      cursor: default;
+    }
+
+    .tag:hover {
+      background: rgba(88, 101, 242, 0.15);
+      border-color: rgba(88, 101, 242, 0.4);
+      color: #fff;
+      transform: translateY(-2px);
     }
 
     /* Guidelines */
     .guidelines {
-      font-size: 0.84rem;
+      font-size: 0.85rem;
       color: var(--text-muted);
-      line-height: 1.6;
+      line-height: 1.7;
       list-style-position: inside;
+    }
+
+    .guidelines strong {
+      color: #fff;
     }
 
     .guidelines li {
       margin-bottom: 4px;
     }
 
-    /* Contact Action */
+    /* Discord Copy Button with Dynamic Shimmer */
     .contact-action {
       margin-top: 4px;
     }
 
     .btn-discord {
-      background: var(--accent);
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, #5865F2 0%, #4752c4 100%);
       color: #fff;
       border: none;
-      padding: 12px;
-      border-radius: 8px;
-      font-weight: 600;
-      font-size: 0.9rem;
+      padding: 14px 20px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.92rem;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      transition: background 0.2s ease, transform 0.1s ease;
+      gap: 10px;
+      transition: transform 0.15s ease, box-shadow 0.25s ease;
       width: 100%;
+      box-shadow: 0 4px 18px rgba(88, 101, 242, 0.35);
     }
 
     .btn-discord:hover {
-      background: var(--accent-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 24px rgba(88, 101, 242, 0.5);
     }
 
     .btn-discord:active {
-      transform: scale(0.98);
+      transform: translateY(1px);
+    }
+
+    /* Light shimmer effect across button */
+    .btn-discord::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -60%;
+      width: 40%;
+      height: 200%;
+      background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.25) 50%, rgba(255,255,255,0) 100%);
+      transform: rotate(25deg);
+      animation: shimmer 5s infinite;
+    }
+
+    @keyframes shimmer {
+      0% { left: -60%; }
+      30% { left: 140%; }
+      100% { left: 140%; }
     }
 
     footer {
       text-align: center;
-      font-size: 0.76rem;
-      color: var(--text-muted);
-      margin-top: 8px;
+      padding-top: 6px;
+    }
+
+    footer p {
+      font-size: 0.78rem;
+      color: #4b5563;
+      font-weight: 500;
     }
   </style>
 </head>
 <body>
 
+  <!-- Ambient Animated Background Lights -->
+  <div class="ambient-bg">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
   <div class="container">
     
     <!-- Profile & Live Status -->
-    <header class="header-card">
+    <header class="card">
       <div class="profile-info">
-        <div class="avatar">
-          <img src="https://avatars.githubusercontent.com/u/232939997?v=4" alt="ihateuponds" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
+        <div class="avatar-wrapper">
+          <div class="avatar">
+            <img src="https://avatars.githubusercontent.com/u/232939997?v=4" alt="ihateuponds">
+          </div>
         </div>
         <div class="names">
           <h1>ihateuponds</h1>
@@ -308,9 +502,15 @@
         </div>
       </div>
       
-      <div class="status-badge">
-        <span class="pulse-dot"></span>
-        <span>Open for tech questions / DMs</span>
+      <!-- Meta badges: status + live local time -->
+      <div class="meta-bar">
+        <div class="status-badge">
+          <span class="pulse-dot"></span>
+          <span>Open for Tech DMs</span>
+        </div>
+        <div class="clock-badge">
+          <span>🕒 <span id="local-time">--:--</span> EDT</span>
+        </div>
       </div>
     </header>
 
@@ -323,98 +523,122 @@
 
       <div class="schedule-list">
         <!-- Sat Sep 5 -->
-        <div class="day-row">
+        <div class="day-row" data-day="2026-09-05">
           <div class="day-left">
-            <span class="day-name">Sat, Sep 5</span>
+            <div class="day-header">
+              <span class="day-name">Sat, Sep 5</span>
+              <span class="today-pill" style="display:none;">Today</span>
+            </div>
             <span class="day-sub">Work: 1:00 PM – 9:00 PM</span>
           </div>
           <div class="day-right">
             <span class="avail-text">After 9:30 PM</span>
-            <span class="badge-evening">Late Night</span>
+            <span class="badge-night">Late Night</span>
           </div>
         </div>
 
         <!-- Sun Sep 6 -->
-        <div class="day-row">
+        <div class="day-row" data-day="2026-09-06">
           <div class="day-left">
-            <span class="day-name">Sun, Sep 6</span>
+            <div class="day-header">
+              <span class="day-name">Sun, Sep 6</span>
+              <span class="today-pill" style="display:none;">Today</span>
+            </div>
             <span class="day-sub">Work: 4:00 PM – 10:00 PM</span>
           </div>
           <div class="day-right">
             <span class="avail-text">Before 3:30 PM & late</span>
-            <span class="badge-evening">Split</span>
+            <span class="badge-split">Split</span>
           </div>
         </div>
 
         <!-- Mon Sep 7 -->
-        <div class="day-row day-off">
+        <div class="day-row day-off" data-day="2026-09-07">
           <div class="day-left">
-            <span class="day-name">Mon, Sep 7 🎉</span>
+            <div class="day-header">
+              <span class="day-name">Mon, Sep 7 🎉</span>
+              <span class="today-pill" style="display:none;">Today</span>
+            </div>
             <span class="day-sub">Day off from work</span>
           </div>
           <div class="day-right">
-            <span class="avail-text">Open all day / evening</span>
+            <span class="avail-text">Open all day & evening</span>
             <span class="badge-open">Open</span>
           </div>
         </div>
 
         <!-- Tue Sep 8 -->
-        <div class="day-row">
+        <div class="day-row" data-day="2026-09-08">
           <div class="day-left">
-            <span class="day-name">Tue, Sep 8</span>
+            <div class="day-header">
+              <span class="day-name">Tue, Sep 8</span>
+              <span class="today-pill" style="display:none;">Today</span>
+            </div>
             <span class="day-sub">Work: 4:00 PM – 10:00 PM</span>
           </div>
           <div class="day-right">
             <span class="avail-text">Mornings & after 10 PM</span>
-            <span class="badge-evening">Split</span>
+            <span class="badge-split">Split</span>
           </div>
         </div>
 
         <!-- Wed Sep 9 -->
-        <div class="day-row">
+        <div class="day-row" data-day="2026-09-09">
           <div class="day-left">
-            <span class="day-name">Wed, Sep 9</span>
+            <div class="day-header">
+              <span class="day-name">Wed, Sep 9</span>
+              <span class="today-pill" style="display:none;">Today</span>
+            </div>
             <span class="day-sub">Work: 3:00 PM – 10:00 PM</span>
           </div>
           <div class="day-right">
             <span class="avail-text">Mornings & after 10 PM</span>
-            <span class="badge-evening">Split</span>
+            <span class="badge-split">Split</span>
           </div>
         </div>
 
         <!-- Thu Sep 10 -->
-        <div class="day-row">
+        <div class="day-row" data-day="2026-09-10">
           <div class="day-left">
-            <span class="day-name">Thu, Sep 10</span>
+            <div class="day-header">
+              <span class="day-name">Thu, Sep 10</span>
+              <span class="today-pill" style="display:none;">Today</span>
+            </div>
             <span class="day-sub">Work: 2:00 PM – 10:00 PM</span>
           </div>
           <div class="day-right">
             <span class="avail-text">Mornings & after 10 PM</span>
-            <span class="badge-evening">Split</span>
+            <span class="badge-split">Split</span>
           </div>
         </div>
 
         <!-- Fri Sep 11 -->
-        <div class="day-row day-off">
+        <div class="day-row day-off" data-day="2026-09-11">
           <div class="day-left">
-            <span class="day-name">Fri, Sep 11 🎉</span>
+            <div class="day-header">
+              <span class="day-name">Fri, Sep 11 🎉</span>
+              <span class="today-pill" style="display:none;">Today</span>
+            </div>
             <span class="day-sub">Day off from work</span>
           </div>
           <div class="day-right">
-            <span class="avail-text">Open all day / evening</span>
+            <span class="avail-text">Open all day & evening</span>
             <span class="badge-open">Open</span>
           </div>
         </div>
 
         <!-- Sat Sep 12 -->
-        <div class="day-row">
+        <div class="day-row" data-day="2026-09-12">
           <div class="day-left">
-            <span class="day-name">Sat, Sep 12</span>
+            <div class="day-header">
+              <span class="day-name">Sat, Sep 12</span>
+              <span class="today-pill" style="display:none;">Today</span>
+            </div>
             <span class="day-sub">Work: 3:00 PM – 10:00 PM</span>
           </div>
           <div class="day-right">
             <span class="avail-text">Mornings & after 10 PM</span>
-            <span class="badge-evening">Split</span>
+            <span class="badge-split">Split</span>
           </div>
         </div>
       </div>
@@ -426,12 +650,13 @@
         <span>🛠️ What I Can Help With</span>
       </div>
       <div class="tags">
-        <span class="tag">PC Hardware & Upgrades</span>
+        <span class="tag">PC Hardware & Specs</span>
         <span class="tag">Windows & Linux</span>
-        <span class="tag">Gaming & Driver Issues</span>
-        <span class="tag">Software Troubleshooting</span>
-        <span class="tag">Networking / Home Wi-Fi</span>
-        <span class="tag">General Tech Advice</span>
+        <span class="tag">Gaming & Drivers</span>
+        <span class="tag">Software Crashes</span>
+        <span class="tag">Discord Bots & Servers</span>
+        <span class="tag">Wi-Fi & Networking</span>
+        <span class="tag">General Troubleshooting</span>
       </div>
     </section>
 
@@ -441,7 +666,7 @@
         <span>💬 How to Reach Out</span>
       </div>
       <ul class="guidelines">
-        <li>DM me on Discord (<strong>ihateuponds</strong>).</li>
+        <li>DM me on Discord (<strong>ihateuponds</strong>) during open windows.</li>
         <li>Tell me your OS (Windows 10/11, Arch/Ubuntu Linux, macOS).</li>
         <li>Send screenshots or error logs if something is crashing.</li>
       </ul>
@@ -453,7 +678,7 @@
     </section>
 
     <footer>
-      <span>Updated automatically via Antigravity</span>
+      <p>ihateuponds</p>
     </footer>
 
   </div>
@@ -461,6 +686,7 @@
   <script>
     const DISCORD_TAG = "ihateuponds";
 
+    // 1-Click Copy Discord Handle
     function copyDiscord() {
       navigator.clipboard.writeText(DISCORD_TAG).then(() => {
         const btnText = document.getElementById("btn-text");
@@ -470,6 +696,37 @@
         }, 2200);
       });
     }
+
+    // Live Clock for EDT Timezone
+    function updateClock() {
+      const options = {
+        timeZone: 'America/New_York',
+        hour: 'numeric',
+        minute: '2-digit',
+        hour12: true
+      };
+      const formatter = new Intl.DateTimeFormat([], options);
+      document.getElementById('local-time').textContent = formatter.format(new Date());
+    }
+    updateClock();
+    setInterval(updateClock, 1000);
+
+    // Dynamic "Today" highlighter
+    function highlightToday() {
+      const now = new Date();
+      // Format to YYYY-MM-DD in New York timezone
+      const nyDateStr = now.toLocaleDateString('en-CA', { timeZone: 'America/New_York' });
+      
+      const rows = document.querySelectorAll('.day-row');
+      rows.forEach(row => {
+        if (row.getAttribute('data-day') === nyDateStr) {
+          row.classList.add('is-today');
+          const pill = row.querySelector('.today-pill');
+          if (pill) pill.style.display = 'inline-block';
+        }
+      });
+    }
+    highlightToday();
   </script>
 </body>
 </html>
