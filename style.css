@@ -1072,3 +1072,105 @@ a:hover {
     justify-content: center;
   }
 }
+
+
+/* Tailored additions for Paul's profile & interests */
+.pill-tags-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.accent-pill {
+  padding: 2px 7px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.accent-pill.purple {
+  background: rgba(168, 85, 247, 0.15);
+  color: #c084fc;
+  border: 1px solid rgba(168, 85, 247, 0.35);
+}
+
+.accent-pill.pink {
+  background: rgba(236, 72, 153, 0.15);
+  color: #f472b6;
+  border: 1px solid rgba(236, 72, 153, 0.35);
+}
+
+.accent-pill.cyan {
+  background: rgba(6, 182, 212, 0.15);
+  color: #38bdf8;
+  border: 1px solid rgba(6, 182, 212, 0.35);
+}
+
+.font-pink { color: var(--neon-pink) !important; }
+.font-purple { color: var(--neon-purple) !important; }
+
+.artist-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  align-items: center;
+  margin-top: 8px;
+  font-size: 0.7rem;
+}
+
+.cloud-title {
+  color: var(--text-dim);
+  font-weight: bold;
+  font-size: 0.68rem;
+  margin-right: 4px;
+}
+
+.artist-tag {
+  background: #181b29;
+  border: 1px solid var(--border-card);
+  padding: 1px 5px;
+  color: var(--neon-cyan);
+}
+
+.interest-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.interest-box {
+  background: #090b12;
+  border: 1px solid var(--border-card);
+  padding: 10px;
+  font-size: 0.78rem;
+}
+
+.interest-title {
+  font-size: 0.8rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.interest-box p {
+  color: #cbd5e1;
+  line-height: 1.45;
+}
+
+.btn-instagram { color: #f472b6; }
+.btn-instagram:hover { background: rgba(236, 72, 153, 0.15); color: #fff; }
+
+.btn-steam { color: #38bdf8; }
+.btn-steam:hover { background: rgba(56, 189, 248, 0.15); color: #fff; }
+
+.btn-spotify { color: #4ade80; }
+.btn-spotify:hover { background: rgba(74, 222, 128, 0.15); color: #fff; }
+
+.btn-straw { color: #fb7185; }
+.btn-straw:hover { background: rgba(251, 113, 133, 0.15); color: #fff; }
+
+@media (max-width: 680px) {
+  .interest-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -38,13 +38,14 @@
 
   // 3. Thought Radar Roller
   const thoughtQuotes = [
-    "why does every modern site look like a generic corporate pitch deck? make the web personal and weird again.",
-    "thinking about how wayland screen sharing was broken for 4 years and now it finally works.",
-    "if you don't listen to brakence at 2am while debugging a kernel panic what are you even doing?",
-    "remember when websites had under construction gifs and guestbooks instead of cookie banners and popups?",
-    "my cachyos install idles at 1.2gb of ram. windows 11 idles at 6.4gb just to show candy crush in the start menu.",
-    "radical red is the best pokemon romhack of all time, do not @ me.",
-    "pipewire pro-audio routing is the single greatest thing to happen to linux desktop in a decade."
+    "I like shorts, they're comfy and easy to wear!",
+    "If the synth doesn't distort your headphones, it's not loud enough.",
+    "Gengar used Shadow Ball on my sleep schedule!",
+    "Always disguise yourself like Mimikyu so haters can't reach you.",
+    "Hyperpop is just EDM with an energy drink and glitter on top.",
+    "Neocities is where the real internet lives. Keep it weird.",
+    "240 BPM is my natural resting heart rate.",
+    "Lowkey anxious as fuck but we ball :3"
   ];
 
   const rollBtn = document.getElementById("btn-roll-thought");
