@@ -958,39 +958,6 @@ a:hover {
   border-color: var(--neon-cyan);
 }
 
-/* Webrings Box */
-.webring-item {
-  padding: 6px 0;
-  text-align: center;
-}
-
-.ring-title {
-  font-size: 0.72rem;
-  font-weight: 700;
-  color: var(--neon-amber);
-  margin-bottom: 6px;
-}
-
-.ring-nav {
-  display: flex;
-  justify-content: center;
-  gap: 6px;
-}
-
-.ring-btn {
-  font-size: 0.7rem;
-  background: #181b29;
-  border: 1px solid var(--border-card);
-  padding: 2px 8px;
-  text-decoration: none;
-  color: var(--text-muted);
-}
-
-.ring-btn:hover {
-  color: #ffffff;
-  border-color: var(--neon-cyan);
-  font-style: normal;
-}
 
 /* Contact Links */
 .contact-links {
