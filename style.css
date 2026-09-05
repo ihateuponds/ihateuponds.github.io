@@ -1174,3 +1174,105 @@ a:hover {
     grid-template-columns: 1fr;
   }
 }
+
+
+/* Games Shrine Styling */
+.games-shrine-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.game-card-slot {
+  background: #0b0d16;
+  border: 1px solid var(--border-card);
+  padding: 8px 6px;
+  cursor: pointer;
+  transition: all 0.12s;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.game-card-slot:hover {
+  border-color: var(--neon-cyan);
+  background: #151828;
+  transform: translateY(-2px);
+}
+
+.game-card-slot.active {
+  border-color: var(--neon-green);
+  background: #171b2d;
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.25);
+}
+
+.game-badge-plat {
+  font-size: 0.6rem;
+  font-weight: 800;
+  padding: 1px 5px;
+  display: inline-block;
+  margin-bottom: 5px;
+  letter-spacing: 0.04em;
+}
+
+.plat-ps2 { background: #1e3a8a; color: #93c5fd; border: 1px solid #3b82f6; }
+.plat-nds { background: #374151; color: #d1d5db; border: 1px solid #6b7280; }
+.plat-pc { background: #064e3b; color: #6ee7b7; border: 1px solid #10b981; }
+.plat-arcade { background: #831843; color: #f472b6; border: 1px solid #ec4899; }
+.plat-gcn { background: #4c1d95; color: #c084fc; border: 1px solid #8b5cf6; }
+.plat-ps3 { background: #1e293b; color: #e2e8f0; border: 1px solid #94a3b8; }
+
+.game-slot-title {
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 2px;
+}
+
+.game-slot-sub {
+  font-size: 0.65rem;
+}
+
+.game-inspector {
+  background: #090a10;
+  border: 1px solid var(--border-card);
+  padding: 10px 14px;
+  font-size: 0.78rem;
+}
+
+.badge-plat-pill {
+  background: #1e2235;
+  color: var(--neon-cyan);
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 2px 7px;
+  border: 1px solid var(--border-card);
+}
+
+.game-note-text {
+  color: #cbd5e1;
+  line-height: 1.45;
+  margin-top: 4px;
+}
+
+@media (max-width: 768px) {
+  .games-shrine-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+
+.interest-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+@media (max-width: 840px) {
+  .interest-grid-3 {
+    grid-template-columns: 1fr;
+  }
+}
