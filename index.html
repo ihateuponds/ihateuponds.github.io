@@ -3,293 +3,497 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ihateuponds — Systems Diagnostics & Support Intake</title>
-  <meta name="description" content="Personal tech support, hardware diagnostics, Linux/Windows troubleshooting, and weekly schedule.">
-  <meta name="theme-color" content="#09090b">
+  <title>ihateuponds // Systems & Tech Diagnostics</title>
+  <meta name="description" content="Personal tech support workstation, hardware diagnostics, Linux/Windows troubleshooting, and weekly schedule.">
+  <meta name="theme-color" content="#0b0c10">
 
   <!-- OpenGraph / Discord Embed -->
-  <meta property="og:title" content="ihateuponds — Systems Diagnostics & Support Intake">
-  <meta property="og:description" content="Hardware diagnostics, OS troubleshooting, weekly availability, and structured ticket submission.">
+  <meta property="og:title" content="ihateuponds // Systems & Tech Diagnostics">
+  <meta property="og:description" content="Terminal workstation: weekly schedule, hardware diagnostics, and support ticket submission.">
   <meta property="og:url" content="https://ihateuponds.github.io/">
   <meta property="og:type" content="website">
 
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
 </head>
 <body>
 
-  <main class="page-container">
+  <div class="terminal-frame">
 
-    <!-- Profile Header -->
-    <header class="panel">
-      <div class="profile-row">
-        <img class="avatar" src="https://avatars.githubusercontent.com/u/232939997?v=4" alt="ihateuponds avatar" width="58" height="58">
-        <div class="profile-meta">
-          <h1 class="profile-name">ihateuponds</h1>
-          <p class="profile-title">Hardware diagnostics, OS troubleshooting & tech help</p>
+    <!-- Top Window Titlebar -->
+    <div class="window-titlebar">
+      <div class="window-controls" aria-hidden="true">
+        <span class="ctrl-dot close"></span>
+        <span class="ctrl-dot minimize"></span>
+        <span class="ctrl-dot maximize"></span>
+      </div>
+      <div class="window-path">
+        <span class="user-host">ihateuponds@station</span>:<span class="tilde">~</span>/<span class="project-dir">tech-help</span>
+      </div>
+      <div class="window-telemetry">
+        <span class="telemetry-item hide-mobile">OS: CachyOS / Arch</span>
+        <span class="telemetry-item hide-mobile">WM: Hyprland</span>
+        <span class="telemetry-item time-badge">
+          <span class="clock-pulse" aria-hidden="true"></span>
+          <span id="clock-display">--:--:--</span> EDT
+        </span>
+      </div>
+    </div>
+
+    <!-- Operator Identity Strip -->
+    <header class="operator-strip">
+      <div class="operator-profile">
+        <img class="operator-avatar" src="https://avatars.githubusercontent.com/u/232939997?v=4" alt="ihateuponds avatar" width="48" height="48">
+        <div class="operator-meta">
+          <div class="operator-name-row">
+            <span class="operator-handle">ihateuponds</span>
+            <span class="status-pill status-online">
+              <span class="pill-indicator">●</span> OPEN FOR DMS
+            </span>
+          </div>
+          <div class="operator-tagline">Hardware diagnostics, OS troubleshooting & system triage</div>
         </div>
       </div>
-      
-      <div class="status-bar">
-        <div class="status-badge">
-          <span class="dot-pulse" aria-hidden="true"></span>
-          <span>Open for DMs</span>
-        </div>
-        <div class="clock-badge">
-          <span>Local time: <strong id="clock-display">--:--</strong> EDT</span>
-        </div>
+
+      <div class="operator-actions">
+        <a class="tui-btn tui-btn-primary" href="https://discord.com/users/ihateuponds" target="_blank" rel="noopener noreferrer">
+          <span>Discord DM</span>
+          <span class="key-hint">@ihateuponds ↗</span>
+        </a>
       </div>
     </header>
 
-    <!-- Schedule -->
-    <section class="panel" aria-labelledby="schedule-heading">
-      <div class="section-header">
-        <h2 id="schedule-heading" class="section-title">Weekly Availability</h2>
-        <span class="date-range">Sep 5 – Sep 12</span>
+    <!-- TUI Navigation Bar -->
+    <nav class="tui-navbar" role="tablist" aria-label="Terminal views">
+      <button class="tui-tab active" id="btn-tab-schedule" role="tab" aria-selected="true" aria-controls="pane-schedule" data-tab="pane-schedule">
+        <span class="tab-index">[1]</span>
+        <span class="tab-title">AVAILABILITY & SHIFTS</span>
+      </button>
+      <button class="tui-tab" id="btn-tab-ticket" role="tab" aria-selected="false" aria-controls="pane-ticket" data-tab="pane-ticket">
+        <span class="tab-index">[2]</span>
+        <span class="tab-title">SUBMIT TICKET</span>
+      </button>
+      <button class="tui-tab" id="btn-tab-specs" role="tab" aria-selected="false" aria-controls="pane-specs" data-tab="pane-specs">
+        <span class="tab-index">[3]</span>
+        <span class="tab-title">DIAGNOSTICS & SPECS</span>
+      </button>
+      <div class="tui-navbar-hint hide-mobile">
+        <span>Hotkeys: Press [1], [2], or [3]</span>
       </div>
+    </nav>
 
-      <div class="schedule-grid" role="list">
-        <div class="schedule-row" data-date="2026-09-05" role="listitem">
-          <div class="day-info">
-            <div class="day-header">
-              <span>Sat, Sep 5</span>
-              <span class="today-chip" hidden>Today</span>
-            </div>
-            <span class="shift-text">Shift: 1:00 PM – 9:00 PM</span>
-          </div>
-          <span class="availability-tag tag-night">Free after 9:30 PM</span>
-        </div>
+    <!-- Content Workspace -->
+    <main class="terminal-body">
 
-        <div class="schedule-row" data-date="2026-09-06" role="listitem">
-          <div class="day-info">
-            <div class="day-header">
-              <span>Sun, Sep 6</span>
-              <span class="today-chip" hidden>Today</span>
+      <!-- PANE 1: SCHEDULE & AVAILABILITY -->
+      <section id="pane-schedule" class="tui-pane active" role="tabpanel" aria-labelledby="btn-tab-schedule">
+        <div class="pane-grid-split">
+          
+          <!-- Schedule Overview Card -->
+          <div class="tui-box tui-box-sidebar">
+            <div class="tui-box-header">
+              <span class="box-title">┌─ STATUS SUMMARY ──────────┐</span>
             </div>
-            <span class="shift-text">Shift: 4:00 PM – 10:00 PM</span>
-          </div>
-          <span class="availability-tag tag-split">Before 3:30 PM & late night</span>
-        </div>
+            <div class="tui-box-content">
+              <div class="meta-field">
+                <span class="meta-label">DISCORD:</span>
+                <span class="meta-value accent-cyan">ihateuponds</span>
+              </div>
+              <div class="meta-field">
+                <span class="meta-label">TIMEZONE:</span>
+                <span class="meta-value">America/New_York (EDT)</span>
+              </div>
+              <div class="meta-field">
+                <span class="meta-label">WEEK RANGE:</span>
+                <span class="meta-value">Sep 5 – Sep 12, 2026</span>
+              </div>
+              <div class="meta-field">
+                <span class="meta-label">FULL AVAILABILITY:</span>
+                <span class="meta-value accent-green">Mon Sep 7 & Fri Sep 11</span>
+              </div>
+              <div class="meta-field">
+                <span class="meta-label">EVENING SLOTS:</span>
+                <span class="meta-value">Free late night (post-shift)</span>
+              </div>
 
-        <div class="schedule-row is-day-off" data-date="2026-09-07" role="listitem">
-          <div class="day-info">
-            <div class="day-header">
-              <span>Mon, Sep 7</span>
-              <span class="today-chip" hidden>Today</span>
-            </div>
-            <span class="shift-text off">Day off from work</span>
-          </div>
-          <span class="availability-tag tag-open">Open all day & evening</span>
-        </div>
+              <hr class="tui-divider">
 
-        <div class="schedule-row" data-date="2026-09-08" role="listitem">
-          <div class="day-info">
-            <div class="day-header">
-              <span>Tue, Sep 8</span>
-              <span class="today-chip" hidden>Today</span>
-            </div>
-            <span class="shift-text">Shift: 4:00 PM – 10:00 PM</span>
-          </div>
-          <span class="availability-tag tag-split">Mornings & after 10:00 PM</span>
-        </div>
+              <div class="quick-instructions">
+                <p class="tui-dim">Need emergency help? If I am off shift, ping me directly. If you have an active crash issue, use Tab [2] to compile diagnostic logs first.</p>
+              </div>
 
-        <div class="schedule-row" data-date="2026-09-09" role="listitem">
-          <div class="day-info">
-            <div class="day-header">
-              <span>Wed, Sep 9</span>
-              <span class="today-chip" hidden>Today</span>
+              <div class="sidebar-action">
+                <button class="tui-btn tui-btn-secondary switch-to-ticket-btn" type="button">
+                  <span>→ Jump to Ticket Intake</span>
+                </button>
+              </div>
             </div>
-            <span class="shift-text">Shift: 3:00 PM – 10:00 PM</span>
+            <div class="tui-box-footer">
+              <span>└───────────────────────────┘</span>
+            </div>
           </div>
-          <span class="availability-tag tag-split">Mornings & after 10:00 PM</span>
-        </div>
 
-        <div class="schedule-row" data-date="2026-09-10" role="listitem">
-          <div class="day-info">
-            <div class="day-header">
-              <span>Thu, Sep 10</span>
-              <span class="today-chip" hidden>Today</span>
+          <!-- Schedule Matrix Table -->
+          <div class="tui-box tui-box-main">
+            <div class="tui-box-header">
+              <span class="box-title">┌─ WEEKLY SHIFTS & SUPPORT SLOTS ────────────────────────────┐</span>
             </div>
-            <span class="shift-text">Shift: 2:00 PM – 10:00 PM</span>
-          </div>
-          <span class="availability-tag tag-split">Mornings & after 10:00 PM</span>
-        </div>
+            <div class="tui-box-content tui-table-wrap">
+              <table class="tui-table">
+                <thead>
+                  <tr>
+                    <th scope="col">DATE</th>
+                    <th scope="col">WORK SHIFT</th>
+                    <th scope="col">TECH SUPPORT AVAILABILITY</th>
+                    <th scope="col">STATUS</th>
+                  </tr>
+                </thead>
+                <tbody id="schedule-tbody">
+                  <tr data-date="2026-09-05">
+                    <td class="cell-date">
+                      <span class="date-name">Sat, Sep 5</span>
+                      <span class="badge-today" hidden>CURRENT</span>
+                    </td>
+                    <td class="cell-shift">1:00 PM – 9:00 PM</td>
+                    <td class="cell-avail">Free after 9:30 PM EDT</td>
+                    <td class="cell-status"><span class="badge-status status-eve">LATE NIGHT</span></td>
+                  </tr>
 
-        <div class="schedule-row is-day-off" data-date="2026-09-11" role="listitem">
-          <div class="day-info">
-            <div class="day-header">
-              <span>Fri, Sep 11</span>
-              <span class="today-chip" hidden>Today</span>
-            </div>
-            <span class="shift-text off">Day off from work</span>
-          </div>
-          <span class="availability-tag tag-open">Open all day & evening</span>
-        </div>
+                  <tr data-date="2026-09-06">
+                    <td class="cell-date">
+                      <span class="date-name">Sun, Sep 6</span>
+                      <span class="badge-today" hidden>CURRENT</span>
+                    </td>
+                    <td class="cell-shift">4:00 PM – 10:00 PM</td>
+                    <td class="cell-avail">Before 3:30 PM & late night</td>
+                    <td class="cell-status"><span class="badge-status status-split">SPLIT</span></td>
+                  </tr>
 
-        <div class="schedule-row" data-date="2026-09-12" role="listitem">
-          <div class="day-info">
-            <div class="day-header">
-              <span>Sat, Sep 12</span>
-              <span class="today-chip" hidden>Today</span>
+                  <tr data-date="2026-09-07" class="row-day-off">
+                    <td class="cell-date">
+                      <span class="date-name">Mon, Sep 7</span>
+                      <span class="badge-today" hidden>CURRENT</span>
+                    </td>
+                    <td class="cell-shift font-accent-green">DAY OFF (NO WORK)</td>
+                    <td class="cell-avail font-accent-green">Open all day & evening</td>
+                    <td class="cell-status"><span class="badge-status status-open">ALL DAY</span></td>
+                  </tr>
+
+                  <tr data-date="2026-09-08">
+                    <td class="cell-date">
+                      <span class="date-name">Tue, Sep 8</span>
+                      <span class="badge-today" hidden>CURRENT</span>
+                    </td>
+                    <td class="cell-shift">4:00 PM – 10:00 PM</td>
+                    <td class="cell-avail">Mornings & after 10:00 PM</td>
+                    <td class="cell-status"><span class="badge-status status-split">SPLIT</span></td>
+                  </tr>
+
+                  <tr data-date="2026-09-09">
+                    <td class="cell-date">
+                      <span class="date-name">Wed, Sep 9</span>
+                      <span class="badge-today" hidden>CURRENT</span>
+                    </td>
+                    <td class="cell-shift">3:00 PM – 10:00 PM</td>
+                    <td class="cell-avail">Mornings & after 10:00 PM</td>
+                    <td class="cell-status"><span class="badge-status status-split">SPLIT</span></td>
+                  </tr>
+
+                  <tr data-date="2026-09-10">
+                    <td class="cell-date">
+                      <span class="date-name">Thu, Sep 10</span>
+                      <span class="badge-today" hidden>CURRENT</span>
+                    </td>
+                    <td class="cell-shift">2:00 PM – 10:00 PM</td>
+                    <td class="cell-avail">Mornings & after 10:00 PM</td>
+                    <td class="cell-status"><span class="badge-status status-split">SPLIT</span></td>
+                  </tr>
+
+                  <tr data-date="2026-09-11" class="row-day-off">
+                    <td class="cell-date">
+                      <span class="date-name">Fri, Sep 11</span>
+                      <span class="badge-today" hidden>CURRENT</span>
+                    </td>
+                    <td class="cell-shift font-accent-green">DAY OFF (NO WORK)</td>
+                    <td class="cell-avail font-accent-green">Open all day & evening</td>
+                    <td class="cell-status"><span class="badge-status status-open">ALL DAY</span></td>
+                  </tr>
+
+                  <tr data-date="2026-09-12">
+                    <td class="cell-date">
+                      <span class="date-name">Sat, Sep 12</span>
+                      <span class="badge-today" hidden>CURRENT</span>
+                    </td>
+                    <td class="cell-shift">3:00 PM – 10:00 PM</td>
+                    <td class="cell-avail">Mornings & after 10:00 PM</td>
+                    <td class="cell-status"><span class="badge-status status-split">SPLIT</span></td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
-            <span class="shift-text">Shift: 3:00 PM – 10:00 PM</span>
+            <div class="tui-box-footer">
+              <span>└────────────────────────────────────────────────────────────┘</span>
+            </div>
           </div>
-          <span class="availability-tag tag-split">Mornings & after 10:00 PM</span>
+
         </div>
+      </section>
+
+      <!-- PANE 2: SUPPORT TICKET INTAKE -->
+      <section id="pane-ticket" class="tui-pane" role="tabpanel" aria-labelledby="btn-tab-ticket" hidden>
+        <div class="tui-box">
+          <div class="tui-box-header">
+            <span class="box-title">┌─ TICKET INTAKE CONSOLE ──────────────────────────────────────────────┐</span>
+          </div>
+
+          <div class="tui-box-content">
+            <p class="tui-instructions">
+              Provide your environment details and issue symptoms below. The engine will compile an organized diagnostic ticket, copy it to your clipboard, and prepare it for Discord DMs.
+            </p>
+
+            <form id="ticket-form" class="tui-form" novalidate>
+              <!-- Anti-bot honeypot field -->
+              <div class="bot-trap" aria-hidden="true">
+                <input type="text" name="b_trap" tabindex="-1" autocomplete="off">
+              </div>
+
+              <div class="tui-form-grid">
+                <div class="form-group">
+                  <label for="field-handle" class="input-label">
+                    <span class="label-prompt">[client@handle]:</span>
+                    <span class="label-desc">Your Discord username or alias</span>
+                  </label>
+                  <input type="text" id="field-handle" name="handle" class="tui-input" placeholder="e.g. user or @handle" autocomplete="off">
+                </div>
+
+                <div class="form-group">
+                  <label for="field-os" class="input-label">
+                    <span class="label-prompt">[env@os]:</span>
+                    <span class="label-desc">Operating System <span class="req-star">*</span></span>
+                  </label>
+                  <div class="select-wrapper">
+                    <select id="field-os" name="os" class="tui-select" required>
+                      <option value="" disabled selected>-- Select Operating System --</option>
+                      <option value="Windows 11">Windows 11</option>
+                      <option value="Windows 10">Windows 10</option>
+                      <option value="Arch / CachyOS Linux">Arch / CachyOS Linux</option>
+                      <option value="Ubuntu / Debian / Mint">Ubuntu / Debian / Mint</option>
+                      <option value="Fedora / RHEL">Fedora / RHEL</option>
+                      <option value="SteamOS / Handheld">SteamOS / Steam Deck</option>
+                      <option value="macOS">macOS</option>
+                      <option value="Other">Other / Dual Boot</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="field-category" class="input-label">
+                    <span class="label-prompt">[issue@category]:</span>
+                    <span class="label-desc">Classification <span class="req-star">*</span></span>
+                  </label>
+                  <div class="select-wrapper">
+                    <select id="field-category" name="category" class="tui-select" required>
+                      <option value="" disabled selected>-- Select Classification --</option>
+                      <option value="Game Crash / Performance">Game Crash / Performance / FPS Drops</option>
+                      <option value="BSOD / System Freeze">BSOD / Kernel Panic / Freeze</option>
+                      <option value="Hardware / Part Diagnostics">Hardware / Part Failure / Upgrade</option>
+                      <option value="Network / Wi-Fi Latency">Network / Latency / Packet Loss</option>
+                      <option value="Discord Bot / Server Config">Discord Bot / Permissions / Hosting</option>
+                      <option value="Linux Gaming / Wine / Proton">Linux Gaming / Wine / Proton / Drivers</option>
+                      <option value="Software / OS Issue">Software / OS Config / Audio (PipeWire)</option>
+                      <option value="General Question">General Tech Question</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="field-specs" class="input-label">
+                    <span class="label-prompt">[sys@specs]:</span>
+                    <span class="label-desc">Hardware specs (GPU, CPU, RAM)</span>
+                  </label>
+                  <input type="text" id="field-specs" name="specs" class="tui-input" placeholder="e.g. RTX 3070, Ryzen 5 5600X, 32GB RAM" autocomplete="off">
+                </div>
+
+                <div class="form-group span-full">
+                  <label for="field-summary" class="input-label">
+                    <span class="label-prompt">[log@summary]:</span>
+                    <span class="label-desc">Issue description & steps to reproduce <span class="req-star">*</span></span>
+                  </label>
+                  <textarea id="field-summary" name="summary" class="tui-textarea" rows="4" placeholder="What is happening? When did it start? What troubleshooting have you already tried?" required></textarea>
+                </div>
+
+                <div class="form-group span-full">
+                  <label for="field-logs" class="input-label">
+                    <span class="label-prompt">[log@trace]:</span>
+                    <span class="label-desc">Error code, Event Viewer event, or terminal output</span>
+                  </label>
+                  <textarea id="field-logs" name="logs" class="tui-textarea font-code" rows="3" placeholder="Paste error popups, Event ID, crash stack, minidump name, journalctl traces..."></textarea>
+                </div>
+              </div>
+
+              <div id="form-error-banner" class="tui-alert tui-alert-error" hidden></div>
+
+              <div class="form-actions">
+                <button type="submit" class="tui-btn tui-btn-action">
+                  <span class="btn-symbol">↵</span>
+                  <span>COMPILE & COPY TICKET</span>
+                </button>
+                <span class="form-hint tui-dim">Rate limit protected • Zero tracking cookies</span>
+              </div>
+            </form>
+
+            <!-- Compiled Ticket Output Terminal -->
+            <div id="ticket-output" class="tui-stdout-box" hidden>
+              <div class="stdout-header">
+                <span class="stdout-title">stdout: ticket_compiled.txt</span>
+                <span class="stdout-badge">✓ COPIED TO CLIPBOARD</span>
+              </div>
+              <pre id="ticket-code" class="stdout-content"></pre>
+              <div class="stdout-actions">
+                <button id="copy-output-btn" class="tui-btn tui-btn-secondary" type="button">
+                  <span id="copy-output-label">Copy Ticket Again</span>
+                </button>
+                <a class="tui-btn tui-btn-primary" href="https://discord.com/users/ihateuponds" target="_blank" rel="noopener noreferrer">
+                  <span>Send in Discord DM</span>
+                  <span>↗</span>
+                </a>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="tui-box-footer">
+            <span>└─────────────────────────────────────────────────────────────────────┘</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- PANE 3: DIAGNOSTICS & SPECS -->
+      <section id="pane-specs" class="tui-pane" role="tabpanel" aria-labelledby="btn-tab-specs" hidden>
+        <div class="specs-grid">
+
+          <!-- Card 1: Diagnostic Checklist -->
+          <div class="tui-box">
+            <div class="tui-box-header">
+              <span class="box-title">┌─ FAST DIAGNOSTIC CHECKLIST ────────────┐</span>
+            </div>
+            <div class="tui-box-content">
+              <p class="section-lead">Before submitting, gathering these commands speeds up diagnosis by 10x:</p>
+              
+              <div class="diag-item">
+                <span class="diag-tag font-accent-cyan">[WINDOWS CRASHES]</span>
+                <p>Check <code>eventvwr.msc</code> → Windows Logs → System. Look for Event ID 41 (Kernel-Power) or BugCheck codes. Minidumps are stored in <code>C:\Windows\Minidump\</code>.</p>
+              </div>
+
+              <div class="diag-item">
+                <span class="diag-tag font-accent-green">[LINUX FREEZES / PANICS]</span>
+                <p>Run <code>journalctl -p 3 -xb</code> for priority error logs, or <code>dmesg -T --level=err,warn</code> to check GPU and kernel ring buffer errors.</p>
+              </div>
+
+              <div class="diag-item">
+                <span class="diag-tag font-accent-amber">[THERMAL & HARDWARE]</span>
+                <p>Run HWiNFO64 (Sensors only) or MangoHud. Note CPU Tctl/Tdie and GPU Hotspot temp during crash load.</p>
+              </div>
+            </div>
+            <div class="tui-box-footer">
+              <span>└────────────────────────────────────────┘</span>
+            </div>
+          </div>
+
+          <!-- Card 2: Personal Station Specs -->
+          <div class="tui-box">
+            <div class="tui-box-header">
+              <span class="box-title">┌─ OPERATOR WORKBENCH & SPECS ───────────┐</span>
+            </div>
+            <div class="tui-box-content">
+              <div class="spec-row">
+                <span class="spec-k">PRIMARY OS:</span>
+                <span class="spec-v font-accent-green">CachyOS Linux (Arch-based, BORE kernel)</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-k">WINDOW MGR:</span>
+                <span class="spec-v font-accent-cyan">Hyprland (Wayland compositor)</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-k">SECONDARY OS:</span>
+                <span class="spec-v">Windows 11 Pro (DirectX/Vulkan bench)</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-k">TERMINAL:</span>
+                <span class="spec-v">foot / kitty / zsh</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-k">PRIMARY EDITOR:</span>
+                <span class="spec-v">Neovim / VSCode</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-k">AUDIO SERVER:</span>
+                <span class="spec-v">PipeWire + WirePlumber</span>
+              </div>
+            </div>
+            <div class="tui-box-footer">
+              <span>└────────────────────────────────────────┘</span>
+            </div>
+          </div>
+
+          <!-- Card 3: Scope of Support -->
+          <div class="tui-box span-full-row">
+            <div class="tui-box-header">
+              <span class="box-title">┌─ SCOPE OF SUPPORT & RULES ─────────────────────────────────────────┐</span>
+            </div>
+            <div class="tui-box-content">
+              <div class="scope-columns">
+                <div class="scope-col">
+                  <h4 class="scope-title font-accent-green">[+] WHAT I CAN SOLVE:</h4>
+                  <ul class="tui-list">
+                    <li>PC build part compatibility, bottleneck checks & component budgeting</li>
+                    <li>Windows BSOD crash analysis (Minidump inspection with WinDbg)</li>
+                    <li>Linux dual-boot partitioning, GRUB/systemd-boot repairs & PipeWire routing</li>
+                    <li>Linux gaming troubleshooting (Proton-GE, Wine prefixes, DXVK/VKD3D)</li>
+                    <li>Game crashing, memory leaks, GPU driver cleaning (DDU / safe mode)</li>
+                    <li>Discord bot infrastructure, node/python script hosting & role permissions</li>
+                  </ul>
+                </div>
+                <div class="scope-col">
+                  <h4 class="scope-title font-accent-red">[-] WHAT I DO NOT DO:</h4>
+                  <ul class="tui-list">
+                    <li>Physical hardware soldering, board-level re-balling or SMD rework</li>
+                    <li>Cracked software, pirated key generation or bypassing antivirus alerts</li>
+                    <li>Enterprise Active Directory migrations or paid closed-source proprietary vendor setups</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="tui-box-footer">
+              <span>└────────────────────────────────────────────────────────────────────┘</span>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Bottom Statusline (like tmux/vim) -->
+    <footer class="tui-statusline">
+      <div class="status-left">
+        <span class="mode-badge">NORMAL</span>
+        <span class="branch-badge hide-mobile">main</span>
+        <span class="encoding-badge hide-mobile">utf-8</span>
       </div>
-    </section>
-
-    <!-- Support Ticket Intake -->
-    <section class="panel" aria-labelledby="intake-heading">
-      <div class="section-header">
-        <h2 id="intake-heading" class="section-title">Submit a Support Ticket</h2>
+      <div class="status-center">
+        <span class="status-hint">Nav: [1] Shifts &bull; [2] Ticket &bull; [3] Diagnostics</span>
       </div>
-
-      <form id="ticket-form" class="ticket-form" novalidate>
-        <!-- Anti-bot honeypot field -->
-        <div style="position: absolute; left: -9999px;" aria-hidden="true">
-          <input type="text" name="b_trap" tabindex="-1" autocomplete="off">
-        </div>
-
-        <div class="form-grid">
-          <div class="form-field">
-            <label class="field-label" for="field-handle">
-              <span>Your Discord or Name</span>
-              <span style="color: var(--text-dim);">(optional)</span>
-            </label>
-            <input class="field-input" type="text" id="field-handle" name="handle" placeholder="e.g. user or @handle">
-          </div>
-
-          <div class="form-field">
-            <label class="field-label" for="field-os">
-              <span>Operating System</span>
-              <span class="required">*</span>
-            </label>
-            <select class="field-select" id="field-os" name="os" required>
-              <option value="" disabled selected>Select your OS</option>
-              <option value="Windows 11">Windows 11</option>
-              <option value="Windows 10">Windows 10</option>
-              <option value="Arch / CachyOS Linux">Arch / CachyOS Linux</option>
-              <option value="Ubuntu / Debian / Mint">Ubuntu / Debian / Mint</option>
-              <option value="macOS">macOS</option>
-              <option value="SteamOS / Handheld">SteamOS / Steam Deck</option>
-              <option value="Other">Other / Not Listed</option>
-            </select>
-          </div>
-
-          <div class="form-field">
-            <label class="field-label" for="field-category">
-              <span>Category</span>
-              <span class="required">*</span>
-            </label>
-            <select class="field-select" id="field-category" name="category" required>
-              <option value="" disabled selected>Select issue type</option>
-              <option value="Game Crash / Performance">Game Crash / Performance</option>
-              <option value="BSOD / System Freeze">BSOD / System Freeze</option>
-              <option value="Hardware / Part Diagnostics">Hardware / Part Diagnostics</option>
-              <option value="Network / Wi-Fi Latency">Network / Wi-Fi Latency</option>
-              <option value="Discord Bot / Server Config">Discord Bot / Server Config</option>
-              <option value="Software / OS Issue">Software / OS Issue</option>
-              <option value="General Question">General Question</option>
-            </select>
-          </div>
-
-          <div class="form-field">
-            <label class="field-label" for="field-specs">
-              <span>Device / Hardware</span>
-              <span style="color: var(--text-dim);">(optional)</span>
-            </label>
-            <input class="field-input" type="text" id="field-specs" name="specs" placeholder="e.g. RTX 3070, Ryzen 5, or Laptop model">
-          </div>
-
-          <div class="form-field full-width">
-            <label class="field-label" for="field-summary">
-              <span>Issue Description & Steps to Reproduce</span>
-              <span class="required">*</span>
-            </label>
-            <textarea class="field-textarea" id="field-summary" name="summary" placeholder="What's going wrong? Describe what happens, when it started, and what you've tried..." required></textarea>
-          </div>
-
-          <div class="form-field full-width">
-            <label class="field-label" for="field-logs">
-              <span>Error Code or Log Snippet</span>
-              <span style="color: var(--text-dim);">(optional)</span>
-            </label>
-            <textarea class="field-textarea" id="field-logs" name="logs" style="min-height: 60px;" placeholder="Paste any error messages, Event Viewer IDs, terminal crash output..."></textarea>
-          </div>
-        </div>
-
-        <div id="form-error-banner" class="field-error-msg" hidden></div>
-
-        <button type="submit" class="btn-primary btn-accent">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-            <polyline points="14 2 14 8 20 8"></polyline>
-            <line x1="16" y1="13" x2="8" y2="13"></line>
-            <line x1="16" y1="17" x2="8" y2="17"></line>
-          </svg>
-          <span>Generate & Copy Support Ticket</span>
-        </button>
-      </form>
-
-      <!-- Generated Ticket Result Box -->
-      <div id="ticket-output" class="ticket-output" hidden>
-        <div class="ticket-banner">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-            <polyline points="22 4 12 14.01 9 11.01"></polyline>
-          </svg>
-          <span>Ticket generated & copied to clipboard!</span>
-        </div>
-        <pre id="ticket-code" class="ticket-code"></pre>
-        <div class="output-actions">
-          <button id="copy-output-btn" class="btn-primary" type="button">
-            <span id="copy-output-label">Copy Ticket Again</span>
-          </button>
-          <a class="btn-primary btn-discord-direct" href="https://discord.com/users/ihateuponds" target="_blank" rel="noopener noreferrer">
-            <span>Send in Discord DM</span>
-            <span aria-hidden="true">↗</span>
-          </a>
-        </div>
+      <div class="status-right">
+        <span class="host-url">ihateuponds.github.io</span>
       </div>
-    </section>
-
-    <!-- Focus Areas -->
-    <section class="panel" aria-labelledby="skills-heading">
-      <div class="section-header">
-        <h2 id="skills-heading" class="section-title">Core Specialties</h2>
-      </div>
-      <div class="chips-wrap">
-        <span class="chip">PC Builds & Hardware Specs</span>
-        <span class="chip">Windows 10 / 11 Troubleshooting</span>
-        <span class="chip">Arch / CachyOS & Ubuntu Linux</span>
-        <span class="chip">Game Crashes & Driver Issues</span>
-        <span class="chip">Discord Bots & Community Servers</span>
-        <span class="chip">Wi-Fi & Home Network Setup</span>
-      </div>
-    </section>
-
-    <!-- General Notes -->
-    <section class="panel" aria-labelledby="notes-heading">
-      <div class="section-header">
-        <h2 id="notes-heading" class="section-title">Quick Notes</h2>
-      </div>
-      <ul class="notes-list">
-        <li>Direct messages are open to anyone on Discord (<strong>ihateuponds</strong>).</li>
-        <li>Submitting the ticket above copies your diagnostic info so you can paste it directly into DMs.</li>
-        <li>For crashes, please have screenshots of error popups or logs ready.</li>
-      </ul>
-    </section>
-
-    <footer>
-      <p class="footer-text">ihateuponds.github.io</p>
     </footer>
 
-  </main>
+  </div>
 
 </body>
 </html>
