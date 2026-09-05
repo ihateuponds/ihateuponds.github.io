@@ -1,4 +1,23 @@
 /* ==========================================================================
+   AUTHENTIC RETRO PC WEBFONTS (from int10h.org/oldschool-pc-fonts)
+   ========================================================================== */
+@font-face {
+  font-family: 'IBMVGA';
+  src: url('assets/fonts/ibm_vga8.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'IBMBios';
+  src: url('assets/fonts/ibm_bios-2y.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ==========================================================================
    ihateuponds // NeoCities Webcore Stylesheet
    Indie-Web revival, hand-crafted personal portal
    ========================================================================== */
@@ -24,6 +43,8 @@
   --neon-red: #f43f5e;
   --neon-purple: #a855f7;
   
+  --font-vga: "IBMVGA", "VT323", monospace;
+  --font-bios: "IBMBios", monospace;
   --font-mono: "JetBrains Mono", "Share Tech Mono", Consolas, monospace;
   --font-pixel: "VT323", monospace;
   --font-sans: "Inter", -apple-system, sans-serif;
@@ -36,13 +57,14 @@
 }
 
 body {
-  background-color: var(--bg-page);
+  background-color: #030407;
   background-image: 
-    radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-    linear-gradient(rgba(16, 185, 129, 0.02) 1px, transparent 1px);
-  background-size: 24px 24px, 48px 48px;
+    linear-gradient(rgba(3, 4, 7, 0.86), rgba(3, 4, 7, 0.93)),
+    url('assets/textures/cloudsbg12.png');
+  background-repeat: repeat;
+  background-attachment: fixed;
   color: var(--text-main);
-  font-family: var(--font-mono);
+  font-family: var(--font-vga), var(--font-mono);
   line-height: 1.5;
   min-height: 100vh;
   padding: 24px 16px 64px;
@@ -1365,14 +1387,14 @@ a:hover {
   box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.7);
 }
 
-/* Background Update: Liminal Tiled Dream Void */
+/* Background Update: Liminal Tiled Dream Void (midifreak clouds + texturetown) */
 body {
-  background-color: #040508 !important;
+  background-color: #030407 !important;
   background-image: 
-    radial-gradient(rgba(147, 51, 234, 0.08) 1px, transparent 1px),
-    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px) !important;
-  background-size: 32px 32px, 16px 16px, 16px 16px !important;
+    linear-gradient(rgba(3, 4, 7, 0.88), rgba(3, 4, 7, 0.94)),
+    url('assets/textures/cloudsbg12.png') !important;
+  background-repeat: repeat !important;
+  background-attachment: fixed !important;
 }
 
 /* Pseudomorphic PSX Block Borders */
@@ -1620,4 +1642,198 @@ body {
   .eye-cluster {
     display: none !important;
   }
+}
+
+
+/* ==========================================================================
+   MIDIFREAK CONTINUOUS ANIMATED RAINBOW TEXT
+   ========================================================================== */
+.rainbow-text {
+  --bg-size: 200%;
+  --color-one: #ff6176;
+  --color-two: #ffb561;
+  --color-thr: #ffea62;
+  --color-for: #76ff61;
+  --color-fiv: #a0ced9;
+  --color-six: #ff61ab;
+  font-weight: bold;
+  background: linear-gradient(
+    45deg,
+    var(--color-one),
+    var(--color-two),
+    var(--color-thr),
+    var(--color-for),
+    var(--color-fiv),
+    var(--color-six),
+    var(--color-one)
+  ) 0 0 / var(--bg-size) 100%;
+  color: transparent !important;
+  background-clip: text;
+  -webkit-background-clip: text;
+  animation: move-bg 8s infinite linear;
+  text-shadow: none !important;
+}
+
+/* Header Decor Wings */
+.header-decor-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.header-wing {
+  width: 28px;
+  height: 28px;
+  opacity: 0.9;
+  filter: drop-shadow(0 0 6px rgba(6, 182, 212, 0.6));
+}
+
+.header-wing.left-wing {
+  transform: scaleX(-1);
+}
+
+/* ==========================================================================
+   LSD DREAM SIMULATOR DIALOGUE CARD & RPG PROMPT
+   ========================================================================== */
+.lsd-dialogue-card {
+  background: #090a10 !important;
+  background-image: 
+    linear-gradient(rgba(9, 10, 16, 0.92), rgba(9, 10, 16, 0.96)),
+    url('assets/textures/tech-matrix.png') !important;
+  border: 3px outset #323850 !important;
+  box-shadow: 
+    inset 1px 1px 0 rgba(255, 255, 255, 0.15),
+    inset -1px -1px 0 rgba(0, 0, 0, 0.8),
+    0 8px 24px rgba(0, 0, 0, 0.7) !important;
+  padding: 0 !important;
+  margin-bottom: 20px;
+  overflow: hidden;
+  position: relative;
+}
+
+.lsd-dialogue-header {
+  background: #131724;
+  border-bottom: 2px solid #23273c;
+  padding: 8px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.lsd-speaker-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.lsd-speaker-sprite {
+  width: 26px;
+  height: 26px;
+  filter: drop-shadow(0 0 4px rgba(16, 185, 129, 0.5));
+}
+
+.lsd-speaker-name {
+  font-family: var(--font-bios), var(--font-pixel);
+  font-size: 1.05rem;
+  color: var(--neon-cyan);
+  letter-spacing: 0.05em;
+  font-weight: bold;
+}
+
+.lsd-sector-tag {
+  font-family: var(--font-vga), var(--font-mono);
+  font-size: 0.76rem;
+  color: var(--neon-amber);
+  letter-spacing: 0.08em;
+}
+
+.lsd-dialogue-body {
+  padding: 18px 20px;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.lsd-speech-line {
+  margin-bottom: 12px;
+}
+
+.lsd-speech-line.font-main {
+  font-size: 1.08rem;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.lsd-prompt-row {
+  margin-top: 14px;
+  padding-top: 10px;
+  border-top: 1px dashed rgba(255, 255, 255, 0.15);
+}
+
+.lsd-dialogue-prompt {
+  font-family: var(--font-bios), monospace;
+  font-size: 0.92rem;
+  color: var(--neon-green);
+  letter-spacing: 0.06em;
+  font-weight: bold;
+  animation: lsd-blink 1s steps(2, start) infinite;
+  display: inline-block;
+}
+
+@keyframes lsd-blink {
+  0%, 100% { opacity: 1; filter: brightness(1.2); }
+  50% { opacity: 0; filter: brightness(0.5); }
+}
+
+/* ==========================================================================
+   SURREAL STAMP & BLINKY VAULT
+   ========================================================================== */
+.vault-blinkies-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 0 12px;
+}
+
+.blinkie-asset {
+  max-width: 150px;
+  height: auto;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.blinkie-asset:hover {
+  transform: translateY(-2px);
+  border-color: var(--neon-cyan);
+  box-shadow: 0 0 10px rgba(6, 182, 212, 0.5);
+}
+
+.vault-stamps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(75px, 1fr));
+  gap: 8px;
+  align-items: center;
+  justify-items: center;
+  padding: 8px 0;
+}
+
+.stamp-asset {
+  max-width: 80px;
+  max-height: 60px;
+  object-fit: contain;
+  border: 1px dashed rgba(255, 255, 255, 0.18);
+  background: rgba(0, 0, 0, 0.4);
+  padding: 3px;
+  transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.stamp-asset:hover {
+  transform: scale(1.1);
+  border-color: var(--neon-pink);
+  box-shadow: 0 0 12px rgba(236, 72, 153, 0.5);
+  z-index: 2;
 }

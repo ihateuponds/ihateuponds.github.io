@@ -12,7 +12,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>★ PONDS' CAVE // DREAM SECTOR ★</title>
   <meta name="description" content="Ponds' personal liminal webcore portal: cybersecurity, tech support workstation, retro games shrine, and weirdcore aesthetics.">
-  <meta name="theme-color" content="#05060a">
+  <meta name="theme-color" content="#030407">
 
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,7 +23,7 @@
 </head>
 <body id="page-body">
 
-  <!-- Ambient CRT Vignette Layer -->
+  <!-- Ambient CRT Scanline & Vignette Layer -->
   <div class="crt-vignette" aria-hidden="true"></div>
 
   <div class="site-wrapper">
@@ -36,11 +36,11 @@
       </div>
       <div class="top-bar-meta">
         <span class="clock-display">[ EDT: <span id="clock-display">--:--:--</span> ]</span>
-        <button id="font-toggle-btn" class="mini-tag-btn" title="Toggle Font">font: mono</button>
+        <button id="font-toggle-btn" class="mini-tag-btn" title="Toggle Font">font: vga</button>
       </div>
     </div>
 
-    <!-- Main Header Banner with Floating Eyeballs -->
+    <!-- Main Header Banner with Floating Eyeballs & Pixel Wings -->
     <header class="retro-header dream-header">
       <div class="header-content-wrap">
         
@@ -59,7 +59,11 @@
         </div>
 
         <div class="header-titles">
-          <h1 class="glitch-title rainbow-hover" title="welcome to ponds' cave">★ PONDS' CAVE ★</h1>
+          <div class="header-decor-row">
+            <img src="assets/decors/pixel-wing.png" alt="" class="header-wing left-wing pixel-img">
+            <h1 class="glitch-title rainbow-text" title="welcome to ponds' cave">★ PONDS' CAVE ★</h1>
+            <img src="assets/decors/pixel-wing.png" alt="" class="header-wing right-wing pixel-img">
+          </div>
           <p class="header-tagline">Local NEET Catboy, Good at tech n things. :3</p>
           <div class="dream-coords">[ SECTOR: 0X-LIMINAL // CALCIFER RIG // DREAM LEVEL: DEEP ]</div>
         </div>
@@ -97,7 +101,7 @@
       <a href="#rig" class="nav-link">🖥 setup &amp; rig</a>
       <a href="#games" class="nav-link">🎮 favorite games</a>
       <a href="#interests" class="nav-link">⚙️ interests</a>
-      <a href="#surf" class="nav-link">🏄 web surfing</a>
+      <a href="#stamps" class="nav-link">🎨 blinkies &amp; stamps</a>
       <a href="#socials" class="nav-link">🌐 links &amp; socials</a>
       <a href="https://discord.com/users/ihateuponds" target="_blank" rel="noopener noreferrer" class="nav-link">💬 discord</a>
     </nav>
@@ -109,7 +113,7 @@
       <aside class="col-left">
 
         <!-- Webmaster Card (Block 01) -->
-        <div class="retro-card psx-block">
+        <div class="retro-card psx-block" id="about">
           <div class="card-header">
             <span class="header-icon">✦</span>
             <span class="header-title">who's this guy?</span>
@@ -140,7 +144,7 @@
               </div>
               <div class="info-row">
                 <span class="info-k">primary os:</span>
-                <span class="info-v font-green">CachyOS</span>
+                <span class="info-v font-green">CachyOS Linux</span>
               </div>
               <div class="info-row">
                 <span class="info-k">discord:</span>
@@ -175,32 +179,13 @@
           </div>
         </div>
 
-        <!-- Blinkies & Stamps Shelf (from midifreak / blinkies.cafe) -->
+        <!-- 88x31 Button Showcase -->
         <div class="retro-card psx-block">
           <div class="card-header">
             <span class="header-icon">✨</span>
-            <span class="header-title">blinkies &amp; stamps</span>
+            <span class="header-title">site button</span>
           </div>
-          <div class="card-body text-center blinkie-shelf">
-            <!-- Retro CSS & Pixel Blinkies -->
-            <div class="blinkie-row">
-              <div class="css-blinkie blinkie-lsd">
-                <span class="blinkie-text">LSD DREAM SIMULATOR</span>
-              </div>
-              <div class="css-blinkie blinkie-cachy">
-                <span class="blinkie-text">CACHYOS LINUX USER</span>
-              </div>
-              <div class="css-blinkie blinkie-cat">
-                <span class="blinkie-text">LOCAL NEET CATBOY</span>
-              </div>
-              <div class="css-blinkie blinkie-cyber">
-                <span class="blinkie-text">CYBERSECURITY STUDENT</span>
-              </div>
-            </div>
-
-            <hr class="retro-rainbow-hr">
-
-            <!-- 88x31 Button Embed -->
+          <div class="card-body text-center">
             <p class="card-subtitle">grab my 88x31 button:</p>
             <div class="button-preview">
               <img src="button.svg" alt="ihateuponds button" width="88" height="31" class="pixel-img">
@@ -215,22 +200,28 @@
       <!-- ================= CENTER COLUMN ================= -->
       <main class="col-center">
 
-        <!-- Welcome Box (Block 03) -->
-        <section class="retro-card psx-block" id="welcome">
-          <div class="card-header header-manifesto">
-            <span class="header-icon">★</span>
-            <span class="header-title">welcome to my corner of the web :3</span>
+        <!-- LSD Dream Simulator Dialogue Box (Block 03) -->
+        <section class="lsd-dialogue-card psx-block" id="welcome">
+          <div class="lsd-dialogue-header">
+            <div class="lsd-speaker-meta">
+              <img src="assets/decors/cat-kumi.gif" alt="pixel cat" class="lsd-speaker-sprite pixel-img">
+              <span class="lsd-speaker-name">[ PONDS // LOCAL NEET CATBOY ]</span>
+            </div>
+            <span class="lsd-sector-tag">[ DAY 042 // DREAM SECTOR: LIMINAL VOID ]</span>
           </div>
-          <div class="card-body">
-            <p class="manifesto-lead">
-              Hey, welcome to my personal website.
+          <div class="lsd-dialogue-body">
+            <p class="lsd-speech-line font-main">
+              Hey, welcome to my personal website. :3
             </p>
-            <p>
-              I made this space as a personal home for everything I'm into — cybersecurity, tinkering with Linux, making music, gaming, and helping people troubleshoot their PC problems.
+            <p class="lsd-speech-line">
+              I made this space as a personal home for everything I'm into — cybersecurity, tinkering with Linux, gaming, and helping people troubleshoot their PC problems.
             </p>
-            <p>
-              Take a look around: you can check out my favorite games below, inspect my setup specs, or jump over to my <strong>Tech Support Workstation</strong> subpage if your computer or game is crashing and you need diagnostics.
+            <p class="lsd-speech-line">
+              Take a look around: check out my favorite games shrine below, inspect my CachyOS setup, or jump over to my <strong>Tech Support Workstation</strong> subpage if your computer or game is crashing and you need diagnostics.
             </p>
+            <div class="lsd-prompt-row">
+              <span class="lsd-dialogue-prompt">▶ TOUCH ANYWHERE TO LINK NEXT DREAM</span>
+            </div>
           </div>
         </section>
 
@@ -380,7 +371,7 @@
         <!-- About Me / Interests (Block 06) -->
         <section class="retro-card psx-block" id="interests">
           <div class="card-header">
-            <span class="header-icon">🎮</span>
+            <span class="header-icon">⚙️</span>
             <span class="header-title">stuff i'm into</span>
           </div>
           <div class="card-body">
@@ -439,52 +430,50 @@
           </div>
         </div>
 
-        <!-- Web Surfing & Finds (from midifreak/surf) -->
-        <div class="retro-card psx-block" id="surf">
+        <!-- Surreal Stamp & Blinky Vault (Block 08) -->
+        <div class="retro-card psx-block" id="stamps">
           <div class="card-header">
-            <span class="header-icon">🏄</span>
-            <span class="header-title">web surfing &amp; finds</span>
+            <span class="header-icon">🎨</span>
+            <span class="header-title">stamp &amp; blinkie vault</span>
           </div>
           <div class="card-body">
-            <p class="card-subtitle">indie web corners &amp; retro tools:</p>
-            <ul class="surf-links-list">
-              <li><a href="https://gifcities.org/" target="_blank" rel="noopener" class="rainbow-hover">gifcities</a> <span class="surf-desc">geocities archive gif search</span></li>
-              <li><a href="https://blinkies.cafe/" target="_blank" rel="noopener" class="rainbow-hover">blinkies.cafe</a> <span class="surf-desc">the classic blinkie collection</span></li>
-              <li><a href="https://deathgenerator.com/" target="_blank" rel="noopener" class="rainbow-hover">deathgenerator</a> <span class="surf-desc">retro video game text generator</span></li>
-              <li><a href="https://neal.fun/internet-artifacts/" target="_blank" rel="noopener" class="rainbow-hover">neal.fun</a> <span class="surf-desc">the internet artifacts museum</span></li>
-              <li><a href="https://int10h.org/oldschool-pc-fonts/fontlist/" target="_blank" rel="noopener" class="rainbow-hover">oldschool pc fonts</a> <span class="surf-desc">classic early bios &amp; dos typography</span></li>
-              <li><a href="https://textures.neocities.org" target="_blank" rel="noopener" class="rainbow-hover">texturetown</a> <span class="surf-desc">surreal textures &amp; pattern repository</span></li>
-            </ul>
-          </div>
-        </div>
+            <p class="card-subtitle">vintage web 1.0 blinkies &amp; dream glyphs:</p>
+            
+            <!-- Curated Retro Animated Blinkies -->
+            <div class="vault-blinkies-row">
+              <img src="assets/blinkies/arch.gif" alt="Arch Linux" class="pixel-img blinkie-asset" title="Arch Linux Powered">
+              <img src="assets/blinkies/linux_powered.gif" alt="Linux Powered" class="pixel-img blinkie-asset" title="Linux Powered">
+              <img src="assets/blinkies/cyberworld.gif" alt="Cyberworld" class="pixel-img blinkie-asset" title="Cyberworld">
+              <img src="assets/blinkies/win95.gif" alt="Windows 95" class="pixel-img blinkie-asset" title="Windows 95">
+              <img src="assets/blinkies/terminal.gif" alt="Terminal" class="pixel-img blinkie-asset" title="Terminal">
+              <img src="assets/blinkies/beepboop.gif" alt="Beep Boop" class="pixel-img blinkie-asset" title="Beep Boop">
+              <img src="assets/blinkies/lilguy.gif" alt="Lil Guy" class="pixel-img blinkie-asset" title="Lil Guy">
+              <img src="assets/blinkies/alien.gif" alt="Alien" class="pixel-img blinkie-asset" title="Pink Alien">
+              <img src="assets/blinkies/stressed.gif" alt="Stressed" class="pixel-img blinkie-asset" title="Stressed">
+              <img src="assets/blinkies/yippee.gif" alt="Yippee" class="pixel-img blinkie-asset" title="Yippee">
+              <img src="assets/blinkies/lainpower.gif" alt="Lain Power" class="pixel-img blinkie-asset" title="Lain Power">
+              <img src="assets/blinkies/bestcomp.gif" alt="Best Computer" class="pixel-img blinkie-asset" title="Best Computer">
+              <img src="assets/blinkies/notepad.gif" alt="Notepad" class="pixel-img blinkie-asset" title="Coded in Notepad">
+              <img src="button.svg" alt="Ponds Cave Button" class="pixel-img blinkie-asset" title="Ponds' Cave 88x31">
+            </div>
 
-        <!-- Indie Web Badges (Block 08) -->
-        <div class="retro-card psx-block">
-          <div class="card-header">
-            <span class="header-icon">🛡️</span>
-            <span class="header-title">badges</span>
-          </div>
-          <div class="card-body text-center badges-grid">
-            <div class="badge-item" title="No AI Webring">
-              <img src="https://baccyflap.com/noai/win7widget-compact.gif" alt="No AI Webring" class="pixel-img" style="max-width: 100%;">
-            </div>
-            <div class="badge-item" title="Arch Linux">
-              <img src="https://cyber.dabamos.de/88x31/archlinux.gif" alt="Arch Linux" width="88" height="31" class="pixel-img">
-            </div>
-            <div class="badge-item" title="Linux Powered">
-              <img src="https://cyber.dabamos.de/88x31/linux_powered.gif" alt="Linux Powered" width="88" height="31" class="pixel-img">
-            </div>
-            <div class="badge-item" title="Notepad">
-              <img src="https://cyber.dabamos.de/88x31/notepad.gif" alt="Hand-coded in Notepad" width="88" height="31" class="pixel-img">
-            </div>
-            <div class="badge-item" title="Firefox">
-              <img src="https://cyber.dabamos.de/88x31/firefox.gif" alt="Get Firefox" width="88" height="31" class="pixel-img">
-            </div>
-            <div class="badge-item" title="Steam">
-              <img src="https://cyber.dabamos.de/88x31/steam.gif" alt="Play on Steam" width="88" height="31" class="pixel-img">
-            </div>
-            <div class="badge-item" title="Valid HTML">
-              <img src="https://cyber.dabamos.de/88x31/valid_html.gif" alt="Valid HTML" width="88" height="31" class="pixel-img">
+            <hr class="card-divider">
+
+            <p class="card-subtitle">surreal liminal stamps &amp; artifacts:</p>
+            <!-- Curated Retro Stamps -->
+            <div class="vault-stamps-grid">
+              <img src="assets/stamps/eyes.gif" alt="Eyes" class="pixel-img stamp-asset" title="Organic Eyes">
+              <img src="assets/stamps/ps1.png" alt="PS1" class="pixel-img stamp-asset" title="PlayStation">
+              <img src="assets/stamps/gba.gif" alt="GBA" class="pixel-img stamp-asset" title="Game Boy Advance">
+              <img src="assets/stamps/kitty-rainbow.gif" alt="Rainbow Cat" class="pixel-img stamp-asset" title="Rainbow Cat">
+              <img src="assets/stamps/hellgato.png" alt="Hellgato" class="pixel-img stamp-asset" title="Hellgato">
+              <img src="assets/stamps/breakcore.png" alt="Breakcore" class="pixel-img stamp-asset" title="Breakcore">
+              <img src="assets/stamps/spiral.gif" alt="Spiral" class="pixel-img stamp-asset" title="Hypnotic Spiral">
+              <img src="assets/stamps/noise.gif" alt="CRT Noise" class="pixel-img stamp-asset" title="CRT Noise">
+              <img src="assets/stamps/paranoid.gif" alt="Paranoid" class="pixel-img stamp-asset" title="Paranoid">
+              <img src="assets/stamps/oldweb.png" alt="Old Web" class="pixel-img stamp-asset" title="Old Web Pride">
+              <img src="assets/stamps/tamagotchi.png" alt="Tamagotchi" class="pixel-img stamp-asset" title="Tamagotchi">
+              <img src="assets/stamps/unsettling.png" alt="Unsettling" class="pixel-img stamp-asset" title="Unsettling">
             </div>
           </div>
         </div>

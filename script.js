@@ -18,13 +18,14 @@
   updateClock();
   setInterval(updateClock, 1000);
 
-  // 2. Font Mode Switcher
+  // 2. Retro Font Mode Switcher
   const fontBtn = document.getElementById("font-toggle-btn");
   const body = document.getElementById("page-body");
   const fontOptions = [
+    { name: "vga", family: "'IBMVGA', monospace" },
+    { name: "bios", family: "'IBMBios', monospace" },
     { name: "mono", family: "'JetBrains Mono', monospace" },
-    { name: "pixel", family: "'VT323', monospace" },
-    { name: "tech", family: "'Share Tech Mono', monospace" }
+    { name: "pixel", family: "'VT323', monospace" }
   ];
   let currentFontIdx = 0;
 
@@ -36,7 +37,7 @@
     });
   }
 
-  // 5. Favorite Games Shrine Inspector
+  // 3. Favorite Games Shrine Inspector
   const gameSlots = document.querySelectorAll(".game-card-slot");
   const inspectGameTitle = document.getElementById("inspect-game-title");
   const inspectGamePlat = document.getElementById("inspect-game-plat");
@@ -53,7 +54,7 @@
     });
   });
 
-  // 7. Copy Embed Snippet
+  // 4. Copy Embed Snippet
   const copyEmbedBtn = document.getElementById("btn-copy-embed");
   const embedCode = document.getElementById("button-embed-code");
 
@@ -70,7 +71,7 @@
     });
   }
 
-  // 8. Organic Blinking Eyeballs Engine (LSD Dream Simulator / Weirdcore)
+  // 5. Organic Blinking Eyeballs Engine (LSD Dream Simulator / Weirdcore)
   const eyeList = [
     { eye: document.getElementById("eye-1"), iris: document.querySelector("#eye-1 .iris") },
     { eye: document.getElementById("eye-2"), iris: document.querySelector("#eye-2 .iris") }
@@ -108,5 +109,29 @@
     }, 160);
   }
   setTimeout(scheduleBlink, 2500);
+
+  // 6. LSD Dream Simulator Dream Link Rotator
+  const lsdPrompt = document.querySelector(".lsd-dialogue-prompt");
+  const dreamCoords = document.querySelector(".dream-coords");
+  const dreamSectors = [
+    "[ SECTOR: 0X-LIMINAL // CALCIFER RIG // DREAM LEVEL: DEEP ]",
+    "[ SECTOR: 0X-SUN // MONUMENT BLOCKS // DREAM LEVEL: STATIC ]",
+    "[ SECTOR: 0X-MOON // DITHERED VOID // DREAM LEVEL: LUCID ]",
+    "[ SECTOR: 0X-KYOTO // OBSIDIAN GARDEN // DREAM LEVEL: REM ]",
+    "[ SECTOR: 0X-NATURAL // THE HANGING STEPS // DREAM LEVEL: FLASH ]"
+  ];
+  let sectorIdx = 0;
+
+  if (lsdPrompt && dreamCoords) {
+    lsdPrompt.style.cursor = "pointer";
+    lsdPrompt.addEventListener("click", () => {
+      sectorIdx = (sectorIdx + 1) % dreamSectors.length;
+      dreamCoords.textContent = dreamSectors[sectorIdx];
+      lsdPrompt.textContent = "▶ LINKED! SECTOR SHIFTED: " + dreamSectors[sectorIdx].split("//")[0].replace("[", "").trim();
+      setTimeout(() => {
+        lsdPrompt.textContent = "▶ TOUCH ANYWHERE TO LINK NEXT DREAM";
+      }, 2000);
+    });
+  }
 
 })();
