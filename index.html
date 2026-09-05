@@ -3,726 +3,790 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ihateuponds — Tech Support & Availability</title>
+  <title>ihateuponds.exe — Tech Support & Availability</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #090b10;
-      --card-bg: rgba(18, 22, 31, 0.7);
-      --card-border: rgba(255, 255, 255, 0.08);
-      --card-hover-border: rgba(88, 101, 242, 0.35);
-      --text: #f0f6fc;
-      --text-muted: #8b949e;
-      --accent: #5865F2;
-      --accent-glow: rgba(88, 101, 242, 0.3);
-      --green: #23a55a;
-      --green-glow: rgba(35, 165, 90, 0.25);
-      --purple: #8b5cf6;
-      --radius: 16px;
+      --win-bg: #c0c0c0;
+      --win-light: #ffffff;
+      --win-shadow: #808080;
+      --win-dark: #000000;
+      --desktop-bg: #008080; /* Win98 Classic Teal */
+      --title-start: #000080;
+      --title-end: #1084d0;
+      --selection: #000080;
+      --selection-text: #ffffff;
+      --term-green: #00ff66;
+    }
+
+    /* Emerald Silph-Net Theme Override */
+    body.theme-emerald {
+      --desktop-bg: #071910;
+      --title-start: #004d28;
+      --title-end: #00b359;
+      --selection: #005c30;
+      --selection-text: #00ff66;
+    }
+
+    /* Platinum Theme */
+    body.theme-platinum {
+      --desktop-bg: #140d1c;
+      --title-start: #3b1147;
+      --title-end: #86198f;
+      --selection: #701a75;
+      --selection-text: #fdf4ff;
+    }
+
+    /* SoulSilver Theme */
+    body.theme-soulsilver {
+      --desktop-bg: #091322;
+      --title-start: #0f2b5c;
+      --title-end: #2563eb;
+      --selection: #1d4ed8;
+      --selection-text: #ffffff;
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+      -webkit-font-smoothing: antialiased;
     }
 
     body {
-      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-      background-color: var(--bg);
-      color: var(--text);
+      font-family: 'MS Reference Sans-Serif', Tahoma, Arial, sans-serif;
+      font-size: 12px;
+      background-color: var(--desktop-bg);
+      background-image: 
+        radial-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 0),
+        linear-gradient(to right, rgba(0, 0, 0, 0.25) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.25) 1px, transparent 1px);
+      background-size: 20px 20px, 20px 20px, 20px 20px;
+      color: #000;
       min-height: 100vh;
+      padding: 16px 12px 52px 12px;
       display: flex;
       justify-content: center;
-      padding: 36px 16px 72px 16px;
-      line-height: 1.5;
-      overflow-x: hidden;
+      align-items: flex-start;
       position: relative;
     }
 
-    /* Animated Ambient Glowing Orbs in Background */
-    .ambient-bg {
+    /* Scanlines effect (Subtle retro overlay) */
+    .scanlines {
       position: fixed;
       inset: 0;
       pointer-events: none;
-      z-index: 0;
-      overflow: hidden;
+      z-index: 999;
+      background: linear-gradient(
+        rgba(18, 16, 16, 0) 50%, 
+        rgba(0, 0, 0, 0.12) 50%
+      );
+      background-size: 100% 4px;
+      opacity: 0.6;
     }
 
-    .orb {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(90px);
-      opacity: 0.45;
-      animation: float 14s ease-in-out infinite alternate;
-    }
-
-    .orb-1 {
-      width: 420px;
-      height: 420px;
-      background: radial-gradient(circle, #5865F2, #3b429f);
-      top: -100px;
-      left: -80px;
-      animation-duration: 16s;
-    }
-
-    .orb-2 {
-      width: 380px;
-      height: 380px;
-      background: radial-gradient(circle, #23a55a, #0d5f30);
-      bottom: 5%;
-      right: -80px;
-      animation-duration: 20s;
-      animation-delay: -5s;
-    }
-
-    .orb-3 {
-      width: 300px;
-      height: 300px;
-      background: radial-gradient(circle, #8b5cf6, #5b21b6);
-      top: 45%;
-      left: 60%;
-      animation-duration: 18s;
-      animation-delay: -9s;
-      opacity: 0.3;
-    }
-
-    @keyframes float {
-      0% {
-        transform: translate(0, 0) scale(1);
-      }
-      50% {
-        transform: translate(30px, 40px) scale(1.08);
-      }
-      100% {
-        transform: translate(-20px, 60px) scale(0.95);
-      }
-    }
-
-    .container {
+    .desktop-container {
       width: 100%;
-      max-width: 590px;
+      max-width: 620px;
       display: flex;
       flex-direction: column;
-      gap: 20px;
-      position: relative;
-      z-index: 1;
+      gap: 14px;
+      z-index: 10;
     }
 
-    /* Glass Cards */
-    .card {
-      background: var(--card-bg);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      border: 1px solid var(--card-border);
-      border-radius: var(--radius);
-      padding: 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.05);
-      transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+    /* Windows 98 3D Bevel Window Box */
+    .win-window {
+      background: var(--win-bg);
+      border-top: 2px solid var(--win-light);
+      border-left: 2px solid var(--win-light);
+      border-right: 2px solid var(--win-dark);
+      border-bottom: 2px solid var(--win-dark);
+      box-shadow: 2px 2px 0 rgba(0,0,0,0.6);
     }
 
-    .card:hover {
-      border-color: var(--card-hover-border);
-      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.45), 0 0 24px rgba(88, 101, 242, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.08);
-    }
-
-    /* Header Profile */
-    .profile-info {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-    }
-
-    .avatar-wrapper {
-      position: relative;
-      flex-shrink: 0;
-    }
-
-    .avatar {
-      width: 66px;
-      height: 66px;
-      border-radius: 50%;
-      border: 2px solid rgba(88, 101, 242, 0.6);
-      box-shadow: 0 0 20px rgba(88, 101, 242, 0.4);
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #161b22;
-      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-
-    .card:hover .avatar {
-      transform: scale(1.05) rotate(2deg);
-    }
-
-    .avatar img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .names h1 {
-      font-size: 1.4rem;
-      font-weight: 800;
-      letter-spacing: -0.02em;
+    /* Window Header Titlebar */
+    .win-header {
+      background: linear-gradient(90deg, var(--title-start), var(--title-end));
       color: #fff;
-    }
-
-    .names p {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      margin-top: 2px;
-    }
-
-    /* Live Meta Badges Row */
-    .meta-bar {
+      padding: 3px 6px;
       display: flex;
-      flex-wrap: wrap;
+      justify-content: space-between;
       align-items: center;
-      gap: 10px;
-      margin-top: 2px;
+      font-family: 'Silkscreen', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      user-select: none;
     }
 
-    .status-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 6px 14px;
-      background: rgba(35, 165, 90, 0.14);
-      border: 1px solid rgba(35, 165, 90, 0.35);
-      border-radius: 999px;
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: #57f287;
-      box-shadow: 0 0 12px rgba(35, 165, 90, 0.15);
-    }
-
-    .pulse-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: #57f287;
-      box-shadow: 0 0 0 rgba(87, 242, 135, 0.7);
-      animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-      0% { box-shadow: 0 0 0 0 rgba(87, 242, 135, 0.8); }
-      70% { box-shadow: 0 0 0 8px rgba(87, 242, 135, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(87, 242, 135, 0); }
-    }
-
-    .clock-badge {
-      display: inline-flex;
+    .win-title {
+      display: flex;
       align-items: center;
       gap: 6px;
-      padding: 6px 12px;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid var(--card-border);
-      border-radius: 999px;
-      font-size: 0.8rem;
-      font-weight: 500;
-      color: var(--text-muted);
     }
 
-    .clock-badge span {
-      color: #e6edf3;
-      font-weight: 600;
-      font-variant-numeric: tabular-nums;
-    }
-
-    /* Card Titles */
-    .card-title {
-      font-size: 1rem;
-      font-weight: 700;
+    .win-controls {
       display: flex;
-      align-items: center;
-      justify-content: space-between;
-      color: #fff;
-    }
-
-    .week-tag {
-      font-size: 0.78rem;
-      font-weight: 600;
-      color: #d1d5db;
-      background: rgba(88, 101, 242, 0.15);
-      border: 1px solid rgba(88, 101, 242, 0.3);
-      padding: 3px 10px;
-      border-radius: 20px;
-    }
-
-    /* Schedule List */
-    .schedule-list {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .day-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 12px 16px;
-      background: rgba(255, 255, 255, 0.025);
-      border-radius: 10px;
-      font-size: 0.88rem;
-      border: 1px solid transparent;
-      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .day-row:hover {
-      background: rgba(255, 255, 255, 0.05);
-      transform: translateX(3px);
-    }
-
-    /* Highlight Today */
-    .day-row.is-today {
-      border-color: rgba(88, 101, 242, 0.45);
-      background: linear-gradient(90deg, rgba(88, 101, 242, 0.14), rgba(88, 101, 242, 0.04));
-      box-shadow: 0 4px 16px rgba(88, 101, 242, 0.15);
-    }
-
-    .day-row.day-off {
-      border-color: rgba(35, 165, 90, 0.3);
-      background: linear-gradient(90deg, rgba(35, 165, 90, 0.12), rgba(35, 165, 90, 0.03));
-    }
-
-    .day-left {
-      display: flex;
-      flex-direction: column;
       gap: 2px;
     }
 
-    .day-header {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .day-name {
-      font-weight: 700;
-      color: #fff;
-    }
-
-    .today-pill {
-      font-size: 0.68rem;
-      font-weight: 800;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      padding: 2px 7px;
-      border-radius: 4px;
-      background: var(--accent);
-      color: #fff;
-      box-shadow: 0 0 10px var(--accent-glow);
-    }
-
-    .day-sub {
-      color: var(--text-muted);
-      font-size: 0.78rem;
-    }
-
-    .day-right {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      text-align: right;
-    }
-
-    .avail-text {
-      font-size: 0.82rem;
-      color: #e6edf3;
-      font-weight: 500;
-    }
-
-    .badge-open {
-      color: #57f287;
-      background: rgba(35, 165, 90, 0.2);
-      border: 1px solid rgba(35, 165, 90, 0.35);
-      padding: 3px 9px;
-      border-radius: 6px;
-      font-size: 0.72rem;
-      font-weight: 700;
-    }
-
-    .badge-split {
-      color: #c4b5fd;
-      background: rgba(139, 92, 246, 0.18);
-      border: 1px solid rgba(139, 92, 246, 0.3);
-      padding: 3px 9px;
-      border-radius: 6px;
-      font-size: 0.72rem;
-      font-weight: 600;
-    }
-
-    .badge-night {
-      color: #93c5fd;
-      background: rgba(59, 130, 246, 0.18);
-      border: 1px solid rgba(59, 130, 246, 0.3);
-      padding: 3px 9px;
-      border-radius: 6px;
-      font-size: 0.72rem;
-      font-weight: 600;
-    }
-
-    /* Tag Pills */
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .tag {
-      background: rgba(255, 255, 255, 0.035);
-      border: 1px solid var(--card-border);
-      padding: 6px 14px;
-      border-radius: 20px;
-      font-size: 0.82rem;
-      font-weight: 500;
-      color: #d1d5db;
-      transition: all 0.2s ease;
-      cursor: default;
-    }
-
-    .tag:hover {
-      background: rgba(88, 101, 242, 0.15);
-      border-color: rgba(88, 101, 242, 0.4);
-      color: #fff;
-      transform: translateY(-2px);
-    }
-
-    /* Guidelines */
-    .guidelines {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      line-height: 1.7;
-      list-style-position: inside;
-    }
-
-    .guidelines strong {
-      color: #fff;
-    }
-
-    .guidelines li {
-      margin-bottom: 4px;
-    }
-
-    /* Discord Copy Button with Dynamic Shimmer */
-    .contact-action {
-      margin-top: 4px;
-    }
-
-    .btn-discord {
-      position: relative;
-      overflow: hidden;
-      background: linear-gradient(135deg, #5865F2 0%, #4752c4 100%);
-      color: #fff;
-      border: none;
-      padding: 14px 20px;
-      border-radius: 10px;
-      font-weight: 700;
-      font-size: 0.92rem;
-      cursor: pointer;
+    .win-btn-mini {
+      width: 16px;
+      height: 14px;
+      background: var(--win-bg);
+      border-top: 1px solid var(--win-light);
+      border-left: 1px solid var(--win-light);
+      border-right: 1px solid var(--win-dark);
+      border-bottom: 1px solid var(--win-dark);
+      font-size: 10px;
+      font-weight: bold;
+      color: #000;
       display: flex;
       align-items: center;
       justify-content: center;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    .win-btn-mini:active {
+      border-top: 1px solid var(--win-dark);
+      border-left: 1px solid var(--win-dark);
+      border-right: 1px solid var(--win-light);
+      border-bottom: 1px solid var(--win-light);
+      padding: 1px 0 0 1px;
+    }
+
+    /* Menu Bar */
+    .win-menu {
+      display: flex;
+      gap: 12px;
+      padding: 3px 8px;
+      border-bottom: 1px solid var(--win-shadow);
+      font-size: 11px;
+      color: #000;
+      user-select: none;
+    }
+
+    .win-menu-item {
+      cursor: pointer;
+    }
+    .win-menu-item u {
+      text-decoration: underline;
+    }
+    .win-menu-item:hover {
+      background: var(--selection);
+      color: var(--selection-text);
+      padding: 0 4px;
+      margin: 0 -4px;
+    }
+
+    .win-body {
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
       gap: 10px;
-      transition: transform 0.15s ease, box-shadow 0.25s ease;
+    }
+
+    /* 3D Sunken / Inset Box */
+    .inset-panel {
+      background: #fff;
+      border-top: 2px solid var(--win-shadow);
+      border-left: 2px solid var(--win-shadow);
+      border-right: 2px solid var(--win-light);
+      border-bottom: 2px solid var(--win-light);
+      padding: 10px;
+    }
+
+    .inset-dark {
+      background: #0d1117;
+      color: #fff;
+    }
+
+    /* Profile Header Layout */
+    .profile-banner {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .pixel-avatar-frame {
+      width: 64px;
+      height: 64px;
+      background: #000;
+      border-top: 2px solid var(--win-shadow);
+      border-left: 2px solid var(--win-shadow);
+      border-right: 2px solid var(--win-light);
+      border-bottom: 2px solid var(--win-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+
+    .pixel-avatar-frame img {
       width: 100%;
-      box-shadow: 0 4px 18px rgba(88, 101, 242, 0.35);
+      height: 100%;
+      object-fit: cover;
+      image-rendering: pixelated;
     }
 
-    .btn-discord:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 6px 24px rgba(88, 101, 242, 0.5);
+    .profile-text h1 {
+      font-family: 'Silkscreen', monospace;
+      font-size: 14px;
+      font-weight: 700;
+      color: #000;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
 
-    .btn-discord:active {
-      transform: translateY(1px);
+    .profile-text p {
+      font-size: 11px;
+      color: #444;
+      margin-top: 2px;
+      line-height: 1.4;
     }
 
-    /* Light shimmer effect across button */
-    .btn-discord::after {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -60%;
-      width: 40%;
-      height: 200%;
-      background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.25) 50%, rgba(255,255,255,0) 100%);
-      transform: rotate(25deg);
-      animation: shimmer 5s infinite;
+    /* Status Bar Strip */
+    .status-strip {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      padding: 4px 8px;
+      background: var(--win-bg);
+      border-top: 1px solid var(--win-shadow);
+      border-left: 1px solid var(--win-shadow);
+      border-right: 1px solid var(--win-light);
+      border-bottom: 1px solid var(--win-light);
     }
 
-    @keyframes shimmer {
-      0% { left: -60%; }
-      30% { left: 140%; }
-      100% { left: 140%; }
+    .status-badge-retro {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Silkscreen', monospace;
+      font-size: 10px;
+      color: #006622;
+      font-weight: 700;
     }
 
-    footer {
-      text-align: center;
-      padding-top: 6px;
+    .blink-dot {
+      width: 8px;
+      height: 8px;
+      background: #00cc44;
+      border-radius: 50%;
+      box-shadow: 0 0 6px #00cc44;
+      animation: blink 1.2s infinite;
     }
 
-    footer p {
-      font-size: 0.78rem;
-      color: #4b5563;
-      font-weight: 500;
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.2; }
+    }
+
+    .status-clock {
+      margin-left: auto;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 12px;
+      color: #222;
+    }
+
+    /* Windows 98 Table / ListView */
+    .schedule-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 11px;
+      background: #fff;
+    }
+
+    .schedule-table th {
+      background: var(--win-bg);
+      border-top: 1px solid var(--win-light);
+      border-left: 1px solid var(--win-light);
+      border-right: 1px solid var(--win-shadow);
+      border-bottom: 1px solid var(--win-shadow);
+      padding: 4px 8px;
+      font-family: 'Silkscreen', monospace;
+      font-size: 10px;
+      text-align: left;
+      font-weight: normal;
+      color: #000;
+    }
+
+    .schedule-table td {
+      padding: 6px 8px;
+      border-bottom: 1px solid #e0e0e0;
+      vertical-align: middle;
+    }
+
+    .table-row {
+      transition: background 0.1s;
+    }
+
+    .table-row:hover {
+      background: #f0f4f8;
+    }
+
+    /* Today highlight: looks like active selected row in Win98 */
+    .table-row.is-today {
+      background: var(--selection) !important;
+      color: var(--selection-text) !important;
+      outline: 1px dotted #fff;
+    }
+
+    .table-row.is-today td {
+      color: var(--selection-text) !important;
+    }
+
+    .today-tag {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 8px;
+      background: #ffcc00;
+      color: #000;
+      padding: 2px 4px;
+      border-radius: 2px;
+      margin-left: 4px;
+      vertical-align: middle;
+      display: inline-block;
+    }
+
+    .tag-free {
+      font-family: 'Silkscreen', monospace;
+      font-size: 9px;
+      color: #007722;
+      font-weight: bold;
+    }
+
+    .tag-night {
+      font-family: 'Silkscreen', monospace;
+      font-size: 9px;
+      color: #0044cc;
+      font-weight: bold;
+    }
+
+    .table-row.is-today .tag-free,
+    .table-row.is-today .tag-night {
+      color: #ffff00 !important;
+    }
+
+    /* Retro 88x31 Badges & Chips */
+    .chips-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .pixel-chip {
+      font-family: 'Silkscreen', monospace;
+      font-size: 9px;
+      background: var(--win-bg);
+      border-top: 1px solid var(--win-light);
+      border-left: 1px solid var(--win-light);
+      border-right: 1px solid var(--win-dark);
+      border-bottom: 1px solid var(--win-dark);
+      padding: 3px 7px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      color: #111;
+    }
+
+    /* 3D Push Buttons */
+    .os-button {
+      font-family: 'Silkscreen', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      background: var(--win-bg);
+      border-top: 2px solid var(--win-light);
+      border-left: 2px solid var(--win-light);
+      border-right: 2px solid var(--win-dark);
+      border-bottom: 2px solid var(--win-dark);
+      padding: 8px 14px;
+      cursor: pointer;
+      color: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      user-select: none;
+      width: 100%;
+      box-shadow: 1px 1px 0 rgba(0,0,0,0.4);
+    }
+
+    .os-button:active {
+      border-top: 2px solid var(--win-dark);
+      border-left: 2px solid var(--win-dark);
+      border-right: 2px solid var(--win-light);
+      border-bottom: 2px solid var(--win-light);
+      padding: 9px 13px 7px 15px;
+    }
+
+    /* Theme Selector Bar */
+    .theme-bar {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 10px;
+      font-family: 'Silkscreen', monospace;
+    }
+
+    .theme-btn {
+      padding: 2px 6px;
+      font-size: 9px;
+      font-family: 'Silkscreen', monospace;
+      background: var(--win-bg);
+      border-top: 1px solid var(--win-light);
+      border-left: 1px solid var(--win-light);
+      border-right: 1px solid var(--win-dark);
+      border-bottom: 1px solid var(--win-dark);
+      cursor: pointer;
+    }
+    .theme-btn:active {
+      border-top: 1px solid var(--win-dark);
+      border-left: 1px solid var(--win-dark);
+      border-right: 1px solid var(--win-light);
+      border-bottom: 1px solid var(--win-light);
+    }
+
+    /* Bottom Windows 98 Taskbar */
+    .win-taskbar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 34px;
+      background: var(--win-bg);
+      border-top: 2px solid var(--win-light);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 2px 4px;
+      z-index: 1000;
+      box-shadow: 0 -1px 0 #000;
+    }
+
+    .start-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      height: 26px;
+      padding: 0 8px;
+      background: var(--win-bg);
+      border-top: 2px solid var(--win-light);
+      border-left: 2px solid var(--win-light);
+      border-right: 2px solid var(--win-dark);
+      border-bottom: 2px solid var(--win-dark);
+      font-family: 'Silkscreen', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .start-btn:active {
+      border-top: 2px solid var(--win-dark);
+      border-left: 2px solid var(--win-dark);
+      border-right: 2px solid var(--win-light);
+      border-bottom: 2px solid var(--win-light);
+      padding: 1px 7px 0 9px;
+    }
+
+    .task-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      height: 24px;
+      padding: 0 10px;
+      background: var(--win-bg);
+      border-top: 2px solid var(--win-dark);
+      border-left: 2px solid var(--win-dark);
+      border-right: 2px solid var(--win-light);
+      border-bottom: 2px solid var(--win-light);
+      font-family: 'Silkscreen', monospace;
+      font-size: 10px;
+      font-weight: 700;
+      margin-left: 6px;
+      margin-right: auto;
+    }
+
+    .sys-tray {
+      height: 24px;
+      border-top: 1px solid var(--win-shadow);
+      border-left: 1px solid var(--win-shadow);
+      border-right: 1px solid var(--win-light);
+      border-bottom: 1px solid var(--win-light);
+      padding: 0 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 12px;
     }
   </style>
 </head>
-<body>
+<body class="theme-win98" id="os-body">
 
-  <!-- Ambient Animated Background Lights -->
-  <div class="ambient-bg">
-    <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
-    <div class="orb orb-3"></div>
-  </div>
+  <div class="scanlines"></div>
 
-  <div class="container">
+  <div class="desktop-container">
     
-    <!-- Profile & Live Status -->
-    <header class="card">
-      <div class="profile-info">
-        <div class="avatar-wrapper">
-          <div class="avatar">
-            <img src="https://avatars.githubusercontent.com/u/232939997?v=4" alt="ihateuponds">
-          </div>
+    <!-- Main Window -->
+    <div class="win-window">
+      <!-- Titlebar -->
+      <div class="win-header">
+        <div class="win-title">
+          <span>💾 ihateuponds.exe — Tech Support & Schedule</span>
         </div>
-        <div class="names">
-          <h1>ihateuponds</h1>
-          <p>Tech support & troubleshooting availability</p>
-        </div>
-      </div>
-      
-      <!-- Meta badges: status + live local time -->
-      <div class="meta-bar">
-        <div class="status-badge">
-          <span class="pulse-dot"></span>
-          <span>Open for Tech DMs</span>
-        </div>
-        <div class="clock-badge">
-          <span>🕒 <span id="local-time">--:--</span> EDT</span>
+        <div class="win-controls">
+          <div class="win-btn-mini" onclick="beep()">_</div>
+          <div class="win-btn-mini" onclick="beep()">□</div>
+          <div class="win-btn-mini" onclick="beep()">×</div>
         </div>
       </div>
-    </header>
 
-    <!-- Weekly Schedule Card -->
-    <section class="card">
-      <div class="card-title">
-        <span>📅 Weekly Availability</span>
-        <span class="week-tag">Sep 5 – Sep 12</span>
+      <!-- Menu Bar -->
+      <div class="win-menu">
+        <span class="win-menu-item"><u>F</u>ile</span>
+        <span class="win-menu-item"><u>E</u>dit</span>
+        <span class="win-menu-item"><u>V</u>iew</span>
+        <span class="win-menu-item" onclick="copyDiscord()"><u>C</u>opy_Discord</span>
+        <span class="win-menu-item"><u>H</u>elp</span>
       </div>
 
-      <div class="schedule-list">
-        <!-- Sat Sep 5 -->
-        <div class="day-row" data-day="2026-09-05">
-          <div class="day-left">
-            <div class="day-header">
-              <span class="day-name">Sat, Sep 5</span>
-              <span class="today-pill" style="display:none;">Today</span>
+      <div class="win-body">
+        
+        <!-- Profile Banner Panel -->
+        <div class="inset-panel">
+          <div class="profile-banner">
+            <div class="pixel-avatar-frame">
+              <img src="https://avatars.githubusercontent.com/u/232939997?v=4" alt="ihateuponds">
             </div>
-            <span class="day-sub">Work: 1:00 PM – 9:00 PM</span>
-          </div>
-          <div class="day-right">
-            <span class="avail-text">After 9:30 PM</span>
-            <span class="badge-night">Late Night</span>
+            <div class="profile-text">
+              <h1>ihateuponds <span style="font-size:10px; font-weight:normal;">[Online]</span></h1>
+              <p>Hardware, Linux/Windows troubleshooting & free tech help</p>
+            </div>
           </div>
         </div>
 
-        <!-- Sun Sep 6 -->
-        <div class="day-row" data-day="2026-09-06">
-          <div class="day-left">
-            <div class="day-header">
-              <span class="day-name">Sun, Sep 6</span>
-              <span class="today-pill" style="display:none;">Today</span>
-            </div>
-            <span class="day-sub">Work: 4:00 PM – 10:00 PM</span>
+        <!-- Status & Clock Strip -->
+        <div class="status-strip">
+          <div class="status-badge-retro">
+            <span class="blink-dot"></span>
+            <span>STATUS: TAKING REQUESTS</span>
           </div>
-          <div class="day-right">
-            <span class="avail-text">Before 3:30 PM & late</span>
-            <span class="badge-split">Split</span>
+          <div class="status-clock">
+            <span>EDT: <span id="clock-display">--:--</span></span>
           </div>
         </div>
 
-        <!-- Mon Sep 7 -->
-        <div class="day-row day-off" data-day="2026-09-07">
-          <div class="day-left">
-            <div class="day-header">
-              <span class="day-name">Mon, Sep 7 🎉</span>
-              <span class="today-pill" style="display:none;">Today</span>
-            </div>
-            <span class="day-sub">Day off from work</span>
+        <!-- Weekly Schedule Table -->
+        <div class="inset-panel" style="padding: 0; overflow-x: auto;">
+          <table class="schedule-table">
+            <thead>
+              <tr>
+                <th>DAY / DATE</th>
+                <th>WORK SHIFT</th>
+                <th>TECH HELP AVAILABILITY</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Sat Sep 5 -->
+              <tr class="table-row" data-day="2026-09-05" onclick="beep()">
+                <td><strong>Sat, Sep 5</strong><span class="today-tag" style="display:none;">TODAY</span></td>
+                <td>1:00 PM – 9:00 PM</td>
+                <td><span class="tag-night">★ After 9:30 PM (Late Night)</span></td>
+              </tr>
+
+              <!-- Sun Sep 6 -->
+              <tr class="table-row" data-day="2026-09-06" onclick="beep()">
+                <td><strong>Sun, Sep 6</strong><span class="today-tag" style="display:none;">TODAY</span></td>
+                <td>4:00 PM – 10:00 PM</td>
+                <td><span class="tag-night">Before 3:30 PM & late</span></td>
+              </tr>
+
+              <!-- Mon Sep 7 -->
+              <tr class="table-row" data-day="2026-09-07" onclick="beep()">
+                <td><strong>Mon, Sep 7 🎉</strong><span class="today-tag" style="display:none;">TODAY</span></td>
+                <td><strong>DAY OFF</strong></td>
+                <td><span class="tag-free">★ OPEN ALL DAY & EVENING</span></td>
+              </tr>
+
+              <!-- Tue Sep 8 -->
+              <tr class="table-row" data-day="2026-09-08" onclick="beep()">
+                <td><strong>Tue, Sep 8</strong><span class="today-tag" style="display:none;">TODAY</span></td>
+                <td>4:00 PM – 10:00 PM</td>
+                <td><span class="tag-night">Mornings & after 10 PM</span></td>
+              </tr>
+
+              <!-- Wed Sep 9 -->
+              <tr class="table-row" data-day="2026-09-09" onclick="beep()">
+                <td><strong>Wed, Sep 9</strong><span class="today-tag" style="display:none;">TODAY</span></td>
+                <td>3:00 PM – 10:00 PM</td>
+                <td><span class="tag-night">Mornings & after 10 PM</span></td>
+              </tr>
+
+              <!-- Thu Sep 10 -->
+              <tr class="table-row" data-day="2026-09-10" onclick="beep()">
+                <td><strong>Thu, Sep 10</strong><span class="today-tag" style="display:none;">TODAY</span></td>
+                <td>2:00 PM – 10:00 PM</td>
+                <td><span class="tag-night">Mornings & after 10 PM</span></td>
+              </tr>
+
+              <!-- Fri Sep 11 -->
+              <tr class="table-row" data-day="2026-09-11" onclick="beep()">
+                <td><strong>Fri, Sep 11 🎉</strong><span class="today-tag" style="display:none;">TODAY</span></td>
+                <td><strong>DAY OFF</strong></td>
+                <td><span class="tag-free">★ OPEN ALL DAY & EVENING</span></td>
+              </tr>
+
+              <!-- Sat Sep 12 -->
+              <tr class="table-row" data-day="2026-09-12" onclick="beep()">
+                <td><strong>Sat, Sep 12</strong><span class="today-tag" style="display:none;">TODAY</span></td>
+                <td>3:00 PM – 10:00 PM</td>
+                <td><span class="tag-night">Mornings & after 10 PM</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Specialties Chips Panel -->
+        <div class="inset-panel">
+          <div style="font-family:'Silkscreen', monospace; font-size:10px; margin-bottom: 6px;">
+            <strong>[ SPECIALTIES & TOPICS ]</strong>
           </div>
-          <div class="day-right">
-            <span class="avail-text">Open all day & evening</span>
-            <span class="badge-open">Open</span>
+          <div class="chips-grid">
+            <span class="pixel-chip">🖥️ PC Builds</span>
+            <span class="pixel-chip">🐧 Arch / Ubuntu</span>
+            <span class="pixel-chip">🪟 Windows 10/11</span>
+            <span class="pixel-chip">🎮 Game Crashes</span>
+            <span class="pixel-chip">📡 Wi-Fi & LAN</span>
+            <span class="pixel-chip">🤖 Discord Bots</span>
           </div>
         </div>
 
-        <!-- Tue Sep 8 -->
-        <div class="day-row" data-day="2026-09-08">
-          <div class="day-left">
-            <div class="day-header">
-              <span class="day-name">Tue, Sep 8</span>
-              <span class="today-pill" style="display:none;">Today</span>
-            </div>
-            <span class="day-sub">Work: 4:00 PM – 10:00 PM</span>
+        <!-- Guidelines Panel -->
+        <div class="inset-panel">
+          <div style="font-family:'Silkscreen', monospace; font-size:10px; margin-bottom: 4px;">
+            <strong>[ HOW TO ASK ]</strong>
           </div>
-          <div class="day-right">
-            <span class="avail-text">Mornings & after 10 PM</span>
-            <span class="badge-split">Split</span>
-          </div>
+          <p style="font-size: 11px; line-height: 1.5; color: #333;">
+            1. Send a DM to <strong>@ihateuponds</strong> on Discord.<br>
+            2. Mention your OS and specs if relevant.<br>
+            3. Attach error logs or screenshots.
+          </p>
         </div>
 
-        <!-- Wed Sep 9 -->
-        <div class="day-row" data-day="2026-09-09">
-          <div class="day-left">
-            <div class="day-header">
-              <span class="day-name">Wed, Sep 9</span>
-              <span class="today-pill" style="display:none;">Today</span>
-            </div>
-            <span class="day-sub">Work: 3:00 PM – 10:00 PM</span>
-          </div>
-          <div class="day-right">
-            <span class="avail-text">Mornings & after 10 PM</span>
-            <span class="badge-split">Split</span>
-          </div>
-        </div>
-
-        <!-- Thu Sep 10 -->
-        <div class="day-row" data-day="2026-09-10">
-          <div class="day-left">
-            <div class="day-header">
-              <span class="day-name">Thu, Sep 10</span>
-              <span class="today-pill" style="display:none;">Today</span>
-            </div>
-            <span class="day-sub">Work: 2:00 PM – 10:00 PM</span>
-          </div>
-          <div class="day-right">
-            <span class="avail-text">Mornings & after 10 PM</span>
-            <span class="badge-split">Split</span>
-          </div>
-        </div>
-
-        <!-- Fri Sep 11 -->
-        <div class="day-row day-off" data-day="2026-09-11">
-          <div class="day-left">
-            <div class="day-header">
-              <span class="day-name">Fri, Sep 11 🎉</span>
-              <span class="today-pill" style="display:none;">Today</span>
-            </div>
-            <span class="day-sub">Day off from work</span>
-          </div>
-          <div class="day-right">
-            <span class="avail-text">Open all day & evening</span>
-            <span class="badge-open">Open</span>
-          </div>
-        </div>
-
-        <!-- Sat Sep 12 -->
-        <div class="day-row" data-day="2026-09-12">
-          <div class="day-left">
-            <div class="day-header">
-              <span class="day-name">Sat, Sep 12</span>
-              <span class="today-pill" style="display:none;">Today</span>
-            </div>
-            <span class="day-sub">Work: 3:00 PM – 10:00 PM</span>
-          </div>
-          <div class="day-right">
-            <span class="avail-text">Mornings & after 10 PM</span>
-            <span class="badge-split">Split</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Topics / What I Help With -->
-    <section class="card">
-      <div class="card-title">
-        <span>🛠️ What I Can Help With</span>
-      </div>
-      <div class="tags">
-        <span class="tag">PC Hardware & Specs</span>
-        <span class="tag">Windows & Linux</span>
-        <span class="tag">Gaming & Drivers</span>
-        <span class="tag">Software Crashes</span>
-        <span class="tag">Discord Bots & Servers</span>
-        <span class="tag">Wi-Fi & Networking</span>
-        <span class="tag">General Troubleshooting</span>
-      </div>
-    </section>
-
-    <!-- How to Reach Out & Guidelines -->
-    <section class="card">
-      <div class="card-title">
-        <span>💬 How to Reach Out</span>
-      </div>
-      <ul class="guidelines">
-        <li>DM me on Discord (<strong>ihateuponds</strong>) during open windows.</li>
-        <li>Tell me your OS (Windows 10/11, Arch/Ubuntu Linux, macOS).</li>
-        <li>Send screenshots or error logs if something is crashing.</li>
-      </ul>
-      <div class="contact-action">
-        <button class="btn-discord" id="copy-btn" onclick="copyDiscord()">
-          <span id="btn-text">📋 Copy Discord: ihateuponds</span>
+        <!-- 3D Copy Discord Button -->
+        <button class="os-button" onclick="copyDiscord()" id="discord-btn">
+          <span>📋 COPY DISCORD HANDLE: ihateuponds</span>
         </button>
+
+        <!-- Theme Switcher -->
+        <div class="theme-bar" style="margin-top: 4px;">
+          <span>DESKTOP THEME:</span>
+          <button class="theme-btn" onclick="setTheme('theme-win98')">Classic 98</button>
+          <button class="theme-btn" onclick="setTheme('theme-emerald')">Emerald</button>
+          <button class="theme-btn" onclick="setTheme('theme-soulsilver')">SoulSilver</button>
+          <button class="theme-btn" onclick="setTheme('theme-platinum')">Platinum</button>
+        </div>
+
       </div>
-    </section>
-
-    <footer>
-      <p>ihateuponds</p>
-    </footer>
-
+    </div>
   </div>
+
+  <!-- Windows 98 Taskbar -->
+  <footer class="win-taskbar">
+    <div class="start-btn" onclick="beep()">
+      <span style="font-size: 14px;">🪟</span>
+      <span>Start</span>
+    </div>
+    <div class="task-item">
+      <span>💾 ihateuponds.exe</span>
+    </div>
+    <div class="sys-tray">
+      <span>🔊</span>
+      <span id="tray-clock">12:00 AM</span>
+    </div>
+  </footer>
 
   <script>
     const DISCORD_TAG = "ihateuponds";
 
-    // 1-Click Copy Discord Handle
+    // 8-bit procedural click sound using Web Audio API (zero audio files)
+    function beep(freq = 600, duration = 0.04) {
+      try {
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = "square";
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+        gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + duration);
+      } catch (e) {}
+    }
+
+    // Copy Discord to clipboard
     function copyDiscord() {
+      beep(800, 0.08);
       navigator.clipboard.writeText(DISCORD_TAG).then(() => {
-        const btnText = document.getElementById("btn-text");
-        btnText.innerText = "✓ Copied 'ihateuponds' to clipboard!";
+        const btn = document.getElementById("discord-btn");
+        btn.innerHTML = "<span>✓ COPIED 'ihateuponds' TO CLIPBOARD!</span>";
         setTimeout(() => {
-          btnText.innerText = "📋 Copy Discord: ihateuponds";
+          btn.innerHTML = "<span>📋 COPY DISCORD HANDLE: ihateuponds</span>";
         }, 2200);
       });
     }
 
-    // Live Clock for EDT Timezone
-    function updateClock() {
+    // Theme Switcher
+    function setTheme(theme) {
+      beep(700, 0.05);
+      const body = document.getElementById("os-body");
+      body.className = theme;
+      localStorage.setItem("ponds_theme", theme);
+    }
+
+    const savedTheme = localStorage.getItem("ponds_theme");
+    if (savedTheme) {
+      document.getElementById("os-body").className = savedTheme;
+    }
+
+    // Clock
+    function updateClocks() {
+      const now = new Date();
       const options = {
         timeZone: 'America/New_York',
         hour: 'numeric',
         minute: '2-digit',
         hour12: true
       };
-      const formatter = new Intl.DateTimeFormat([], options);
-      document.getElementById('local-time').textContent = formatter.format(new Date());
+      const formatted = new Intl.DateTimeFormat([], options).format(now);
+      document.getElementById('clock-display').textContent = formatted;
+      document.getElementById('tray-clock').textContent = formatted;
     }
-    updateClock();
-    setInterval(updateClock, 1000);
+    updateClocks();
+    setInterval(updateClocks, 1000);
 
-    // Dynamic "Today" highlighter
+    // Today Highlighter
     function highlightToday() {
       const now = new Date();
-      // Format to YYYY-MM-DD in New York timezone
       const nyDateStr = now.toLocaleDateString('en-CA', { timeZone: 'America/New_York' });
       
-      const rows = document.querySelectorAll('.day-row');
+      const rows = document.querySelectorAll('.table-row');
       rows.forEach(row => {
         if (row.getAttribute('data-day') === nyDateStr) {
           row.classList.add('is-today');
-          const pill = row.querySelector('.today-pill');
-          if (pill) pill.style.display = 'inline-block';
+          const tag = row.querySelector('.today-tag');
+          if (tag) tag.style.display = 'inline-block';
         }
       });
     }
