@@ -28,11 +28,11 @@
 
   <div class="site-wrapper">
 
-    <!-- Top URL / Breadcrumb Bar -->
+    <!-- Top URL / Breadcrumb Bar (100% Neocities) -->
     <div class="top-url-bar">
       <div class="url-breadcrumb">
         <span class="url-arrow">➤</span>
-        <span class="url-domain">https://ihateuponds.github.io</span><span class="url-path">/liminal_cave</span>
+        <span class="url-domain">https://ihateuponds.neocities.org</span><span class="url-path">/liminal_cave</span>
       </div>
       <div class="top-bar-meta">
         <span class="clock-display">[ EDT: <span id="clock-display">--:--:--</span> ]</span>
@@ -96,24 +96,121 @@
     <!-- Classic NeoCities Navbar -->
     <nav class="retro-nav" aria-label="Main navigation">
       <a href="#welcome" class="nav-link active">🏠 home</a>
-      <a href="support/" class="nav-link nav-highlight">📟 tech support subpage ↗</a>
+      <a href="support/" class="nav-link nav-highlight">📟 tech support (/support/) ↗</a>
+      <a href="games/" class="nav-link">🎮 games shrine (/games/) ↗</a>
+      <a href="rig/" class="nav-link">🖥 hardware bench (/rig/) ↗</a>
       <a href="#about" class="nav-link">🪪 about me</a>
-      <a href="#rig" class="nav-link">🖥 setup &amp; rig</a>
-      <a href="#games" class="nav-link">🎮 favorite games</a>
-      <a href="#interests" class="nav-link">⚙️ interests</a>
       <a href="#stamps" class="nav-link">🎨 blinkies &amp; stamps</a>
       <a href="#socials" class="nav-link">🌐 links &amp; socials</a>
       <a href="https://discord.com/users/ihateuponds" target="_blank" rel="noopener noreferrer" class="nav-link">💬 discord</a>
     </nav>
 
-    <!-- Main Content 3-Column Layout -->
-    <div class="main-layout">
+    <!-- SCATTERED SUBPAGE PORTALS SHELF (MidiFreak Style) -->
+    <div class="portals-scatter-shelf">
+      
+      <!-- Portal 1: Tech Support Workstation -->
+      <a href="support/" class="portal-scatter-card tilt-left rotateA">
+        <div class="portal-card-badge font-cyan">📟 SUBPAGE REALM 01</div>
+        <div class="portal-card-title">
+          <span>Tech Support Workstation</span>
+          <span class="portal-card-arrow">↗</span>
+        </div>
+        <p class="portal-card-desc">
+          Hyprland TUI terminal workstation with weekly schedule, hardware diagnostics, and anti-bot crash intake.
+        </p>
+      </a>
 
-      <!-- ================= LEFT COLUMN ================= -->
-      <aside class="col-left">
+      <!-- Portal 2: Favorite Games Shrine -->
+      <a href="games/" class="portal-scatter-card tilt-right rotateB">
+        <div class="portal-card-badge font-pink">🎮 SUBPAGE REALM 02</div>
+        <div class="portal-card-title">
+          <span>Favorite Games Shrine</span>
+          <span class="portal-card-arrow">↗</span>
+        </div>
+        <p class="portal-card-desc">
+          PSX memory card lounge exploring Kingdom Hearts 2, Pokémon SoulSilver, Stardew Valley, DDR, and more.
+        </p>
+      </a>
+
+      <!-- Portal 3: Hardware & Linux Bench -->
+      <a href="rig/" class="portal-scatter-card tilt-subtle rotateA">
+        <div class="portal-card-badge font-amber">🖥 SUBPAGE REALM 03</div>
+        <div class="portal-card-title">
+          <span>Hardware &amp; Linux Bench</span>
+          <span class="portal-card-arrow">↗</span>
+        </div>
+        <p class="portal-card-desc">
+          Ryzen 7 5700X, RX 6700 XT, CachyOS BORE scheduler, PipeWire Pro-Audio, and WinDbg BSOD triage notes.
+        </p>
+      </a>
+
+    </div>
+
+    <!-- MAIN SCATTERED DREAMSCAPE CANVAS -->
+    <div class="scatter-wrap">
+
+      <!-- ================= SECTION 1: ASYMMETRICAL DIALOGUE & NOTEBOOK ================= -->
+      <div class="scatter-row-split">
+
+        <!-- LSD Dream Simulator Dialogue Box (with Pinned Eye Decal) -->
+        <section class="lsd-dialogue-card psx-block tilt-left rotateA" id="welcome">
+          <img src="assets/stamps/eyes.gif" alt="" class="pinned-decal decal-eyes pixel-img" title="Organic Eyes Decal">
+          <div class="lsd-dialogue-header">
+            <div class="lsd-speaker-meta">
+              <img src="assets/decors/cat-kumi.gif" alt="pixel cat" class="lsd-speaker-sprite pixel-img">
+              <span class="lsd-speaker-name">[ PONDS // LOCAL NEET CATBOY ]</span>
+            </div>
+            <span class="lsd-sector-tag">[ DAY 042 // DREAM SECTOR: LIMINAL VOID ]</span>
+          </div>
+          <div class="lsd-dialogue-body">
+            <p class="lsd-speech-line font-main">
+              Hey, welcome to my personal website :3
+            </p>
+            <p class="lsd-speech-line">
+              I made this space as a personal home for everything I'm into — cybersecurity, tinkering with Linux, gaming, and helping people troubleshoot their PC problems.
+            </p>
+            <p class="lsd-speech-line">
+              Take a look around: you can check out my favorite games below, inspect my setup specs, or jump over to my subpages scattered across the top.
+            </p>
+            <div class="lsd-prompt-row">
+              <span class="lsd-dialogue-prompt">▶ TOUCH ANYWHERE TO LINK NEXT DREAM</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Sitely To-Do List Notebook (with Pinned Hellgato Decal & Taped Sticky Note) -->
+        <div class="retro-card psx-block notebook-card tilt-right rotateB">
+          <img src="assets/stamps/hellgato.png" alt="" class="pinned-decal decal-hellgato pixel-img" title="Hellgato Decal">
+          <div class="card-header">
+            <span class="header-icon">📝</span>
+            <span class="header-title">to-do list</span>
+          </div>
+          <div class="card-body notebook-body">
+            <ul class="todo-list">
+              <li class="todo-done"><span class="check">☑</span> install windows on a separate partition</li>
+              <li class="todo-done"><span class="check">☑</span> build custom website for neocities</li>
+              <li><span class="check">☐</span> finish my homework</li>
+              <li><span class="check">☐</span> get that bag</li>
+              <li><span class="check">☐</span> find new games to play</li>
+              <li><span class="check">☐</span> complete pokemon unbound playthrough</li>
+            </ul>
+
+            <!-- Taped Retro Sticky Note -->
+            <div class="sticky-note tilt-subtle rotateA" style="margin-top: 14px;">
+              <div class="tape-strip"></div>
+              📌 <strong>STICKY NOTE:</strong> water crops in stardew, finish homework &amp; get that bag :3
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ================= SECTION 2: BIO & INTERACTIVE GAMES INSPECTOR ================= -->
+      <div class="scatter-row-asymm">
 
         <!-- Webmaster Card (Block 01) -->
-        <div class="retro-card psx-block" id="about">
+        <div class="retro-card psx-block tilt-subtle rotateB" id="about">
+          <img src="assets/stamps/tamagotchi.png" alt="" class="pinned-decal decal-tamagotchi pixel-img" title="Tamagotchi Decal">
           <div class="card-header">
             <span class="header-icon">✦</span>
             <span class="header-title">who's this guy?</span>
@@ -161,149 +258,14 @@
           </div>
         </div>
 
-        <!-- Sitely To-Do List Notebook (Block 02) -->
-        <div class="retro-card psx-block notebook-card">
-          <div class="card-header">
-            <span class="header-icon">📝</span>
-            <span class="header-title">to-do list</span>
-          </div>
-          <div class="card-body notebook-body">
-            <ul class="todo-list">
-              <li class="todo-done"><span class="check">☑</span> install windows on a separate partition</li>
-              <li class="todo-done"><span class="check">☑</span> build custom website</li>
-              <li><span class="check">☐</span> finish my homework</li>
-              <li><span class="check">☐</span> get that bag</li>
-              <li><span class="check">☐</span> find new games to play</li>
-              <li><span class="check">☐</span> complete pokemon unbound playthrough</li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- 88x31 Button Showcase -->
-        <div class="retro-card psx-block">
-          <div class="card-header">
-            <span class="header-icon">✨</span>
-            <span class="header-title">site button</span>
-          </div>
-          <div class="card-body text-center">
-            <p class="card-subtitle">grab my 88x31 button:</p>
-            <div class="button-preview">
-              <img src="button.svg" alt="ihateuponds button" width="88" height="31" class="pixel-img">
-            </div>
-            <textarea class="embed-box" readonly rows="2" id="button-embed-code">&lt;a href="https://ihateuponds.github.io/" target="_blank"&gt;&lt;img src="https://ihateuponds.github.io/button.svg" alt="ihateuponds"&gt;&lt;/a&gt;</textarea>
-            <button id="btn-copy-embed" class="retro-btn btn-sm full-w">📋 copy embed code</button>
-          </div>
-        </div>
-
-      </aside>
-
-      <!-- ================= CENTER COLUMN ================= -->
-      <main class="col-center">
-
-        <!-- LSD Dream Simulator Dialogue Box (Block 03) -->
-        <section class="lsd-dialogue-card psx-block" id="welcome">
-          <div class="lsd-dialogue-header">
-            <div class="lsd-speaker-meta">
-              <img src="assets/decors/cat-kumi.gif" alt="pixel cat" class="lsd-speaker-sprite pixel-img">
-              <span class="lsd-speaker-name">[ PONDS // LOCAL NEET CATBOY ]</span>
-            </div>
-            <span class="lsd-sector-tag">[ DAY 042 // DREAM SECTOR: LIMINAL VOID ]</span>
-          </div>
-          <div class="lsd-dialogue-body">
-            <p class="lsd-speech-line font-main">
-              Hey, welcome to my personal website. :3
-            </p>
-            <p class="lsd-speech-line">
-              I made this space as a personal home for everything I'm into — cybersecurity, tinkering with Linux, gaming, and helping people troubleshoot their PC problems.
-            </p>
-            <p class="lsd-speech-line">
-              Take a look around: check out my favorite games shrine below, inspect my CachyOS setup, or jump over to my <strong>Tech Support Workstation</strong> subpage if your computer or game is crashing and you need diagnostics.
-            </p>
-            <div class="lsd-prompt-row">
-              <span class="lsd-dialogue-prompt">▶ TOUCH ANYWHERE TO LINK NEXT DREAM</span>
-            </div>
-          </div>
-        </section>
-
-        <!-- SUBPAGE PORTAL: TECH SUPPORT TUI WORKSTATION -->
-        <section class="portal-banner psx-monolith">
-          <div class="portal-inner">
-            <div class="portal-tag">╔══ SUBPAGE SPOTLIGHT ══════════════════════════════════════════╗</div>
-            <h2 class="portal-title">📟 TECH SUPPORT &amp; DIAGNOSTICS WORKSTATION</h2>
-            <p class="portal-desc">
-              Looking for my <strong>weekly work shifts &amp; DM availability</strong>, or need to compile a <strong>structured hardware/crash ticket</strong> with error logs? I built a complete Linux Hyprland-inspired TUI terminal workstation as a dedicated subpage!
-            </p>
-            <div class="portal-features">
-              <span>✦ Weekly Availability Calendar (Sep 5 – 12)</span>
-              <span>✦ Anti-Bot Ticket Intake Engine</span>
-              <span>✦ Hardware &amp; BSOD Dump Analysis Guide</span>
-              <span>✦ Full Monospace TUI with Keyboard Shortcuts [1, 2, 3]</span>
-            </div>
-            <div class="portal-action">
-              <a href="support/" class="portal-launch-btn">
-                <span class="launch-icon">⚡</span>
-                <span>LAUNCH TECH SUPPORT WORKSTATION (/support/)</span>
-                <span class="launch-arrow">↗</span>
-              </a>
-            </div>
-            <div class="portal-footer-tag">╚════════════════════════════════════════════════════════════════╝</div>
-          </div>
-        </section>
-
-        <!-- Setup & Hardware Bench (Block 04) -->
-        <section class="retro-card psx-block" id="rig">
-          <div class="card-header">
-            <span class="header-icon">⚙️</span>
-            <span class="header-title">my setup // linux &amp; hardware bench</span>
-          </div>
-          <div class="card-body">
-            <p class="card-subtitle">Here is what I daily drive for diagnostics, gaming, and school:</p>
-
-            <div class="specs-table-wrap">
-              <table class="specs-table">
-                <tbody>
-                  <tr>
-                    <td class="spec-label">PRIMARY OS</td>
-                    <td class="spec-value font-green">CachyOS Linux (Kernel 7.2, BORE CPU Scheduler)</td>
-                  </tr>
-                  <tr>
-                    <td class="spec-label">WINDOW MANAGER</td>
-                    <td class="spec-value font-cyan">Hyprland (Wayland Compositor)</td>
-                  </tr>
-                  <tr>
-                    <td class="spec-label">SECONDARY OS</td>
-                    <td class="spec-value">Windows 11 Pro (Dual-boot on separate partition)</td>
-                  </tr>
-                  <tr>
-                    <td class="spec-label">SHELL &amp; TERMINAL</td>
-                    <td class="spec-value">zsh / foot / kitty</td>
-                  </tr>
-                  <tr>
-                    <td class="spec-label">AUDIO ENGINE</td>
-                    <td class="spec-value">PipeWire + WirePlumber (low-latency Pro-Audio routing)</td>
-                  </tr>
-                  <tr>
-                    <td class="spec-label">HARDWARE RIG</td>
-                    <td class="spec-value font-amber">AMD Ryzen 7 5700X + Radeon RX 6700 XT + 32GB RAM</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
-            <div class="note-box psx-note">
-              <strong>💡 Why CachyOS Linux?</strong> I switched because I got tired of Windows bloat and forced updates. CachyOS is crazy responsive with the BORE kernel, gaming on Proton-GE with DXVK works great out of the box, and my desktop idles at barely 1.2GB of RAM.
-            </div>
-          </div>
-        </section>
-
-        <!-- Favorite Games Shrine (Block 05) -->
-        <section class="retro-card psx-block" id="games">
+        <!-- Favorite Games Shrine (Interactive Mini-Inspector) -->
+        <section class="retro-card psx-block tilt-right rotateA" id="games">
           <div class="card-header">
             <span class="header-icon">🎮</span>
-            <span class="header-title">favorite games shrine</span>
+            <span class="header-title">favorite games preview</span>
           </div>
           <div class="card-body">
-            <p class="card-subtitle">The all-time favorites that shaped my childhood, rhythm game addiction, and late nights:</p>
+            <p class="card-subtitle">Click a title to inspect or visit the full lounge at <a href="games/" class="font-cyan">/games/</a>:</p>
 
             <div class="games-shrine-grid">
               <div class="game-card-slot active" data-title="Kingdom Hearts II" data-platform="PlayStation 2" data-genre="Action RPG" data-note="Absolute peak PS2 combat, Roxas prologue, Drive Forms, and Yoko Shimomura's soundtrack. No game has ever matched its movement.">
@@ -355,8 +317,8 @@
               </div>
             </div>
 
-            <!-- Interactive Game Detail Box (DeathGenerator dialogue box style) -->
-            <div class="game-inspector psx-dialogue" id="game-inspector">
+            <!-- Interactive Game Detail Box -->
+            <div class="game-inspector psx-dialogue" id="game-inspector" style="margin-top: 12px;">
               <div class="inspector-header">
                 <span id="inspect-game-title" class="font-cyan">Kingdom Hearts II</span>
                 <span id="inspect-game-plat" class="badge-plat-pill">PlayStation 2</span>
@@ -365,40 +327,145 @@
                 Absolute peak PS2 combat, Roxas prologue, Drive Forms, and Yoko Shimomura's soundtrack. No game has ever matched its movement.
               </p>
             </div>
+
+            <div style="margin-top: 12px; text-align: right;">
+              <a href="games/" class="retro-btn btn-sm">🎮 launch full games shrine subpage ↗</a>
+            </div>
           </div>
         </section>
 
-        <!-- About Me / Interests (Block 06) -->
-        <section class="retro-card psx-block" id="interests">
+      </div>
+
+      <!-- ================= SECTION 3: RIG BENCH & INTERESTS ================= -->
+      <div class="scatter-row-split">
+
+        <!-- Setup & Hardware Bench Preview -->
+        <section class="retro-card psx-block tilt-left rotateA" id="rig">
           <div class="card-header">
             <span class="header-icon">⚙️</span>
+            <span class="header-title">setup &amp; rig preview</span>
+          </div>
+          <div class="card-body">
+            <table class="specs-table" style="width: 100%;">
+              <tbody>
+                <tr>
+                  <td class="spec-label">PRIMARY OS</td>
+                  <td class="spec-value font-green">CachyOS Linux (Kernel 7.2, BORE CPU Scheduler)</td>
+                </tr>
+                <tr>
+                  <td class="spec-label">HARDWARE RIG</td>
+                  <td class="spec-value font-amber">AMD Ryzen 7 5700X + Radeon RX 6700 XT + 32GB RAM</td>
+                </tr>
+                <tr>
+                  <td class="spec-label">WINDOW MGR</td>
+                  <td class="spec-value font-cyan">Hyprland (Wayland Compositor)</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <!-- Neon Taped Sticky Note -->
+            <div class="sticky-note neon-tape tilt-subtle rotateB" style="margin-top: 14px;">
+              <div class="tape-strip"></div>
+              ⚙️ <strong>KERNEL STATUS:</strong> cachyos linux 7.2 running smooth &bull; proton-ge ready
+            </div>
+
+            <div style="margin-top: 12px; text-align: right;">
+              <a href="rig/" class="retro-btn btn-sm">🖥 inspect full triage lab &amp; specs ↗</a>
+            </div>
+          </div>
+        </section>
+
+        <!-- Interests / Pokémon Hacks -->
+        <section class="retro-card psx-block tilt-right rotateB" id="interests">
+          <div class="card-header">
+            <span class="header-icon">🕹️</span>
             <span class="header-title">stuff i'm into</span>
           </div>
           <div class="card-body">
-            <div class="interest-grid-3">
-              <div class="interest-box liminal-box">
-                <h4 class="interest-title font-cyan">🛡️ Cybersecurity &amp; Opsec</h4>
-                <p>Currently in school for Cybersecurity. Interested in threat modeling, privacy, defensive security, network packet analysis, and system hardening.</p>
+            <div class="interest-grid-3" style="display: flex; flex-direction: column; gap: 8px;">
+              <div class="interest-box liminal-box" style="padding: 10px;">
+                <h4 class="interest-title font-cyan" style="font-size: 0.9rem;">🛡️ Cybersecurity &amp; Opsec</h4>
+                <p style="font-size: 0.8rem;">Studying defensive security, threat modeling, privacy, and packet analysis.</p>
               </div>
-              <div class="interest-box liminal-box">
-                <h4 class="interest-title font-green">🔧 Hardware &amp; OS Triage</h4>
-                <p>Diagnosing BSODs, reading Minidumps in WinDbg, troubleshooting memory overclocks, and helping friends fix obscure audio or game crash issues.</p>
+              <div class="interest-box liminal-box" style="padding: 10px;">
+                <h4 class="interest-title font-green" style="font-size: 0.9rem;">🔧 Hardware &amp; OS Triage</h4>
+                <p style="font-size: 0.8rem;">BSOD minidump analysis, WinDbg, memory overclocks, and crash triage.</p>
               </div>
-              <div class="interest-box liminal-box">
-                <h4 class="interest-title font-amber">🕹️ Pokémon ROM Hacks &amp; Retro</h4>
-                <p>Big fan of Pokémon enhancement ROM hacks, handhelds, and 2000s gaming. Favorites I've played include Pokémon Unbound, Glazed, Modern Emerald, and Storm Silver.</p>
+              <div class="interest-box liminal-box" style="padding: 10px;">
+                <h4 class="interest-title font-amber" style="font-size: 0.9rem;">🕹️ Pokémon ROM Hacks</h4>
+                <p style="font-size: 0.8rem;">Played Pokémon Unbound, Glazed, Modern Emerald, and Storm Silver.</p>
               </div>
             </div>
           </div>
         </section>
 
-      </main>
+      </div>
 
-      <!-- ================= RIGHT COLUMN ================= -->
-      <aside class="col-right" id="socials">
+      <!-- ================= SECTION 4: SURREAL STAMP & BLINKY VAULT ================= -->
+      <div class="retro-card psx-block tilt-subtle rotateA" id="stamps">
+        <div class="card-header">
+          <span class="header-icon">🎨</span>
+          <span class="header-title">surreal stamp &amp; blinkie vault</span>
+        </div>
+        <div class="card-body">
+          <p class="card-subtitle">vintage web 1.0 blinkies &amp; dream glyphs:</p>
+          
+          <!-- Curated Retro Animated Blinkies -->
+          <div class="vault-blinkies-row">
+            <img src="assets/blinkies/arch.gif" alt="Arch Linux" class="pixel-img blinkie-asset" title="Arch Linux Powered">
+            <img src="assets/blinkies/linux_powered.gif" alt="Linux Powered" class="pixel-img blinkie-asset" title="Linux Powered">
+            <img src="assets/blinkies/cyberworld.gif" alt="Cyberworld" class="pixel-img blinkie-asset" title="Cyberworld">
+            <img src="assets/blinkies/win95.gif" alt="Windows 95" class="pixel-img blinkie-asset" title="Windows 95">
+            <img src="assets/blinkies/terminal.gif" alt="Terminal" class="pixel-img blinkie-asset" title="Terminal">
+            <img src="assets/blinkies/beepboop.gif" alt="Beep Boop" class="pixel-img blinkie-asset" title="Beep Boop">
+            <img src="assets/blinkies/lilguy.gif" alt="Lil Guy" class="pixel-img blinkie-asset" title="Lil Guy">
+            <img src="assets/blinkies/alien.gif" alt="Alien" class="pixel-img blinkie-asset" title="Pink Alien">
+            <img src="assets/blinkies/stressed.gif" alt="Stressed" class="pixel-img blinkie-asset" title="Stressed">
+            <img src="assets/blinkies/yippee.gif" alt="Yippee" class="pixel-img blinkie-asset" title="Yippee">
+            <img src="assets/blinkies/lainpower.gif" alt="Lain Power" class="pixel-img blinkie-asset" title="Lain Power">
+            <img src="assets/blinkies/bestcomp.gif" alt="Best Computer" class="pixel-img blinkie-asset" title="Best Computer">
+            <img src="assets/blinkies/notepad.gif" alt="Notepad" class="pixel-img blinkie-asset" title="Coded in Notepad">
+            <img src="button.svg" alt="Ponds Cave Button" class="pixel-img blinkie-asset" title="Ponds' Cave 88x31">
+          </div>
 
-        <!-- Connect With Me (Block 07) -->
-        <div class="retro-card psx-block">
+          <hr class="card-divider">
+
+          <p class="card-subtitle">surreal liminal stamps &amp; artifacts:</p>
+          <!-- Curated Retro Stamps -->
+          <div class="vault-stamps-grid">
+            <img src="assets/stamps/eyes.gif" alt="Eyes" class="pixel-img stamp-asset" title="Organic Eyes">
+            <img src="assets/stamps/ps1.png" alt="PS1" class="pixel-img stamp-asset" title="PlayStation">
+            <img src="assets/stamps/gba.gif" alt="GBA" class="pixel-img stamp-asset" title="Game Boy Advance">
+            <img src="assets/stamps/kitty-rainbow.gif" alt="Rainbow Cat" class="pixel-img stamp-asset" title="Rainbow Cat">
+            <img src="assets/stamps/hellgato.png" alt="Hellgato" class="pixel-img stamp-asset" title="Hellgato">
+            <img src="assets/stamps/breakcore.png" alt="Breakcore" class="pixel-img stamp-asset" title="Breakcore">
+            <img src="assets/stamps/spiral.gif" alt="Spiral" class="pixel-img stamp-asset" title="Hypnotic Spiral">
+            <img src="assets/stamps/noise.gif" alt="CRT Noise" class="pixel-img stamp-asset" title="CRT Noise">
+            <img src="assets/stamps/paranoid.gif" alt="Paranoid" class="pixel-img stamp-asset" title="Paranoid">
+            <img src="assets/stamps/oldweb.png" alt="Old Web" class="pixel-img stamp-asset" title="Old Web Pride">
+            <img src="assets/stamps/tamagotchi.png" alt="Tamagotchi" class="pixel-img stamp-asset" title="Tamagotchi">
+            <img src="assets/stamps/unsettling.png" alt="Unsettling" class="pixel-img stamp-asset" title="Unsettling">
+          </div>
+
+          <hr class="card-divider">
+
+          <!-- 88x31 Button Embed (Points to Neocities!) -->
+          <div style="text-align: center; margin-top: 10px;">
+            <p class="card-subtitle">grab my 88x31 button for your neocities:</p>
+            <div class="button-preview" style="margin: 8px auto;">
+              <img src="button.svg" alt="ihateuponds button" width="88" height="31" class="pixel-img">
+            </div>
+            <textarea class="embed-box" readonly rows="2" id="button-embed-code">&lt;a href="https://ihateuponds.neocities.org/" target="_blank"&gt;&lt;img src="https://ihateuponds.neocities.org/button.svg" alt="ihateuponds"&gt;&lt;/a&gt;</textarea>
+            <button id="btn-copy-embed" class="retro-btn btn-sm" style="margin-top: 6px;">📋 copy embed code</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= SECTION 5: CONTACTS & WEBRINGS ================= -->
+      <div class="scatter-row-split" id="socials">
+
+        <!-- Connect With Me -->
+        <div class="retro-card psx-block tilt-left rotateB">
           <div class="card-header">
             <span class="header-icon">🌐</span>
             <span class="header-title">connect with me</span>
@@ -420,66 +487,15 @@
               <a href="https://ihateuponds.straw.page" target="_blank" rel="noopener noreferrer" class="contact-btn btn-straw">
                 <span>🍓 StrawPage</span>
               </a>
-              <a href="https://github.com/ihateuponds" target="_blank" rel="noopener noreferrer" class="contact-btn btn-github">
-                <span>🐙 GitHub: @ihateuponds</span>
-              </a>
               <a href="support/" class="contact-btn btn-support">
-                <span>📟 Submit Tech Ticket ↗</span>
+                <span>📟 Submit Tech Ticket (/support/) ↗</span>
               </a>
             </div>
           </div>
         </div>
 
-        <!-- Surreal Stamp & Blinky Vault (Block 08) -->
-        <div class="retro-card psx-block" id="stamps">
-          <div class="card-header">
-            <span class="header-icon">🎨</span>
-            <span class="header-title">stamp &amp; blinkie vault</span>
-          </div>
-          <div class="card-body">
-            <p class="card-subtitle">vintage web 1.0 blinkies &amp; dream glyphs:</p>
-            
-            <!-- Curated Retro Animated Blinkies -->
-            <div class="vault-blinkies-row">
-              <img src="assets/blinkies/arch.gif" alt="Arch Linux" class="pixel-img blinkie-asset" title="Arch Linux Powered">
-              <img src="assets/blinkies/linux_powered.gif" alt="Linux Powered" class="pixel-img blinkie-asset" title="Linux Powered">
-              <img src="assets/blinkies/cyberworld.gif" alt="Cyberworld" class="pixel-img blinkie-asset" title="Cyberworld">
-              <img src="assets/blinkies/win95.gif" alt="Windows 95" class="pixel-img blinkie-asset" title="Windows 95">
-              <img src="assets/blinkies/terminal.gif" alt="Terminal" class="pixel-img blinkie-asset" title="Terminal">
-              <img src="assets/blinkies/beepboop.gif" alt="Beep Boop" class="pixel-img blinkie-asset" title="Beep Boop">
-              <img src="assets/blinkies/lilguy.gif" alt="Lil Guy" class="pixel-img blinkie-asset" title="Lil Guy">
-              <img src="assets/blinkies/alien.gif" alt="Alien" class="pixel-img blinkie-asset" title="Pink Alien">
-              <img src="assets/blinkies/stressed.gif" alt="Stressed" class="pixel-img blinkie-asset" title="Stressed">
-              <img src="assets/blinkies/yippee.gif" alt="Yippee" class="pixel-img blinkie-asset" title="Yippee">
-              <img src="assets/blinkies/lainpower.gif" alt="Lain Power" class="pixel-img blinkie-asset" title="Lain Power">
-              <img src="assets/blinkies/bestcomp.gif" alt="Best Computer" class="pixel-img blinkie-asset" title="Best Computer">
-              <img src="assets/blinkies/notepad.gif" alt="Notepad" class="pixel-img blinkie-asset" title="Coded in Notepad">
-              <img src="button.svg" alt="Ponds Cave Button" class="pixel-img blinkie-asset" title="Ponds' Cave 88x31">
-            </div>
-
-            <hr class="card-divider">
-
-            <p class="card-subtitle">surreal liminal stamps &amp; artifacts:</p>
-            <!-- Curated Retro Stamps -->
-            <div class="vault-stamps-grid">
-              <img src="assets/stamps/eyes.gif" alt="Eyes" class="pixel-img stamp-asset" title="Organic Eyes">
-              <img src="assets/stamps/ps1.png" alt="PS1" class="pixel-img stamp-asset" title="PlayStation">
-              <img src="assets/stamps/gba.gif" alt="GBA" class="pixel-img stamp-asset" title="Game Boy Advance">
-              <img src="assets/stamps/kitty-rainbow.gif" alt="Rainbow Cat" class="pixel-img stamp-asset" title="Rainbow Cat">
-              <img src="assets/stamps/hellgato.png" alt="Hellgato" class="pixel-img stamp-asset" title="Hellgato">
-              <img src="assets/stamps/breakcore.png" alt="Breakcore" class="pixel-img stamp-asset" title="Breakcore">
-              <img src="assets/stamps/spiral.gif" alt="Spiral" class="pixel-img stamp-asset" title="Hypnotic Spiral">
-              <img src="assets/stamps/noise.gif" alt="CRT Noise" class="pixel-img stamp-asset" title="CRT Noise">
-              <img src="assets/stamps/paranoid.gif" alt="Paranoid" class="pixel-img stamp-asset" title="Paranoid">
-              <img src="assets/stamps/oldweb.png" alt="Old Web" class="pixel-img stamp-asset" title="Old Web Pride">
-              <img src="assets/stamps/tamagotchi.png" alt="Tamagotchi" class="pixel-img stamp-asset" title="Tamagotchi">
-              <img src="assets/stamps/unsettling.png" alt="Unsettling" class="pixel-img stamp-asset" title="Unsettling">
-            </div>
-          </div>
-        </div>
-
-        <!-- Webrings Box (Block 09) -->
-        <div class="retro-card psx-block">
+        <!-- Webrings Box (Points to Neocities!) -->
+        <div class="retro-card psx-block tilt-right rotateA">
           <div class="card-header">
             <span class="header-icon">🪐</span>
             <span class="header-title">webrings</span>
@@ -488,9 +504,9 @@
             <div class="webring-item">
               <div class="ring-title">✦ RETRONAUT WEBRING ✦</div>
               <div class="ring-nav">
-                <a href="https://webring.dinhe.net/prev/https://ihateuponds.github.io" class="ring-btn">&larr; prev</a>
+                <a href="https://webring.dinhe.net/prev/https://ihateuponds.neocities.org" class="ring-btn">&larr; prev</a>
                 <a href="https://webring.dinhe.net" class="ring-btn">hub</a>
-                <a href="https://webring.dinhe.net/next/https://ihateuponds.github.io" class="ring-btn">next &rarr;</a>
+                <a href="https://webring.dinhe.net/next/https://ihateuponds.neocities.org" class="ring-btn">next &rarr;</a>
               </div>
             </div>
 
@@ -518,14 +534,14 @@
           </div>
         </div>
 
-      </aside>
+      </div>
 
     </div>
 
     <!-- Retro Footer -->
-    <footer class="retro-footer psx-block">
+    <footer class="retro-footer psx-block" style="margin-top: 16px;">
       <div class="footer-inner">
-        <p>★ ihateuponds.github.io &bull; liminal sector 2026 &bull; best viewed on a crt or desktop monitor ★</p>
+        <p>★ ihateuponds.neocities.org &bull; liminal sector 2026 &bull; best viewed on a crt or desktop monitor ★</p>
         <p class="footer-sub">hand-crafted with html, css &amp; javascript &bull; zero tracking cookies &bull; powered by cachyos linux</p>
       </div>
     </footer>

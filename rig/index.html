@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🖥 PONDS' RIG // LINUX &amp; HARDWARE BENCH</title>
+  <meta name="description" content="Ponds' hardware setup, CachyOS Linux configuration, Hyprland dotfiles, and diagnostic workstation specs.">
+  <meta name="theme-color" content="#030407">
+
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    .subpage-wrapper {
+      max-width: 960px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .back-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #11131c;
+      border: 2px outset #323850;
+      padding: 10px 16px;
+      font-family: var(--font-bios), var(--font-mono);
+    }
+    .back-link {
+      color: var(--neon-cyan);
+      text-decoration: none;
+      font-weight: bold;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .back-link:hover {
+      color: #67e8f9;
+      text-decoration: underline;
+    }
+    .rig-hero {
+      background: #0d0f18;
+      background-image: 
+        linear-gradient(rgba(13, 15, 24, 0.9), rgba(13, 15, 24, 0.95)),
+        url('../assets/textures/tech-matrix.png');
+      border: 3px outset #323850;
+      padding: 24px;
+      text-align: center;
+      position: relative;
+    }
+    .rig-title {
+      font-size: 1.8rem;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+    .bench-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+    .spec-block {
+      background: #11131c;
+      border: 2px outset #2c3248;
+      padding: 18px;
+    }
+    .terminal-window {
+      background: #06070a;
+      border: 1px solid #23273c;
+      padding: 12px;
+      font-family: var(--font-vga), monospace;
+      font-size: 0.88rem;
+      line-height: 1.6;
+      color: #a7f3d0;
+      box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.8);
+      margin-top: 12px;
+    }
+    .prompt-sym { color: var(--neon-cyan); }
+  </style>
+</head>
+<body id="page-body">
+
+  <div class="crt-vignette" aria-hidden="true"></div>
+
+  <div class="subpage-wrapper">
+
+    <!-- Top Navigation Bar -->
+    <div class="back-bar">
+      <a href="../" class="back-link">← [🏠 RETURN TO PONDS' CAVE]</a>
+      <div class="back-meta">
+        <a href="../support/" class="back-link" style="margin-right: 12px;">📟 Tech Support</a>
+        <a href="../games/" class="back-link">🎮 Games Shrine</a>
+      </div>
+    </div>
+
+    <!-- Rig Hero Banner -->
+    <div class="rig-hero psx-block">
+      <h1 class="rig-title rainbow-text">🖥 HARDWARE &amp; LINUX TRIAGE BENCH</h1>
+      <p class="card-subtitle" style="max-width: 680px; margin: 0 auto;">
+        Daily driver hardware setup, CachyOS kernel tweaks, low-latency audio routing, and diagnostic bench environment.
+      </p>
+      <div class="dream-coords" style="margin-top: 8px;">[ HOSTNAME: CALCIFER // KERNEL: 7.2.X-CACHYOS-BORE ]</div>
+    </div>
+
+    <!-- Bench Dual Grid -->
+    <div class="bench-grid">
+
+      <!-- Hardware Specs Card -->
+      <div class="spec-block psx-block">
+        <div class="card-header" style="margin-bottom: 12px;">
+          <span class="header-icon">⚙️</span>
+          <span class="header-title">workstation hardware rig</span>
+        </div>
+        <table class="specs-table" style="width: 100%;">
+          <tbody>
+            <tr>
+              <td class="spec-label">PROCESSOR</td>
+              <td class="spec-value font-amber">AMD Ryzen 7 5700X (8C / 16T, 4.6GHz Boost)</td>
+            </tr>
+            <tr>
+              <td class="spec-label">GRAPHICS CARD</td>
+              <td class="spec-value font-pink">AMD Radeon RX 6700 XT (12GB VRAM, RDNA 2)</td>
+            </tr>
+            <tr>
+              <td class="spec-label">SYSTEM MEMORY</td>
+              <td class="spec-value font-cyan">32GB DDR4 (Dual Channel, XMP Tuned)</td>
+            </tr>
+            <tr>
+              <td class="spec-label">PRIMARY STORAGE</td>
+              <td class="spec-value">NVMe M.2 PCIe 4.0 SSD (Btrfs with zstd compression)</td>
+            </tr>
+            <tr>
+              <td class="spec-label">SECONDARY STORAGE</td>
+              <td class="spec-value">Separate Dedicated Partition for Windows 11 Pro Dual-Boot</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="terminal-window">
+          <div><span class="prompt-sym">ponds@calcifer</span>:~$ uname -srmo</div>
+          <div>Linux 7.2.4-cachyos-bore x86_64 GNU/Linux</div>
+          <div><span class="prompt-sym">ponds@calcifer</span>:~$ free -h</div>
+          <div>Mem: 31Gi total &bull; 1.2Gi used &bull; 26Gi free</div>
+        </div>
+      </div>
+
+      <!-- OS & Software Stack -->
+      <div class="spec-block psx-block">
+        <div class="card-header" style="margin-bottom: 12px;">
+          <span class="header-icon">🐧</span>
+          <span class="header-title">operating environment</span>
+        </div>
+        <table class="specs-table" style="width: 100%;">
+          <tbody>
+            <tr>
+              <td class="spec-label">DISTRIBUTION</td>
+              <td class="spec-value font-green">CachyOS Linux (Arch-based, optimized x86-64-v3/v4)</td>
+            </tr>
+            <tr>
+              <td class="spec-label">SCHEDULER</td>
+              <td class="spec-value font-cyan">BORE (Burst-Oriented Response Enhancer)</td>
+            </tr>
+            <tr>
+              <td class="spec-label">WINDOW MANAGER</td>
+              <td class="spec-value">Hyprland (Wayland Compositor, smooth 144Hz animations)</td>
+            </tr>
+            <tr>
+              <td class="spec-label">TERMINAL &amp; SHELL</td>
+              <td class="spec-value">kitty + foot with zsh &amp; starship prompt</td>
+            </tr>
+            <tr>
+              <td class="spec-label">AUDIO ENGINE</td>
+              <td class="spec-value font-amber">PipeWire + WirePlumber (low-latency Pro-Audio routing)</td>
+            </tr>
+            <tr>
+              <td class="spec-label">GAMING PROTON</td>
+              <td class="spec-value">Proton-CachyOS / GE-Proton with DXVK &amp; FSR</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="note-box psx-note" style="margin-top: 14px;">
+          <strong>💡 Why CachyOS Linux?</strong> I switched because I got tired of Windows bloatware, telemetry, and forced updates disrupting triage sessions. CachyOS is crazy responsive with custom CPU schedulers, boots in under 4 seconds, and idles at barely 1.2GB RAM.
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Triage & Diagnostics Laboratory -->
+    <div class="retro-card psx-block" style="margin-top: 16px;">
+      <div class="card-header">
+        <span class="header-icon">🛡️</span>
+        <span class="header-title">crash diagnostics &amp; triage toolkit</span>
+      </div>
+      <div class="card-body">
+        <p class="card-subtitle">Tools I use when inspecting BSODs, game crashes, and system faults:</p>
+        <div class="interest-grid-3" style="margin-top: 12px;">
+          <div class="interest-box liminal-box">
+            <h4 class="interest-title font-cyan">🔍 WinDbg &amp; Minidump Parser</h4>
+            <p>Analyzing MEMORY.DMP crash dumps, resolving symbols, locating faulty drivers (e.g. ntoskrnl, dxgkrnl, nvlddmkm), and identifying bugcheck codes.</p>
+          </div>
+          <div class="interest-box liminal-box">
+            <h4 class="interest-title font-green">⚡ MemTest86 &amp; OCCT Triage</h4>
+            <p>Diagnosing unstable memory sub-timings, WHEA errors, voltage drops, and thermal throttling under heavy synthetic loads.</p>
+          </div>
+          <div class="interest-box liminal-box">
+            <h4 class="interest-title font-amber">📟 Anti-Bot Support Portal</h4>
+            <p>A complete interactive subpage built to intake formatted user tickets with error logs and specs. Check it out at <a href="../support/" class="font-cyan">/support/</a>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="retro-footer psx-block" style="margin-top: 24px;">
+      <div class="footer-inner">
+        <p>★ ihateuponds.neocities.org &bull; hardware bench 2026 ★</p>
+        <p class="footer-sub"><a href="../" class="back-link">← Return to Ponds' Cave</a> &bull; powered by cachyos linux</p>
+      </div>
+    </footer>
+
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🎮 PONDS' GAMES SHRINE // RETRO LOUNGE</title>
+  <meta name="description" content="Ponds' favorite games shrine: Kingdom Hearts 2, Pokémon SoulSilver, Stardew Valley, DDR, Starbound, Pokémon Channel, SA2, and LBP2.">
+  <meta name="theme-color" content="#030407">
+
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    .subpage-wrapper {
+      max-width: 960px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .back-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #11131c;
+      border: 2px outset #323850;
+      padding: 10px 16px;
+      font-family: var(--font-bios), var(--font-mono);
+    }
+    .back-link {
+      color: var(--neon-cyan);
+      text-decoration: none;
+      font-weight: bold;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .back-link:hover {
+      color: #67e8f9;
+      text-decoration: underline;
+    }
+    .games-hero {
+      background: #0d0f18;
+      background-image: 
+        linear-gradient(rgba(13, 15, 24, 0.9), rgba(13, 15, 24, 0.95)),
+        url('../assets/textures/tech-matrix.png');
+      border: 3px outset #323850;
+      padding: 24px;
+      text-align: center;
+      position: relative;
+    }
+    .games-title {
+      font-size: 1.8rem;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+    .games-detailed-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+    .game-shrine-card {
+      background: #121420;
+      border: 2px outset #2c3248;
+      padding: 16px;
+      position: relative;
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .game-shrine-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--neon-cyan);
+      box-shadow: 0 0 16px rgba(6, 182, 212, 0.35);
+    }
+    .game-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .game-plat-tag {
+      font-family: var(--font-bios), monospace;
+      font-size: 0.72rem;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-weight: bold;
+    }
+    .plat-ps2 { background: #003791; color: #fff; }
+    .plat-nds { background: #555555; color: #76ff61; }
+    .plat-pc { background: #1b2838; color: #66c0f4; }
+    .plat-arcade { background: #e60012; color: #fff; }
+    .plat-gcn { background: #472b7a; color: #fff; }
+    .plat-ps3 { background: #002f6c; color: #f5f0f3; }
+    .game-name {
+      font-size: 1.15rem;
+      color: #fff;
+      font-weight: bold;
+      margin-bottom: 4px;
+    }
+    .game-genre {
+      font-size: 0.8rem;
+      margin-bottom: 10px;
+    }
+    .game-desc {
+      font-size: 0.85rem;
+      line-height: 1.5;
+      color: #cbd5e1;
+      border-top: 1px dashed rgba(255, 255, 255, 0.15);
+      padding-top: 10px;
+    }
+  </style>
+</head>
+<body id="page-body">
+
+  <div class="crt-vignette" aria-hidden="true"></div>
+
+  <div class="subpage-wrapper">
+
+    <!-- Top Navigation Bar -->
+    <div class="back-bar">
+      <a href="../" class="back-link">← [🏠 RETURN TO PONDS' CAVE]</a>
+      <div class="back-meta">
+        <a href="../support/" class="back-link" style="margin-right: 12px;">📟 Tech Support</a>
+        <a href="../rig/" class="back-link">🖥 Hardware Rig</a>
+      </div>
+    </div>
+
+    <!-- Shrine Hero Banner -->
+    <div class="games-hero psx-block">
+      <h1 class="games-title rainbow-text">🎮 FAVORITE GAMES SHRINE</h1>
+      <p class="card-subtitle" style="max-width: 680px; margin: 0 auto;">
+        The all-time titles that defined my childhood, fueled my rhythm game obsession, shaped my love for pixel art, and ate thousands of late-night hours.
+      </p>
+      <div class="dream-coords" style="margin-top: 8px;">[ SECTOR: MEMORY CARD 01 // 8 SLOTS LOADED ]</div>
+    </div>
+
+    <!-- 8 Games Detailed Grid -->
+    <div class="games-detailed-grid">
+
+      <!-- 1. Kingdom Hearts II -->
+      <div class="game-shrine-card">
+        <div class="game-card-top">
+          <span class="game-plat-tag plat-ps2">PlayStation 2</span>
+          <span class="header-icon">⚔️</span>
+        </div>
+        <div class="game-name">Kingdom Hearts II</div>
+        <div class="game-genre font-cyan">Action RPG</div>
+        <p class="game-desc">
+          Absolute peak PS2 combat, Roxas prologue in Twilight Town, Drive Forms, Reaction Commands, and Yoko Shimomura's soundtrack. No game has ever matched its weight, movement speed, and boss design.
+        </p>
+      </div>
+
+      <!-- 2. Pokémon SoulSilver -->
+      <div class="game-shrine-card">
+        <div class="game-card-top">
+          <span class="game-plat-tag plat-nds">Nintendo DS</span>
+          <span class="header-icon">🐾</span>
+        </div>
+        <div class="game-name">Pokémon SoulSilver</div>
+        <div class="game-genre font-green">RPG / Adventure</div>
+        <p class="game-desc">
+          The undisputed pinnacle of 2D Pokémon. Walking Pokémon sprite behind you, two entire regions (Johto + Kanto), the Pokéwalker accessory, and peak Nintendo DS pixel art and chiptune soundfont.
+        </p>
+      </div>
+
+      <!-- 3. Stardew Valley -->
+      <div class="game-shrine-card">
+        <div class="game-card-top">
+          <span class="game-plat-tag plat-pc">PC / Multi</span>
+          <span class="header-icon">🌱</span>
+        </div>
+        <div class="game-name">Stardew Valley</div>
+        <div class="game-genre font-amber">Farming / Life Sim</div>
+        <p class="game-desc">
+          The ultimate comfort game. Endless modding, soundtrack on loop, Skull Cavern stress, automated ancient fruit wineries, and the coziest rainy day atmosphere in video games.
+        </p>
+      </div>
+
+      <!-- 4. DanceDanceRevolution / StepMania -->
+      <div class="game-shrine-card">
+        <div class="game-card-top">
+          <span class="game-plat-tag plat-arcade">Arcade / PC</span>
+          <span class="header-icon">💃</span>
+        </div>
+        <div class="game-name">DDR / StepMania</div>
+        <div class="game-genre font-pink">Rhythm Game</div>
+        <p class="game-desc">
+          Rhythm game perfection. Playing custom simfiles on StepMania with OutFox engine, custom speed mods, and burning calories at 200+ BPM with hyperpop and EDM tracks.
+        </p>
+      </div>
+
+      <!-- 5. Starbound -->
+      <div class="game-shrine-card">
+        <div class="game-card-top">
+          <span class="game-plat-tag plat-pc">PC</span>
+          <span class="header-icon">🚀</span>
+        </div>
+        <div class="game-name">Starbound</div>
+        <div class="game-genre font-cyan">Space Sandbox</div>
+        <p class="game-desc">
+          Exploring infinite procedurally generated planets, building space stations, playing as Novakids, and listening to Curtis Schweitzer's incredible ambient synth-orchestral OST.
+        </p>
+      </div>
+
+      <!-- 6. Pokémon Channel -->
+      <div class="game-shrine-card">
+        <div class="game-card-top">
+          <span class="game-plat-tag plat-gcn">GameCube</span>
+          <span class="header-icon">📺</span>
+        </div>
+        <div class="game-name">Pokémon Channel</div>
+        <div class="game-genre font-amber">Virtual Pet / Nostalgia</div>
+        <p class="game-desc">
+          The most delightfully unhinged nostalgic GameCube gem. Watching anime on a retro CRT TV with Pikachu, collecting Nice Cards, watching Pichu Bros episodes, and Smeargle painting.
+        </p>
+      </div>
+
+      <!-- 7. Sonic Adventure 2 -->
+      <div class="game-shrine-card">
+        <div class="game-card-top">
+          <span class="game-plat-tag plat-gcn">DC / GCN</span>
+          <span class="header-icon">🦔</span>
+        </div>
+        <div class="game-name">Sonic Adventure 2</div>
+        <div class="game-genre font-cyan">3D Platformer / Chao</div>
+        <p class="game-desc">
+          City Escape, Live and Learn, speedrunning Hero and Dark story stages, and spending hundreds of hours raising immortal Chaos with animals in the Chao Garden.
+        </p>
+      </div>
+
+      <!-- 8. LittleBigPlanet 2 -->
+      <div class="game-shrine-card">
+        <div class="game-card-top">
+          <span class="game-plat-tag plat-ps3">PlayStation 3</span>
+          <span class="header-icon">🧵</span>
+        </div>
+        <div class="game-name">LittleBigPlanet 2</div>
+        <div class="game-genre font-pink">Creative Sandbox</div>
+        <p class="game-desc">
+          The creative peak of the PS3 era. Logic microchips, Sackboy customization, grappling hooks, and the golden age of community-made levels and multiplayer lobbies.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="retro-footer psx-block" style="margin-top: 24px;">
+      <div class="footer-inner">
+        <p>★ ihateuponds.neocities.org &bull; games lounge 2026 ★</p>
+        <p class="footer-sub"><a href="../" class="back-link">← Return to Ponds' Cave</a> &bull; powered by cachyos linux</p>
+      </div>
+    </footer>
+
+  </div>
+
+</body>
+</html>
