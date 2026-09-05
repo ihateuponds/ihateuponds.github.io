@@ -1276,3 +1276,74 @@ a:hover {
     grid-template-columns: 1fr;
   }
 }
+
+
+/* Midifreak / Surf Animated Rainbow Gradient & Web Surfing Box */
+.rainbow-text, .rainbow-hover:hover {
+  --bg-size: 200%;
+  --color-one: #ff6176;
+  --color-two: #ffb561;
+  --color-thr: #ffea62;
+  --color-for: #76ff61;
+  --color-fiv: #a0ced9;
+  --color-six: #ff61ab;
+  background: linear-gradient(
+                45deg,
+                var(--color-one),
+                var(--color-two),
+                var(--color-thr),
+                var(--color-for),
+                var(--color-fiv),
+                var(--color-six),
+                var(--color-one)
+              ) 0 0 / var(--bg-size) 100%;
+  color: transparent !important;
+  background-clip: text;
+  -webkit-background-clip: text;
+  animation: move-bg 6s infinite linear;
+  text-shadow: none !important;
+}
+
+@keyframes move-bg {
+  to {
+    background-position: var(--bg-size) 0;
+  }
+}
+
+.surf-links-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 0.78rem;
+}
+
+.surf-links-list li {
+  line-height: 1.35;
+  border-bottom: 1px dashed var(--border-card);
+  padding-bottom: 6px;
+}
+
+.surf-links-list li:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.surf-links-list a {
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.surf-desc {
+  display: block;
+  font-size: 0.68rem;
+  color: var(--text-dim);
+}
+
+/* Retro Pixel Divider */
+.retro-rainbow-hr {
+  height: 2px;
+  border: none;
+  background: linear-gradient(90deg, #ff6176, #ffb561, #ffea62, #76ff61, #a0ced9, #ff61ab);
+  margin: 12px 0;
+}
