@@ -1,495 +1,511 @@
 <!DOCTYPE html>
 <html lang="en">
+<!--
+  ============================================================
+  ihateuponds // personal webcore & tech hub
+  HAND-CRAFTED WITH RAW HTML, CSS, AND CAFFEINE
+  NO CORPORATE AI TEMPLATES ALLOWED HERE.
+  ============================================================
+-->
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ihateuponds // Systems & Tech Diagnostics</title>
-  <meta name="description" content="Personal tech support workstation, hardware diagnostics, Linux/Windows troubleshooting, and weekly schedule.">
-  <meta name="theme-color" content="#0b0c10">
-
-  <!-- OpenGraph / Discord Embed -->
-  <meta property="og:title" content="ihateuponds // Systems & Tech Diagnostics">
-  <meta property="og:description" content="Terminal workstation: weekly schedule, hardware diagnostics, and support ticket submission.">
-  <meta property="og:url" content="https://ihateuponds.github.io/">
-  <meta property="og:type" content="website">
+  <title>★ ihateuponds // ponds' personal cave &amp; tech hub ★</title>
+  <meta name="description" content="Personal webcore portal, hardware diagnostics, Linux workstation specs, hyperpop music, and tech support.">
+  <meta name="theme-color" content="#0b0c12">
 
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=VT323&family=Share+Tech+Mono&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
 </head>
-<body>
+<body id="page-body">
 
-  <div class="terminal-frame">
+  <div class="site-wrapper">
 
-    <!-- Top Window Titlebar -->
-    <div class="window-titlebar">
-      <div class="window-controls" aria-hidden="true">
-        <span class="ctrl-dot close"></span>
-        <span class="ctrl-dot minimize"></span>
-        <span class="ctrl-dot maximize"></span>
+    <!-- Top URL / Breadcrumb Bar -->
+    <div class="top-url-bar">
+      <div class="url-breadcrumb">
+        <span class="url-arrow">➤</span>
+        <span class="url-domain">https://ihateuponds.github.io</span><span class="url-path">/home</span>
       </div>
-      <div class="window-path">
-        <span class="user-host">ihateuponds@station</span>:<span class="tilde">~</span>/<span class="project-dir">tech-help</span>
-      </div>
-      <div class="window-telemetry">
-        <span class="telemetry-item hide-mobile">OS: CachyOS / Arch</span>
-        <span class="telemetry-item hide-mobile">WM: Hyprland</span>
-        <span class="telemetry-item time-badge">
-          <span class="clock-pulse" aria-hidden="true"></span>
-          <span id="clock-display">--:--:--</span> EDT
-        </span>
+      <div class="top-bar-meta">
+        <span class="clock-display">[ EDT: <span id="clock-display">--:--:--</span> ]</span>
+        <button id="font-toggle-btn" class="mini-tag-btn" title="Toggle Mono / Retro Font">font: mono</button>
       </div>
     </div>
 
-    <!-- Operator Identity Strip -->
-    <header class="operator-strip">
-      <div class="operator-profile">
-        <img class="operator-avatar" src="https://avatars.githubusercontent.com/u/232939997?v=4" alt="ihateuponds avatar" width="48" height="48">
-        <div class="operator-meta">
-          <div class="operator-name-row">
-            <span class="operator-handle">ihateuponds</span>
-            <span class="status-pill status-online">
-              <span class="pill-indicator">●</span> OPEN FOR DMS
-            </span>
-          </div>
-          <div class="operator-tagline">Hardware diagnostics, OS troubleshooting & system triage</div>
-        </div>
-      </div>
-
-      <div class="operator-actions">
-        <a class="tui-btn tui-btn-primary" href="https://discord.com/users/ihateuponds" target="_blank" rel="noopener noreferrer">
-          <span>Discord DM</span>
-          <span class="key-hint">@ihateuponds ↗</span>
-        </a>
+    <!-- Main Header Banner -->
+    <header class="retro-header">
+      <div class="header-titles">
+        <h1 class="glitch-title">★ IHATEUPONDS // PONDS' CAVE ★</h1>
+        <p class="header-tagline">sysadmin &bull; hardware diagnostics &bull; hyperpop enjoyer &bull; linux ricer &bull; ghost pokemon</p>
       </div>
     </header>
 
-    <!-- TUI Navigation Bar -->
-    <nav class="tui-navbar" role="tablist" aria-label="Terminal views">
-      <button class="tui-tab active" id="btn-tab-schedule" role="tab" aria-selected="true" aria-controls="pane-schedule" data-tab="pane-schedule">
-        <span class="tab-index">[1]</span>
-        <span class="tab-title">AVAILABILITY & SHIFTS</span>
-      </button>
-      <button class="tui-tab" id="btn-tab-ticket" role="tab" aria-selected="false" aria-controls="pane-ticket" data-tab="pane-ticket">
-        <span class="tab-index">[2]</span>
-        <span class="tab-title">SUBMIT TICKET</span>
-      </button>
-      <button class="tui-tab" id="btn-tab-specs" role="tab" aria-selected="false" aria-controls="pane-specs" data-tab="pane-specs">
-        <span class="tab-index">[3]</span>
-        <span class="tab-title">DIAGNOSTICS & SPECS</span>
-      </button>
-      <div class="tui-navbar-hint hide-mobile">
-        <span>Hotkeys: Press [1], [2], or [3]</span>
+    <!-- Marquee Ticker -->
+    <div class="marquee-bar">
+      <div class="marquee-label">🗨 STATUS:</div>
+      <div class="marquee-content">
+        <span class="marquee-text">welcome to my corner of the web &bull; listening to brakence &amp; jane remover &bull; testing pipewire audio configs &bull; check out the /support/ subpage for my weekly shifts &amp; ticket generator &bull; say NO to corporate AI slop &bull; site is a perpetual work-in-progress...</span>
       </div>
+    </div>
+
+    <!-- Classic NeoCities Navbar -->
+    <nav class="retro-nav" aria-label="Main navigation">
+      <a href="#welcome" class="nav-link active">🏠 home</a>
+      <a href="support/" class="nav-link nav-highlight">📟 tech support subpage ↗</a>
+      <a href="#about" class="nav-link">🪪 about me</a>
+      <a href="#rig" class="nav-link">🖥 linux &amp; rig</a>
+      <a href="#music" class="nav-link">🎵 music</a>
+      <a href="#pokemon" class="nav-link">👻 pokemon</a>
+      <a href="#webrings" class="nav-link">🌐 webrings &amp; 88x31</a>
+      <a href="https://discord.com/users/ihateuponds" target="_blank" rel="noopener noreferrer" class="nav-link">💬 discord</a>
     </nav>
 
-    <!-- Content Workspace -->
-    <main class="terminal-body">
+    <!-- Main Content 3-Column Layout -->
+    <div class="main-layout">
 
-      <!-- PANE 1: SCHEDULE & AVAILABILITY -->
-      <section id="pane-schedule" class="tui-pane active" role="tabpanel" aria-labelledby="btn-tab-schedule">
-        <div class="pane-grid-split">
-          
-          <!-- Schedule Overview Card -->
-          <div class="tui-box tui-box-sidebar">
-            <div class="tui-box-header">
-              <span class="box-title">┌─ STATUS SUMMARY ──────────┐</span>
-            </div>
-            <div class="tui-box-content">
-              <div class="meta-field">
-                <span class="meta-label">DISCORD:</span>
-                <span class="meta-value accent-cyan">ihateuponds</span>
-              </div>
-              <div class="meta-field">
-                <span class="meta-label">TIMEZONE:</span>
-                <span class="meta-value">America/New_York (EDT)</span>
-              </div>
-              <div class="meta-field">
-                <span class="meta-label">WEEK RANGE:</span>
-                <span class="meta-value">Sep 5 – Sep 12, 2026</span>
-              </div>
-              <div class="meta-field">
-                <span class="meta-label">FULL AVAILABILITY:</span>
-                <span class="meta-value accent-green">Mon Sep 7 & Fri Sep 11</span>
-              </div>
-              <div class="meta-field">
-                <span class="meta-label">EVENING SLOTS:</span>
-                <span class="meta-value">Free late night (post-shift)</span>
-              </div>
+      <!-- ================= LEFT COLUMN ================= -->
+      <aside class="col-left">
 
-              <hr class="tui-divider">
-
-              <div class="quick-instructions">
-                <p class="tui-dim">Need emergency help? If I am off shift, ping me directly. If you have an active crash issue, use Tab [2] to compile diagnostic logs first.</p>
-              </div>
-
-              <div class="sidebar-action">
-                <button class="tui-btn tui-btn-secondary switch-to-ticket-btn" type="button">
-                  <span>→ Jump to Ticket Intake</span>
-                </button>
+        <!-- Webmaster Card -->
+        <div class="retro-card">
+          <div class="card-header">
+            <span class="header-icon">✦</span>
+            <span class="header-title">who's this guy?</span>
+          </div>
+          <div class="card-body">
+            <div class="profile-avatar-row">
+              <img src="https://avatars.githubusercontent.com/u/232939997?v=4" alt="ihateuponds avatar" class="pixel-avatar" width="70" height="70">
+              <div class="profile-quick-tags">
+                <span class="profile-name">ihateuponds</span>
+                <span class="profile-sub">"ponds"</span>
+                <span class="tag-pill tag-online">● OPEN FOR DMS</span>
               </div>
             </div>
-            <div class="tui-box-footer">
-              <span>└───────────────────────────┘</span>
+
+            <div class="info-list">
+              <div class="info-row">
+                <span class="info-k">pronouns:</span>
+                <span class="info-v">he/him</span>
+              </div>
+              <div class="info-row">
+                <span class="info-k">os:</span>
+                <span class="info-v font-green">CachyOS / Arch</span>
+              </div>
+              <div class="info-row">
+                <span class="info-k">wm:</span>
+                <span class="info-v font-cyan">Hyprland</span>
+              </div>
+              <div class="info-row">
+                <span class="info-k">feeling:</span>
+                <span class="info-v font-amber" id="mood-text">chaotic / caffeinated ⚡</span>
+              </div>
+              <div class="info-row">
+                <span class="info-k">discord:</span>
+                <span class="info-v font-cyan">@ihateuponds</span>
+              </div>
+            </div>
+
+            <p class="bio-text">
+              jack of all trades, master of breaking pipewire audio and diagnosing friends' PC crashes at 3am. big into 2000s web revival, custom hardware, hyperpop, and ghost pokemon.
+            </p>
+          </div>
+        </div>
+
+        <!-- Thought Bubble (status.cafe style) -->
+        <div class="retro-card">
+          <div class="card-header">
+            <span class="header-icon">💬</span>
+            <span class="header-title">thought radar</span>
+          </div>
+          <div class="card-body">
+            <div class="thought-bubble">
+              <p id="thought-quote">"why does every modern site look like a generic corporate pitch deck? make the web personal and weird again."</p>
+            </div>
+            <button id="btn-roll-thought" class="retro-btn btn-sm full-w">✨ roll new thought</button>
+          </div>
+        </div>
+
+        <!-- Sitely To-Do List Notebook -->
+        <div class="retro-card notebook-card">
+          <div class="card-header">
+            <span class="header-icon">📝</span>
+            <span class="header-title">sitely to-do list</span>
+          </div>
+          <div class="card-body notebook-body">
+            <ul class="todo-list">
+              <li class="todo-done"><span class="check">☑</span> destroy ai-template web design</li>
+              <li class="todo-done"><span class="check">☑</span> build tui ticket intake (/support/)</li>
+              <li><span class="check">☐</span> finish new fl studio hyperpop beat</li>
+              <li><span class="check">☐</span> fix discord wayland screenshare audio</li>
+              <li><span class="check">☐</span> beat radical red on hardcore mode</li>
+              <li><span class="check">☐</span> sleep before 4:00 AM for once</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- CD Music Player -->
+        <div class="retro-card" id="music">
+          <div class="card-header">
+            <span class="header-icon">💿</span>
+            <span class="header-title">hyperpop jukebox</span>
+          </div>
+          <div class="card-body">
+            <div class="player-container">
+              <div class="cd-visualizer">
+                <div class="cd-disc" id="cd-disc">
+                  <div class="cd-center"></div>
+                </div>
+                <div class="eq-bars">
+                  <span class="bar bar-1"></span>
+                  <span class="bar bar-2"></span>
+                  <span class="bar bar-3"></span>
+                  <span class="bar bar-4"></span>
+                  <span class="bar bar-5"></span>
+                </div>
+              </div>
+
+              <div class="player-meta">
+                <div class="track-title font-cyan" id="player-title">INTROVERT</div>
+                <div class="track-artist font-dim" id="player-artist">brakence</div>
+                <div class="track-time" id="player-time">0:00 / 0:00</div>
+              </div>
+
+              <div class="player-controls">
+                <button class="retro-btn btn-icon" id="btn-prev" title="Previous Track">⏮</button>
+                <button class="retro-btn btn-play" id="btn-play" title="Play / Pause">▶ PLAY</button>
+                <button class="retro-btn btn-icon" id="btn-next" title="Next Track">⏭</button>
+              </div>
+
+              <div class="track-select-wrap">
+                <label for="track-select" class="track-select-label">Select Track:</label>
+                <select id="track-select" class="retro-select">
+                  <option value="0">brakence — introvert</option>
+                  <option value="1">Jane Remover — 52 blue mondays</option>
+                  <option value="2">cr1tter — baby g shock</option>
+                  <option value="3">Glitch Gum — I Wish I Was a Cat</option>
+                  <option value="4">guardin — round two</option>
+                </select>
+              </div>
+
+              <audio id="audio-element" preload="none"></audio>
             </div>
           </div>
+        </div>
 
-          <!-- Schedule Matrix Table -->
-          <div class="tui-box tui-box-main">
-            <div class="tui-box-header">
-              <span class="box-title">┌─ WEEKLY SHIFTS & SUPPORT SLOTS ────────────────────────────┐</span>
+        <!-- Button Embed -->
+        <div class="retro-card">
+          <div class="card-header">
+            <span class="header-icon">🔗</span>
+            <span class="header-title">link to me!</span>
+          </div>
+          <div class="card-body text-center">
+            <p class="card-subtitle">take my button for your site:</p>
+            <div class="button-preview">
+              <img src="button.svg" alt="ihateuponds button" width="88" height="31" class="pixel-img">
             </div>
-            <div class="tui-box-content tui-table-wrap">
-              <table class="tui-table">
-                <thead>
+            <textarea class="embed-box" readonly rows="3" id="button-embed-code">&lt;a href="https://ihateuponds.github.io/" target="_blank"&gt;&lt;img src="https://ihateuponds.github.io/button.svg" alt="ihateuponds"&gt;&lt;/a&gt;</textarea>
+            <button id="btn-copy-embed" class="retro-btn btn-sm full-w">📋 copy code snippet</button>
+          </div>
+        </div>
+
+      </aside>
+
+      <!-- ================= CENTER COLUMN ================= -->
+      <main class="col-center">
+
+        <!-- Welcome Manifesto -->
+        <section class="retro-card" id="welcome">
+          <div class="card-header header-manifesto">
+            <span class="header-icon">★</span>
+            <span class="header-title">welcome to my corner of the web...</span>
+          </div>
+          <div class="card-body">
+            <p class="manifesto-lead">
+              You have arrived at <strong>ihateuponds.github.io</strong>.
+            </p>
+            <p>
+              I built this site because I got completely sick of the modern, sterile, corporate web. You know the ones: bloated with 40 megabytes of JavaScript analytics, flat pastel gradients, and generic 600px centered card stacks that look like an AI generated a B2B SaaS landing page in 4 seconds.
+            </p>
+            <p>
+              This site is <strong>100% human-crafted</strong> with raw HTML, CSS, and late-night curiosity. No frameworks, no tracking cookies, and zero AI vibes. Explore the rig specs, jam out to the music player, check out my Ghost Pokémon party, or head over to the tech support subpage if your computer is acting up.
+            </p>
+          </div>
+        </section>
+
+        <!-- SUBPAGE PORTAL: TECH SUPPORT TUI WORKSTATION -->
+        <section class="portal-banner">
+          <div class="portal-inner">
+            <div class="portal-tag">╔══ SUBPAGE SPOTLIGHT ══════════════════════════════════════════╗</div>
+            <h2 class="portal-title">📟 TECH SUPPORT &amp; DIAGNOSTICS WORKSTATION</h2>
+            <p class="portal-desc">
+              Looking for my <strong>weekly work shifts &amp; DM availability</strong>, or need to compile a <strong>structured hardware/crash ticket</strong> with error logs? I built a complete Linux Hyprland-inspired TUI terminal application as a dedicated subpage!
+            </p>
+            <div class="portal-features">
+              <span>✦ Weekly Availability Calendar (Sep 5 – 12)</span>
+              <span>✦ Anti-Bot Ticket Intake Engine</span>
+              <span>✦ Hardware &amp; BSOD Dump Analysis Guide</span>
+              <span>✦ Full Monospace TUI with Keyboard Shortcuts [1, 2, 3]</span>
+            </div>
+            <div class="portal-action">
+              <a href="support/" class="portal-launch-btn">
+                <span class="launch-icon">⚡</span>
+                <span>LAUNCH TECH SUPPORT WORKSTATION (/support/)</span>
+                <span class="launch-arrow">↗</span>
+              </a>
+            </div>
+            <div class="portal-footer-tag">╚════════════════════════════════════════════════════════════════╝</div>
+          </div>
+        </section>
+
+        <!-- Personal Rig & Linux Specs -->
+        <section class="retro-card" id="rig">
+          <div class="card-header">
+            <span class="header-icon">⚙️</span>
+            <span class="header-title">the workbench // linux &amp; hardware</span>
+          </div>
+          <div class="card-body">
+            <p class="card-subtitle">Here is what I daily drive for diagnosing systems, gaming, and writing code:</p>
+
+            <div class="specs-table-wrap">
+              <table class="specs-table">
+                <tbody>
                   <tr>
-                    <th scope="col">DATE</th>
-                    <th scope="col">WORK SHIFT</th>
-                    <th scope="col">TECH SUPPORT AVAILABILITY</th>
-                    <th scope="col">STATUS</th>
+                    <td class="spec-label">PRIMARY OS</td>
+                    <td class="spec-value font-green">CachyOS Linux (Arch-based, BORE CPU Scheduler)</td>
                   </tr>
-                </thead>
-                <tbody id="schedule-tbody">
-                  <tr data-date="2026-09-05">
-                    <td class="cell-date">
-                      <span class="date-name">Sat, Sep 5</span>
-                      <span class="badge-today" hidden>CURRENT</span>
-                    </td>
-                    <td class="cell-shift">1:00 PM – 9:00 PM</td>
-                    <td class="cell-avail">Free after 9:30 PM EDT</td>
-                    <td class="cell-status"><span class="badge-status status-eve">LATE NIGHT</span></td>
+                  <tr>
+                    <td class="spec-label">WINDOW MANAGER</td>
+                    <td class="spec-value font-cyan">Hyprland (Wayland Compositor)</td>
                   </tr>
-
-                  <tr data-date="2026-09-06">
-                    <td class="cell-date">
-                      <span class="date-name">Sun, Sep 6</span>
-                      <span class="badge-today" hidden>CURRENT</span>
-                    </td>
-                    <td class="cell-shift">4:00 PM – 10:00 PM</td>
-                    <td class="cell-avail">Before 3:30 PM & late night</td>
-                    <td class="cell-status"><span class="badge-status status-split">SPLIT</span></td>
+                  <tr>
+                    <td class="spec-label">SECONDARY OS</td>
+                    <td class="spec-value">Windows 11 Pro (Dual-boot for anti-cheat &amp; WinDbg crash dumps)</td>
                   </tr>
-
-                  <tr data-date="2026-09-07" class="row-day-off">
-                    <td class="cell-date">
-                      <span class="date-name">Mon, Sep 7</span>
-                      <span class="badge-today" hidden>CURRENT</span>
-                    </td>
-                    <td class="cell-shift font-accent-green">DAY OFF (NO WORK)</td>
-                    <td class="cell-avail font-accent-green">Open all day & evening</td>
-                    <td class="cell-status"><span class="badge-status status-open">ALL DAY</span></td>
+                  <tr>
+                    <td class="spec-label">TERMINAL &amp; SHELL</td>
+                    <td class="spec-value">foot / kitty / zsh with starship</td>
                   </tr>
-
-                  <tr data-date="2026-09-08">
-                    <td class="cell-date">
-                      <span class="date-name">Tue, Sep 8</span>
-                      <span class="badge-today" hidden>CURRENT</span>
-                    </td>
-                    <td class="cell-shift">4:00 PM – 10:00 PM</td>
-                    <td class="cell-avail">Mornings & after 10:00 PM</td>
-                    <td class="cell-status"><span class="badge-status status-split">SPLIT</span></td>
+                  <tr>
+                    <td class="spec-label">AUDIO ENGINE</td>
+                    <td class="spec-value">PipeWire + WirePlumber (low-latency Pro-Audio routing)</td>
                   </tr>
-
-                  <tr data-date="2026-09-09">
-                    <td class="cell-date">
-                      <span class="date-name">Wed, Sep 9</span>
-                      <span class="badge-today" hidden>CURRENT</span>
-                    </td>
-                    <td class="cell-shift">3:00 PM – 10:00 PM</td>
-                    <td class="cell-avail">Mornings & after 10:00 PM</td>
-                    <td class="cell-status"><span class="badge-status status-split">SPLIT</span></td>
-                  </tr>
-
-                  <tr data-date="2026-09-10">
-                    <td class="cell-date">
-                      <span class="date-name">Thu, Sep 10</span>
-                      <span class="badge-today" hidden>CURRENT</span>
-                    </td>
-                    <td class="cell-shift">2:00 PM – 10:00 PM</td>
-                    <td class="cell-avail">Mornings & after 10:00 PM</td>
-                    <td class="cell-status"><span class="badge-status status-split">SPLIT</span></td>
-                  </tr>
-
-                  <tr data-date="2026-09-11" class="row-day-off">
-                    <td class="cell-date">
-                      <span class="date-name">Fri, Sep 11</span>
-                      <span class="badge-today" hidden>CURRENT</span>
-                    </td>
-                    <td class="cell-shift font-accent-green">DAY OFF (NO WORK)</td>
-                    <td class="cell-avail font-accent-green">Open all day & evening</td>
-                    <td class="cell-status"><span class="badge-status status-open">ALL DAY</span></td>
-                  </tr>
-
-                  <tr data-date="2026-09-12">
-                    <td class="cell-date">
-                      <span class="date-name">Sat, Sep 12</span>
-                      <span class="badge-today" hidden>CURRENT</span>
-                    </td>
-                    <td class="cell-shift">3:00 PM – 10:00 PM</td>
-                    <td class="cell-avail">Mornings & after 10:00 PM</td>
-                    <td class="cell-status"><span class="badge-status status-split">SPLIT</span></td>
+                  <tr>
+                    <td class="spec-label">HARDWARE BENCH</td>
+                    <td class="spec-value">AMD Ryzen 5000 Series + NVIDIA RTX Platform + 32GB RAM</td>
                   </tr>
                 </tbody>
               </table>
             </div>
-            <div class="tui-box-footer">
-              <span>└────────────────────────────────────────────────────────────┘</span>
+
+            <div class="note-box">
+              <strong>💡 Why Linux?</strong> Because Windows has turned into an ad-delivery vehicle with recall bloatware. On CachyOS, my system idles at 1.2GB of RAM, games run identically (or faster) under Proton-GE with DXVK, and I actually have full control over my computer.
             </div>
           </div>
+        </section>
 
-        </div>
-      </section>
-
-      <!-- PANE 2: SUPPORT TICKET INTAKE -->
-      <section id="pane-ticket" class="tui-pane" role="tabpanel" aria-labelledby="btn-tab-ticket" hidden>
-        <div class="tui-box">
-          <div class="tui-box-header">
-            <span class="box-title">┌─ TICKET INTAKE CONSOLE ──────────────────────────────────────────────┐</span>
+        <!-- Ghost Pokémon Party Shrine -->
+        <section class="retro-card" id="pokemon">
+          <div class="card-header">
+            <span class="header-icon">👻</span>
+            <span class="header-title">ghost type dream team shrine</span>
           </div>
+          <div class="card-body">
+            <p class="card-subtitle">Click any party member to inspect moveset and competitive stats:</p>
 
-          <div class="tui-box-content">
-            <p class="tui-instructions">
-              Provide your environment details and issue symptoms below. The engine will compile an organized diagnostic ticket, copy it to your clipboard, and prepare it for Discord DMs.
-            </p>
-
-            <form id="ticket-form" class="tui-form" novalidate>
-              <!-- Anti-bot honeypot field -->
-              <div class="bot-trap" aria-hidden="true">
-                <input type="text" name="b_trap" tabindex="-1" autocomplete="off">
+            <div class="pokemon-party-grid">
+              <div class="pokemon-slot active" data-name="Gholdengo" data-type="Steel / Ghost" data-item="Covert Cloak" data-ability="Good as Gold" data-moves="Make It Rain, Shadow Ball, Nasty Plot, Recover">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/1000.gif" alt="Gholdengo" class="pkmn-sprite">
+                <span class="pkmn-name">Gholdengo</span>
               </div>
-
-              <div class="tui-form-grid">
-                <div class="form-group">
-                  <label for="field-handle" class="input-label">
-                    <span class="label-prompt">[client@handle]:</span>
-                    <span class="label-desc">Your Discord username or alias</span>
-                  </label>
-                  <input type="text" id="field-handle" name="handle" class="tui-input" placeholder="e.g. user or @handle" autocomplete="off">
-                </div>
-
-                <div class="form-group">
-                  <label for="field-os" class="input-label">
-                    <span class="label-prompt">[env@os]:</span>
-                    <span class="label-desc">Operating System <span class="req-star">*</span></span>
-                  </label>
-                  <div class="select-wrapper">
-                    <select id="field-os" name="os" class="tui-select" required>
-                      <option value="" disabled selected>-- Select Operating System --</option>
-                      <option value="Windows 11">Windows 11</option>
-                      <option value="Windows 10">Windows 10</option>
-                      <option value="Arch / CachyOS Linux">Arch / CachyOS Linux</option>
-                      <option value="Ubuntu / Debian / Mint">Ubuntu / Debian / Mint</option>
-                      <option value="Fedora / RHEL">Fedora / RHEL</option>
-                      <option value="SteamOS / Handheld">SteamOS / Steam Deck</option>
-                      <option value="macOS">macOS</option>
-                      <option value="Other">Other / Dual Boot</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label for="field-category" class="input-label">
-                    <span class="label-prompt">[issue@category]:</span>
-                    <span class="label-desc">Classification <span class="req-star">*</span></span>
-                  </label>
-                  <div class="select-wrapper">
-                    <select id="field-category" name="category" class="tui-select" required>
-                      <option value="" disabled selected>-- Select Classification --</option>
-                      <option value="Game Crash / Performance">Game Crash / Performance / FPS Drops</option>
-                      <option value="BSOD / System Freeze">BSOD / Kernel Panic / Freeze</option>
-                      <option value="Hardware / Part Diagnostics">Hardware / Part Failure / Upgrade</option>
-                      <option value="Network / Wi-Fi Latency">Network / Latency / Packet Loss</option>
-                      <option value="Discord Bot / Server Config">Discord Bot / Permissions / Hosting</option>
-                      <option value="Linux Gaming / Wine / Proton">Linux Gaming / Wine / Proton / Drivers</option>
-                      <option value="Software / OS Issue">Software / OS Config / Audio (PipeWire)</option>
-                      <option value="General Question">General Tech Question</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label for="field-specs" class="input-label">
-                    <span class="label-prompt">[sys@specs]:</span>
-                    <span class="label-desc">Hardware specs (GPU, CPU, RAM)</span>
-                  </label>
-                  <input type="text" id="field-specs" name="specs" class="tui-input" placeholder="e.g. RTX 3070, Ryzen 5 5600X, 32GB RAM" autocomplete="off">
-                </div>
-
-                <div class="form-group span-full">
-                  <label for="field-summary" class="input-label">
-                    <span class="label-prompt">[log@summary]:</span>
-                    <span class="label-desc">Issue description & steps to reproduce <span class="req-star">*</span></span>
-                  </label>
-                  <textarea id="field-summary" name="summary" class="tui-textarea" rows="4" placeholder="What is happening? When did it start? What troubleshooting have you already tried?" required></textarea>
-                </div>
-
-                <div class="form-group span-full">
-                  <label for="field-logs" class="input-label">
-                    <span class="label-prompt">[log@trace]:</span>
-                    <span class="label-desc">Error code, Event Viewer event, or terminal output</span>
-                  </label>
-                  <textarea id="field-logs" name="logs" class="tui-textarea font-code" rows="3" placeholder="Paste error popups, Event ID, crash stack, minidump name, journalctl traces..."></textarea>
-                </div>
+              <div class="pokemon-slot" data-name="Skeledirge" data-type="Fire / Ghost" data-item="Throat Spray" data-ability="Unaware" data-moves="Torch Song, Shadow Ball, Slack Off, Earth Power">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/911.gif" alt="Skeledirge" class="pkmn-sprite">
+                <span class="pkmn-name">Skeledirge</span>
               </div>
-
-              <div id="form-error-banner" class="tui-alert tui-alert-error" hidden></div>
-
-              <div class="form-actions">
-                <button type="submit" class="tui-btn tui-btn-action">
-                  <span class="btn-symbol">↵</span>
-                  <span>COMPILE & COPY TICKET</span>
-                </button>
-                <span class="form-hint tui-dim">Rate limit protected • Zero tracking cookies</span>
+              <div class="pokemon-slot" data-name="Shiny Mimikyu" data-type="Ghost / Fairy" data-item="Disguise Patch" data-ability="Disguise" data-moves="Play Rough, Shadow Claw, Swords Dance, Shadow Sneak">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/shiny/778.gif" alt="Shiny Mimikyu" class="pkmn-sprite">
+                <span class="pkmn-name">Mimikyu ✨</span>
               </div>
-            </form>
-
-            <!-- Compiled Ticket Output Terminal -->
-            <div id="ticket-output" class="tui-stdout-box" hidden>
-              <div class="stdout-header">
-                <span class="stdout-title">stdout: ticket_compiled.txt</span>
-                <span class="stdout-badge">✓ COPIED TO CLIPBOARD</span>
+              <div class="pokemon-slot" data-name="Sableye" data-type="Dark / Ghost" data-item="Leftovers" data-ability="Prankster" data-moves="Will-O-Wisp, Foul Play, Recover, Knock Off">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/302.gif" alt="Sableye" class="pkmn-sprite">
+                <span class="pkmn-name">Sableye</span>
               </div>
-              <pre id="ticket-code" class="stdout-content"></pre>
-              <div class="stdout-actions">
-                <button id="copy-output-btn" class="tui-btn tui-btn-secondary" type="button">
-                  <span id="copy-output-label">Copy Ticket Again</span>
-                </button>
-                <a class="tui-btn tui-btn-primary" href="https://discord.com/users/ihateuponds" target="_blank" rel="noopener noreferrer">
-                  <span>Send in Discord DM</span>
-                  <span>↗</span>
-                </a>
+              <div class="pokemon-slot" data-name="Dragapult" data-type="Dragon / Ghost" data-item="Choice Specs" data-ability="Infiltrator" data-moves="Draco Meteor, Shadow Ball, Flamethrower, U-turn">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/887.gif" alt="Dragapult" class="pkmn-sprite">
+                <span class="pkmn-name">Dragapult</span>
+              </div>
+              <div class="pokemon-slot" data-name="Annihilape" data-type="Fighting / Ghost" data-item="Leftovers" data-ability="Defiant" data-moves="Rage Fist, Drain Punch, Bulk Up, Taunt">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/979.gif" alt="Annihilape" class="pkmn-sprite">
+                <span class="pkmn-name">Annihilape</span>
               </div>
             </div>
 
+            <!-- Pokemon Inspector Box -->
+            <div class="pkmn-inspector" id="pkmn-inspector">
+              <div class="inspector-header">
+                <span id="inspect-name" class="font-cyan">Gholdengo</span>
+                <span id="inspect-type" class="badge-type">Steel / Ghost</span>
+              </div>
+              <div class="inspector-details">
+                <p><strong>Ability:</strong> <span id="inspect-ability">Good as Gold</span> &bull; <strong>Item:</strong> <span id="inspect-item">Covert Cloak</span></p>
+                <p><strong>Moves:</strong> <span id="inspect-moves">Make It Rain, Shadow Ball, Nasty Plot, Recover</span></p>
+              </div>
+            </div>
           </div>
+        </section>
 
-          <div class="tui-box-footer">
-            <span>└─────────────────────────────────────────────────────────────────────┘</span>
+        <!-- Q&A / FAQ (midifreak style) -->
+        <section class="retro-card" id="about">
+          <div class="card-header">
+            <span class="header-icon">❓</span>
+            <span class="header-title">q&amp;a corner</span>
+          </div>
+          <div class="card-body">
+            <div class="qa-item">
+              <p class="qa-q">Q: Why did you build your website like this?</p>
+              <p class="qa-a">A: Because the modern web is boring, sanitized, and bloated with 50MB of corporate frameworks that all look like the exact same startup pitch. Hand-coded HTML, 88x31 buttons, and personal shrines are what made the internet awesome in the first place.</p>
+            </div>
+            <div class="qa-item">
+              <p class="qa-q">Q: Can you help me fix my computer or game crash?</p>
+              <p class="qa-a">A: Yes! Hop over to the <a href="support/" class="inline-link">Tech Support Subpage</a>, fill out your operating system and error codes, and it will generate an ASCII ticket that you can send directly to my Discord (<strong>@ihateuponds</strong>).</p>
+            </div>
+            <div class="qa-item">
+              <p class="qa-q">Q: What is your favorite chip flavor?</p>
+              <p class="qa-a">A: Sour Cream &amp; Onion or Jalapeño. No contest.</p>
+            </div>
+          </div>
+        </section>
+
+      </main>
+
+      <!-- ================= RIGHT COLUMN ================= -->
+      <aside class="col-right" id="webrings">
+
+        <!-- Web Clap Counter (like ries.neocities.org) -->
+        <div class="retro-card">
+          <div class="card-header">
+            <span class="header-icon">👏</span>
+            <span class="header-title">web claps</span>
+          </div>
+          <div class="card-body text-center">
+            <p class="card-subtitle">enjoyed the site? leave a clap!</p>
+            <button id="btn-web-clap" class="retro-btn btn-clap">
+              <span>👏 Web Clap!</span>
+              <span id="clap-counter" class="clap-badge">42</span>
+            </button>
+            <div id="clap-msg" class="clap-feedback" hidden>thanks for the clap! &hearts;</div>
           </div>
         </div>
-      </section>
 
-      <!-- PANE 3: DIAGNOSTICS & SPECS -->
-      <section id="pane-specs" class="tui-pane" role="tabpanel" aria-labelledby="btn-tab-specs" hidden>
-        <div class="specs-grid">
-
-          <!-- Card 1: Diagnostic Checklist -->
-          <div class="tui-box">
-            <div class="tui-box-header">
-              <span class="box-title">┌─ FAST DIAGNOSTIC CHECKLIST ────────────┐</span>
+        <!-- Indie Web & Anti-AI Badges -->
+        <div class="retro-card">
+          <div class="card-header">
+            <span class="header-icon">🛡️</span>
+            <span class="header-title">badges of honor</span>
+          </div>
+          <div class="card-body text-center badges-grid">
+            <div class="badge-item" title="No AI Webring">
+              <img src="https://baccyflap.com/noai/win7widget-compact.gif" alt="No AI Webring" class="pixel-img" style="max-width: 100%;">
             </div>
-            <div class="tui-box-content">
-              <p class="section-lead">Before submitting, gathering these commands speeds up diagnosis by 10x:</p>
-              
-              <div class="diag-item">
-                <span class="diag-tag font-accent-cyan">[WINDOWS CRASHES]</span>
-                <p>Check <code>eventvwr.msc</code> → Windows Logs → System. Look for Event ID 41 (Kernel-Power) or BugCheck codes. Minidumps are stored in <code>C:\Windows\Minidump\</code>.</p>
-              </div>
-
-              <div class="diag-item">
-                <span class="diag-tag font-accent-green">[LINUX FREEZES / PANICS]</span>
-                <p>Run <code>journalctl -p 3 -xb</code> for priority error logs, or <code>dmesg -T --level=err,warn</code> to check GPU and kernel ring buffer errors.</p>
-              </div>
-
-              <div class="diag-item">
-                <span class="diag-tag font-accent-amber">[THERMAL & HARDWARE]</span>
-                <p>Run HWiNFO64 (Sensors only) or MangoHud. Note CPU Tctl/Tdie and GPU Hotspot temp during crash load.</p>
-              </div>
+            <div class="badge-item" title="Arch Linux">
+              <img src="https://cyber.dabamos.de/88x31/archlinux.gif" alt="Arch Linux" width="88" height="31" class="pixel-img">
             </div>
-            <div class="tui-box-footer">
-              <span>└────────────────────────────────────────┘</span>
+            <div class="badge-item" title="Linux Powered">
+              <img src="https://cyber.dabamos.de/88x31/linux_powered.gif" alt="Linux Powered" width="88" height="31" class="pixel-img">
+            </div>
+            <div class="badge-item" title="Notepad">
+              <img src="https://cyber.dabamos.de/88x31/notepad.gif" alt="Hand-coded in Notepad" width="88" height="31" class="pixel-img">
+            </div>
+            <div class="badge-item" title="Firefox">
+              <img src="https://cyber.dabamos.de/88x31/firefox.gif" alt="Get Firefox" width="88" height="31" class="pixel-img">
+            </div>
+            <div class="badge-item" title="Steam">
+              <img src="https://cyber.dabamos.de/88x31/steam.gif" alt="Play on Steam" width="88" height="31" class="pixel-img">
+            </div>
+            <div class="badge-item" title="Valid HTML">
+              <img src="https://cyber.dabamos.de/88x31/valid_html.gif" alt="Valid HTML" width="88" height="31" class="pixel-img">
+            </div>
+            <div class="badge-item" title="Neocities">
+              <img src="https://cyber.dabamos.de/88x31/neocities.gif" alt="Neocities" width="88" height="31" class="pixel-img">
             </div>
           </div>
-
-          <!-- Card 2: Personal Station Specs -->
-          <div class="tui-box">
-            <div class="tui-box-header">
-              <span class="box-title">┌─ OPERATOR WORKBENCH & SPECS ───────────┐</span>
-            </div>
-            <div class="tui-box-content">
-              <div class="spec-row">
-                <span class="spec-k">PRIMARY OS:</span>
-                <span class="spec-v font-accent-green">CachyOS Linux (Arch-based, BORE kernel)</span>
-              </div>
-              <div class="spec-row">
-                <span class="spec-k">WINDOW MGR:</span>
-                <span class="spec-v font-accent-cyan">Hyprland (Wayland compositor)</span>
-              </div>
-              <div class="spec-row">
-                <span class="spec-k">SECONDARY OS:</span>
-                <span class="spec-v">Windows 11 Pro (DirectX/Vulkan bench)</span>
-              </div>
-              <div class="spec-row">
-                <span class="spec-k">TERMINAL:</span>
-                <span class="spec-v">foot / kitty / zsh</span>
-              </div>
-              <div class="spec-row">
-                <span class="spec-k">PRIMARY EDITOR:</span>
-                <span class="spec-v">Neovim / VSCode</span>
-              </div>
-              <div class="spec-row">
-                <span class="spec-k">AUDIO SERVER:</span>
-                <span class="spec-v">PipeWire + WirePlumber</span>
-              </div>
-            </div>
-            <div class="tui-box-footer">
-              <span>└────────────────────────────────────────┘</span>
-            </div>
-          </div>
-
-          <!-- Card 3: Scope of Support -->
-          <div class="tui-box span-full-row">
-            <div class="tui-box-header">
-              <span class="box-title">┌─ SCOPE OF SUPPORT & RULES ─────────────────────────────────────────┐</span>
-            </div>
-            <div class="tui-box-content">
-              <div class="scope-columns">
-                <div class="scope-col">
-                  <h4 class="scope-title font-accent-green">[+] WHAT I CAN SOLVE:</h4>
-                  <ul class="tui-list">
-                    <li>PC build part compatibility, bottleneck checks & component budgeting</li>
-                    <li>Windows BSOD crash analysis (Minidump inspection with WinDbg)</li>
-                    <li>Linux dual-boot partitioning, GRUB/systemd-boot repairs & PipeWire routing</li>
-                    <li>Linux gaming troubleshooting (Proton-GE, Wine prefixes, DXVK/VKD3D)</li>
-                    <li>Game crashing, memory leaks, GPU driver cleaning (DDU / safe mode)</li>
-                    <li>Discord bot infrastructure, node/python script hosting & role permissions</li>
-                  </ul>
-                </div>
-                <div class="scope-col">
-                  <h4 class="scope-title font-accent-red">[-] WHAT I DO NOT DO:</h4>
-                  <ul class="tui-list">
-                    <li>Physical hardware soldering, board-level re-balling or SMD rework</li>
-                    <li>Cracked software, pirated key generation or bypassing antivirus alerts</li>
-                    <li>Enterprise Active Directory migrations or paid closed-source proprietary vendor setups</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="tui-box-footer">
-              <span>└────────────────────────────────────────────────────────────────────┘</span>
-            </div>
-          </div>
-
         </div>
-      </section>
 
-    </main>
+        <!-- Webrings Box -->
+        <div class="retro-card">
+          <div class="card-header">
+            <span class="header-icon">🪐</span>
+            <span class="header-title">webrings</span>
+          </div>
+          <div class="card-body">
+            <div class="webring-item">
+              <div class="ring-title">✦ RETRONAUT WEBRING ✦</div>
+              <div class="ring-nav">
+                <a href="https://webring.dinhe.net/prev/https://ihateuponds.github.io" class="ring-btn">&larr; prev</a>
+                <a href="https://webring.dinhe.net" class="ring-btn">hub</a>
+                <a href="https://webring.dinhe.net/next/https://ihateuponds.github.io" class="ring-btn">next &rarr;</a>
+              </div>
+            </div>
 
-    <!-- Bottom Statusline (like tmux/vim) -->
-    <footer class="tui-statusline">
-      <div class="status-left">
-        <span class="mode-badge">NORMAL</span>
-        <span class="branch-badge hide-mobile">main</span>
-        <span class="encoding-badge hide-mobile">utf-8</span>
-      </div>
-      <div class="status-center">
-        <span class="status-hint">Nav: [1] Shifts &bull; [2] Ticket &bull; [3] Diagnostics</span>
-      </div>
-      <div class="status-right">
-        <span class="host-url">ihateuponds.github.io</span>
+            <hr class="card-divider">
+
+            <div class="webring-item">
+              <div class="ring-title">✦ HOTLINE WEBRING ✦</div>
+              <div class="ring-nav">
+                <a href="https://hotlinewebring.club/prev" class="ring-btn">&larr; prev</a>
+                <a href="https://hotlinewebring.club" class="ring-btn">hub</a>
+                <a href="https://hotlinewebring.club/next" class="ring-btn">next &rarr;</a>
+              </div>
+            </div>
+
+            <hr class="card-divider">
+
+            <div class="webring-item">
+              <div class="ring-title">✦ NO AI WEBRING ✦</div>
+              <div class="ring-nav">
+                <a href="https://baccyflap.com/noai/?prv&s=ponds" class="ring-btn">&larr; prev</a>
+                <a href="https://baccyflap.com/noai" class="ring-btn">no-ai</a>
+                <a href="https://baccyflap.com/noai/?nxt&s=ponds" class="ring-btn">next &rarr;</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Direct Contact Box -->
+        <div class="retro-card">
+          <div class="card-header">
+            <span class="header-icon">📫</span>
+            <span class="header-title">reach me</span>
+          </div>
+          <div class="card-body">
+            <p class="card-subtitle">My DMs are always open:</p>
+            <div class="contact-links">
+              <a href="https://discord.com/users/ihateuponds" target="_blank" rel="noopener noreferrer" class="contact-btn btn-discord">
+                <span>💬 Discord: @ihateuponds</span>
+              </a>
+              <a href="https://github.com/ihateuponds" target="_blank" rel="noopener noreferrer" class="contact-btn btn-github">
+                <span>🐙 GitHub: @ihateuponds</span>
+              </a>
+              <a href="support/" class="contact-btn btn-support">
+                <span>📟 Submit Tech Ticket ↗</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </aside>
+
+    </div>
+
+    <!-- Retro Footer -->
+    <footer class="retro-footer">
+      <div class="footer-inner">
+        <p>★ ihateuponds.github.io &bull; established 2026 &bull; best viewed with a computer screen ★</p>
+        <p class="footer-sub">100% human-crafted with HTML, CSS &amp; JavaScript &bull; zero tracking cookies &bull; powered by arch linux</p>
       </div>
     </footer>
 

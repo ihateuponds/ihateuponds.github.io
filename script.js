@@ -1,48 +1,7 @@
 (() => {
   const TIMEZONE = "America/New_York";
 
-  // Tab Navigation Engine
-  const tabs = Array.from(document.querySelectorAll(".tui-tab"));
-  const panes = Array.from(document.querySelectorAll(".tui-pane"));
-
-  function switchTab(targetId) {
-    tabs.forEach(tab => {
-      const isTarget = tab.getAttribute("data-tab") === targetId;
-      tab.classList.toggle("active", isTarget);
-      tab.setAttribute("aria-selected", isTarget ? "true" : "false");
-    });
-
-    panes.forEach(pane => {
-      const isTarget = pane.id === targetId;
-      pane.classList.toggle("active", isTarget);
-      pane.hidden = !isTarget;
-    });
-  }
-
-  tabs.forEach(tab => {
-    tab.addEventListener("click", () => {
-      const targetId = tab.getAttribute("data-tab");
-      if (targetId) switchTab(targetId);
-    });
-  });
-
-  // Cross-link buttons inside panes
-  document.querySelectorAll(".switch-to-ticket-btn").forEach(btn => {
-    btn.addEventListener("click", () => switchTab("pane-ticket"));
-  });
-
-  // Keyboard Shortcuts for TUI navigation (1, 2, 3)
-  window.addEventListener("keydown", (e) => {
-    const active = document.activeElement;
-    const isTyping = active && (active.tagName === "INPUT" || active.tagName === "TEXTAREA" || active.tagName === "SELECT");
-    if (isTyping) return;
-
-    if (e.key === "1") switchTab("pane-schedule");
-    else if (e.key === "2") switchTab("pane-ticket");
-    else if (e.key === "3") switchTab("pane-specs");
-  });
-
-  // Live Telemetry Clock (EDT)
+  // 1. Live EDT Telemetry Clock
   const clockEl = document.getElementById("clock-display");
   function updateClock() {
     if (!clockEl) return;
@@ -56,165 +15,206 @@
     });
     clockEl.textContent = formatter.format(now);
   }
-
-  // Dynamic Schedule Row Highlighter
-  function markTodayRow() {
-    const now = new Date();
-    const nyDateStr = now.toLocaleDateString("en-CA", { timeZone: TIMEZONE });
-    const targetRow = document.querySelector(`tr[data-date="${nyDateStr}"]`);
-
-    if (targetRow) {
-      targetRow.classList.add("is-today");
-      const badge = targetRow.querySelector(".badge-today");
-      if (badge) badge.hidden = false;
-    }
-  }
-
-  // Ticket Intake & Compiler System
-  const form = document.getElementById("ticket-form");
-  const outputBox = document.getElementById("ticket-output");
-  const ticketCode = document.getElementById("ticket-code");
-  const copyOutputBtn = document.getElementById("copy-output-btn");
-  const copyOutputLabel = document.getElementById("copy-output-label");
-  const errorBanner = document.getElementById("form-error-banner");
-
-  if (form) {
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-
-      // Bot honeypot verification
-      const botTrap = form.elements["b_trap"];
-      if (botTrap && botTrap.value) return;
-
-      // Rate limit cooldown (8 seconds)
-      const nowTs = Date.now();
-      const lastSubmit = sessionStorage.getItem("last_ticket_ts");
-      if (lastSubmit && nowTs - parseInt(lastSubmit, 10) < 8000) {
-        showError("Rate limit: Please wait a few seconds before generating another ticket.");
-        return;
-      }
-
-      // Input Extraction
-      const handle = form.elements["handle"].value.trim() || "Anonymous";
-      const os = form.elements["os"].value;
-      const category = form.elements["category"].value;
-      const specs = form.elements["specs"].value.trim() || "Not specified";
-      const summary = form.elements["summary"].value.trim();
-      const logs = form.elements["logs"].value.trim() || "None provided";
-
-      // Form Validation
-      clearErrors();
-      let hasError = false;
-
-      if (!os) {
-        highlightError(form.elements["os"], "Please select an operating system.");
-        hasError = true;
-      }
-      if (!category) {
-        highlightError(form.elements["category"], "Please select an issue classification.");
-        hasError = true;
-      }
-      if (!summary || summary.length < 15) {
-        highlightError(form.elements["summary"], "Please provide at least 15 characters describing the issue.");
-        hasError = true;
-      }
-
-      if (hasError) return;
-
-      // Generate Ticket ID and timestamp
-      const ticketId = "TKT-" + Math.floor(1000 + Math.random() * 9000);
-      const now = new Date();
-      const timeStr = new Intl.DateTimeFormat("en-US", {
-        timeZone: TIMEZONE,
-        month: "short",
-        day: "numeric",
-        hour: "numeric",
-        minute: "2-digit",
-        hour12: true
-      }).format(now);
-
-      const ticketLines = [
-        "============================================================",
-        `[TECH SUPPORT TICKET] #${ticketId}`,
-        `Filed: ${timeStr} EDT`,
-        "============================================================",
-        `CLIENT:    ${handle}`,
-        `OS:        ${os}`,
-        `HARDWARE:  ${specs}`,
-        `CATEGORY:  ${category}`,
-        "------------------------------------------------------------",
-        "ISSUE SUMMARY & REPRODUCTION:",
-        summary,
-        "",
-        "DIAGNOSTIC LOGS / ERROR TRACES:",
-        logs,
-        "============================================================"
-      ];
-
-      const ticketText = ticketLines.join("\n");
-
-      ticketCode.textContent = ticketText;
-      outputBox.hidden = false;
-      outputBox.scrollIntoView({ behavior: "smooth", block: "nearest" });
-
-      sessionStorage.setItem("last_ticket_ts", nowTs.toString());
-      await copyToClipboard(ticketText);
-    });
-  }
-
-  function highlightError(element, msg) {
-    element.classList.add("has-error");
-    if (errorBanner) {
-      errorBanner.textContent = msg;
-      errorBanner.hidden = false;
-    }
-    element.focus();
-  }
-
-  function clearErrors() {
-    if (form) {
-      form.querySelectorAll(".has-error").forEach(el => el.classList.remove("has-error"));
-    }
-    if (errorBanner) {
-      errorBanner.textContent = "";
-      errorBanner.hidden = true;
-    }
-  }
-
-  function showError(msg) {
-    if (errorBanner) {
-      errorBanner.textContent = msg;
-      errorBanner.hidden = false;
-    }
-  }
-
-  async function copyToClipboard(text) {
-    try {
-      await navigator.clipboard.writeText(text);
-      if (copyOutputBtn && copyOutputLabel) {
-        copyOutputBtn.classList.add("copied");
-        copyOutputLabel.textContent = "✓ Copied Ticket to Clipboard";
-        setTimeout(() => {
-          copyOutputBtn.classList.remove("copied");
-          copyOutputLabel.textContent = "Copy Ticket Again";
-        }, 3000);
-      }
-    } catch (err) {
-      if (copyOutputLabel) {
-        copyOutputLabel.textContent = "Copy Ticket Again";
-      }
-    }
-  }
-
-  if (copyOutputBtn) {
-    copyOutputBtn.addEventListener("click", () => {
-      const text = ticketCode.textContent;
-      if (text) copyToClipboard(text);
-    });
-  }
-
-  // Initialization
   updateClock();
   setInterval(updateClock, 1000);
-  markTodayRow();
+
+  // 2. Font Mode Switcher
+  const fontBtn = document.getElementById("font-toggle-btn");
+  const body = document.getElementById("page-body");
+  const fontOptions = [
+    { name: "mono", family: "'JetBrains Mono', monospace" },
+    { name: "pixel", family: "'VT323', monospace" },
+    { name: "tech", family: "'Share Tech Mono', monospace" }
+  ];
+  let currentFontIdx = 0;
+
+  if (fontBtn && body) {
+    fontBtn.addEventListener("click", () => {
+      currentFontIdx = (currentFontIdx + 1) % fontOptions.length;
+      body.style.fontFamily = fontOptions[currentFontIdx].family;
+      fontBtn.textContent = "font: " + fontOptions[currentFontIdx].name;
+    });
+  }
+
+  // 3. Thought Radar Roller
+  const thoughtQuotes = [
+    "why does every modern site look like a generic corporate pitch deck? make the web personal and weird again.",
+    "thinking about how wayland screen sharing was broken for 4 years and now it finally works.",
+    "if you don't listen to brakence at 2am while debugging a kernel panic what are you even doing?",
+    "remember when websites had under construction gifs and guestbooks instead of cookie banners and popups?",
+    "my cachyos install idles at 1.2gb of ram. windows 11 idles at 6.4gb just to show candy crush in the start menu.",
+    "radical red is the best pokemon romhack of all time, do not @ me.",
+    "pipewire pro-audio routing is the single greatest thing to happen to linux desktop in a decade."
+  ];
+
+  const rollBtn = document.getElementById("btn-roll-thought");
+  const quoteEl = document.getElementById("thought-quote");
+
+  if (rollBtn && quoteEl) {
+    rollBtn.addEventListener("click", () => {
+      const randomIdx = Math.floor(Math.random() * thoughtQuotes.length);
+      quoteEl.textContent = `"${thoughtQuotes[randomIdx]}"`;
+    });
+  }
+
+  // 4. Retro CD Music Player
+  const playlist = [
+    { title: "INTROVERT", artist: "brakence", src: "https://files.catbox.moe/sb1eqh.mp3" },
+    { title: "52 BLUE MONDAYS", artist: "Jane Remover", src: "https://files.catbox.moe/6ta5uh.mp3" },
+    { title: "BABY G SHOCK", artist: "cr1tter", src: "https://files.catbox.moe/dv3lyv.mp3" },
+    { title: "I WISH I WAS A CAT", artist: "Glitch Gum", src: "https://files.catbox.moe/5xsgcf.mp3" },
+    { title: "ROUND TWO", artist: "guardin", src: "https://files.catbox.moe/mtwm5i.mp3" }
+  ];
+
+  let currentTrack = 0;
+  const audio = document.getElementById("audio-element");
+  const playBtn = document.getElementById("btn-play");
+  const prevBtn = document.getElementById("btn-prev");
+  const nextBtn = document.getElementById("btn-next");
+  const cdDisc = document.getElementById("cd-disc");
+  const trackTitle = document.getElementById("player-title");
+  const trackArtist = document.getElementById("player-artist");
+  const trackTime = document.getElementById("player-time");
+  const trackSelect = document.getElementById("track-select");
+
+  function loadTrack(idx) {
+    currentTrack = idx;
+    const track = playlist[currentTrack];
+    if (audio) audio.src = track.src;
+    if (trackTitle) trackTitle.textContent = track.title;
+    if (trackArtist) trackArtist.textContent = track.artist;
+    if (trackSelect) trackSelect.value = currentTrack;
+  }
+
+  loadTrack(0);
+
+  function togglePlay() {
+    if (!audio) return;
+    if (audio.paused) {
+      audio.play().then(() => {
+        if (playBtn) playBtn.textContent = "⏸ PAUSE";
+        if (cdDisc) cdDisc.classList.add("spinning");
+      }).catch(() => {
+        if (playBtn) playBtn.textContent = "▶ PLAY";
+      });
+    } else {
+      audio.pause();
+      if (playBtn) playBtn.textContent = "▶ PLAY";
+      if (cdDisc) cdDisc.classList.remove("spinning");
+    }
+  }
+
+  if (playBtn) playBtn.addEventListener("click", togglePlay);
+
+  if (nextBtn) {
+    nextBtn.addEventListener("click", () => {
+      const nextIdx = (currentTrack + 1) % playlist.length;
+      loadTrack(nextIdx);
+      if (audio) {
+        audio.play().then(() => {
+          if (playBtn) playBtn.textContent = "⏸ PAUSE";
+          if (cdDisc) cdDisc.classList.add("spinning");
+        });
+      }
+    });
+  }
+
+  if (prevBtn) {
+    prevBtn.addEventListener("click", () => {
+      const prevIdx = (currentTrack - 1 + playlist.length) % playlist.length;
+      loadTrack(prevIdx);
+      if (audio) {
+        audio.play().then(() => {
+          if (playBtn) playBtn.textContent = "⏸ PAUSE";
+          if (cdDisc) cdDisc.classList.add("spinning");
+        });
+      }
+    });
+  }
+
+  if (trackSelect) {
+    trackSelect.addEventListener("change", (e) => {
+      const idx = parseInt(e.target.value, 10);
+      loadTrack(idx);
+      if (audio) {
+        audio.play().then(() => {
+          if (playBtn) playBtn.textContent = "⏸ PAUSE";
+          if (cdDisc) cdDisc.classList.add("spinning");
+        });
+      }
+    });
+  }
+
+  if (audio) {
+    audio.addEventListener("timeupdate", () => {
+      if (!trackTime || !audio.duration) return;
+      const curM = Math.floor(audio.currentTime / 60);
+      const curS = Math.floor(audio.currentTime % 60).toString().padStart(2, "0");
+      const durM = Math.floor(audio.duration / 60);
+      const durS = Math.floor(audio.duration % 60).toString().padStart(2, "0");
+      trackTime.textContent = `${curM}:${curS} / ${durM}:${durS}`;
+    });
+
+    audio.addEventListener("ended", () => {
+      if (nextBtn) nextBtn.click();
+    });
+  }
+
+  // 5. Ghost Pokemon Team Inspector
+  const pkmnSlots = document.querySelectorAll(".pokemon-slot");
+  const inspectName = document.getElementById("inspect-name");
+  const inspectType = document.getElementById("inspect-type");
+  const inspectAbility = document.getElementById("inspect-ability");
+  const inspectItem = document.getElementById("inspect-item");
+  const inspectMoves = document.getElementById("inspect-moves");
+
+  pkmnSlots.forEach(slot => {
+    slot.addEventListener("click", () => {
+      pkmnSlots.forEach(s => s.classList.remove("active"));
+      slot.classList.add("active");
+
+      if (inspectName) inspectName.textContent = slot.getAttribute("data-name");
+      if (inspectType) inspectType.textContent = slot.getAttribute("data-type");
+      if (inspectAbility) inspectAbility.textContent = slot.getAttribute("data-ability");
+      if (inspectItem) inspectItem.textContent = slot.getAttribute("data-item");
+      if (inspectMoves) inspectMoves.textContent = slot.getAttribute("data-moves");
+    });
+  });
+
+  // 6. Web Clap Widget (ries.neocities.org inspiration)
+  const clapBtn = document.getElementById("btn-web-clap");
+  const clapCounter = document.getElementById("clap-counter");
+  const clapMsg = document.getElementById("clap-msg");
+
+  let claps = parseInt(localStorage.getItem("ponds_web_claps") || "42", 10);
+  if (clapCounter) clapCounter.textContent = claps;
+
+  if (clapBtn) {
+    clapBtn.addEventListener("click", () => {
+      claps++;
+      localStorage.setItem("ponds_web_claps", claps.toString());
+      if (clapCounter) clapCounter.textContent = claps;
+      if (clapMsg) {
+        clapMsg.hidden = false;
+        setTimeout(() => { clapMsg.hidden = true; }, 2500);
+      }
+    });
+  }
+
+  // 7. Copy Embed Snippet
+  const copyEmbedBtn = document.getElementById("btn-copy-embed");
+  const embedCode = document.getElementById("button-embed-code");
+
+  if (copyEmbedBtn && embedCode) {
+    copyEmbedBtn.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(embedCode.value);
+        const originalText = copyEmbedBtn.textContent;
+        copyEmbedBtn.textContent = "✓ Copied to clipboard!";
+        setTimeout(() => { copyEmbedBtn.textContent = originalText; }, 2500);
+      } catch (err) {
+        embedCode.select();
+      }
+    });
+  }
 })();
