@@ -71,14 +71,15 @@
     });
   }
 
-  // 5. Organic Blinking Eyeballs Engine (LSD Dream Simulator / Weirdcore)
+  // 5. Triple Organic Eye Tracking Engine (Header Eyes + Giant Hypnotic Vortex Eye)
   const eyeList = [
-    { eye: document.getElementById("eye-1"), iris: document.querySelector("#eye-1 .iris") },
-    { eye: document.getElementById("eye-2"), iris: document.querySelector("#eye-2 .iris") }
+    { eye: document.getElementById("eye-1"), iris: document.querySelector("#eye-1 .iris"), maxDist: 12 },
+    { eye: document.getElementById("eye-2"), iris: document.querySelector("#eye-2 .iris"), maxDist: 12 },
+    { eye: document.getElementById("giant-vortex-eye"), iris: document.getElementById("giant-iris"), maxDist: 22 }
   ];
 
   window.addEventListener("mousemove", (e) => {
-    eyeList.forEach(({ eye, iris }) => {
+    eyeList.forEach(({ eye, iris, maxDist }) => {
       if (!eye || !iris) return;
       const rect = eye.getBoundingClientRect();
       const eyeCenterX = rect.left + rect.width / 2;
@@ -87,7 +88,7 @@
       const deltaX = e.clientX - eyeCenterX;
       const deltaY = e.clientY - eyeCenterY;
       const angle = Math.atan2(deltaY, deltaX);
-      const distance = Math.min(12, Math.hypot(deltaX, deltaY) / 18);
+      const distance = Math.min(maxDist, Math.hypot(deltaX, deltaY) / 16);
 
       const moveX = Math.cos(angle) * distance;
       const moveY = Math.sin(angle) * distance;
@@ -104,34 +105,54 @@
       eyeList.forEach(({ eye }) => {
         if (eye) eye.classList.remove("blinking");
       });
-      const nextDelay = Math.random() * 4000 + 2500;
+      const nextDelay = Math.random() * 4000 + 2200;
       setTimeout(scheduleBlink, nextDelay);
     }, 160);
   }
-  setTimeout(scheduleBlink, 2500);
+  setTimeout(scheduleBlink, 2200);
 
-  // 6. LSD Dream Simulator Dream Link Rotator
-  const lsdPrompt = document.querySelector(".lsd-dialogue-prompt");
+  // 6. LSD Dream Simulator Dream Link Warp Engine
+  const warpBtn = document.getElementById("btn-dream-warp");
+  const dreamPrompt = document.querySelector(".lsd-dialogue-prompt");
   const dreamCoords = document.querySelector(".dream-coords");
-  const dreamSectors = [
-    "[ SECTOR: 0X-LIMINAL // CALCIFER RIG // DREAM LEVEL: DEEP ]",
-    "[ SECTOR: 0X-SUN // MONUMENT BLOCKS // DREAM LEVEL: STATIC ]",
-    "[ SECTOR: 0X-MOON // DITHERED VOID // DREAM LEVEL: LUCID ]",
-    "[ SECTOR: 0X-KYOTO // OBSIDIAN GARDEN // DREAM LEVEL: REM ]",
-    "[ SECTOR: 0X-NATURAL // THE HANGING STEPS // DREAM LEVEL: FLASH ]"
-  ];
-  let sectorIdx = 0;
+  const graphStatus = document.getElementById("graph-status-text");
 
-  if (lsdPrompt && dreamCoords) {
-    lsdPrompt.style.cursor = "pointer";
-    lsdPrompt.addEventListener("click", () => {
-      sectorIdx = (sectorIdx + 1) % dreamSectors.length;
-      dreamCoords.textContent = dreamSectors[sectorIdx];
-      lsdPrompt.textContent = "▶ LINKED! SECTOR SHIFTED: " + dreamSectors[sectorIdx].split("//")[0].replace("[", "").trim();
+  const dreamRealms = [
+    { coords: "[ SECTOR: 0X-SUN // CALCIFER RIG // GRAPH: UPPER-DYNAMIC ]", status: "DAY 042 // UPPER-DYNAMIC // DURATION: 04:20" },
+    { coords: "[ SECTOR: 0X-MOON // DITHERED TEMPLE // GRAPH: DYNAMIC-LUCID ]", status: "DAY 077 // DYNAMIC-LUCID // DURATION: 01:12" },
+    { coords: "[ SECTOR: 0X-KYOTO // OBSIDIAN GARDEN // GRAPH: DOWNER-STATIC ]", status: "DAY 128 // DOWNER-STATIC // DURATION: 08:44" },
+    { coords: "[ SECTOR: 0X-NATURAL // HANGING STEPS // GRAPH: UPPER-FLASH ]", status: "DAY 256 // UPPER-FLASH // DURATION: 02:18" },
+    { coords: "[ SECTOR: 0X-VOID // MONOLITH CORE // GRAPH: ULTRA-SURREAL ]", status: "DAY 512 // ULTRA-SURREAL // DURATION: 06:09" },
+    { coords: "[ SECTOR: 0X-CHAOS // KALEIDOSCOPIC // GRAPH: FULL-ACID ]", status: "DAY 999 // FULL-ACID // DURATION: ∞" }
+  ];
+  let realmIdx = 0;
+
+  function triggerDreamWarp() {
+    // 1. Trigger Screen Warp Flash
+    document.body.classList.remove("dream-warp-flash");
+    void document.body.offsetWidth; // force reflow
+    document.body.classList.add("dream-warp-flash");
+
+    // 2. Shift Dream Coordinates
+    realmIdx = (realmIdx + 1) % dreamRealms.length;
+    const nextRealm = dreamRealms[realmIdx];
+
+    if (dreamCoords) dreamCoords.textContent = nextRealm.coords;
+    if (graphStatus) graphStatus.textContent = nextRealm.status;
+    if (dreamPrompt) {
+      dreamPrompt.textContent = "▶ WARPED TO: " + nextRealm.coords.split("//")[0].replace("[", "").trim();
       setTimeout(() => {
-        lsdPrompt.textContent = "▶ TOUCH ANYWHERE TO LINK NEXT DREAM";
-      }, 2000);
-    });
+        dreamPrompt.textContent = "▶ TOUCH ANYWHERE TO LINK NEXT DREAM";
+      }, 2500);
+    }
   }
+
+  if (warpBtn) warpBtn.addEventListener("click", triggerDreamWarp);
+  if (dreamPrompt) dreamPrompt.addEventListener("click", triggerDreamWarp);
+
+  // Allow clicking on any dream shard to trigger a brief surreal warp
+  document.querySelectorAll(".dream-shard").forEach(shard => {
+    shard.addEventListener("dblclick", triggerDreamWarp);
+  });
 
 })();
