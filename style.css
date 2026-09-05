@@ -2040,310 +2040,186 @@ body {
 
 
 /* ==========================================================================
-   KIDS SCIENCE FAIR PROJECT HELD TOGETHER WITH DUCT TAPE & HOPE
-   (MidiFreak-style Absolute/Asymmetrical Overlapping Collage)
+   MIDIFREAK ASYMMETRICAL ISLAND CANVAS (RAW & ORGANIC WEB 1.0)
    ========================================================================== */
 
-/* 1. Realistic CSS Duct Tape Strips */
-.duct-tape {
-  position: absolute;
-  background: linear-gradient(
-    135deg,
-    rgba(220, 225, 235, 0.95) 0%,
-    rgba(175, 180, 192, 0.88) 42%,
-    rgba(235, 240, 250, 0.96) 55%,
-    rgba(160, 165, 178, 0.9) 100%
-  );
-  border-left: 2px dashed rgba(110, 115, 125, 0.5);
-  border-right: 2px dashed rgba(110, 115, 125, 0.5);
-  box-shadow: 
-    0 3px 8px rgba(0, 0, 0, 0.65),
-    inset 0 1px 1px rgba(255, 255, 255, 0.8),
-    inset 0 -1px 1px rgba(0, 0, 0, 0.3);
-  z-index: 30;
-  pointer-events: none;
-}
-
-.duct-tape.corner-tl {
-  top: -14px;
-  left: -22px;
-  width: 95px;
-  height: 28px;
-  transform: rotate(-30deg);
-}
-
-.duct-tape.corner-tr {
-  top: -14px;
-  right: -22px;
-  width: 95px;
-  height: 28px;
-  transform: rotate(32deg);
-}
-
-.duct-tape.corner-bl {
-  bottom: -14px;
-  left: -22px;
-  width: 90px;
-  height: 28px;
-  transform: rotate(26deg);
-}
-
-.duct-tape.corner-br {
-  bottom: -14px;
-  right: -22px;
-  width: 90px;
-  height: 28px;
-  transform: rotate(-28deg);
-}
-
-.duct-tape.top-center {
-  top: -15px;
-  left: calc(50% - 60px);
-  width: 120px;
-  height: 30px;
-  transform: rotate(2deg);
-}
-
-.duct-tape.bottom-center {
-  bottom: -15px;
-  left: calc(50% - 50px);
-  width: 100px;
-  height: 28px;
-  transform: rotate(-1.5deg);
-}
-
-/* Caution Hazard Tape Strip */
-.caution-tape {
-  position: absolute;
-  background: repeating-linear-gradient(
-    45deg,
-    #eab308,
-    #eab308 10px,
-    #09090b 10px,
-    #09090b 20px
-  );
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.7);
-  border: 1px dashed rgba(255, 255, 255, 0.3);
-  z-index: 31;
-  pointer-events: none;
-}
-
-.caution-tape.tape-banner {
-  top: -12px;
-  right: 15px;
-  width: 140px;
-  height: 22px;
-  transform: rotate(-4deg);
-}
-
-/* Exhibit Stamps & Labels */
-.exhibit-tag {
-  display: inline-block;
-  font-family: var(--font-bios), monospace;
-  font-size: 0.76rem;
-  font-weight: bold;
-  letter-spacing: 0.08em;
-  padding: 3px 8px;
-  border-radius: 2px;
-  margin-bottom: 8px;
-  border: 1px solid currentColor;
-  text-transform: uppercase;
-}
-
-.exhibit-tag.tag-pink { color: #f43f5e; background: rgba(244, 63, 94, 0.15); border-color: #f43f5e; }
-.exhibit-tag.tag-cyan { color: #06b6d4; background: rgba(6, 182, 212, 0.15); border-color: #06b6d4; }
-.exhibit-tag.tag-amber { color: #f59e0b; background: rgba(245, 158, 11, 0.15); border-color: #f59e0b; }
-.exhibit-tag.tag-green { color: #10b981; background: rgba(16, 185, 129, 0.15); border-color: #10b981; }
-
-/* 2. Asymmetrical Collage Canvas Layout */
-.science-fair-collage {
+/* The Canvas Container: wide, open, and fluid */
+.island-canvas {
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 28px;
   position: relative;
   width: 100%;
-  margin-top: 10px;
+  margin-top: 14px;
 }
 
-.collage-row-primary {
-  display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
-  gap: 28px;
-  align-items: start;
-  position: relative;
+/* Staggered Floating Island Rows */
+.island-row-stagger-1 {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  align-items: flex-start;
 }
 
-.collage-row-secondary {
-  display: grid;
-  grid-template-columns: 0.9fr 1.1fr;
-  gap: 28px;
-  align-items: start;
-  position: relative;
-  margin-top: -15px;
+.island-row-stagger-1 > .island-wide {
+  flex: 1 1 560px;
 }
 
-.collage-row-tertiary {
-  display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
-  gap: 28px;
-  align-items: start;
-  position: relative;
-  margin-top: -10px;
+.island-row-stagger-1 > .island-narrow {
+  flex: 1 1 340px;
 }
 
-/* Exaggerated MidiFreak Hover Rotations */
+.island-row-stagger-2 {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.island-row-stagger-2 > .island-narrow {
+  flex: 1 1 360px;
+}
+
+.island-row-stagger-2 > .island-wide {
+  flex: 1 1 540px;
+}
+
+.island-row-stagger-3 {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.island-row-stagger-3 > .island-wide {
+  flex: 1 1 520px;
+}
+
+.island-row-stagger-3 > .island-narrow {
+  flex: 1 1 380px;
+}
+
+/* Floating Subpage Shortcut Widgets (MidiFreak style desktop shortcuts) */
+.floating-shortcuts-cluster {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+  align-items: center;
+  padding: 6px 0 10px;
+}
+
+.shortcut-widget {
+  background: rgba(13, 16, 26, 0.9);
+  border: 2px outset #2e3752;
+  box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.15), 3px 3px 0 #000;
+  padding: 12px 18px;
+  text-decoration: none;
+  color: var(--text-main);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-bios), var(--font-mono);
+  font-size: 0.95rem;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.2s, box-shadow 0.2s;
+}
+
+.shortcut-widget:hover {
+  border-color: var(--neon-cyan);
+  box-shadow: 0 0 16px rgba(6, 182, 212, 0.5), 5px 5px 0 #000;
+  text-decoration: none;
+  color: #fff;
+}
+
+.shortcut-widget.shortcut-support { border-color: #06b6d4; }
+.shortcut-widget.shortcut-games { border-color: #ec4899; }
+.shortcut-widget.shortcut-rig { border-color: #f59e0b; }
+
+/* Asymmetrical Card Variants */
+.retro-card.card-inset-purple {
+  background: rgba(14, 10, 24, 0.88);
+  border: 2px inset #6b21a8;
+  box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.8), 3px 3px 0 #000;
+}
+
+.retro-card.card-dotted-cyan {
+  background: rgba(8, 16, 24, 0.88);
+  border: 2px dotted #06b6d4;
+  box-shadow: 3px 3px 0 #000;
+}
+
+.retro-card.card-amber-solid {
+  background: rgba(18, 14, 8, 0.88);
+  border: 2px solid #b45309;
+  box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.1), 3px 3px 0 #000;
+}
+
+/* MidiFreak Organic Hover Twists */
 .rotateA {
-  transform: rotate(-1.8deg);
-  transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.22s ease;
+  transform: rotate(-1.5deg);
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
 }
 
 .rotateA:hover {
-  transform: rotate(12deg) scale(1.04) !important;
-  z-index: 45 !important;
-  box-shadow: 0 0 25px rgba(6, 182, 212, 0.5), 8px 8px 0 #000 !important;
+  transform: rotate(8deg) scale(1.025) !important;
+  z-index: 20 !important;
+  box-shadow: 0 0 20px rgba(6, 182, 212, 0.4), 6px 6px 0 #000 !important;
 }
 
 .rotateB {
-  transform: rotate(2.2deg);
-  transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.22s ease;
+  transform: rotate(1.8deg);
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
 }
 
 .rotateB:hover {
-  transform: rotate(-12deg) scale(1.04) !important;
-  z-index: 45 !important;
-  box-shadow: 0 0 25px rgba(244, 63, 94, 0.5), -8px 8px 0 #000 !important;
+  transform: rotate(-8deg) scale(1.025) !important;
+  z-index: 20 !important;
+  box-shadow: 0 0 20px rgba(244, 63, 94, 0.4), -6px 6px 0 #000 !important;
 }
 
 .rotateC {
   transform: rotate(-0.8deg);
-  transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.22s ease;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
 }
 
 .rotateC:hover {
-  transform: rotate(8deg) translateY(-8px) scale(1.03) !important;
-  z-index: 45 !important;
-  box-shadow: 0 0 25px rgba(16, 185, 129, 0.5), 6px 6px 0 #000 !important;
+  transform: rotate(5deg) translateY(-4px) scale(1.02) !important;
+  z-index: 20 !important;
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.4), 4px 4px 0 #000 !important;
 }
 
-/* 3. Sticker Bomb Cluster Overlaps */
-.sticker-bomb-wall {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  justify-content: center;
-  align-items: center;
-  padding: 10px 4px;
-}
-
-.sticker-bomb-wall .blinkie-asset {
-  margin: -3px;
-  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), z-index 0.1s;
-}
-
-.sticker-bomb-wall .blinkie-asset:nth-child(even) { transform: rotate(3deg); }
-.sticker-bomb-wall .blinkie-asset:nth-child(odd) { transform: rotate(-4deg); }
-.sticker-bomb-wall .blinkie-asset:nth-child(3n) { transform: rotate(6deg); }
-.sticker-bomb-wall .blinkie-asset:nth-child(5n) { transform: rotate(-7deg); }
-
-.sticker-bomb-wall .blinkie-asset:hover {
-  transform: rotate(0deg) scale(1.15) !important;
-  z-index: 50 !important;
-  border-color: #fff !important;
-  box-shadow: 0 0 16px rgba(255, 255, 255, 0.8) !important;
-}
-
-.sticker-stamps-wall {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  justify-content: center;
-  align-items: center;
-  padding: 8px 4px;
-}
-
-.sticker-stamps-wall .stamp-asset {
-  margin: -2px;
-  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), z-index 0.1s;
-}
-
-.sticker-stamps-wall .stamp-asset:nth-child(odd) { transform: rotate(5deg); }
-.sticker-stamps-wall .stamp-asset:nth-child(even) { transform: rotate(-5deg); }
-.sticker-stamps-wall .stamp-asset:nth-child(4n) { transform: rotate(8deg); }
-
-.sticker-stamps-wall .stamp-asset:hover {
-  transform: rotate(0deg) scale(1.22) !important;
-  z-index: 50 !important;
-  border-color: var(--neon-pink) !important;
-  box-shadow: 0 0 16px rgba(236, 72, 153, 0.8) !important;
-}
-
-/* Eyeball Taped Brackets */
-.eye-cluster {
-  position: relative;
-}
-
-.eye-cluster::before {
-  content: "";
-  position: absolute;
-  top: -8px;
-  left: 10px;
-  width: 52px;
-  height: 14px;
-  background: rgba(220, 225, 235, 0.8);
-  box-shadow: 0 2px 4px rgba(0,0,0,0.5);
-  border-left: 1px dashed rgba(0,0,0,0.3);
-  border-right: 1px dashed rgba(0,0,0,0.3);
-  transform: rotate(-5deg);
-  z-index: 20;
-}
-
-.eye-cluster::after {
-  content: "";
-  position: absolute;
-  bottom: -8px;
-  left: 10px;
-  width: 52px;
-  height: 14px;
-  background: rgba(220, 225, 235, 0.8);
-  box-shadow: 0 2px 4px rgba(0,0,0,0.5);
-  border-left: 1px dashed rgba(0,0,0,0.3);
-  border-right: 1px dashed rgba(0,0,0,0.3);
-  transform: rotate(4deg);
-  z-index: 20;
-}
-
-/* Header Tri-Fold Grade Badge */
-.science-grade-badge {
+/* Clean Vintage Sticky Note (No literal duct tape) */
+.note-scribble {
+  background: #fef08a;
+  color: #1e1b4b;
+  padding: 10px 14px;
+  font-family: var(--font-bios), var(--font-mono);
+  font-size: 0.84rem;
+  line-height: 1.4;
+  box-shadow: 2px 3px 8px rgba(0, 0, 0, 0.5);
+  border: 1px solid #eab308;
+  border-radius: 2px;
+  margin-top: 12px;
   display: inline-block;
-  background: #dc2626;
-  color: #fef08a;
-  font-family: var(--font-bios), monospace;
-  font-size: 0.72rem;
-  font-weight: bold;
-  padding: 3px 8px;
-  border: 2px dashed #fef08a;
-  box-shadow: 2px 3px 6px rgba(0, 0, 0, 0.6);
-  transform: rotate(-3deg);
-  margin-top: 6px;
 }
 
-/* Responsive adjustment for Science Fair Collage */
-@media (max-width: 860px) {
-  .collage-row-primary,
-  .collage-row-secondary,
-  .collage-row-tertiary {
-    grid-template-columns: 1fr !important;
-    gap: 20px;
-    margin-top: 0 !important;
+.note-scribble.neon {
+  background: #022c22;
+  color: #6ee7b7;
+  border-color: #059669;
+}
+
+/* Fluid Responsive Breakpoint */
+@media (max-width: 768px) {
+  .island-row-stagger-1 > .island-wide,
+  .island-row-stagger-1 > .island-narrow,
+  .island-row-stagger-2 > .island-wide,
+  .island-row-stagger-2 > .island-narrow,
+  .island-row-stagger-3 > .island-wide,
+  .island-row-stagger-3 > .island-narrow {
+    flex: 1 1 100% !important;
   }
   .rotateA, .rotateB, .rotateC {
     transform: none !important;
-  }
-  .duct-tape.corner-tl,
-  .duct-tape.corner-tr,
-  .duct-tape.corner-bl,
-  .duct-tape.corner-br {
-    width: 65px;
-    height: 20px;
   }
 }
