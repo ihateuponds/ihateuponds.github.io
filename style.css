@@ -1347,3 +1347,277 @@ a:hover {
   background: linear-gradient(90deg, #ff6176, #ffb561, #ffea62, #76ff61, #a0ced9, #ff61ab);
   margin: 12px 0;
 }
+
+/* ==========================================================================
+   LSD Dream Simulator & Weirdcore / Liminal Aesthetics
+   ========================================================================== */
+
+/* Ambient CRT Vignette */
+.crt-vignette {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9999;
+  background: radial-gradient(circle at center, transparent 65%, rgba(0, 0, 0, 0.6) 100%);
+  box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.7);
+}
+
+/* Background Update: Liminal Tiled Dream Void */
+body {
+  background-color: #040508 !important;
+  background-image: 
+    radial-gradient(rgba(147, 51, 234, 0.08) 1px, transparent 1px),
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px) !important;
+  background-size: 32px 32px, 16px 16px, 16px 16px !important;
+}
+
+/* Pseudomorphic PSX Block Borders */
+.psx-block {
+  background: #0d0f18 !important;
+  border: 3px outset #323850 !important;
+  box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.12), inset -1px -1px 0 rgba(0, 0, 0, 0.8), 4px 4px 0 #000000 !important;
+}
+
+.psx-monolith {
+  background: linear-gradient(135deg, #101422 0%, #080b14 100%) !important;
+  border: 3px outset #06b6d4 !important;
+  box-shadow: 0 0 25px rgba(6, 182, 212, 0.25), inset 1px 1px 0 rgba(255, 255, 255, 0.2), 4px 4px 0 #000 !important;
+}
+
+/* Dream Header Layout */
+.dream-header {
+  padding: 16px 20px !important;
+}
+
+.header-content-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.dream-coords {
+  font-size: 0.7rem;
+  color: var(--neon-purple);
+  letter-spacing: 0.1em;
+  margin-top: 4px;
+  font-family: var(--font-pixel), var(--font-mono);
+}
+
+/* ==========================================================================
+   ORGANIC BLINKING EYEBALLS (LSD Dream Simulator Style)
+   ========================================================================== */
+.eye-cluster {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 72px;
+  height: 72px;
+}
+
+.organic-eye {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 
+    0 0 15px rgba(168, 85, 247, 0.4),
+    inset 0 0 10px rgba(0, 0, 0, 0.8),
+    0 0 0 2px #2d1b4e;
+  background: #110d1c;
+}
+
+.sclera {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, #f5f0f3 0%, #e2d3dc 60%, #c4b5c0 100%);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Subtle Bloodshot Veins */
+.sclera::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(244, 63, 94, 0.25) 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(244, 63, 94, 0.25) 0%, transparent 40%),
+    radial-gradient(circle at 80% 20%, rgba(244, 63, 94, 0.2) 0%, transparent 30%);
+  pointer-events: none;
+}
+
+.iris {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, #10b981 0%, #059669 45%, #064e3b 85%, #022c22 100%);
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.8), inset 0 0 4px #000;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.08s ease-out;
+}
+
+#eye-2 .iris {
+  background: radial-gradient(circle at center, #a855f7 0%, #7c3aed 45%, #4c1d95 85%, #2e1065 100%);
+  box-shadow: 0 0 8px rgba(168, 85, 247, 0.8), inset 0 0 4px #000;
+}
+
+.pupil {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #050508;
+  box-shadow: inset 0 0 2px #000;
+  position: relative;
+}
+
+.glint {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #ffffff;
+  position: absolute;
+  top: 2px;
+  left: 3px;
+  box-shadow: 0 0 4px #fff;
+}
+
+/* Eyelid Shutter (Blink Animation) */
+.eyelid-shutter {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #110d1c;
+  border-radius: 50%;
+  transform: scaleY(0);
+  transform-origin: center;
+  pointer-events: none;
+  z-index: 5;
+  transition: transform 0.12s ease-in-out;
+}
+
+.organic-eye.blinking .eyelid-shutter {
+  transform: scaleY(1);
+}
+
+/* PSX Dialogue Textbox Styling */
+.psx-textbox {
+  background: #090a12;
+  border: 2px solid #22273d;
+  box-shadow: inset 2px 2px 0 #000;
+  padding: 10px;
+  position: relative;
+  margin-top: 10px;
+}
+
+.dialogue-arrow {
+  position: absolute;
+  bottom: 6px;
+  right: 8px;
+  font-size: 0.65rem;
+  color: var(--neon-cyan);
+  animation: arrow-bounce 0.8s infinite alternate;
+}
+
+@keyframes arrow-bounce {
+  0% { transform: translateY(0); opacity: 0.4; }
+  100% { transform: translateY(3px); opacity: 1; }
+}
+
+.avatar-frame {
+  position: relative;
+  display: inline-block;
+}
+
+.avatar-corner-deco {
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  width: 6px;
+  height: 6px;
+  border-top: 2px solid var(--neon-cyan);
+  border-left: 2px solid var(--neon-cyan);
+}
+
+/* Blinkies Shelf (from midifreak / blinkies.cafe) */
+.blinkie-shelf {
+  padding: 12px 10px;
+}
+
+.blinkie-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: center;
+}
+
+.css-blinkie {
+  width: 150px;
+  height: 20px;
+  border: 1px solid #ffffff;
+  box-shadow: inset 1px 1px 0 #000, 1px 1px 0 #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-pixel), monospace;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  font-weight: bold;
+  user-select: none;
+  cursor: default;
+}
+
+.blinkie-lsd {
+  background: linear-gradient(90deg, #ff007f, #7928ca, #00dfd8);
+  color: #ffffff;
+  text-shadow: 1px 1px 0 #000;
+}
+
+.blinkie-cachy {
+  background: #022c22;
+  border-color: #10b981;
+  color: #10b981;
+  animation: blinkie-pulse 1.2s infinite alternate;
+}
+
+.blinkie-cat {
+  background: #2e1065;
+  border-color: #c084fc;
+  color: #f5d0fe;
+}
+
+.blinkie-cyber {
+  background: #0c1a29;
+  border-color: #38bdf8;
+  color: #38bdf8;
+}
+
+@keyframes blinkie-pulse {
+  0% { opacity: 0.7; }
+  100% { opacity: 1; filter: brightness(1.2); }
+}
+
+/* Responsive adjustment for eyes */
+@media (max-width: 680px) {
+  .eye-cluster {
+    display: none !important;
+  }
+}
