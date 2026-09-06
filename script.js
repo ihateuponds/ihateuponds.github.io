@@ -225,7 +225,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (cdDisc) cdDisc.classList.add('spinning');
       if (equalizer) equalizer.classList.add('playing');
       if (btnPlayPause) {
-        btnPlayPause.textContent = '❚❚ PAUSE';
+        btnPlayPause.textContent = '[PAUSE]';
         btnPlayPause.style.background = '#00f5d4';
         btnPlayPause.style.color = '#000';
       }
@@ -303,7 +303,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const vol = e.target.value / 100;
       realAudioPlayer.volume = vol;
       if (volIconBtn) {
-        volIconBtn.textContent = vol === 0 ? '🔇' : (vol < 0.5 ? '🔉' : '🔊');
+        volIconBtn.textContent = vol === 0 ? '[MUTE]' : (vol < 0.5 ? '[VOL-]' : '[VOL+]');
       }
     });
   }
@@ -322,7 +322,7 @@ document.addEventListener('DOMContentLoaded', () => {
   btnSoundToggle.addEventListener('click', () => {
     sfxEnabled = !sfxEnabled;
     btnSoundToggle.querySelector('.btn-label').textContent = `SFX: ${sfxEnabled ? 'ON' : 'OFF'}`;
-    btnSoundToggle.querySelector('.btn-icon').textContent = sfxEnabled ? '🔊' : '🔇';
+    btnSoundToggle.querySelector('.btn-icon').textContent = '[SFX]';
     if (!sfxEnabled && isPlayingMusic) {
       pauseAudio();
     }
@@ -495,9 +495,9 @@ document.addEventListener('DOMContentLoaded', () => {
       handle: "@ihateuponds",
       avatar: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/shiny/10238.gif",
       tags: [
-        { text: "👻 Ghost Type Trainer", color: "purple" },
-        { text: "💻 NEET", color: "pink" },
-        { text: "🛡️ opsec", color: "cyan" }
+        { text: "[GHOST TRAINER]", color: "purple" },
+        { text: "[SYS_ADMIN / NEET]", color: "pink" },
+        { text: "[OPSEC / DEFENSE]", color: "cyan" }
       ],
       bio: "Welcome to my website :3 my names Paul but i go by Ponds online, Im from SC and Im in school for Cybersecurity. I love hyperpop, EDM, and metal music. Im pretty open to making friends but Im lowkey anxious as fuck so bare with me."
     },
@@ -518,10 +518,10 @@ document.addEventListener('DOMContentLoaded', () => {
       ]
     },
     socials: [
-      { name: "Instagram", url: "https://instagram.com/s3ph1r0thxx", icon: "📸", style: "instagram-btn" },
-      { name: "Discord (@ihateuponds)", url: "https://discord.com", icon: "💬", style: "discord-btn" },
-      { name: "Spotify", url: "https://open.spotify.com/user/fkm6bmojqqgf7j5eso4o0f9b0?si=cc74b10dd16d405c", icon: "🎧", style: "spotify-btn" },
-      { name: "Steam", url: "https://steamcommunity.com/id/ihateuponds/", icon: "🎮", style: "steam-btn" }
+      { name: "Instagram", url: "https://instagram.com/s3ph1r0thxx", icon: "[INSTA]", style: "instagram-btn" },
+      { name: "Discord (@ihateuponds)", url: "https://discord.com", icon: "[DISCORD]", style: "discord-btn" },
+      { name: "Spotify", url: "https://open.spotify.com/user/fkm6bmojqqgf7j5eso4o0f9b0?si=cc74b10dd16d405c", icon: "[SPOTIFY]", style: "spotify-btn" },
+      { name: "Steam", url: "https://steamcommunity.com/id/ihateuponds/", icon: "[STEAM]", style: "steam-btn" }
     ]
   };
 
@@ -539,22 +539,22 @@ document.addEventListener('DOMContentLoaded', () => {
   ];
 
   const SOCIAL_PRESETS = {
-    instagram: { name: "Instagram", icon: "📸", style: "instagram-btn", defaultUrl: "https://instagram.com/s3ph1r0thxx" },
-    discord: { name: "Discord (@ihateuponds)", icon: "💬", style: "discord-btn", defaultUrl: "https://discord.com" },
-    spotify: { name: "Spotify", icon: "🎧", style: "spotify-btn", defaultUrl: "https://open.spotify.com/user/fkm6bmojqqgf7j5eso4o0f9b0?si=cc74b10dd16d405c" },
-    steam: { name: "Steam", icon: "🎮", style: "steam-btn", defaultUrl: "https://steamcommunity.com/id/ihateuponds/" },
-    strawpage: { name: "StrawPage", icon: "🍓", style: "strawpage-btn", defaultUrl: "https://ihateuponds.straw.page" },
-    neocities: { name: "Neocities", icon: "🐱", style: "neocities-btn", defaultUrl: "https://neocities.org" },
-    twitter: { name: "Twitter / X", icon: "🐦", style: "twitter-btn", defaultUrl: "https://x.com" },
-    youtube: { name: "YouTube", icon: "📺", style: "youtube-btn", defaultUrl: "https://youtube.com" },
-    twitch: { name: "Twitch", icon: "🎮", style: "twitch-btn", defaultUrl: "https://twitch.tv" },
-    tiktok: { name: "TikTok", icon: "⚡", style: "tiktok-btn", defaultUrl: "https://tiktok.com" },
-    soundcloud: { name: "SoundCloud", icon: "🎶", style: "soundcloud-btn", defaultUrl: "https://soundcloud.com" },
-    tumblr: { name: "Tumblr", icon: "🖤", style: "tumblr-btn", defaultUrl: "https://tumblr.com" },
-    github: { name: "GitHub", icon: "🐙", style: "github-btn", defaultUrl: "https://github.com" },
-    bluesky: { name: "Bluesky", icon: "🦋", style: "bluesky-btn", defaultUrl: "https://bsky.app" },
-    carrd: { name: "Carrd", icon: "💳", style: "carrd-btn", defaultUrl: "https://carrd.co" },
-    custom: { name: "Custom Link", icon: "✨", style: "custom-btn", defaultUrl: "https://" }
+    instagram: { name: "Instagram", icon: "[INSTA]", style: "instagram-btn", defaultUrl: "https://instagram.com/s3ph1r0thxx" },
+    discord: { name: "Discord (@ihateuponds)", icon: "[DISCORD]", style: "discord-btn", defaultUrl: "https://discord.com" },
+    spotify: { name: "Spotify", icon: "[SPOTIFY]", style: "spotify-btn", defaultUrl: "https://open.spotify.com/user/fkm6bmojqqgf7j5eso4o0f9b0?si=cc74b10dd16d405c" },
+    steam: { name: "Steam", icon: "[STEAM]", style: "steam-btn", defaultUrl: "https://steamcommunity.com/id/ihateuponds/" },
+    strawpage: { name: "StrawPage", icon: "[STRAW]", style: "strawpage-btn", defaultUrl: "https://ihateuponds.straw.page" },
+    neocities: { name: "Neocities", icon: "[NEOCITIES]", style: "neocities-btn", defaultUrl: "https://neocities.org" },
+    twitter: { name: "Twitter / X", icon: "[TWITTER]", style: "twitter-btn", defaultUrl: "https://x.com" },
+    youtube: { name: "YouTube", icon: "[YOUTUBE]", style: "youtube-btn", defaultUrl: "https://youtube.com" },
+    twitch: { name: "Twitch", icon: "[TWITCH]", style: "twitch-btn", defaultUrl: "https://twitch.tv" },
+    tiktok: { name: "TikTok", icon: "[TIKTOK]", style: "tiktok-btn", defaultUrl: "https://tiktok.com" },
+    soundcloud: { name: "SoundCloud", icon: "[SOUNDCLOUD]", style: "soundcloud-btn", defaultUrl: "https://soundcloud.com" },
+    tumblr: { name: "Tumblr", icon: "[TUMBLR]", style: "tumblr-btn", defaultUrl: "https://tumblr.com" },
+    github: { name: "GitHub", icon: "[GITHUB]", style: "github-btn", defaultUrl: "https://github.com" },
+    bluesky: { name: "Bluesky", icon: "[BLUESKY]", style: "bluesky-btn", defaultUrl: "https://bsky.app" },
+    carrd: { name: "Carrd", icon: "[CARRD]", style: "carrd-btn", defaultUrl: "https://carrd.co" },
+    custom: { name: "Custom Link", icon: "[LINK]", style: "custom-btn", defaultUrl: "https://" }
   };
 
   function escapeHtml(str) {
@@ -642,9 +642,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (socialLinksGrid && Array.isArray(data.socials)) {
       socialLinksGrid.innerHTML = data.socials.map(s => `
         <a href="${escapeHtml(s.url || '#')}" target="_blank" rel="noopener" class="neon-link-btn ${escapeHtml(s.style || '')}">
-          <span class="link-icon">${escapeHtml(s.icon || '✨')}</span>
+          <span class="link-icon">${escapeHtml(s.icon || '[LINK]')}</span>
           <span class="link-name">${escapeHtml(s.name || 'Link')}</span>
-          <span class="link-arrow">↗</span>
+          <span class="link-arrow">[CONNECT]</span>
         </a>
       `).join('');
 
@@ -779,13 +779,13 @@ document.addEventListener('DOMContentLoaded', () => {
     row.innerHTML = `
       <input type="text" class="form-input tag-text-input" placeholder="Tag text (e.g. ⚡ Hyperpop)" value="${escapeHtml(text)}" style="flex: 1;" />
       <select class="form-select tag-color-select" style="width: 120px;">
-        <option value="purple" ${color === 'purple' ? 'selected' : ''}>💜 Purple</option>
-        <option value="pink" ${color === 'pink' ? 'selected' : ''}>💖 Pink</option>
-        <option value="cyan" ${color === 'cyan' ? 'selected' : ''}>🩵 Cyan</option>
-        <option value="yellow" ${color === 'yellow' ? 'selected' : ''}>💛 Yellow</option>
-        <option value="green" ${color === 'green' ? 'selected' : ''}>💚 Green</option>
+        <option value="purple" ${color === 'purple' ? 'selected' : ''}>Purple</option>
+        <option value="pink" ${color === 'pink' ? 'selected' : ''}>Pink</option>
+        <option value="cyan" ${color === 'cyan' ? 'selected' : ''}>Cyan</option>
+        <option value="yellow" ${color === 'yellow' ? 'selected' : ''}>Yellow</option>
+        <option value="green" ${color === 'green' ? 'selected' : ''}>Green</option>
       </select>
-      <button type="button" class="btn-delete-row" title="Delete tag">✕</button>
+      <button type="button" class="btn-delete-row" title="Delete tag">[X]</button>
     `;
     row.querySelector('.btn-delete-row').addEventListener('click', () => {
       playSfx('click');
@@ -807,7 +807,7 @@ document.addEventListener('DOMContentLoaded', () => {
     row.className = 'quote-edit-row';
     row.innerHTML = `
       <input type="text" class="form-input quote-text-input" placeholder="Enter quote..." value="${escapeHtml(text)}" style="flex: 1;" />
-      <button type="button" class="btn-delete-row" title="Delete quote">✕</button>
+      <button type="button" class="btn-delete-row" title="Delete quote">[X]</button>
     `;
     row.querySelector('.btn-delete-row').addEventListener('click', () => {
       playSfx('click');
@@ -824,15 +824,15 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Render Social Link Item Rows
-  function createSocialRow(item = { name: '', url: '', icon: '✨', style: '' }) {
+  function createSocialRow(item = { name: '', url: '', icon: '[LINK]', style: '' }) {
     const row = document.createElement('div');
     row.className = 'social-edit-row';
     row.dataset.style = item.style || '';
     row.innerHTML = `
-      <input type="text" class="form-input social-icon-input" title="Emoji/Icon" value="${escapeHtml(item.icon || '✨')}" />
+      <input type="text" class="form-input social-icon-input" title="Icon Tag" value="${escapeHtml(item.icon || '[LINK]')}" />
       <input type="text" class="form-input social-name-input" placeholder="Platform Name" value="${escapeHtml(item.name || '')}" />
       <input type="text" class="form-input social-url-input" placeholder="https://..." value="${escapeHtml(item.url || '')}" />
-      <button type="button" class="btn-delete-row" title="Delete social">✕</button>
+      <button type="button" class="btn-delete-row" title="Delete social">[X]</button>
     `;
     row.querySelector('.btn-delete-row').addEventListener('click', () => {
       playSfx('click');
@@ -1017,7 +1017,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const newSocials = [];
       if (cfgSocialsList) {
         cfgSocialsList.querySelectorAll('.social-edit-row').forEach(row => {
-          const icon = row.querySelector('.social-icon-input').value.trim() || '✨';
+          const icon = row.querySelector('.social-icon-input').value.trim() || '[LINK]';
           const name = row.querySelector('.social-name-input').value.trim();
           const url = row.querySelector('.social-url-input').value.trim();
           const style = row.dataset.style || '';
@@ -1225,25 +1225,6 @@ document.addEventListener('DOMContentLoaded', () => {
     color: ['#9d4edd', '#ff007f', '#00f5d4', '#ffffff'][Math.floor(Math.random() * 4)]
   }));
 
-  // Sparkles created by cursor movement
-  const cursorSparkles = [];
-  const sparkleColors = ['#ff007f', '#00f5d4', '#fee440', '#9d4edd', '#ffffff'];
-
-  window.addEventListener('mousemove', (e) => {
-    // Spawn 2 sparkles per mouse move
-    for (let i = 0; i < 2; i++) {
-      cursorSparkles.push({
-        x: e.clientX + (Math.random() * 12 - 6),
-        y: e.clientY + (Math.random() * 12 - 6),
-        size: Math.random() * 4 + 2,
-        color: sparkleColors[Math.floor(Math.random() * sparkleColors.length)],
-        alpha: 1,
-        vx: (Math.random() - 0.5) * 1.5,
-        vy: (Math.random() - 0.5) * 1.5 + 0.5
-      });
-    }
-  });
-
   function render() {
     ctx.clearRect(0, 0, width, height);
 
@@ -1255,24 +1236,6 @@ document.addEventListener('DOMContentLoaded', () => {
       ctx.globalAlpha = s.alpha;
       ctx.fillRect(s.x, s.y, s.size, s.size);
     });
-
-    // Draw & update cursor sparkles
-    for (let i = cursorSparkles.length - 1; i >= 0; i--) {
-      const p = cursorSparkles[i];
-      p.x += p.vx;
-      p.y += p.vy;
-      p.alpha -= 0.035;
-      p.size = Math.max(0, p.size - 0.05);
-
-      if (p.alpha <= 0 || p.size <= 0) {
-        cursorSparkles.splice(i, 1);
-        continue;
-      }
-
-      ctx.fillStyle = p.color;
-      ctx.globalAlpha = p.alpha;
-      ctx.fillRect(p.x - p.size / 2, p.y - p.size / 2, p.size, p.size);
-    }
 
     ctx.globalAlpha = 1;
     requestAnimationFrame(render);
@@ -1374,9 +1337,53 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  /* ------------------------------------------------------------------------
+     10. INDIEWEB TERMS & PRIVACY MODAL
+     ------------------------------------------------------------------------ */
+  const policyModal = document.getElementById('policy-modal');
+  const btnOpenTerms = document.getElementById('btn-open-terms');
+  const btnOpenPrivacy = document.getElementById('btn-open-privacy');
+  const btnClosePolicy = document.getElementById('btn-close-policy');
+  const policyTitle = document.getElementById('policy-title');
+
+  function openPolicy(type) {
+    if (!policyModal) return;
+    playSfx('powerup');
+    if (policyTitle) {
+      policyTitle.textContent = type === 'privacy' 
+        ? '★ NO-TRACK PRIVACY POLICY // INDIEWEB' 
+        : '★ INDIEWEB TERMS OF SERVICE // PONDS.SYS';
+    }
+    policyModal.classList.add('active');
+    policyModal.setAttribute('aria-hidden', 'false');
+  }
+
+  function closePolicy() {
+    if (!policyModal) return;
+    playSfx('click');
+    policyModal.classList.remove('active');
+    policyModal.setAttribute('aria-hidden', 'true');
+  }
+
+  if (btnOpenTerms) {
+    btnOpenTerms.addEventListener('click', () => openPolicy('terms'));
+  }
+  if (btnOpenPrivacy) {
+    btnOpenPrivacy.addEventListener('click', () => openPolicy('privacy'));
+  }
+  if (btnClosePolicy) {
+    btnClosePolicy.addEventListener('click', closePolicy);
+  }
+  if (policyModal) {
+    policyModal.addEventListener('click', (e) => {
+      if (e.target === policyModal) closePolicy();
+    });
+  }
+
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && lightboxModal && lightboxModal.classList.contains('active')) {
-      closeLightbox();
+    if (e.key === 'Escape') {
+      if (lightboxModal && lightboxModal.classList.contains('active')) closeLightbox();
+      if (policyModal && policyModal.classList.contains('active')) closePolicy();
     }
   });
 

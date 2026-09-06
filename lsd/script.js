@@ -63,7 +63,7 @@
       try {
         await navigator.clipboard.writeText(embedCode.value);
         const originalText = copyEmbedBtn.textContent;
-        copyEmbedBtn.textContent = "✓ Copied to clipboard!";
+        copyEmbedBtn.textContent = "[OK] Copied to clipboard!";
         setTimeout(() => { copyEmbedBtn.textContent = originalText; }, 2500);
       } catch (err) {
         embedCode.select();

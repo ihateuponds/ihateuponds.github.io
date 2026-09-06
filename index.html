@@ -47,16 +47,16 @@
     <div class="nav-controls">
       <!-- Secret Creator Mode: Revealed via Ctrl+Shift+E, #edit hash, or double-clicking PONDS.SYS -->
       <button id="btn-customizer-toggle" class="control-btn customizer-btn creator-hidden" title="Creator Customizer Terminal" style="display: none;">
-        <span class="btn-icon">⚙️</span> <span class="btn-label">CUSTOMIZE</span>
+        <span class="btn-icon">[CFG]</span> <span class="btn-label">CUSTOMIZE</span>
       </button>
       <button id="btn-sound-toggle" class="control-btn" title="Toggle Sound FX">
-        <span class="btn-icon">🔊</span> <span class="btn-label">SFX: ON</span>
+        <span class="btn-icon">[SFX]</span> <span class="btn-label">SFX: ON</span>
       </button>
       <button id="btn-crt-toggle" class="control-btn" title="Toggle CRT Scanline Effect">
-        <span class="btn-icon">📺</span> <span class="btn-label">CRT: ON</span>
+        <span class="btn-icon">[CRT]</span> <span class="btn-label">CRT: ON</span>
       </button>
       <button id="btn-reset-stickers" class="control-btn" title="Reset Sticker Positions">
-        <span class="btn-icon">✨</span> <span class="btn-label">RESET STICKERS</span>
+        <span class="btn-icon">[RST]</span> <span class="btn-label">RESET STICKERS</span>
       </button>
     </div>
   </header>
@@ -76,7 +76,7 @@
 
     <!-- Draggable Sticker 3: Warning Neon Tag -->
     <div class="draggable-item tag-sticker" style="top: 620px; left: 2%; transform: rotate(-15deg);" data-drag="true">
-      <div class="warning-badge">⚠️ CAUTION: 240 BPM</div>
+      <div class="warning-badge">[!] CAUTION: 240 BPM</div>
     </div>
 
     <!-- Draggable Sticker 4: Shiny Mimikyu Pin -->
@@ -87,7 +87,7 @@
 
     <!-- Draggable Sticker 5: Glitch Heart -->
     <div class="draggable-item heart-sticker" style="top: 1180px; left: 3%; transform: rotate(10deg);" data-drag="true">
-      <div class="holo-heart">💜 [BASS_BOOST] 💜</div>
+      <div class="holo-heart">★ [BASS_BOOST] ★</div>
     </div>
   </div>
 
@@ -95,7 +95,7 @@
   <main class="scrapbook-layout">
 
     <!-- HERO HEADER CARD -->
-    <!-- ✏️ EDIT PROFILE & BIO IN CUSTOMIZER MODAL OR BELOW -->
+    <!-- [EDIT] EDIT PROFILE & BIO IN CUSTOMIZER MODAL OR BELOW -->
     <section class="scrap-card hero-card holo-border">
       <div class="card-pin top-left"></div>
       <div class="card-pin top-right"></div>
@@ -115,9 +115,9 @@
             <span class="tag-handle" id="hero-handle-text">@ihateuponds</span>
           </div>
           <p class="hero-subtitle" id="hero-tags-container">
-            <span class="accent-pill purple">👻 Ghost Type Trainer</span>
-            <span class="accent-pill pink">💻 NEET</span>
-            <span class="accent-pill cyan">🛡️ opsec</span>
+            <span class="accent-pill purple">[GHOST TRAINER]</span>
+            <span class="accent-pill pink">[SYS_ADMIN / NEET]</span>
+            <span class="accent-pill cyan">[OPSEC / DEFENSE]</span>
           </p>
           <p class="hero-bio" id="hero-bio-text">
             Welcome to my website :3 my names Paul but i go by Ponds online, Im from SC and Im in school for Cybersecurity. I love hyperpop, EDM, and metal music. Im pretty open to making friends but Im lowkey anxious as fuck so bare with me.
@@ -200,7 +200,7 @@
                 <button class="music-btn play-btn" id="btn-play-pause" title="Play / Pause Audio">▶ PLAY</button>
                 <button class="music-btn" id="btn-next-track" title="Next Track">⏭</button>
                 <div class="volume-container">
-                  <span class="vol-icon" id="vol-icon-btn" title="Volume">🔊</span>
+                  <span class="vol-icon" id="vol-icon-btn" title="Volume">[VOL]</span>
                   <input type="range" id="volume-slider" min="0" max="100" value="75" class="neon-slider" />
                 </div>
               </div>
@@ -222,7 +222,7 @@
         </section>
 
         <!-- CARD: LIVE STATUS & MOOD WIDGET -->
-        <!-- ✏️ EDIT MOOD, ACTIVITY, AND ENERGY IN CUSTOMIZER MODAL OR BELOW -->
+        <!-- [EDIT] EDIT MOOD, ACTIVITY, AND ENERGY IN CUSTOMIZER MODAL OR BELOW -->
         <section class="scrap-card status-card">
           <div class="card-pin top-left"></div>
           <div class="card-header">
@@ -248,13 +248,13 @@
             <div class="status-item quote-box">
               <span class="status-label">THOUGHT OF THE DAY:</span>
               <p class="quote-text" id="status-quote">"I like shorts, they're comfy and easy to wear!"</p>
-              <button class="glitch-button-sm" id="btn-new-quote">✨ ROLL NEW VIBE</button>
+              <button class="glitch-button-sm" id="btn-new-quote">[ROLL NEW VIBE]</button>
             </div>
           </div>
         </section>
 
         <!-- CARD: SOCIAL PORTALS & BUTTONS -->
-        <!-- ✏️ EDIT SOCIALS IN CUSTOMIZER MODAL OR BELOW -->
+        <!-- [EDIT] EDIT SOCIALS IN CUSTOMIZER MODAL OR BELOW -->
         <section class="scrap-card links-card">
           <div class="washi-tape cyan-tape">EXTERNAL_PORTALS</div>
           <div class="card-header">
@@ -263,55 +263,55 @@
 
           <div class="social-links-grid" id="social-links-grid">
             <a href="https://discord.com/users/ihateuponds" target="_blank" rel="noopener noreferrer" class="neon-link-btn discord-btn" title="Discord: ihateuponds">
-              <span class="link-icon">💬</span>
-              <span class="link-name">Discord (@ihateuponds)</span>
-              <span class="link-arrow">↗</span>
+              <span class="link-icon">[DISCORD]</span>
+              <span class="link-name">@ihateuponds</span>
+              <span class="link-arrow">[CONNECT]</span>
             </a>
             <a href="https://instagram.com/s3ph1r0thxx" target="_blank" rel="noopener noreferrer" class="neon-link-btn instagram-btn">
-              <span class="link-icon">📸</span>
-              <span class="link-name">Instagram</span>
-              <span class="link-arrow">↗</span>
+              <span class="link-icon">[INSTAGRAM]</span>
+              <span class="link-name">s3ph1r0thxx</span>
+              <span class="link-arrow">[VISIT]</span>
             </a>
             <a href="https://open.spotify.com/user/fkm6bmojqqgf7j5eso4o0f9b0?si=cc74b10dd16d405c" target="_blank" rel="noopener noreferrer" class="neon-link-btn spotify-btn">
-              <span class="link-icon">🎧</span>
-              <span class="link-name">Spotify</span>
-              <span class="link-arrow">↗</span>
+              <span class="link-icon">[SPOTIFY]</span>
+              <span class="link-name">Heavy Rotation</span>
+              <span class="link-arrow">[LISTEN]</span>
             </a>
             <a href="https://steamcommunity.com/id/ihateuponds/" target="_blank" rel="noopener noreferrer" class="neon-link-btn steam-btn">
-              <span class="link-icon">🎮</span>
-              <span class="link-name">Steam</span>
-              <span class="link-arrow">↗</span>
+              <span class="link-icon">[STEAM]</span>
+              <span class="link-name">ihateuponds</span>
+              <span class="link-arrow">[PROFILE]</span>
             </a>
             <a href="https://ihateuponds.straw.page" target="_blank" rel="noopener noreferrer" class="neon-link-btn straw-btn">
-              <span class="link-icon">🍓</span>
-              <span class="link-name">StrawPage</span>
-              <span class="link-arrow">↗</span>
+              <span class="link-icon">[STRAWPAGE]</span>
+              <span class="link-name">StrawPage Portal</span>
+              <span class="link-arrow">[VIEW]</span>
             </a>
             <a href="support/" class="neon-link-btn support-btn">
-              <span class="link-icon">📟</span>
-              <span class="link-name">Tech Support Intake ↗</span>
+              <span class="link-icon">[SUPPORT]</span>
+              <span class="link-name">Tech Support Intake</span>
               <span class="link-arrow">/support/</span>
             </a>
             <a href="rig/" class="neon-link-btn rig-btn">
-              <span class="link-icon">🖥</span>
-              <span class="link-name">Linux &amp; Hardware Bench ↗</span>
+              <span class="link-icon">[BENCH]</span>
+              <span class="link-name">Linux &amp; Hardware Bench</span>
               <span class="link-arrow">/rig/</span>
             </a>
             <a href="games/" class="neon-link-btn games-btn">
-              <span class="link-icon">🎮</span>
-              <span class="link-name">Games Shrine ↗</span>
+              <span class="link-icon">[RETRO]</span>
+              <span class="link-name">Games Shrine</span>
               <span class="link-arrow">/games/</span>
             </a>
             <a href="lsd/" class="neon-link-btn lsd-btn">
-              <span class="link-icon">🌀</span>
-              <span class="link-name">LSD Dream Realm ↗</span>
+              <span class="link-icon">[LSD_REALM]</span>
+              <span class="link-name">LSD Dream Simulator</span>
               <span class="link-arrow">/lsd/</span>
             </a>
           </div>
         </section>
 
         <!-- CARD: PHOTO VAULT & POLAROIDS -->
-        <!-- ✏️ DROP YOUR PHOTOS IN ./photos/ OR EDIT BELOW -->
+        <!-- [EDIT] DROP YOUR PHOTOS IN ./photos/ OR EDIT BELOW -->
         <section class="scrap-card photos-card">
           <div class="washi-tape pink-tape">PHOTO_VAULT.RAW</div>
           <div class="card-header">
@@ -447,7 +447,7 @@
                 <h3 class="insp-name" id="insp-name">GHOLDENGO</h3>
                 <span class="insp-types" id="insp-types">STEEL / GHOST</span>
               </div>
-              <button class="shiny-toggle-btn" id="insp-shiny-toggle" title="Toggle Shiny Sprite">✨ SHINY</button>
+              <button class="shiny-toggle-btn" id="insp-shiny-toggle" title="Toggle Shiny Sprite">[SHINY MODE]</button>
             </div>
 
             <div class="inspector-body">
@@ -618,7 +618,7 @@
           <!-- Blinkie Banner Strip -->
           <div class="blinkies-strip">
             <div class="blinkie-box blink-fast">★ HYPERPOP ★</div>
-            <div class="blinkie-box blink-slow">👻 GHOST GANG 👻</div>
+            <div class="blinkie-box blink-slow">★ GHOST GANG ★</div>
             <div class="blinkie-box blink-alt">★ DONT INTERACT ★</div>
           </div>
 
@@ -638,11 +638,18 @@
     <!-- FOOTER -->
     <footer class="scrap-footer">
       <p class="footer-text">
-        HAND-CRAFTED FOR <strong>PONDS</strong> // DESIGNED FOR NEOCITIES & INDIEWEB // POWERED BY 💜 & HYPERPOP
+        HAND-CRAFTED FOR <strong>PONDS</strong> // DESIGNED FOR NEOCITIES &amp; INDIEWEB // POWERED BY LINUX &amp; HYPERPOP
       </p>
       <div class="footer-badges">
         <span>★ POKÉMON © NINTENDO / GAME FREAK ★</span>
         <span>★ 2026 HYPER_SYSTEM ★</span>
+      </div>
+      <div class="footer-legal-links">
+        <button type="button" id="btn-open-terms" class="footer-policy-btn">[INDIEWEB TERMS]</button>
+        <span class="footer-sep">/</span>
+        <button type="button" id="btn-open-privacy" class="footer-policy-btn">[NO-TRACK PRIVACY]</button>
+        <span class="footer-sep">/</span>
+        <a href="mailto:ihateuponds@gmail.com" class="footer-policy-btn">[TRANSMIT DISPATCH / EMAIL]</a>
       </div>
     </footer>
 
@@ -653,7 +660,7 @@
        ========================================================================= -->
   <div id="lightbox-modal" class="lightbox-backdrop" aria-hidden="true">
     <div class="lightbox-container">
-      <button id="btn-close-lightbox" class="lightbox-close-btn" title="Close Lightbox">✕ CLOSE</button>
+      <button id="btn-close-lightbox" class="lightbox-close-btn" title="Close Lightbox">[X] CLOSE</button>
       <div class="lightbox-img-wrapper">
         <img id="lightbox-image" src="" alt="Expanded View" class="lightbox-img" />
       </div>
@@ -672,18 +679,18 @@
       <!-- Modal Header -->
       <div class="modal-header">
         <div class="modal-title">
-          <span class="modal-icon">⚙️</span>
+          <span class="modal-icon">[SYS]</span>
           <span>SITE CUSTOMIZATION TERMINAL // PONDS.SYS</span>
         </div>
-        <button id="btn-modal-close" class="modal-close-btn" title="Close modal">✕</button>
+        <button id="btn-modal-close" class="modal-close-btn" title="Close modal">[X]</button>
       </div>
 
       <!-- Modal Tabs -->
       <div class="modal-tabs">
-        <button class="modal-tab-btn active" data-tab="tab-profile">🪪 Profile & Bio</button>
-        <button class="modal-tab-btn" data-tab="tab-status">⚡ Status & Mood</button>
-        <button class="modal-tab-btn" data-tab="tab-socials">🌐 Social Portals</button>
-        <button class="modal-tab-btn" data-tab="tab-export">💾 Save & Export</button>
+        <button class="modal-tab-btn active" data-tab="tab-profile">[PROFILE &amp; BIO]</button>
+        <button class="modal-tab-btn" data-tab="tab-status">[STATUS &amp; MOOD]</button>
+        <button class="modal-tab-btn" data-tab="tab-socials">[SOCIAL PORTALS]</button>
+        <button class="modal-tab-btn" data-tab="tab-export">[SAVE &amp; EXPORT]</button>
       </div>
 
       <!-- Modal Content Body -->
@@ -732,7 +739,7 @@
         <div id="tab-status" class="tab-pane">
           <div class="form-group">
             <label class="form-label" for="cfg-mood">Current Mood:</label>
-            <input type="text" id="cfg-mood" class="form-input" placeholder="e.g. ⚡ Overstimulated & Hyperfocused" />
+            <input type="text" id="cfg-mood" class="form-input" placeholder="e.g. Overstimulated & Hyperfocused" />
           </div>
 
           <div class="form-group">
@@ -753,12 +760,12 @@
 
           <div class="form-group">
             <label class="form-label" for="cfg-quote">Featured Thought of the Day:</label>
-            <input type="text" id="cfg-quote" class="form-input" placeholder="e.g. 'If the synth doesn't distort...'" />
+            <input type="text" id="cfg-quote" class="form-input" placeholder="e.g. 'If the synth doesn\'t distort...'" />
           </div>
 
           <div class="form-group">
             <label class="form-label">"Roll New Vibe" Quotes Bank:</label>
-            <p class="form-hint">Quotes randomly chosen when clicking the "✨ Roll New Vibe" button.</p>
+            <p class="form-hint">Quotes randomly chosen when clicking the "[ROLL NEW VIBE]" button.</p>
             <div id="cfg-quotes-list" class="quote-manager-list">
               <!-- Dynamically populated -->
             </div>
@@ -778,21 +785,21 @@
 
           <div class="add-social-bar">
             <select id="cfg-new-social-preset" class="form-select">
-              <option value="strawpage">🍓 StrawPage</option>
-              <option value="discord">💬 Discord</option>
-              <option value="spotify">🎧 Spotify</option>
-              <option value="neocities">🐱 Neocities</option>
-              <option value="instagram">📸 Instagram</option>
-              <option value="twitter">🐦 Twitter / X</option>
-              <option value="youtube">📺 YouTube</option>
-              <option value="twitch">🎮 Twitch</option>
-              <option value="tiktok">⚡ TikTok</option>
-              <option value="soundcloud">🎶 SoundCloud</option>
-              <option value="tumblr">🖤 Tumblr</option>
-              <option value="github">🐙 GitHub</option>
-              <option value="bluesky">🦋 Bluesky</option>
-              <option value="carrd">💳 Carrd</option>
-              <option value="custom">✨ Custom Link</option>
+              <option value="strawpage">StrawPage</option>
+              <option value="discord">Discord</option>
+              <option value="spotify">Spotify</option>
+              <option value="neocities">Neocities</option>
+              <option value="instagram">Instagram</option>
+              <option value="twitter">Twitter / X</option>
+              <option value="youtube">YouTube</option>
+              <option value="twitch">Twitch</option>
+              <option value="tiktok">TikTok</option>
+              <option value="soundcloud">SoundCloud</option>
+              <option value="tumblr">Tumblr</option>
+              <option value="github">GitHub</option>
+              <option value="bluesky">Bluesky</option>
+              <option value="carrd">Carrd</option>
+              <option value="custom">Custom Link</option>
             </select>
             <button type="button" id="btn-add-social" class="btn-neon-action">+ Add Selected Social</button>
           </div>
@@ -801,14 +808,14 @@
         <!-- TAB 4: SAVE & EXPORT -->
         <div id="tab-export" class="tab-pane">
           <div class="export-guide-card">
-            <h3>★ HOW PERSISTENCE & NEOCITIES UPLOAD WORKS</h3>
-            <p><strong>1. Instant Live Preview:</strong> Clicking <em>"Save & Apply"</em> instantly saves your changes in your browser's <code>localStorage</code> so whenever you refresh, all your customizations remain active!</p>
-            <p><strong>2. Direct Neocities Upload:</strong> To make sure your custom bio, mood radar, and socials appear for <em>every visitor on Neocities</em>, click <strong>"📥 Download Updated index.html"</strong> below and upload that file to your Neocities dashboard!</p>
+            <h3>★ HOW PERSISTENCE &amp; NEOCITIES UPLOAD WORKS</h3>
+            <p><strong>1. Instant Live Preview:</strong> Clicking <em>"Save &amp; Apply"</em> instantly saves your changes in your browser's <code>localStorage</code> so whenever you refresh, all your customizations remain active!</p>
+            <p><strong>2. Direct Neocities Upload:</strong> To make sure your custom bio, mood radar, and socials appear for <em>every visitor on Neocities</em>, click <strong>"Download Updated index.html"</strong> below and upload that file to your Neocities dashboard!</p>
           </div>
 
           <div class="export-actions-grid">
             <button type="button" id="btn-download-html" class="export-big-btn download-btn">
-              <span class="big-icon">📥</span>
+              <span class="big-icon">[HTML]</span>
               <div class="btn-text-group">
                 <span class="btn-main-text">DOWNLOAD index.html</span>
                 <span class="btn-sub-text">Ready to upload straight to Neocities</span>
@@ -816,7 +823,7 @@
             </button>
 
             <button type="button" id="btn-copy-html" class="export-big-btn copy-btn-export">
-              <span class="big-icon">📋</span>
+              <span class="big-icon">[CLIP]</span>
               <div class="btn-text-group">
                 <span class="btn-main-text">COPY FULL HTML</span>
                 <span class="btn-sub-text">Copy entire code to clipboard</span>
@@ -824,7 +831,7 @@
             </button>
 
             <button type="button" id="btn-export-json" class="export-big-btn json-btn">
-              <span class="big-icon">💾</span>
+              <span class="big-icon">[JSON]</span>
               <div class="btn-text-group">
                 <span class="btn-main-text">EXPORT CONFIG (JSON)</span>
                 <span class="btn-sub-text">Save your custom site data backup</span>
@@ -832,7 +839,7 @@
             </button>
 
             <button type="button" id="btn-import-json-trigger" class="export-big-btn import-btn">
-              <span class="big-icon">📂</span>
+              <span class="big-icon">[LOAD]</span>
               <div class="btn-text-group">
                 <span class="btn-main-text">IMPORT CONFIG (JSON)</span>
                 <span class="btn-sub-text">Load previously saved data</span>
@@ -842,7 +849,7 @@
           </div>
 
           <div class="reset-section">
-            <button type="button" id="btn-reset-defaults" class="btn-danger-sm">🔄 Reset All to Original Defaults</button>
+            <button type="button" id="btn-reset-defaults" class="btn-danger-sm">[RESET TO DEFAULTS]</button>
           </div>
         </div>
 
@@ -851,7 +858,25 @@
       <!-- Modal Footer -->
       <div class="modal-footer">
         <button type="button" id="btn-modal-cancel" class="btn-modal-secondary">Cancel</button>
-        <button type="button" id="btn-save-apply" class="btn-modal-primary">💾 SAVE & APPLY</button>
+        <button type="button" id="btn-save-apply" class="btn-modal-primary">[SAVE &amp; APPLY]</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       INDIEWEB TERMS & PRIVACY MODAL
+       ========================================================================= -->
+  <div id="policy-modal" class="lightbox-backdrop" aria-hidden="true">
+    <div class="lightbox-container policy-container">
+      <button id="btn-close-policy" class="lightbox-close-btn" title="Close">[X] CLOSE</button>
+      <div class="policy-body">
+        <h3 id="policy-title" class="policy-heading font-cyan">★ INDIEWEB TERMS &amp; PRIVACY POLICY</h3>
+        <div id="policy-content" class="policy-text">
+          <p><strong>1. INDIEWEB SOVEREIGNTY:</strong> This website is an independent personal scrapbook hand-crafted for Neocities and the IndieWeb. No corporate trackers, no telemetry, no spyware, no programmatic ads.</p>
+          <p><strong>2. RESPECT &amp; USAGE:</strong> You are free to view, listen, inspect source code, borrow HTML/CSS concepts for your own personal homepages, and grab our 88x31 button. Do not direct hotlink assets on high-traffic external commercial platforms.</p>
+          <p><strong>3. NO-TRACKING PRIVACY GUARANTEE:</strong> We do not log your IP, we do not store tracking cookies, we do not use third-party behavioral analytics, and we do not sell or monetize visitor data. Your local customizations are saved strictly on your own device via localStorage.</p>
+          <p><strong>4. DIRECT DISPATCH:</strong> Need tech support, hardware triage, or just want to chat Pokémon / hyperpop? Transmit via Discord (@ihateuponds) or email <a href="mailto:ihateuponds@gmail.com" class="font-pink">ihateuponds@gmail.com</a>.</p>
+        </div>
       </div>
     </div>
   </div>

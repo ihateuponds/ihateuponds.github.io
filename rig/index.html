@@ -1,233 +1,421 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🖥 PONDS' RIG // LINUX &amp; HARDWARE BENCH</title>
-  <meta name="description" content="Ponds' hardware setup, CachyOS Linux configuration, Hyprland dotfiles, and diagnostic workstation specs.">
-  <meta name="theme-color" content="#030407">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>★ PONDS // HARDWARE &amp; LINUX BENCH ★ CALCIFER ★</title>
+  <meta name="description" content="Ponds' hardware setup, CachyOS Linux configuration, Hyprland dotfiles, and diagnostic workstation specs." />
+  <meta name="theme-color" content="#8b00ff" />
 
-  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Press+Start+2P&family=Share+Tech+Mono&family=Silkscreen:wght@400;700&family=VT323&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
 
   <!-- OpenGraph / Social Embed Metadata -->
-  <meta property="og:title" content="🖥 PONDS' RIG // LINUX &amp; HARDWARE BENCH">
-  <meta property="og:description" content="Ponds' hardware setup, CachyOS Linux configuration, Hyprland dotfiles, and diagnostic workstation specs.">
-  <meta property="og:url" content="https://ihateuponds.neocities.org/rig/">
-  <meta property="og:type" content="website">
-  <meta property="og:image" content="https://ihateuponds.neocities.org/avatar.jpeg">
+  <meta property="og:title" content="★ PONDS // HARDWARE &amp; LINUX BENCH ★ CALCIFER ★" />
+  <meta property="og:description" content="Ponds' hardware setup, CachyOS Linux configuration, Hyprland dotfiles, and diagnostic workstation specs." />
+  <meta property="og:url" content="https://ihateuponds.neocities.org/rig/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://ihateuponds.neocities.org/avatar.jpeg" />
 
-  <link rel="stylesheet" href="../style.css">
   <style>
-    .subpage-wrapper {
-      max-width: 960px;
-      margin: 0 auto;
+    .subpage-container {
+      max-width: 1100px;
+      margin: 20px auto 50px;
+      padding: 0 16px;
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 22px;
+      position: relative;
+      z-index: 10;
     }
-    .back-bar {
+
+    /* Subpage Top Bar */
+    .subpage-nav-bar {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: #11131c;
-      border: 2px outset #323850;
-      padding: 10px 16px;
-      font-family: var(--font-bios), var(--font-mono);
+      background: rgba(18, 7, 32, 0.95);
+      border: 2px solid var(--neon-purple);
+      box-shadow: 4px 4px 0 #000;
+      padding: 12px 18px;
+      flex-wrap: wrap;
+      gap: 12px;
     }
-    .back-link {
+
+    .subpage-brand {
+      font-family: var(--font-pixel);
+      font-size: 0.8rem;
       color: var(--neon-cyan);
       text-decoration: none;
-      font-weight: bold;
-      display: inline-flex;
+      display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
     }
-    .back-link:hover {
-      color: #67e8f9;
-      text-decoration: underline;
+    .subpage-brand:hover {
+      color: #fff;
     }
-    .rig-hero {
-      background: #0d0f18;
-      background-image: 
-        linear-gradient(rgba(13, 15, 24, 0.9), rgba(13, 15, 24, 0.95)),
-        url('../assets/textures/tech-matrix.png');
-      border: 3px outset #323850;
+
+    .subpage-links-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .subpage-nav-link {
+      font-family: var(--font-pixel);
+      font-size: 0.58rem;
+      padding: 5px 10px;
+      background: #090312;
+      border: 1px solid var(--neon-purple);
+      color: var(--text-main);
+      text-decoration: none;
+      box-shadow: 2px 2px 0 #000;
+      transition: all 0.15s ease;
+    }
+    .subpage-nav-link:hover, .subpage-nav-link.active {
+      background: var(--neon-purple);
+      color: #fff;
+      border-color: var(--neon-cyan);
+    }
+
+    /* Hero Card */
+    .rig-hero-card {
+      background: var(--bg-card);
+      border: 2px solid var(--neon-cyan);
+      box-shadow: 5px 5px 0 #000;
       padding: 24px;
-      text-align: center;
       position: relative;
     }
-    .rig-title {
-      font-size: 1.8rem;
-      letter-spacing: 0.05em;
-      margin-bottom: 8px;
+
+    .rig-hero-title {
+      font-family: var(--font-pixel);
+      font-size: 1.4rem;
+      color: #fff;
+      text-shadow: 2px 2px 0 var(--neon-pink), -2px -2px 0 var(--neon-purple);
+      margin-bottom: 12px;
     }
-    .bench-grid {
+
+    .rig-hero-desc {
+      font-family: var(--font-body);
+      font-size: 0.92rem;
+      color: var(--text-main);
+      line-height: 1.6;
+      max-width: 820px;
+    }
+
+    .hero-meta-strip {
+      margin-top: 14px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    /* Dual Bench Columns */
+    .bench-dual-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 20px;
+    }
+
+    .spec-block {
+      background: #120722;
+      border: 2px solid var(--neon-purple);
+      box-shadow: 4px 4px 0 #000;
+      padding: 20px;
+      position: relative;
+    }
+
+    .spec-block-title {
+      font-family: var(--font-pixel);
+      font-size: 0.78rem;
+      color: var(--neon-cyan);
+      margin-bottom: 14px;
+      border-bottom: 1px dashed rgba(157, 78, 221, 0.5);
+      padding-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* Retro Specs Table */
+    .specs-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+    }
+
+    .specs-table tr {
+      border-bottom: 1px solid rgba(157, 78, 221, 0.2);
+    }
+
+    .specs-table td {
+      padding: 8px 6px;
+      vertical-align: top;
+    }
+
+    .spec-label {
+      color: var(--neon-purple);
+      font-family: var(--font-terminal);
+      font-size: 1.05rem;
+      width: 130px;
+      letter-spacing: 0.05em;
+    }
+
+    .spec-val {
+      color: var(--text-main);
+      line-height: 1.4;
+    }
+
+    /* Terminal Window */
+    .retro-terminal-box {
+      background: #06020c;
+      border: 2px solid var(--neon-cyan);
+      box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.9), 3px 3px 0 #000;
+      padding: 12px 14px;
+      margin-top: 16px;
+      font-family: var(--font-terminal);
+      font-size: 1.15rem;
+      color: #a7f3d0;
+      line-height: 1.5;
+    }
+
+    .prompt-user {
+      color: var(--neon-pink);
+    }
+    .prompt-at {
+      color: #fff;
+    }
+    .prompt-host {
+      color: var(--neon-cyan);
+    }
+
+    /* Triage Toolkit Section */
+    .toolkit-card {
+      background: var(--bg-card);
+      border: 2px solid var(--neon-purple);
+      box-shadow: 5px 5px 0 #000;
+      padding: 22px;
+      position: relative;
+    }
+
+    .toolkit-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 16px;
       margin-top: 16px;
     }
-    .spec-block {
-      background: #11131c;
-      border: 2px outset #2c3248;
-      padding: 18px;
+
+    .toolkit-item {
+      background: #120722;
+      border: 1px solid var(--neon-purple);
+      box-shadow: 3px 3px 0 #000;
+      padding: 16px;
     }
-    .terminal-window {
-      background: #06070a;
-      border: 1px solid #23273c;
-      padding: 12px;
-      font-family: var(--font-vga), monospace;
-      font-size: 0.88rem;
-      line-height: 1.6;
-      color: #a7f3d0;
-      box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.8);
-      margin-top: 12px;
+
+    .toolkit-item-title {
+      font-family: var(--font-pixel);
+      font-size: 0.68rem;
+      margin-bottom: 8px;
     }
-    .prompt-sym { color: var(--neon-cyan); }
+
+    .toolkit-item-desc {
+      font-family: var(--font-body);
+      font-size: 0.83rem;
+      color: #d1c4e9;
+      line-height: 1.5;
+    }
   </style>
 </head>
-<body id="page-body">
+<body class="crt-enabled">
+  <div class="crt-layer active" id="crt-overlay"></div>
 
-  <div class="crt-vignette" aria-hidden="true"></div>
-
-  <div class="subpage-wrapper">
+  <div class="subpage-container">
 
     <!-- Top Navigation Bar -->
-    <div class="back-bar">
-      <a href="../" class="back-link">← [🏠 RETURN TO PONDS' CAVE]</a>
-      <div class="back-meta">
-        <a href="../support/" class="back-link" style="margin-right: 12px;">📟 Tech Support</a>
-        <a href="../games/" class="back-link">🎮 Games Shrine</a>
+    <nav class="subpage-nav-bar">
+      <a href="../" class="subpage-brand">
+        <span>★ PONDS.SYS</span>
+        <span style="color: var(--neon-pink);">// HARDWARE_RIG</span>
+      </a>
+      <div class="subpage-links-group">
+        <a href="../" class="subpage-nav-link">[← ROOT SCRAPBOOK]</a>
+        <a href="../support/" class="subpage-nav-link">[TECH SUPPORT]</a>
+        <a href="../rig/" class="subpage-nav-link active">[HARDWARE BENCH]</a>
+        <a href="../games/" class="subpage-nav-link">[GAMES SHRINE]</a>
+        <a href="../lsd/" class="subpage-nav-link">[LSD REALM]</a>
       </div>
-    </div>
+    </nav>
 
     <!-- Rig Hero Banner -->
-    <div class="rig-hero psx-block">
-      <h1 class="rig-title rainbow-text">🖥 HARDWARE &amp; LINUX TRIAGE BENCH</h1>
-      <p class="card-subtitle" style="max-width: 680px; margin: 0 auto;">
-        Daily driver hardware setup, CachyOS kernel tweaks, low-latency audio routing, and diagnostic bench environment.
+    <header class="rig-hero-card">
+      <div class="washi-tape cyan-tape">BENCHMARK // CALCIFER_STATION</div>
+      <h1 class="rig-hero-title">★ HARDWARE &amp; LINUX TRIAGE BENCH</h1>
+      <p class="rig-hero-desc">
+        Daily driver hardware setup, custom CachyOS kernel with BORE scheduler, PipeWire low-latency routing, and crash dump diagnostic workstation. Built for high performance, zero bloatware, and maximum privacy.
       </p>
-      <div class="dream-coords" style="margin-top: 8px;">[ HOSTNAME: CALCIFER // KERNEL: 7.2.X-CACHYOS-BORE ]</div>
-    </div>
+      <div class="hero-meta-strip">
+        <span class="accent-pill cyan">[HOSTNAME: CALCIFER]</span>
+        <span class="accent-pill purple">[KERNEL: 7.2.X-CACHYOS-BORE]</span>
+        <span class="accent-pill pink">[COMPOSITOR: HYPRLAND 144HZ]</span>
+      </div>
+    </header>
 
-    <!-- Bench Dual Grid -->
-    <div class="bench-grid">
+    <!-- Dual Bench Grid -->
+    <main class="bench-dual-grid">
 
-      <!-- Hardware Specs Card -->
-      <div class="spec-block psx-block">
-        <div class="card-header" style="margin-bottom: 12px;">
-          <span class="header-icon">⚙️</span>
-          <span class="header-title">workstation hardware rig</span>
-        </div>
-        <table class="specs-table" style="width: 100%;">
+      <!-- Spec Block 1: Hardware -->
+      <section class="spec-block">
+        <div class="washi-tape pink-tape">SPECS // PHYSICAL_LAYER</div>
+        <h2 class="spec-block-title">
+          <span>[PHYSICAL HARDWARE SPECS]</span>
+          <span style="color: var(--neon-pink);">8C / 16T</span>
+        </h2>
+        <table class="specs-table">
           <tbody>
             <tr>
-              <td class="spec-label">PROCESSOR</td>
-              <td class="spec-value font-amber">AMD Ryzen 7 5700X (8C / 16T, 4.6GHz Boost)</td>
+              <td class="spec-label">PROCESSOR:</td>
+              <td class="spec-val font-pink">AMD Ryzen 7 5700X (8C / 16T, 4.6GHz Boost)</td>
             </tr>
             <tr>
-              <td class="spec-label">GRAPHICS CARD</td>
-              <td class="spec-value font-pink">AMD Radeon RX 6700 XT (12GB VRAM, RDNA 2)</td>
+              <td class="spec-label">GRAPHICS:</td>
+              <td class="spec-val font-cyan">AMD Radeon RX 6700 XT (12GB VRAM, RDNA 2)</td>
             </tr>
             <tr>
-              <td class="spec-label">SYSTEM MEMORY</td>
-              <td class="spec-value font-cyan">32GB DDR4 (Dual Channel, XMP Tuned)</td>
+              <td class="spec-label">MEMORY:</td>
+              <td class="spec-val font-yellow">32GB DDR4 (Dual Channel, XMP Tuned)</td>
             </tr>
             <tr>
-              <td class="spec-label">PRIMARY STORAGE</td>
-              <td class="spec-value">NVMe M.2 PCIe 4.0 SSD (Btrfs with zstd compression)</td>
+              <td class="spec-label">PRIMARY SSD:</td>
+              <td class="spec-val">NVMe M.2 PCIe 4.0 SSD (Btrfs with zstd compression)</td>
             </tr>
             <tr>
-              <td class="spec-label">SECONDARY STORAGE</td>
-              <td class="spec-value">Separate Dedicated Partition for Windows 11 Pro Dual-Boot</td>
+              <td class="spec-label">SECONDARY:</td>
+              <td class="spec-val">Separate NVMe partition for Windows 11 Dual-Boot</td>
+            </tr>
+            <tr>
+              <td class="spec-label">DISPLAY:</td>
+              <td class="spec-val font-cyan">High-refresh IPS Display with FreeSync support</td>
             </tr>
           </tbody>
         </table>
 
-        <div class="terminal-window">
-          <div><span class="prompt-sym">ponds@calcifer</span>:~$ uname -srmo</div>
-          <div>Linux 7.2.4-cachyos-bore x86_64 GNU/Linux</div>
-          <div><span class="prompt-sym">ponds@calcifer</span>:~$ free -h</div>
-          <div>Mem: 31Gi total &bull; 1.2Gi used &bull; 26Gi free</div>
+        <div class="retro-terminal-box">
+          <div><span class="prompt-user">ponds</span><span class="prompt-at">@</span><span class="prompt-host">calcifer</span>:~$ uname -srmo</div>
+          <div style="color: #67e8f9;">Linux 7.2.4-cachyos-bore x86_64 GNU/Linux</div>
+          <div><span class="prompt-user">ponds</span><span class="prompt-at">@</span><span class="prompt-host">calcifer</span>:~$ free -h</div>
+          <div style="color: var(--neon-yellow);">Mem: 31Gi total | 1.2Gi used | 26Gi free</div>
         </div>
-      </div>
+      </section>
 
-      <!-- OS & Software Stack -->
-      <div class="spec-block psx-block">
-        <div class="card-header" style="margin-bottom: 12px;">
-          <span class="header-icon">🐧</span>
-          <span class="header-title">operating environment</span>
-        </div>
-        <table class="specs-table" style="width: 100%;">
+      <!-- Spec Block 2: Operating Environment -->
+      <section class="spec-block">
+        <div class="washi-tape purple-tape">SYS // SOFTWARE_STACK</div>
+        <h2 class="spec-block-title">
+          <span>[OPERATING ENVIRONMENT]</span>
+          <span style="color: var(--neon-cyan);">CACHYOS</span>
+        </h2>
+        <table class="specs-table">
           <tbody>
             <tr>
-              <td class="spec-label">DISTRIBUTION</td>
-              <td class="spec-value font-green">CachyOS Linux (Arch-based, optimized x86-64-v3/v4)</td>
+              <td class="spec-label">DISTRIBUTION:</td>
+              <td class="spec-val font-cyan">CachyOS Linux (Arch-based, optimized x86-64-v3/v4)</td>
             </tr>
             <tr>
-              <td class="spec-label">SCHEDULER</td>
-              <td class="spec-value font-cyan">BORE (Burst-Oriented Response Enhancer)</td>
+              <td class="spec-label">SCHEDULER:</td>
+              <td class="spec-val font-pink">BORE (Burst-Oriented Response Enhancer)</td>
             </tr>
             <tr>
-              <td class="spec-label">WINDOW MANAGER</td>
-              <td class="spec-value">Hyprland (Wayland Compositor, smooth 144Hz animations)</td>
+              <td class="spec-label">COMPOSITOR:</td>
+              <td class="spec-val font-yellow">Hyprland (Wayland Compositor, fluid tiling)</td>
             </tr>
             <tr>
-              <td class="spec-label">TERMINAL &amp; SHELL</td>
-              <td class="spec-value">kitty + foot with zsh &amp; starship prompt</td>
+              <td class="spec-label">TERMINAL:</td>
+              <td class="spec-val">kitty + foot with zsh &amp; starship prompt</td>
             </tr>
             <tr>
-              <td class="spec-label">AUDIO ENGINE</td>
-              <td class="spec-value font-amber">PipeWire + WirePlumber (low-latency Pro-Audio routing)</td>
+              <td class="spec-label">PRO-AUDIO:</td>
+              <td class="spec-val font-cyan">PipeWire + WirePlumber (low-latency audio graph)</td>
             </tr>
             <tr>
-              <td class="spec-label">GAMING PROTON</td>
-              <td class="spec-value">Proton-CachyOS / GE-Proton with DXVK &amp; FSR</td>
+              <td class="spec-label">GAMING:</td>
+              <td class="spec-val">Proton-CachyOS / GE-Proton with DXVK &amp; FSR</td>
             </tr>
           </tbody>
         </table>
 
-        <div class="note-box psx-note" style="margin-top: 14px;">
-          <strong>★ Why CachyOS Linux?</strong> I switched because I got tired of Windows bloatware, telemetry, and forced updates disrupting triage sessions. CachyOS is crazy responsive with custom CPU schedulers, boots in under 4 seconds, and idles at barely 1.2GB RAM.
+        <div class="retro-terminal-box" style="border-color: var(--neon-pink);">
+          <div><span class="prompt-user">ponds</span><span class="prompt-at">@</span><span class="prompt-host">calcifer</span>:~$ uptime -p</div>
+          <div style="color: #f472b6;">up 14 days, 6 hours, 22 minutes</div>
+          <div><span class="prompt-user">ponds</span><span class="prompt-at">@</span><span class="prompt-host">calcifer</span>:~$ echo $XDG_CURRENT_DESKTOP</div>
+          <div style="color: #67e8f9;">Hyprland (Wayland)</div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Diagnostics & Triage Toolkit -->
+    <section class="toolkit-card">
+      <div class="washi-tape yellow-tape">TOOLKIT // DIAGNOSTICS</div>
+      <h2 style="font-family: var(--font-pixel); font-size: 0.95rem; color: #fff; margin-bottom: 6px;">
+        ★ CRASH DIAGNOSTICS &amp; OPSEC TOOLKIT
+      </h2>
+      <p style="font-family: var(--font-body); font-size: 0.88rem; color: var(--text-muted); margin-bottom: 16px;">
+        Tools and methods I employ when troubleshooting hardware faults, game crashes, and system kernel panics:
+      </p>
+
+      <div class="toolkit-grid">
+        <div class="toolkit-item">
+          <h3 class="toolkit-item-title font-cyan">[+] WINDBG &amp; MINIDUMP PARSING</h3>
+          <p class="toolkit-item-desc">
+            Analyzing MEMORY.DMP crash dumps, resolving symbols, pinpointing faulty drivers (ntoskrnl, dxgkrnl, nvlddmkm), and identifying bugcheck codes.
+          </p>
+        </div>
+
+        <div class="toolkit-item">
+          <h3 class="toolkit-item-title font-pink">[+] MEMTEST86 &amp; OCCT VOLTAGE BENCH</h3>
+          <p class="toolkit-item-desc">
+            Diagnosing unstable memory sub-timings, WHEA bus errors, Vcore droop, and thermal throttling under heavy synthetic loads.
+          </p>
+        </div>
+
+        <div class="toolkit-item">
+          <h3 class="toolkit-item-title font-yellow">[+] DEFENSIVE OPSEC &amp; WIRESHARK</h3>
+          <p class="toolkit-item-desc">
+            Network packet inspection, rogue telemetry blocking, DNS-over-HTTPS routing, and strict packet firewall configurations.
+          </p>
+        </div>
+
+        <div class="toolkit-item">
+          <h3 class="toolkit-item-title font-cyan">[+] TECH SUPPORT INTAKE DESK</h3>
+          <p class="toolkit-item-desc">
+            Direct ticketing system built to intake formatted user crash logs, hardware specs, and error descriptions. Transmit at <a href="../support/" class="font-pink">[TECH SUPPORT]</a>.
+          </p>
         </div>
       </div>
-
-    </div>
-
-    <!-- Triage & Diagnostics Laboratory -->
-    <div class="retro-card psx-block" style="margin-top: 16px;">
-      <div class="card-header">
-        <span class="header-icon">🛡️</span>
-        <span class="header-title">crash diagnostics &amp; triage toolkit</span>
-      </div>
-      <div class="card-body">
-        <p class="card-subtitle">Tools I use when inspecting BSODs, game crashes, and system faults:</p>
-        <div class="interest-grid-3" style="margin-top: 12px;">
-          <div class="interest-box liminal-box">
-            <h4 class="interest-title font-cyan">[+] WinDbg &amp; Minidump Parser</h4>
-            <p>Analyzing MEMORY.DMP crash dumps, resolving symbols, locating faulty drivers (e.g. ntoskrnl, dxgkrnl, nvlddmkm), and identifying bugcheck codes.</p>
-          </div>
-          <div class="interest-box liminal-box">
-            <h4 class="interest-title font-green">[+] MemTest86 &amp; OCCT Triage</h4>
-            <p>Diagnosing unstable memory sub-timings, WHEA errors, voltage drops, and thermal throttling under heavy synthetic loads.</p>
-          </div>
-          <div class="interest-box liminal-box">
-            <h4 class="interest-title font-amber">[+] Anti-Bot Support Portal</h4>
-            <p>A complete interactive subpage built to intake formatted user tickets with error logs and specs. Check it out at <a href="../support/" class="font-cyan">/support/</a>.</p>
-          </div>
-        </div>
-      </div>
-    </div>
+    </section>
 
     <!-- Footer -->
-    <footer class="retro-footer psx-block" style="margin-top: 24px;">
-      <div class="footer-inner">
-        <p>★ ihateuponds.neocities.org &bull; hardware bench 2026 ★</p>
-        <p class="footer-sub"><a href="../" class="back-link">← Return to Ponds' Cave</a> &bull; powered by cachyos linux</p>
+    <footer class="scrap-footer" style="margin-top: 20px;">
+      <p class="footer-text">
+        HAND-CRAFTED FOR <strong>PONDS</strong> // DESIGNED FOR NEOCITIES &amp; INDIEWEB // POWERED BY LINUX &amp; HYPERPOP
+      </p>
+      <div class="footer-badges">
+        <span>★ POKÉMON © NINTENDO / GAME FREAK ★</span>
+        <span>★ 2026 HYPER_SYSTEM ★</span>
+      </div>
+      <div class="footer-legal-links">
+        <a href="../#terms-modal" class="footer-policy-btn">[INDIEWEB TERMS]</a>
+        <span class="footer-sep">/</span>
+        <a href="../#privacy-modal" class="footer-policy-btn">[NO-TRACK PRIVACY]</a>
+        <span class="footer-sep">/</span>
+        <a href="mailto:ihateuponds@gmail.com" class="footer-policy-btn">[TRANSMIT DISPATCH / EMAIL]</a>
       </div>
     </footer>
 
   </div>
-
 </body>
 </html>

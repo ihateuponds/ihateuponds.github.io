@@ -17,7 +17,7 @@
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Press+Start+2P&family=Share+Tech+Mono&family=Silkscreen:wght@400;700&family=VT323&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
 </head>
@@ -33,12 +33,13 @@
         <span class="ctrl-dot maximize"></span>
       </div>
       <div class="window-path">
-        <a href="../" style="color: var(--accent-cyan); text-decoration: none; margin-right: 10px; font-weight: 600;">[← Back to Main]</a>
-        <span class="user-host">ihateuponds@station</span>:<span class="tilde">~</span>/<span class="project-dir">tech-help</span>
+        <a href="../" style="color: var(--accent-cyan); text-decoration: none; margin-right: 8px; font-weight: bold;">[← ROOT // PONDS.SYS]</a>
+        <span class="user-host">ihateuponds@station</span>:<span class="tilde">~</span>/<span class="project-dir">support</span>
       </div>
       <div class="window-telemetry">
-        <span class="telemetry-item hide-mobile">OS: CachyOS / Arch</span>
-        <span class="telemetry-item hide-mobile">WM: Hyprland</span>
+        <a href="../rig/" style="color: var(--accent-purple); font-size: 0.75rem; text-decoration: none; margin-right: 6px;">[RIG]</a>
+        <a href="../games/" style="color: var(--accent-pink); font-size: 0.75rem; text-decoration: none; margin-right: 6px;">[GAMES]</a>
+        <a href="../lsd/" style="color: var(--accent-cyan); font-size: 0.75rem; text-decoration: none; margin-right: 12px;">[LSD]</a>
         <span class="telemetry-item time-badge">
           <span class="clock-pulse" aria-hidden="true"></span>
           <span id="clock-display">--:--:--</span> EDT
@@ -352,7 +353,7 @@
             <div id="ticket-output" class="tui-stdout-box" hidden>
               <div class="stdout-header">
                 <span class="stdout-title">stdout: ticket_compiled.txt</span>
-                <span class="stdout-badge">✓ COPIED TO CLIPBOARD</span>
+                <span class="stdout-badge">[OK] COPIED TO CLIPBOARD</span>
               </div>
               <pre id="ticket-code" class="stdout-content"></pre>
               <div class="stdout-actions">

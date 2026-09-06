@@ -193,7 +193,7 @@
       await navigator.clipboard.writeText(text);
       if (copyOutputBtn && copyOutputLabel) {
         copyOutputBtn.classList.add("copied");
-        copyOutputLabel.textContent = "✓ Copied Ticket to Clipboard";
+        copyOutputLabel.textContent = "[OK] Copied Ticket to Clipboard";
         setTimeout(() => {
           copyOutputBtn.classList.remove("copied");
           copyOutputLabel.textContent = "Copy Ticket Again";
