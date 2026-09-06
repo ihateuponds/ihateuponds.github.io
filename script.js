@@ -89,47 +89,47 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Real Music Playlist (MP3 tracks hosted for Neocities)
+  // Real Music Playlist (Hosted on GitHub Pages CDN with local fallbacks)
   const tracks = [
     {
       title: "INTROVERT",
       artist: "brakence",
       genre: "EMO RAP / HYPERPOP",
-      src: "https://files.catbox.moe/sb1eqh.mp3",
-      fallbackSrc: "./music/13 - introvert.mp3",
-      localSrc: "./music/13 - introvert.mp3"
+      src: "https://ihateuponds.github.io/music/introvert.mp3",
+      fallbackSrc: "./music/introvert.mp3",
+      localSrc: "./music/introvert.mp3"
     },
     {
       title: "52 BLUE MONDAYS",
       artist: "Jane Remover",
       genre: "DARIACRE / SHOEGAZE",
-      src: "https://files.catbox.moe/6ta5uh.mp3",
-      fallbackSrc: "./music/52 blue mondays.mp3",
-      localSrc: "./music/52 blue mondays.mp3"
+      src: "https://ihateuponds.github.io/music/52-blue-mondays.mp3",
+      fallbackSrc: "./music/52-blue-mondays.mp3",
+      localSrc: "./music/52-blue-mondays.mp3"
     },
     {
       title: "BABY G SHOCK",
       artist: "cr1tter",
       genre: "HYPERPOP / RAP",
-      src: "https://files.catbox.moe/dv3lyv.mp3",
-      fallbackSrc: "./music/cr1tter - baby g shock.mp3",
-      localSrc: "./music/cr1tter - baby g shock.mp3"
+      src: "https://ihateuponds.github.io/music/baby-g-shock.mp3",
+      fallbackSrc: "./music/baby-g-shock.mp3",
+      localSrc: "./music/baby-g-shock.mp3"
     },
     {
       title: "I WISH I WAS A CAT",
       artist: "Glitch Gum",
       genre: "HYPERPOP / GLITCH",
-      src: "https://files.catbox.moe/5xsgcf.mp3",
-      fallbackSrc: "./music/Glitch_Gum_-_I_Wish_I_Was_a_Cat_(getmp3.pro).mp3",
-      localSrc: "./music/Glitch_Gum_-_I_Wish_I_Was_a_Cat_(getmp3.pro).mp3"
+      src: "https://ihateuponds.github.io/music/i-wish-i-was-a-cat.mp3",
+      fallbackSrc: "./music/i-wish-i-was-a-cat.mp3",
+      localSrc: "./music/i-wish-i-was-a-cat.mp3"
     },
     {
       title: "ROUND TWO",
       artist: "guardin",
       genre: "INDIE / EMO",
-      src: "https://files.catbox.moe/mtwm5i.mp3",
-      fallbackSrc: "./music/round two (prod. twix x g06 x thirtyyy).mp3",
-      localSrc: "./music/round two (prod. twix x g06 x thirtyyy).mp3"
+      src: "https://ihateuponds.github.io/music/round-two.mp3",
+      fallbackSrc: "./music/round-two.mp3",
+      localSrc: "./music/round-two.mp3"
     }
   ];
 
@@ -1438,14 +1438,36 @@ document.addEventListener('DOMContentLoaded', () => {
      POKÉMON BOOSTER PACK & BADGE CASE ENGINE
      ------------------------------------------------------------------------ */
   const BOOSTER_POOL = [
-    { name: "Gengar VMAX (Alt Art)", set: "Fusion Strike #271", rarity: "Secret Rare Alt Art", img: "https://images.pokemontcg.io/swsh8/271_hires.png" },
-    { name: "Umbreon VMAX (Moonbreon)", set: "Evolving Skies #215", rarity: "Special Secret Art", img: "https://images.pokemontcg.io/swsh7/215_hires.png" },
-    { name: "Giratina V (Alt Art)", set: "Lost Origin #186", rarity: "Alternate Art Ultra Rare", img: "https://images.pokemontcg.io/swsh11/186_hires.png" },
-    { name: "Rayquaza VMAX (Alt Art)", set: "Evolving Skies #218", rarity: "Secret Rare Alt Art", img: "https://images.pokemontcg.io/swsh7/218_hires.png" },
-    { name: "Mewtwo & Mew GX", set: "Unified Minds #242", rarity: "Rainbow Secret Rare", img: "https://images.pokemontcg.io/sm11/242_hires.png" },
-    { name: "Gholdengo ex (SIR)", set: "Paradox Rift #252", rarity: "Special Illustration Rare", img: "https://images.pokemontcg.io/sv4/252_hires.png" },
-    { name: "Skeledirge ex (SIR)", set: "Paldea Evolved #258", rarity: "Special Illustration Rare", img: "https://images.pokemontcg.io/sv2/258_hires.png" },
-    { name: "Sabrina Gengar", set: "Gym Heroes #14", rarity: "Holo Vintage Rare", img: "https://images.pokemontcg.io/gym1/14_hires.png" }
+    { name: "Gengar VMAX (Alt Art)", set: "Fusion Strike #271", rarity: "Secret Rare Alt Art", tier: "SECRET RARE", img: "https://images.pokemontcg.io/swsh8/271_hires.png" },
+    { name: "Umbreon VMAX (Moonbreon)", set: "Evolving Skies #215", rarity: "Special Secret Rare Alt Art", tier: "SECRET RARE", img: "https://images.pokemontcg.io/swsh7/215_hires.png" },
+    { name: "Giratina V (Alt Art)", set: "Lost Origin #186", rarity: "Alternate Art Ultra Rare", tier: "ALT ART", img: "https://images.pokemontcg.io/swsh11/186_hires.png" },
+    { name: "Rayquaza VMAX (Alt Art)", set: "Evolving Skies #218", rarity: "Secret Rare Alt Art", tier: "SECRET RARE", img: "https://images.pokemontcg.io/swsh7/218_hires.png" },
+    { name: "Mewtwo & Mew GX", set: "Unified Minds #242", rarity: "Rainbow Secret Rare", tier: "RAINBOW RARE", img: "https://images.pokemontcg.io/sm11/242_hires.png" },
+    { name: "Gholdengo ex (SIR)", set: "Paradox Rift #252", rarity: "Special Illustration Rare", tier: "SPECIAL IR", img: "https://images.pokemontcg.io/sv4/252_hires.png" },
+    { name: "Skeledirge ex (SIR)", set: "Paldea Evolved #258", rarity: "Special Illustration Rare", tier: "SPECIAL IR", img: "https://images.pokemontcg.io/sv2/258_hires.png" },
+    { name: "Sabrina Gengar", set: "Gym Heroes #14", rarity: "Vintage Holo Rare", tier: "VINTAGE HOLO", img: "https://images.pokemontcg.io/gym1/14_hires.png" },
+    { name: "Charizard (Base Set Holo)", set: "Base Set #4", rarity: "Classic 1st Gen Holo", tier: "CLASSIC BASE", img: "https://images.pokemontcg.io/base1/4_hires.png" },
+    { name: "Lugia V (Alt Art)", set: "Silver Tempest #186", rarity: "Alternate Art Ultra Rare", tier: "ALT ART", img: "https://images.pokemontcg.io/swsh12/186_hires.png" },
+    { name: "Shining Magikarp", set: "Neo Revelation #66", rarity: "Secret Shining Rare", tier: "SHINING VINTAGE", img: "https://images.pokemontcg.io/neo3/66_hires.png" },
+    { name: "Dark Gengar", set: "Neo Destiny #6", rarity: "Neo Vintage Holo", tier: "NEO VINTAGE", img: "https://images.pokemontcg.io/neo4/6_hires.png" },
+    { name: "Dark Charizard", set: "Team Rocket #4", rarity: "Team Rocket Holo", tier: "TEAM ROCKET", img: "https://images.pokemontcg.io/base5/4_hires.png" },
+    { name: "Tyranitar V (Sleepy Tyranitar)", set: "Battle Styles #155", rarity: "Alternate Art Ultra Rare", tier: "ALT ART", img: "https://images.pokemontcg.io/swsh5/155_hires.png" },
+    { name: "Mew (Galarian Gallery)", set: "Crown Zenith #GG10", rarity: "Galarian Gallery Art Rare", tier: "ART RARE", img: "https://images.pokemontcg.io/swsh12pt5gg/GG10_hires.png" },
+    { name: "Pikachu (Secret Rare)", set: "Crown Zenith #160", rarity: "Crown Zenith Secret Rare", tier: "SECRET RARE", img: "https://images.pokemontcg.io/swsh12pt5/160_hires.png" },
+    { name: "Mimikyu (Trainer Gallery)", set: "Silver Tempest #TG16", rarity: "Trainer Gallery Holo", tier: "TRAINER GALLERY", img: "https://images.pokemontcg.io/swsh12tg/TG16_hires.png" },
+    { name: "Chandelure (Trainer Gallery)", set: "Silver Tempest #TG04", rarity: "Trainer Gallery Holo", tier: "TRAINER GALLERY", img: "https://images.pokemontcg.io/swsh12tg/TG04_hires.png" },
+    { name: "Aegislash (Illustration Rare)", set: "Paradox Rift #210", rarity: "Illustration Rare", tier: "ILLUS RARE", img: "https://images.pokemontcg.io/sv4/210_hires.png" },
+    { name: "Espeon VMAX (Alt Art)", set: "Fusion Strike #270", rarity: "Secret Rare Alt Art", tier: "SECRET RARE", img: "https://images.pokemontcg.io/swsh8/270_hires.png" },
+    { name: "Dragonite V (Alt Art)", set: "Evolving Skies #192", rarity: "Alternate Art Ultra Rare", tier: "ALT ART", img: "https://images.pokemontcg.io/swsh7/192_hires.png" },
+    { name: "Alakazam ex (SIR)", set: "151 #201", rarity: "Special Illustration Rare", tier: "SPECIAL IR", img: "https://images.pokemontcg.io/sv3pt5/201_hires.png" },
+    { name: "Zapdos ex (SIR)", set: "151 #202", rarity: "Special Illustration Rare", tier: "SPECIAL IR", img: "https://images.pokemontcg.io/sv3pt5/202_hires.png" },
+    { name: "Charizard ex (SIR)", set: "151 #199", rarity: "Special Illustration Rare", tier: "SPECIAL IR", img: "https://images.pokemontcg.io/sv3pt5/199_hires.png" },
+    { name: "Dark Dragonite", set: "Team Rocket #5", rarity: "Team Rocket Holo", tier: "TEAM ROCKET", img: "https://images.pokemontcg.io/base5/5_hires.png" },
+    { name: "Sabrina Alakazam", set: "Gym Challenge #16", rarity: "Gym Holo Rare", tier: "GYM VINTAGE", img: "https://images.pokemontcg.io/gym2/16_hires.png" },
+    { name: "Gengar & Mimikyu GX", set: "Team Up #165", rarity: "Alternate Art Tag Team GX", tier: "TAG TEAM GX", img: "https://images.pokemontcg.io/sm9/165_hires.png" },
+    { name: "Roaring Moon ex (SIR)", set: "Paradox Rift #251", rarity: "Special Illustration Rare", tier: "SPECIAL IR", img: "https://images.pokemontcg.io/sv4/251_hires.png" },
+    { name: "Blastoise (Base Set Holo)", set: "Base Set #2", rarity: "Classic 1st Gen Holo", tier: "CLASSIC BASE", img: "https://images.pokemontcg.io/base1/2_hires.png" },
+    { name: "Venusaur (Base Set Holo)", set: "Base Set #15", rarity: "Classic 1st Gen Holo", tier: "CLASSIC BASE", img: "https://images.pokemontcg.io/base1/15_hires.png" }
   ];
 
   const btnRipBooster = document.getElementById('btn-rip-booster');
@@ -1454,23 +1476,36 @@ document.addEventListener('DOMContentLoaded', () => {
   if (btnRipBooster && packPullsContainer) {
     btnRipBooster.addEventListener('click', () => {
       playSfx('powerup');
-      btnRipBooster.textContent = "★ PACK OPENED! RIP ANOTHER? ★";
+
+      let rips = 0;
+      try {
+        rips = parseInt(localStorage.getItem('ponds_booster_rips_count') || '0', 10) + 1;
+        localStorage.setItem('ponds_booster_rips_count', rips);
+      } catch(e) {}
+
+      btnRipBooster.textContent = `★ PACK #${rips} OPENED! RIP ANOTHER? ★`;
       packPullsContainer.style.display = 'grid';
       packPullsContainer.innerHTML = '';
 
-      // Pick 3 unique random cards
+      // Pick 3 unique random cards from the 30-card pool
       const shuffled = [...BOOSTER_POOL].sort(() => 0.5 - Math.random());
       const pulls = shuffled.slice(0, 3);
 
-      pulls.forEach(card => {
+      pulls.forEach((card, idx) => {
         const cardEl = document.createElement('div');
         cardEl.className = 'pulled-card';
         cardEl.style.cursor = 'pointer';
-        cardEl.title = `Click to inspect ${card.name}`;
+        cardEl.style.animation = `fadeInUp 0.3s ease forwards ${idx * 0.1}s`;
+        cardEl.title = `Click to inspect ${card.name} in 3D Lightbox`;
         cardEl.innerHTML = `
-          <img src="${card.img}" alt="${escapeHtml(card.name)}" loading="lazy" />
-          <span class="pulled-card-name">${escapeHtml(card.name)}</span>
-          <span class="pulled-card-rarity">${escapeHtml(card.rarity)}</span>
+          <div class="pulled-card-foil-wrap" style="position: relative; overflow: hidden; border-radius: 6px;">
+            <img src="${card.img}" alt="${escapeHtml(card.name)}" loading="lazy" style="display: block; width: 100%; height: auto;" />
+            <div class="pulled-card-shimmer" style="position: absolute; inset: 0; pointer-events: none; background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 60%);"></div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 2px; margin-top: 6px;">
+            <span class="pulled-card-name" style="font-family: var(--font-pixel); font-size: 0.62rem; color: #fff;">${escapeHtml(card.name)}</span>
+            <span class="pulled-card-rarity" style="font-family: var(--font-terminal); font-size: 0.9rem; color: var(--neon-cyan);">${escapeHtml(card.tier || card.rarity)}</span>
+          </div>
         `;
         cardEl.addEventListener('click', () => {
           openLightbox(card.img, card.name, `${card.set} • ${card.rarity}`);

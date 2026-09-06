@@ -528,60 +528,87 @@
         </div>
       </div>
 
-      <!-- Split Intro Header inside the window -->
-      <div class="retro-window-body" style="border-bottom: 1px solid var(--neon-purple); background: rgba(14, 5, 26, 0.85); padding: 18px 20px;">
-        <div style="display: flex; gap: 20px; align-items: center; justify-content: space-between; flex-wrap: wrap;">
-          <div style="flex: 1; min-width: 260px;">
-            <p style="margin: 0 0 8px 0; font-family: var(--font-pixel); font-size: 0.72rem; color: var(--neon-yellow);">
-              ★ SHARE YOUR THOUGHTS &amp; LEAVE YOUR MARK:
-            </p>
-            <p style="margin: 0 0 8px 0; font-size: 0.9rem; line-height: 1.5; color: #cbd5e1;">
-              Got feedback on the scrapbook, want to trade 88x31 badges, or just say hello? Drop a signature below! Your message is broadcast live to the global IndieWeb ledger.
-            </p>
-            <p style="margin: 0; font-family: var(--font-pixel); font-size: 0.62rem; color: var(--neon-cyan);">
-              ★ ALL ENTRIES PERSIST GLOBALLY // POWERED BY HTML COMMENT BOX
-            </p>
+      <!-- Dual Tab Channel Switcher -->
+      <div class="guestbook-tab-bar" style="display: flex; gap: 8px; padding: 10px 18px; background: rgba(10, 4, 20, 0.95); border-bottom: 1px solid var(--neon-purple); flex-wrap: wrap;">
+        <button type="button" id="btn-tab-hcb" class="gb-tab-btn active" style="font-family: var(--font-pixel); font-size: 0.65rem; padding: 6px 14px; background: var(--neon-pink); color: #fff; border: 1px solid #fff; cursor: pointer; box-shadow: 0 0 8px var(--neon-pink-glow);">
+          ★ GUESTBOOK COMMENTS (PERSISTENT)
+        </button>
+        <button type="button" id="btn-tab-cbox" class="gb-tab-btn" style="font-family: var(--font-pixel); font-size: 0.65rem; padding: 6px 14px; background: #140526; color: var(--neon-cyan); border: 1px solid var(--neon-purple); cursor: pointer;">
+          💬 LIVE CBOX CHAT (REAL-TIME)
+        </button>
+      </div>
+
+      <!-- PANEL 1: Native In-DOM Live Guestbook Stream -->
+      <div id="panel-gb-comments">
+        <!-- Split Intro Header inside the window -->
+        <div class="retro-window-body" style="border-bottom: 1px solid var(--neon-purple); background: rgba(14, 5, 26, 0.85); padding: 18px 20px;">
+          <div style="display: flex; gap: 20px; align-items: center; justify-content: space-between; flex-wrap: wrap;">
+            <div style="flex: 1; min-width: 260px;">
+              <p style="margin: 0 0 8px 0; font-family: var(--font-pixel); font-size: 0.72rem; color: var(--neon-yellow);">
+                ★ SHARE YOUR THOUGHTS &amp; LEAVE YOUR MARK:
+              </p>
+              <p style="margin: 0 0 8px 0; font-size: 0.9rem; line-height: 1.5; color: #cbd5e1;">
+                Got feedback on the scrapbook, want to trade 88x31 badges, or just say hello? Drop a signature below! Your message is broadcast live to the global IndieWeb ledger.
+              </p>
+              <p style="margin: 0; font-family: var(--font-pixel); font-size: 0.62rem; color: var(--neon-cyan);">
+                ★ ALL ENTRIES PERSIST GLOBALLY // POWERED BY HTML COMMENT BOX
+              </p>
+            </div>
+            <div style="text-align: center; border: 2px solid var(--neon-pink); padding: 4px; background: #000; box-shadow: 0 0 10px var(--neon-pink-glow);">
+              <img src="../avatar.jpeg" alt="Ponds Avatar" style="width: 72px; height: 72px; object-fit: cover; display: block;" />
+              <div style="font-family: var(--font-pixel); font-size: 0.55rem; color: var(--neon-pink); margin-top: 4px;">. PONDS</div>
+            </div>
           </div>
-          <div style="text-align: center; border: 2px solid var(--neon-pink); padding: 4px; background: #000; box-shadow: 0 0 10px var(--neon-pink-glow);">
-            <img src="../avatar.jpeg" alt="Ponds Avatar" style="width: 72px; height: 72px; object-fit: cover; display: block;" />
-            <div style="font-family: var(--font-pixel); font-size: 0.55rem; color: var(--neon-pink); margin-top: 4px;">. PONDS</div>
-          </div>
+        </div>
+
+        <div class="retro-window-body" style="padding: 24px; background: #090314;">
+          <!-- begin wwww.htmlcommentbox.com -->
+          <div id="HCB_comment_box"><a href="http://www.htmlcommentbox.com">Comment Form</a> is loading comments...</div>
+          <link rel="stylesheet" type="text/css" href="https://www.htmlcommentbox.com/static/skins/bootstrap/twitter-bootstrap.css?v=0" />
+          <script type="text/javascript" id="hcb">
+            /*<!--*/
+            if(!window.hcb_user){
+              window.hcb_user={
+                PAGE: "https://ihateuponds.neocities.org/guestbook/",
+                comments_header: '★ VISITOR ENTRIES // PERSISTENT LOGS',
+                name_label: 'Handle / Callsign',
+                content_label: 'Transmit your message or leave feedback for Ponds...',
+                submit: '★ TRANSMIT SIGNATURE',
+                no_comments_msg: '★ STATION LOG EMPTY // BE THE FIRST TO SIGN THE GUESTBOOK!'
+              };
+            }
+            (function(){
+              var s=document.createElement("script"),
+                  l=hcb_user.PAGE || (""+window.location).replace(/'/g,"%27"),
+                  h="https://www.htmlcommentbox.com";
+              s.setAttribute("type","text/javascript");
+              s.setAttribute("src", h+"/jread?page="+encodeURIComponent(l).replace("+","%2B")+"&mod=%241%24wq1rdBcg%24gCYT%2FAPY804yNfQqHUMl6."+"&opts=16798&num=10&ts=1788670361705");
+              if (typeof s!="undefined") document.getElementsByTagName("head")[0].appendChild(s);
+            })();
+            /*-->*/
+          </script>
+          <!-- end www.htmlcommentbox.com -->
         </div>
       </div>
 
-      <!-- Native In-DOM Live Guestbook Stream -->
-      <div class="retro-window-body" style="padding: 24px; background: #090314;">
-        <!-- begin wwww.htmlcommentbox.com -->
-        <div id="HCB_comment_box"><a href="http://www.htmlcommentbox.com">Comment Form</a> is loading comments...</div>
-        <link rel="stylesheet" type="text/css" href="https://www.htmlcommentbox.com/static/skins/bootstrap/twitter-bootstrap.css?v=0" />
-        <script type="text/javascript" id="hcb">
-          /*<!--*/
-          if(!window.hcb_user){
-            window.hcb_user={
-              PAGE: "https://ihateuponds.neocities.org/guestbook/",
-              comments_header: '★ VISITOR ENTRIES // PERSISTENT LOGS',
-              name_label: 'Handle / Callsign',
-              content_label: 'Transmit your message or leave feedback for Ponds...',
-              submit: '★ TRANSMIT SIGNATURE',
-              no_comments_msg: '★ STATION LOG EMPTY // BE THE FIRST TO SIGN THE GUESTBOOK!'
-            };
-          }
-          (function(){
-            var s=document.createElement("script"),
-                l=hcb_user.PAGE || (""+window.location).replace(/'/g,"%27"),
-                h="https://www.htmlcommentbox.com";
-            s.setAttribute("type","text/javascript");
-            s.setAttribute("src", h+"/jread?page="+encodeURIComponent(l).replace("+","%2B")+"&mod=%241%24wq1rdBcg%24gCYT%2FAPY804yNfQqHUMl6."+"&opts=16798&num=10&ts=1788670361705");
-            if (typeof s!="undefined") document.getElementsByTagName("head")[0].appendChild(s);
-          })();
-          /*-->*/
-        </script>
-        <!-- end www.htmlcommentbox.com -->
+      <!-- PANEL 2: Live Real-Time Cbox Chat Panel -->
+      <div id="panel-gb-cbox" style="display: none; padding: 20px; background: #090314;">
+        <div style="margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+          <p style="margin: 0; font-family: var(--font-pixel); font-size: 0.68rem; color: var(--neon-yellow);">
+            ★ LIVE STATION CHATROOM // CHAT IN REAL-TIME:
+          </p>
+          <span style="font-family: var(--font-terminal); font-size: 1.05rem; color: var(--neon-cyan);">
+            PROTOCOL: CBOX.WS #3560113
+          </span>
+        </div>
+        <div style="border: 2px solid var(--neon-purple); background: #000; box-shadow: 0 0 12px rgba(157, 78, 221, 0.4);">
+          <iframe src="https://www3.cbox.ws/box/?boxid=3560113&amp;boxtag=2LNz2J" width="100%" height="480" allowtransparency="yes" allow="autoplay" frameborder="0" marginheight="0" marginwidth="0" scrolling="auto" style="width: 100%; height: 480px; border: none; display: block;"></iframe>
+        </div>
       </div>
 
       <div class="retro-window-footer">
         <span>GUESTBOOK PROTOCOL: ONLINE</span>
-        <span>HTML COMMENT BOX // LIVE &amp; IN-DOM</span>
+        <span>CHANNELS: COMMENTS &amp; LIVE CHAT</span>
       </div>
     </section>
 
@@ -751,6 +778,42 @@
         });
       }
       setupRetroWindowControls();
+
+      // Guestbook Tab Switcher Logic
+      const tabHcb = document.getElementById("btn-tab-hcb");
+      const tabCbox = document.getElementById("btn-tab-cbox");
+      const panelHcb = document.getElementById("panel-gb-comments");
+      const panelCbox = document.getElementById("panel-gb-cbox");
+
+      if (tabHcb && tabCbox && panelHcb && panelCbox) {
+        tabHcb.addEventListener("click", () => {
+          tabHcb.style.background = "var(--neon-pink)";
+          tabHcb.style.color = "#fff";
+          tabHcb.style.borderColor = "#fff";
+          tabHcb.style.boxShadow = "0 0 8px var(--neon-pink-glow)";
+          tabCbox.style.background = "#140526";
+          tabCbox.style.color = "var(--neon-cyan)";
+          tabCbox.style.borderColor = "var(--neon-purple)";
+          tabCbox.style.boxShadow = "none";
+          panelHcb.style.display = "block";
+          panelCbox.style.display = "none";
+          playChime(650);
+        });
+
+        tabCbox.addEventListener("click", () => {
+          tabCbox.style.background = "var(--neon-pink)";
+          tabCbox.style.color = "#fff";
+          tabCbox.style.borderColor = "#fff";
+          tabCbox.style.boxShadow = "0 0 8px var(--neon-pink-glow)";
+          tabHcb.style.background = "#140526";
+          tabHcb.style.color = "var(--neon-cyan)";
+          tabHcb.style.borderColor = "var(--neon-purple)";
+          tabHcb.style.boxShadow = "none";
+          panelCbox.style.display = "block";
+          panelHcb.style.display = "none";
+          playChime(750);
+        });
+      }
 
       // Click chime for buttons
       document.querySelectorAll("button, a").forEach(el => {

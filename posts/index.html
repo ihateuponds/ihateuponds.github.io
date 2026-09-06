@@ -398,6 +398,227 @@
       color: #4ade80;
       overflow-x: auto;
     }
+
+    /* Dispatch Mode Switcher Bar */
+    .dispatch-mode-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      background: rgba(18, 7, 32, 0.95);
+      border: 2px solid var(--neon-purple);
+      box-shadow: 4px 4px 0 #000;
+      padding: 12px 18px;
+    }
+
+    .mode-btn {
+      font-family: var(--font-pixel);
+      font-size: 0.65rem;
+      padding: 8px 16px;
+      border: 1px solid var(--neon-purple);
+      background: rgba(10, 4, 18, 0.85);
+      color: var(--text-main);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .mode-btn:hover {
+      background: var(--neon-purple);
+      color: #fff;
+    }
+    .mode-btn.active {
+      background: var(--neon-pink);
+      color: #fff;
+      border-color: #fff;
+      box-shadow: 0 0 10px var(--neon-pink-glow);
+    }
+
+    /* Composer Studio Styles */
+    .composer-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    @media (max-width: 768px) {
+      .composer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .composer-field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .composer-label {
+      font-family: var(--font-pixel);
+      font-size: 0.62rem;
+      color: var(--neon-yellow);
+    }
+
+    .composer-input, .composer-select {
+      background: #06020c;
+      border: 1px solid var(--neon-purple);
+      color: #fff;
+      font-family: var(--font-body);
+      font-size: 0.88rem;
+      padding: 9px 12px;
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .composer-input:focus, .composer-select:focus {
+      border-color: var(--neon-cyan);
+      box-shadow: 0 0 8px var(--neon-cyan-glow);
+    }
+
+    .composer-toolbar {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      background: #080312;
+      border: 1px solid rgba(157, 78, 221, 0.4);
+      padding: 8px 10px;
+    }
+
+    .composer-tool-btn {
+      font-family: var(--font-pixel);
+      font-size: 0.58rem;
+      padding: 5px 9px;
+      background: #140726;
+      color: var(--neon-cyan);
+      border: 1px solid var(--neon-purple);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .composer-tool-btn:hover {
+      background: var(--neon-cyan);
+      color: #000;
+      border-color: var(--neon-cyan);
+    }
+
+    .composer-textarea {
+      background: #06020c;
+      border: 1px solid var(--neon-purple);
+      color: #e2e8f0;
+      font-family: var(--font-body);
+      font-size: 0.88rem;
+      line-height: 1.6;
+      padding: 14px;
+      min-height: 220px;
+      resize: vertical;
+      outline: none;
+    }
+    .composer-textarea:focus {
+      border-color: var(--neon-cyan);
+      box-shadow: 0 0 8px var(--neon-cyan-glow);
+    }
+
+    .composer-deck {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .deck-btn {
+      font-family: var(--font-pixel);
+      font-size: 0.65rem;
+      padding: 9px 16px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .deck-btn-primary {
+      background: var(--neon-pink);
+      color: #fff;
+      border: 1px solid #fff;
+      box-shadow: 0 0 10px var(--neon-pink-glow);
+    }
+    .deck-btn-primary:hover {
+      background: #ff0055;
+      transform: translateY(-2px);
+    }
+    .deck-btn-secondary {
+      background: #140726;
+      color: var(--neon-cyan);
+      border: 1px solid var(--neon-cyan);
+    }
+    .deck-btn-secondary:hover {
+      background: var(--neon-cyan);
+      color: #000;
+      transform: translateY(-2px);
+    }
+    .deck-btn-tertiary {
+      background: #0d0418;
+      color: var(--neon-yellow);
+      border: 1px solid var(--neon-yellow);
+    }
+    .deck-btn-tertiary:hover {
+      background: var(--neon-yellow);
+      color: #000;
+    }
+    .deck-btn-danger {
+      background: #20050e;
+      color: #ff5555;
+      border: 1px solid #ff5555;
+      margin-left: auto;
+    }
+    .deck-btn-danger:hover {
+      background: #ff5555;
+      color: #fff;
+    }
+
+    .composer-toast {
+      font-family: var(--font-pixel);
+      font-size: 0.65rem;
+      background: #00f5d4;
+      color: #000;
+      padding: 6px 12px;
+      border: 1px solid #fff;
+      box-shadow: 2px 2px 0 #000;
+      display: none;
+    }
+
+    .post-nav-bar-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 20px;
+      border-top: 2px dashed rgba(157, 78, 221, 0.4);
+      background: rgba(10, 3, 18, 0.9);
+      flex-wrap: wrap;
+    }
+
+    .nav-arrow-btn {
+      font-family: var(--font-pixel);
+      font-size: 0.62rem;
+      padding: 8px 14px;
+      background: #140526;
+      color: var(--neon-cyan);
+      border: 1px solid var(--neon-cyan);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .nav-arrow-btn:hover {
+      background: var(--neon-cyan);
+      color: #000;
+      box-shadow: 0 0 8px var(--neon-cyan-glow);
+    }
+
+    .custom-post-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 14px;
+      background: rgba(10, 4, 18, 0.8);
+      border: 1px solid var(--neon-purple);
+      flex-wrap: wrap;
+    }
   </style>
 </head>
 <body>
@@ -447,137 +668,322 @@
       </div>
     </nav>
 
-    <!-- SECTION 1: ABOUT CATEGORIES RETRO WINDOW -->
-    <section class="retro-window">
-      <div class="retro-titlebar">
-        <div class="retro-titlebar-left">
-          <span>[INDEX]</span> POST CATEGORIES // WHAT YOU CAN FIND HERE
-        </div>
-        <div class="retro-titlebar-controls">
-          <span class="retro-btn">_</span>
-          <span class="retro-btn">□</span>
-          <span class="retro-btn close">×</span>
-        </div>
+    <!-- DISPATCH MODE SWITCHER BAR -->
+    <div class="dispatch-mode-bar">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+        <button type="button" id="btn-mode-browse" class="mode-btn active">
+          📖 BROWSE DISPATCHES
+        </button>
+        <button type="button" id="btn-mode-compose" class="mode-btn">
+          ✍️ COMPOSE NEW DISPATCH
+        </button>
       </div>
-
-      <div class="retro-window-body">
-        <p style="font-size: 0.9rem; color: #cbd5e1; line-height: 1.5;">
-          Welcome to the personal dispatch terminal. Below you can find the four core categories of articles published on this station. Click any category card to filter, or choose directly from the interactive dropdown menu underneath to read the full entry.
-        </p>
-
-        <div class="categories-grid">
-          <!-- Card 1 -->
-          <div class="category-card" data-category="gaming">
-            <span class="cat-badge">01 // ARCHIVE</span>
-            <h3 class="cat-title">Retro Gaming</h3>
-            <p class="cat-desc">PS1 hardware quirks, Pokémon competitive theory, LSD Dream Emulator analysis, and GBA ROM preservation.</p>
-            <div class="cat-action-btn">FILTER CATEGORY ▶</div>
-          </div>
-
-          <!-- Card 2 -->
-          <div class="category-card" data-category="tech">
-            <span class="cat-badge">02 // ARCHIVE</span>
-            <h3 class="cat-title">Tech &amp; Linux</h3>
-            <p class="cat-desc">Arch Linux configs, Hyprland Wayland setups, custom liquid cooling loops, and magnetic keyboard tuning.</p>
-            <div class="cat-action-btn">FILTER CATEGORY ▶</div>
-          </div>
-
-          <!-- Card 3 -->
-          <div class="category-card" data-category="audio">
-            <span class="cat-badge">03 // ARCHIVE</span>
-            <h3 class="cat-title">Hyperpop Lab</h3>
-            <p class="cat-desc">240BPM synth composition, vocal chain distortion in Reaper, underground scene history, and chiptune soundscapes.</p>
-            <div class="cat-action-btn">FILTER CATEGORY ▶</div>
-          </div>
-
-          <!-- Card 4 -->
-          <div class="category-card" data-category="void">
-            <span class="cat-badge">04 // ARCHIVE</span>
-            <h3 class="cat-title">The Void &amp; Logs</h3>
-            <p class="cat-desc">3 AM musings, liminal architecture photos, anti-algorithm manifestos, and diary notes from South Carolina.</p>
-            <div class="cat-action-btn">FILTER CATEGORY ▶</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="retro-window-footer">
-        <span>ARCHIVE INDEX: 6 DISPATCHES ONLINE</span>
-        <span>RSS PROTOCOL: COMING SOON</span>
-      </div>
-    </section>
-
-    <!-- SECTION 2: MANIFESTO // ABOUT MY PRINCIPLES -->
-    <section class="retro-window">
-      <div class="retro-titlebar">
-        <div class="retro-titlebar-left">
-          <span>[MANIFESTO]</span> ABOUT MY PRINCIPLES // WHY I POST HERE
-        </div>
-        <div class="retro-titlebar-controls">
-          <span class="retro-btn">_</span>
-          <span class="retro-btn">□</span>
-          <span class="retro-btn close">×</span>
-        </div>
-      </div>
-
-      <div class="retro-window-body" style="font-size: 0.9rem; line-height: 1.6; color: #cbd5e1;">
-        <p>
-          Over recent years, the commercial internet has devolved into a handful of closed corporate silos driven by aggressive recommendation algorithms, biometric tracking, and artificial engagement farming. Platforms prioritize rage and ad clicks over genuine creativity.
-        </p>
-        <p>
-          I refuse to let corporate servers harvest my thoughts or reduce my creative work to content fodder. This website is hosted on Neocities as an independent digital sanctuary: hand-crafted with raw HTML, CSS, and vanilla JavaScript. No surveillance beacons, no sponsor popups, and no algorithmic feeds. Just real webcraft for real human beings.
-        </p>
-      </div>
-
-      <div class="retro-window-footer">
-        <span>MANIFESTO STATUS: VERIFIED // INDIEWEB FOREVER</span>
-      </div>
-    </section>
-
-    <!-- SECTION 3: DROPDOWN BAR & ARTICLE VIEWER -->
-    <div class="post-dropdown-panel">
-      <div class="post-dropdown-row">
-        <label for="contentSelector" class="dropdown-label">CHOOSE POST TO READ:</label>
-        <select id="contentSelector" class="post-select-input">
-          <option value="post1">01. Dissecting LSD Dream Emulator: The PS1 Hardware Architecture of Chaos</option>
-          <option value="post2">02. Competitive Ghost Types: Why Gholdengo &amp; Mimikyu Broke Gen 9</option>
-          <option value="post3">03. Why Arch Linux &amp; Hyprland Are My Daily Driver</option>
-          <option value="post4">04. Custom Hardware Philosophy: Rapid-Trigger Switches &amp; Liquid Loops</option>
-          <option value="post5">05. Producing at 240 BPM: Building Distorted Vocal Chains in Reaper</option>
-          <option value="post6">06. 3 AM Musings: The Death of Centralized Feeds and Return to Neocities</option>
-        </select>
-      </div>
-
-      <div class="filter-tabs-row">
-        <span class="filter-tab active" data-filter="all">[ALL POSTS]</span>
-        <span class="filter-tab" data-filter="gaming">[GAMING]</span>
-        <span class="filter-tab" data-filter="tech">[TECH &amp; LINUX]</span>
-        <span class="filter-tab" data-filter="audio">[HYPERPOP]</span>
-        <span class="filter-tab" data-filter="void">[THE VOID]</span>
+      <div id="station-dispatches-counter" style="font-family: var(--font-terminal); font-size: 1.15rem; color: var(--neon-cyan);">
+        ARCHIVES: 6 DISPATCHES ONLINE
       </div>
     </div>
 
-    <!-- SECTION 4: FULL ARTICLE CONTAINER -->
-    <article class="retro-window" id="article-window">
-      <div class="retro-titlebar">
-        <div class="retro-titlebar-left">
-          <span>[READER]</span> <span id="article-window-title">DISPATCH // READING VIEW</span>
+    <!-- BROWSE MODE VIEW: ARCHIVES & READER -->
+    <div id="view-browse-dispatches" style="display: flex; flex-direction: column; gap: 24px;">
+
+      <!-- SECTION 1: ABOUT CATEGORIES RETRO WINDOW -->
+      <section class="retro-window">
+        <div class="retro-titlebar">
+          <div class="retro-titlebar-left">
+            <span>[INDEX]</span> POST CATEGORIES // WHAT YOU CAN FIND HERE
+          </div>
+          <div class="retro-titlebar-controls">
+            <span class="retro-btn">_</span>
+            <span class="retro-btn">□</span>
+            <span class="retro-btn close">×</span>
+          </div>
         </div>
-        <div class="retro-titlebar-controls">
-          <span class="retro-btn">_</span>
-          <span class="retro-btn">□</span>
-          <span class="retro-btn close">×</span>
+
+        <div class="retro-window-body">
+          <p style="font-size: 0.9rem; color: #cbd5e1; line-height: 1.5;">
+            Welcome to the personal dispatch terminal. Below you can find the four core categories of articles published on this station. Click any category card to filter, or choose directly from the interactive dropdown menu underneath to read the full entry.
+          </p>
+
+          <div class="categories-grid">
+            <!-- Card 1 -->
+            <div class="category-card" data-category="gaming">
+              <span class="cat-badge">01 // ARCHIVE</span>
+              <h3 class="cat-title">Retro Gaming</h3>
+              <p class="cat-desc">PS1 hardware quirks, Pokémon competitive theory, LSD Dream Emulator analysis, and GBA ROM preservation.</p>
+              <div class="cat-action-btn">FILTER CATEGORY ▶</div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="category-card" data-category="tech">
+              <span class="cat-badge">02 // ARCHIVE</span>
+              <h3 class="cat-title">Tech &amp; Linux</h3>
+              <p class="cat-desc">Arch Linux configs, Hyprland Wayland setups, custom liquid cooling loops, and magnetic keyboard tuning.</p>
+              <div class="cat-action-btn">FILTER CATEGORY ▶</div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="category-card" data-category="audio">
+              <span class="cat-badge">03 // ARCHIVE</span>
+              <h3 class="cat-title">Hyperpop Lab</h3>
+              <p class="cat-desc">240BPM synth composition, vocal chain distortion in Reaper, underground scene history, and chiptune soundscapes.</p>
+              <div class="cat-action-btn">FILTER CATEGORY ▶</div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="category-card" data-category="void">
+              <span class="cat-badge">04 // ARCHIVE</span>
+              <h3 class="cat-title">The Void &amp; Logs</h3>
+              <p class="cat-desc">3 AM musings, liminal architecture photos, anti-algorithm manifestos, and diary notes from South Carolina.</p>
+              <div class="cat-action-btn">FILTER CATEGORY ▶</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="retro-window-footer">
+          <span id="browse-index-counter">ARCHIVE INDEX: 6 DISPATCHES ONLINE</span>
+          <span>RSS PROTOCOL: COMING SOON</span>
+        </div>
+      </section>
+
+      <!-- SECTION 2: MANIFESTO // ABOUT MY PRINCIPLES -->
+      <section class="retro-window">
+        <div class="retro-titlebar">
+          <div class="retro-titlebar-left">
+            <span>[MANIFESTO]</span> ABOUT MY PRINCIPLES // WHY I POST HERE
+          </div>
+          <div class="retro-titlebar-controls">
+            <span class="retro-btn">_</span>
+            <span class="retro-btn">□</span>
+            <span class="retro-btn close">×</span>
+          </div>
+        </div>
+
+        <div class="retro-window-body" style="font-size: 0.9rem; line-height: 1.6; color: #cbd5e1;">
+          <p>
+            Over recent years, the commercial internet has devolved into a handful of closed corporate silos driven by aggressive recommendation algorithms, biometric tracking, and artificial engagement farming. Platforms prioritize rage and ad clicks over genuine creativity.
+          </p>
+          <p>
+            I refuse to let corporate servers harvest my thoughts or reduce my creative work to content fodder. This website is hosted on Neocities as an independent digital sanctuary: hand-crafted with raw HTML, CSS, and vanilla JavaScript. No surveillance beacons, no sponsor popups, and no algorithmic feeds. Just real webcraft for real human beings.
+          </p>
+        </div>
+
+        <div class="retro-window-footer">
+          <span>MANIFESTO STATUS: VERIFIED // INDIEWEB FOREVER</span>
+        </div>
+      </section>
+
+      <!-- SECTION 3: DROPDOWN BAR & ARTICLE VIEWER -->
+      <div class="post-dropdown-panel">
+        <div class="post-dropdown-row">
+          <label for="contentSelector" class="dropdown-label">CHOOSE POST TO READ:</label>
+          <select id="contentSelector" class="post-select-input">
+            <option value="post1">01. Dissecting LSD Dream Emulator: The PS1 Hardware Architecture of Chaos</option>
+            <option value="post2">02. Competitive Ghost Types: Why Gholdengo &amp; Mimikyu Broke Gen 9</option>
+            <option value="post3">03. Why Arch Linux &amp; Hyprland Are My Daily Driver</option>
+            <option value="post4">04. Custom Hardware Philosophy: Rapid-Trigger Switches &amp; Liquid Loops</option>
+            <option value="post5">05. Producing at 240 BPM: Building Distorted Vocal Chains in Reaper</option>
+            <option value="post6">06. 3 AM Musings: The Death of Centralized Feeds and Return to Neocities</option>
+          </select>
+        </div>
+
+        <div class="filter-tabs-row">
+          <span class="filter-tab active" data-filter="all">[ALL POSTS]</span>
+          <span class="filter-tab" data-filter="gaming">[GAMING]</span>
+          <span class="filter-tab" data-filter="tech">[TECH &amp; LINUX]</span>
+          <span class="filter-tab" data-filter="audio">[HYPERPOP]</span>
+          <span class="filter-tab" data-filter="void">[THE VOID]</span>
         </div>
       </div>
 
-      <div class="retro-window-body" id="article-content-target">
-        <!-- Rendered dynamically by JavaScript -->
-      </div>
+      <!-- SECTION 4: FULL ARTICLE CONTAINER -->
+      <article class="retro-window" id="article-window">
+        <div class="retro-titlebar">
+          <div class="retro-titlebar-left">
+            <span>[READER]</span> <span id="article-window-title">DISPATCH // READING VIEW</span>
+          </div>
+          <div class="retro-titlebar-controls">
+            <span class="retro-btn">_</span>
+            <span class="retro-btn">□</span>
+            <span class="retro-btn close">×</span>
+          </div>
+        </div>
 
-      <div class="retro-window-footer">
-        <span id="article-footer-meta">AUTHOR: PONDS // STATION LOG #001</span>
-        <span>TERMINAL STATUS: 200 OK</span>
-      </div>
-    </article>
+        <div class="retro-window-body" id="article-content-target">
+          <!-- Rendered dynamically by JavaScript -->
+        </div>
+
+        <!-- Post Navigation Controls -->
+        <div class="post-nav-bar-bottom">
+          <button type="button" id="btn-prev-post" class="nav-arrow-btn">
+            ◀ PREVIOUS DISPATCH
+          </button>
+          <button type="button" id="btn-compose-jump" class="nav-arrow-btn" style="color: var(--neon-yellow); border-color: var(--neon-yellow);">
+            ✍️ COMPOSE NEW DISPATCH
+          </button>
+          <button type="button" id="btn-next-post" class="nav-arrow-btn">
+            NEXT DISPATCH ▶
+          </button>
+        </div>
+
+        <div class="retro-window-footer">
+          <span id="article-footer-meta">AUTHOR: PONDS // STATION LOG #001</span>
+          <span>TERMINAL STATUS: 200 OK</span>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- COMPOSE MODE VIEW: POST CREATOR STUDIO -->
+    <div id="view-compose-dispatch" style="display: none; flex-direction: column; gap: 24px;">
+
+      <!-- COMPOSER RETRO WINDOW -->
+      <section class="retro-window">
+        <div class="retro-titlebar">
+          <div class="retro-titlebar-left">
+            <span>[STUDIO]</span> PONDS.SYS // DISPATCH_WRITER.EXE
+          </div>
+          <div class="retro-titlebar-controls">
+            <span class="retro-btn">_</span>
+            <span class="retro-btn">□</span>
+            <span class="retro-btn close">×</span>
+          </div>
+        </div>
+
+        <div class="retro-window-body" style="gap: 18px;">
+          <p style="margin: 0; font-size: 0.88rem; line-height: 1.5; color: #cbd5e1;">
+            Write a new post or dispatch for your website. You can publish directly to this station's browser archives, copy the ready-to-paste code block for your source files, or download an offline HTML copy.
+          </p>
+
+          <form id="composer-form" style="display: flex; flex-direction: column; gap: 16px;">
+            <!-- Row 1: Title & Category -->
+            <div class="composer-grid">
+              <div class="composer-field-group">
+                <label for="compose-title" class="composer-label">★ DISPATCH TITLE:</label>
+                <input type="text" id="compose-title" class="composer-input" placeholder="e.g. Sampling Vintage Synths &amp; Breakbeats at 3 AM" required />
+              </div>
+
+              <div class="composer-field-group">
+                <label for="compose-category" class="composer-label">★ CATEGORY ARCHIVE:</label>
+                <select id="compose-category" class="composer-select" required>
+                  <option value="gaming">🎮 01 // RETRO GAMING</option>
+                  <option value="tech">📟 02 // TECH &amp; LINUX</option>
+                  <option value="audio">🔊 03 // HYPERPOP LAB</option>
+                  <option value="void">🌀 04 // THE VOID &amp; LOGS</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Row 2: Date & Read Time -->
+            <div class="composer-grid">
+              <div class="composer-field-group">
+                <label for="compose-date" class="composer-label">★ DISPATCH DATE (TIMESTAMP):</label>
+                <input type="text" id="compose-date" class="composer-input" placeholder="e.g. SEPTEMBER 06, 2026" />
+              </div>
+
+              <div class="composer-field-group">
+                <label for="compose-readtime" class="composer-label">★ ESTIMATED READ TIME:</label>
+                <input type="text" id="compose-readtime" class="composer-input" placeholder="e.g. 5 MIN READ" />
+              </div>
+            </div>
+
+            <!-- Quick Formatting Toolbar -->
+            <div class="composer-toolbar">
+              <span style="font-family: var(--font-pixel); font-size: 0.58rem; color: var(--neon-yellow); margin-right: 4px;">QUICK INSERT:</span>
+              <button type="button" class="composer-tool-btn" data-insert="p">[+ Paragraph]</button>
+              <button type="button" class="composer-tool-btn" data-insert="h3">[+ Heading]</button>
+              <button type="button" class="composer-tool-btn" data-insert="quote">[+ Callout Quote]</button>
+              <button type="button" class="composer-tool-btn" data-insert="code">[+ Code Block]</button>
+              <button type="button" class="composer-tool-btn" data-insert="list">[+ Bullet List]</button>
+              <button type="button" class="composer-tool-btn" data-insert="hr">[+ Divider]</button>
+            </div>
+
+            <!-- Main Content Area -->
+            <div class="composer-field-group">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <label for="compose-body" class="composer-label">★ DISPATCH BODY (PARAGRAPHS &amp; MARKUP):</label>
+                <span id="compose-stats" style="font-family: var(--font-terminal); font-size: 0.95rem; color: var(--neon-cyan);">0 WORDS // 0 CHARACTERS</span>
+              </div>
+              <textarea id="compose-body" class="composer-textarea" placeholder="Type your thoughts, Linux configs, game reviews, or music logs here... Supports plain text, HTML tags (<p>, <h3>, <blockquote>, <code>), or markdown shortcuts!" required></textarea>
+            </div>
+
+            <!-- Action Control Deck -->
+            <div class="composer-deck">
+              <button type="submit" class="deck-btn deck-btn-primary">
+                ★ PUBLISH TO STATION ARCHIVE ★
+              </button>
+              <button type="button" id="btn-copy-code" class="deck-btn deck-btn-secondary">
+                📋 COPY CODE SNIPPET
+              </button>
+              <button type="button" id="btn-download-html" class="deck-btn deck-btn-tertiary">
+                💾 DOWNLOAD AS .HTML
+              </button>
+              <button type="button" id="btn-clear-draft" class="deck-btn deck-btn-danger">
+                🗑️ CLEAR DRAFT
+              </button>
+            </div>
+
+            <div id="composer-toast" class="composer-toast">
+              [DISPATCH PUBLISHED SUCCESSFULLY // LOADED INTO TERMINAL]
+            </div>
+          </form>
+        </div>
+
+        <div class="retro-window-footer">
+          <span>STATUS: READY FOR INPUT</span>
+          <span>WRITER: PONDS // STATION LOG AUTHOR</span>
+        </div>
+      </section>
+
+      <!-- LIVE REAL-TIME PREVIEW WINDOW -->
+      <section class="retro-window">
+        <div class="retro-titlebar">
+          <div class="retro-titlebar-left">
+            <span>[PREVIEW]</span> LIVE TERMINAL RENDERER
+          </div>
+        </div>
+
+        <div class="retro-window-body" id="compose-preview-target">
+          <div class="article-header">
+            <div class="article-tagline-row">
+              <span class="article-category-badge" id="prev-category-badge">01 // RETRO GAMING</span>
+              <span class="article-meta-date" id="prev-meta-date">TIMESTAMP: SEPTEMBER 06, 2026 // 1 MIN READ</span>
+            </div>
+            <h2 class="article-title-heading" id="prev-title">Dispatch Title Preview</h2>
+          </div>
+          <div class="article-body-content" id="prev-body">
+            <p style="color: var(--text-muted); font-style: italic;">
+              Live reader preview will update in real-time as you write in the studio above...
+            </p>
+          </div>
+        </div>
+
+        <div class="retro-window-footer">
+          <span>PREVIEW ENGINE: SYNCHRONIZED</span>
+          <span>TARGET: RETRO READER VIEW</span>
+        </div>
+      </section>
+
+      <!-- STATION SAVED DISPATCHES MANAGER -->
+      <section class="retro-window" id="station-dispatches-manager">
+        <div class="retro-titlebar">
+          <div class="retro-titlebar-left">
+            <span>[MANAGE]</span> USER-PUBLISHED STATION DISPATCHES
+          </div>
+        </div>
+
+        <div class="retro-window-body">
+          <div id="user-posts-list" style="display: flex; flex-direction: column; gap: 8px;">
+            <!-- Rendered dynamically -->
+          </div>
+        </div>
+
+        <div class="retro-window-footer">
+          <span id="saved-dispatches-footer-text">SAVED IN LOCAL STATION STORAGE</span>
+          <span>PROTOCOL: PERSISTENT</span>
+        </div>
+      </section>
+
+    </div>
 
   </main>
 
@@ -587,6 +993,16 @@
   <!-- Audio and Interactive Post Engine -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
+      function escapeHtml(str) {
+        if (!str && str !== 0) return '';
+        return String(str)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#039;');
+      }
+
       // Sound FX Engine
       let sfxEnabled = true;
       let audioCtx = null;
@@ -740,17 +1156,104 @@
         }
       };
 
+      // Load any user created dispatches from localStorage
+      function getSavedUserPosts() {
+        try {
+          return JSON.parse(localStorage.getItem("ponds_station_dispatches") || "{}");
+        } catch(e) {
+          return {};
+        }
+      }
+
+      function saveUserPosts(posts) {
+        try {
+          localStorage.setItem("ponds_station_dispatches", JSON.stringify(posts));
+        } catch(e) {}
+      }
+
+      function getAllPosts() {
+        const userPosts = getSavedUserPosts();
+        return { ...userPosts, ...POSTS_DATA };
+      }
+
       const selector = document.getElementById("contentSelector");
       const target = document.getElementById("article-content-target");
       const windowTitle = document.getElementById("article-window-title");
       const footerMeta = document.getElementById("article-footer-meta");
+      const counterTotal = document.getElementById("station-dispatches-counter");
+      const browseCounter = document.getElementById("browse-index-counter");
+      let currentPostId = "post1";
+
+      function updateCounterDisplay() {
+        const total = Object.keys(getAllPosts()).length;
+        if (counterTotal) counterTotal.textContent = `ARCHIVES: ${total} DISPATCHES ONLINE`;
+        if (browseCounter) browseCounter.textContent = `ARCHIVE INDEX: ${total} DISPATCHES ONLINE`;
+      }
+
+      function rebuildSelectorOptions() {
+        if (!selector) return;
+        const currentVal = selector.value || currentPostId;
+        selector.innerHTML = "";
+
+        const all = getAllPosts();
+        const userPosts = getSavedUserPosts();
+        const userKeys = Object.keys(userPosts);
+
+        // Custom Dispatches Group
+        if (userKeys.length > 0) {
+          const userGroup = document.createElement("optgroup");
+          userGroup.label = "★ YOUR STATION DISPATCHES";
+          userKeys.forEach((key, idx) => {
+            const p = userPosts[key];
+            const opt = document.createElement("option");
+            opt.value = key;
+            opt.textContent = `★ ${p.title}`;
+            userGroup.appendChild(opt);
+          });
+          selector.appendChild(userGroup);
+        }
+
+        // Built-in Categories
+        const catMap = {
+          gaming: { label: "🎮 01 // RETRO GAMING", items: ["post1", "post2"] },
+          tech: { label: "📟 02 // TECH & LINUX", items: ["post3", "post4"] },
+          audio: { label: "🔊 03 // HYPERPOP LAB", items: ["post5"] },
+          void: { label: "🌀 04 // THE VOID & LOGS", items: ["post6"] }
+        };
+
+        for (const [cat, data] of Object.entries(catMap)) {
+          const grp = document.createElement("optgroup");
+          grp.label = data.label;
+          data.items.forEach(id => {
+            if (POSTS_DATA[id]) {
+              const opt = document.createElement("option");
+              opt.value = id;
+              opt.textContent = `${POSTS_DATA[id].title}`;
+              grp.appendChild(opt);
+            }
+          });
+          selector.appendChild(grp);
+        }
+
+        if (all[currentVal]) {
+          selector.value = currentVal;
+        } else {
+          selector.value = Object.keys(all)[0] || "post1";
+        }
+        updateCounterDisplay();
+      }
 
       function loadPost(postId) {
-        const post = POSTS_DATA[postId] || POSTS_DATA["post1"];
+        const all = getAllPosts();
+        const post = all[postId] || all["post1"];
         if (target && post) {
+          currentPostId = post.id;
           target.innerHTML = post.html;
           if (windowTitle) windowTitle.textContent = "READING: " + post.title.substring(0, 45) + "...";
-          if (footerMeta) footerMeta.textContent = post.footerMeta;
+          if (footerMeta) footerMeta.textContent = post.footerMeta || "AUTHOR: PONDS // STATION ARCHIVE";
+          if (selector && selector.value !== post.id) {
+            selector.value = post.id;
+          }
           playChime(650);
         }
       }
@@ -765,29 +1268,30 @@
       const filterTabs = document.querySelectorAll(".filter-tab");
       const categoryCards = document.querySelectorAll(".category-card");
 
+      function applyFilter(filter) {
+        const all = getAllPosts();
+        if (selector) {
+          Array.from(selector.options).forEach(opt => {
+            const post = all[opt.value];
+            if (filter === "all" || (post && post.category === filter)) {
+              opt.style.display = "";
+            } else {
+              opt.style.display = "none";
+            }
+          });
+          const firstVis = Array.from(selector.options).find(opt => opt.style.display !== "none");
+          if (firstVis) {
+            selector.value = firstVis.value;
+            loadPost(firstVis.value);
+          }
+        }
+      }
+
       filterTabs.forEach(tab => {
         tab.addEventListener("click", () => {
           filterTabs.forEach(t => t.classList.remove("active"));
           tab.classList.add("active");
-          const filter = tab.dataset.filter;
-
-          // Update selector options
-          if (selector) {
-            Array.from(selector.options).forEach(opt => {
-              const post = POSTS_DATA[opt.value];
-              if (filter === "all" || (post && post.category === filter)) {
-                opt.style.display = "";
-              } else {
-                opt.style.display = "none";
-              }
-            });
-            // Pick first visible
-            const firstVis = Array.from(selector.options).find(opt => opt.style.display !== "none");
-            if (firstVis) {
-              selector.value = firstVis.value;
-              loadPost(firstVis.value);
-            }
-          }
+          applyFilter(tab.dataset.filter);
           playChime(700);
         });
       });
@@ -804,8 +1308,489 @@
         });
       });
 
-      // Initial Load
+      // Mode Switcher (Browse vs Compose)
+      const btnModeBrowse = document.getElementById("btn-mode-browse");
+      const btnModeCompose = document.getElementById("btn-mode-compose");
+      const viewBrowse = document.getElementById("view-browse-dispatches");
+      const viewCompose = document.getElementById("view-compose-dispatch");
+      const btnComposeJump = document.getElementById("btn-compose-jump");
+
+      function setMode(mode, updateHash = false) {
+        if (mode === "compose") {
+          btnModeCompose.classList.add("active");
+          btnModeBrowse.classList.remove("active");
+          viewCompose.style.display = "flex";
+          viewBrowse.style.display = "none";
+          renderUserPostsManager();
+          playChime(750);
+          if (updateHash && window.location.hash !== "#compose") {
+            history.replaceState(null, "", "#compose");
+          }
+        } else {
+          btnModeBrowse.classList.add("active");
+          btnModeCompose.classList.remove("active");
+          viewBrowse.style.display = "flex";
+          viewCompose.style.display = "none";
+          playChime(650);
+          if (updateHash && window.location.hash === "#compose") {
+            history.replaceState(null, "", "#" + currentPostId);
+          }
+        }
+      }
+
+      if (btnModeBrowse) btnModeBrowse.addEventListener("click", () => setMode("browse", true));
+      if (btnModeCompose) btnModeCompose.addEventListener("click", () => setMode("compose", true));
+      if (btnComposeJump) {
+        btnComposeJump.addEventListener("click", () => {
+          setMode("compose", true);
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+      }
+
+      // Previous / Next Article Navigation
+      const btnPrevPost = document.getElementById("btn-prev-post");
+      const btnNextPost = document.getElementById("btn-next-post");
+
+      function stepPost(direction) {
+        if (!selector) return;
+        const visibleOptions = Array.from(selector.options).filter(opt => opt.style.display !== "none");
+        if (visibleOptions.length <= 1) return;
+
+        let currentIdx = visibleOptions.findIndex(opt => opt.value === currentPostId);
+        if (currentIdx === -1) currentIdx = 0;
+
+        let nextIdx = currentIdx + direction;
+        if (nextIdx < 0) nextIdx = visibleOptions.length - 1;
+        if (nextIdx >= visibleOptions.length) nextIdx = 0;
+
+        const nextOption = visibleOptions[nextIdx];
+        if (nextOption) {
+          selector.value = nextOption.value;
+          loadPost(nextOption.value);
+          document.getElementById("article-window").scrollIntoView({ behavior: "smooth" });
+        }
+      }
+
+      if (btnPrevPost) btnPrevPost.addEventListener("click", () => stepPost(-1));
+      if (btnNextPost) btnNextPost.addEventListener("click", () => stepPost(1));
+
+      /* ------------------------------------------------------------------------
+         DISPATCH COMPOSER & PREVIEW ENGINE
+         ------------------------------------------------------------------------ */
+      const composeTitle = document.getElementById("compose-title");
+      const composeCat = document.getElementById("compose-category");
+      const composeDate = document.getElementById("compose-date");
+      const composeRead = document.getElementById("compose-readtime");
+      const composeBody = document.getElementById("compose-body");
+      const composeStats = document.getElementById("compose-stats");
+      const composeForm = document.getElementById("composer-form");
+      const composeToast = document.getElementById("composer-toast");
+      const btnCopyCode = document.getElementById("btn-copy-code");
+      const btnDownloadHtml = document.getElementById("btn-download-html");
+      const btnClearDraft = document.getElementById("btn-clear-draft");
+
+      const prevTitle = document.getElementById("prev-title");
+      const prevCatBadge = document.getElementById("prev-category-badge");
+      const prevMetaDate = document.getElementById("prev-meta-date");
+      const prevBody = document.getElementById("prev-body");
+
+      const CAT_LABELS = {
+        gaming: "01 // RETRO GAMING",
+        tech: "02 // TECH & LINUX",
+        audio: "03 // HYPERPOP LAB",
+        void: "04 // THE VOID & LOGS"
+      };
+
+      // Set default formatted date
+      const monthNames = ["JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE", "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER"];
+      const now = new Date();
+      const defaultDateStr = `${monthNames[now.getMonth()]} ${String(now.getDate()).padStart(2, '0')}, ${now.getFullYear()}`;
+      if (composeDate && !composeDate.value) {
+        composeDate.value = defaultDateStr;
+      }
+
+      function formatBodyToHtml(rawText) {
+        if (!rawText.trim()) {
+          return '<p style="color: var(--text-muted); font-style: italic;">Live reader preview will update in real-time as you write in the studio above...</p>';
+        }
+
+        const lines = rawText.split("\n");
+        let htmlOut = "";
+        let inList = false;
+        let inCode = false;
+        let codeBuffer = [];
+
+        for (let line of lines) {
+          const trimmed = line.trim();
+
+          // Code block toggles
+          if (trimmed.startsWith("```")) {
+            if (inCode) {
+              htmlOut += `<div class="code-block">${escapeHtml(codeBuffer.join("\n"))}</div>`;
+              codeBuffer = [];
+              inCode = false;
+            } else {
+              if (inList) { htmlOut += "</ul>"; inList = false; }
+              inCode = true;
+            }
+            continue;
+          }
+
+          if (inCode) {
+            codeBuffer.push(line);
+            continue;
+          }
+
+          // Lists
+          if (trimmed.startsWith("- ") || trimmed.startsWith("* ")) {
+            if (!inList) {
+              htmlOut += '<ul style="padding-left: 20px; line-height: 1.6;">';
+              inList = true;
+            }
+            htmlOut += `<li>${formatInline(trimmed.substring(2))}</li>`;
+            continue;
+          } else if (inList) {
+            htmlOut += "</ul>";
+            inList = false;
+          }
+
+          // Headings
+          if (trimmed.startsWith("### ")) {
+            htmlOut += `<h3>${formatInline(trimmed.substring(4))}</h3>`;
+            continue;
+          }
+          if (trimmed.startsWith("## ")) {
+            htmlOut += `<h3 style="color: var(--neon-cyan);">${formatInline(trimmed.substring(3))}</h3>`;
+            continue;
+          }
+
+          // Callout quotes
+          if (trimmed.startsWith("> ")) {
+            htmlOut += `<div class="article-callout">"${formatInline(trimmed.substring(2))}"</div>`;
+            continue;
+          }
+
+          // Horizontal divider
+          if (trimmed === "---" || trimmed === "***") {
+            htmlOut += '<hr style="border: 0; border-top: 1px dashed var(--neon-purple); margin: 16px 0;" />';
+            continue;
+          }
+
+          // Standard paragraphs
+          if (trimmed.length > 0) {
+            if (trimmed.startsWith("<") && trimmed.endsWith(">")) {
+              htmlOut += trimmed;
+            } else {
+              htmlOut += `<p>${formatInline(line)}</p>`;
+            }
+          }
+        }
+
+        if (inCode && codeBuffer.length > 0) {
+          htmlOut += `<div class="code-block">${escapeHtml(codeBuffer.join("\n"))}</div>`;
+        }
+        if (inList) {
+          htmlOut += "</ul>";
+        }
+
+        return htmlOut;
+      }
+
+      function formatInline(str) {
+        return str
+          .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+          .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
+          .replace(/\*([^*]+)\*/g, "<em>$1</em>")
+          .replace(/`([^`]+)`/g, '<code style="background: #140526; color: var(--neon-cyan); padding: 2px 6px; border: 1px solid var(--neon-purple);">$1</code>');
+      }
+
+      function updatePreview() {
+        const title = (composeTitle ? composeTitle.value.trim() : "") || "Dispatch Title Preview";
+        const cat = composeCat ? composeCat.value : "gaming";
+        const date = (composeDate ? composeDate.value.trim() : "") || defaultDateStr;
+        const bodyText = composeBody ? composeBody.value : "";
+
+        // Calculate words and auto read time
+        const words = bodyText.trim().length > 0 ? bodyText.trim().split(/\s+/).length : 0;
+        const chars = bodyText.length;
+        if (composeStats) composeStats.textContent = `${words} WORDS // ${chars} CHARACTERS`;
+
+        let readTime = composeRead ? composeRead.value.trim() : "";
+        if (!readTime && words > 0) {
+          const calcMin = Math.max(1, Math.ceil(words / 180));
+          readTime = `${calcMin} MIN READ`;
+          if (composeRead) composeRead.placeholder = readTime;
+        }
+
+        if (prevTitle) prevTitle.textContent = title;
+        if (prevCatBadge) prevCatBadge.textContent = CAT_LABELS[cat] || "01 // DISPATCH";
+        if (prevMetaDate) prevMetaDate.textContent = `TIMESTAMP: ${date} // ${readTime || "1 MIN READ"}`;
+        if (prevBody) prevBody.innerHTML = formatBodyToHtml(bodyText);
+      }
+
+      if (composeTitle) composeTitle.addEventListener("input", updatePreview);
+      if (composeCat) composeCat.addEventListener("change", updatePreview);
+      if (composeDate) composeDate.addEventListener("input", updatePreview);
+      if (composeRead) composeRead.addEventListener("input", updatePreview);
+      if (composeBody) composeBody.addEventListener("input", updatePreview);
+
+      // Quick Toolbar helper insertions
+      document.querySelectorAll(".composer-tool-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          if (!composeBody) return;
+          const tag = btn.dataset.insert;
+          let insertText = "";
+
+          switch(tag) {
+            case "p":
+              insertText = "\nYour new paragraph text goes here...\n";
+              break;
+            case "h3":
+              insertText = "\n### SECTION TITLE IN ALL CAPS\n";
+              break;
+            case "quote":
+              insertText = '\n> "A standout quote or core principle from your thought process."\n';
+              break;
+            case "code":
+              insertText = "\n```bash\n# Terminal command or code snippet\npacman -Syu\n```\n";
+              break;
+            case "list":
+              insertText = "\n- Key insight number one\n- Key insight number two\n- Key insight number three\n";
+              break;
+            case "hr":
+              insertText = "\n---\n";
+              break;
+          }
+
+          const start = composeBody.selectionStart || composeBody.value.length;
+          const end = composeBody.selectionEnd || composeBody.value.length;
+          composeBody.value = composeBody.value.substring(0, start) + insertText + composeBody.value.substring(end);
+          composeBody.focus();
+          composeBody.setSelectionRange(start + insertText.length, start + insertText.length);
+          updatePreview();
+          playChime(680);
+        });
+      });
+
+      function showToast(msg) {
+        if (!composeToast) return;
+        composeToast.textContent = msg;
+        composeToast.style.display = "block";
+        setTimeout(() => {
+          composeToast.style.display = "none";
+        }, 3500);
+      }
+
+      function buildPostObject() {
+        const title = composeTitle ? composeTitle.value.trim() : "";
+        const cat = composeCat ? composeCat.value : "gaming";
+        const date = (composeDate ? composeDate.value.trim() : "") || defaultDateStr;
+        const words = composeBody && composeBody.value.trim().length > 0 ? composeBody.value.trim().split(/\s+/).length : 0;
+        const readTime = (composeRead && composeRead.value.trim()) ? composeRead.value.trim() : `${Math.max(1, Math.ceil(words / 180))} MIN READ`;
+        const bodyHtml = formatBodyToHtml(composeBody ? composeBody.value : "");
+        const catLabel = CAT_LABELS[cat] || "01 // DISPATCH";
+        const id = `user_post_${Date.now()}`;
+
+        const fullHtml = `
+<div class="article-header">
+  <div class="article-tagline-row">
+    <span class="article-category-badge">${escapeHtml(catLabel)}</span>
+    <span class="article-meta-date">TIMESTAMP: ${escapeHtml(date)} // ${escapeHtml(readTime)}</span>
+  </div>
+  <h2 class="article-title-heading">${escapeHtml(title)}</h2>
+</div>
+<div class="article-body-content">
+  ${bodyHtml}
+</div>`.trim();
+
+        return {
+          id,
+          title,
+          category: cat,
+          categoryLabel: catLabel,
+          date,
+          readTime,
+          footerMeta: `AUTHOR: PONDS // STATION LOG #${id.slice(-4)}`,
+          html: fullHtml
+        };
+      }
+
+      // Publish to Station Archive
+      if (composeForm) {
+        composeForm.addEventListener("submit", (e) => {
+          e.preventDefault();
+          const title = composeTitle ? composeTitle.value.trim() : "";
+          const body = composeBody ? composeBody.value.trim() : "";
+          if (!title || !body) return;
+
+          const postObj = buildPostObject();
+          const saved = getSavedUserPosts();
+          saved[postObj.id] = postObj;
+          saveUserPosts(saved);
+
+          rebuildSelectorOptions();
+          renderUserPostsManager();
+          setMode("browse");
+          loadPost(postObj.id);
+          document.getElementById("article-window").scrollIntoView({ behavior: "smooth" });
+
+          playChime(880);
+          showToast(`★ DISPATCH [${postObj.title.substring(0, 20)}...] PUBLISHED TO STATION ARCHIVE!`);
+        });
+      }
+
+      // Copy Code Snippet (for copying into posts/index.html repo code)
+      if (btnCopyCode) {
+        btnCopyCode.addEventListener("click", () => {
+          const postObj = buildPostObject();
+          const codeSnippet = `${postObj.id}: ${JSON.stringify(postObj, null, 2)},`;
+
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(codeSnippet).then(() => {
+              playChime(750);
+              showToast("📋 CODE SNIPPET COPIED! READY TO PASTE INTO POSTS_DATA IN REPO.");
+            }).catch(() => {
+              prompt("Copy this code snippet:", codeSnippet);
+            });
+          } else {
+            prompt("Copy this code snippet:", codeSnippet);
+          }
+        });
+      }
+
+      // Download Standalone .HTML File
+      if (btnDownloadHtml) {
+        btnDownloadHtml.addEventListener("click", () => {
+          const postObj = buildPostObject();
+          const pageHtml = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>${escapeHtml(postObj.title)} // PONDS.SYS</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body style="background: #090314; color: #fff; padding: 24px; font-family: sans-serif;">
+  <main style="max-width: 800px; margin: 0 auto; background: #120720; border: 2px solid #8b00ff; padding: 24px;">
+    ${postObj.html}
+  </main>
+</body>
+</html>`;
+
+          const blob = new Blob([pageHtml], { type: "text/html" });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement("a");
+          a.href = url;
+          a.download = `${postObj.title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}.html`;
+          document.body.appendChild(a);
+          a.click();
+          a.remove();
+          URL.revokeObjectURL(url);
+          playChime(750);
+          showToast("💾 HTML FILE GENERATED & DOWNLOADED!");
+        });
+      }
+
+      // Clear Draft Button
+      if (btnClearDraft) {
+        btnClearDraft.addEventListener("click", () => {
+          if (confirm("Reset composer fields and clear current draft?")) {
+            if (composeTitle) composeTitle.value = "";
+            if (composeDate) composeDate.value = defaultDateStr;
+            if (composeRead) composeRead.value = "";
+            if (composeBody) composeBody.value = "";
+            updatePreview();
+            playChime(440);
+          }
+        });
+      }
+
+      // User Posts Manager List
+      function renderUserPostsManager() {
+        const listEl = document.getElementById("user-posts-list");
+        const footerText = document.getElementById("saved-dispatches-footer-text");
+        if (!listEl) return;
+
+        const userPosts = getSavedUserPosts();
+        const keys = Object.keys(userPosts);
+
+        if (keys.length === 0) {
+          listEl.innerHTML = '<p style="color: var(--text-muted); font-style: italic; font-size: 0.85rem; margin: 6px 0;">[NO CUSTOM DISPATCHES YET // COMPOSE YOUR FIRST ONE ABOVE]</p>';
+          if (footerText) footerText.textContent = "0 CUSTOM DISPATCHES STORED";
+          return;
+        }
+
+        if (footerText) footerText.textContent = `${keys.length} CUSTOM DISPATCHES STORED IN STATION MEMORY`;
+        listEl.innerHTML = "";
+
+        keys.forEach(key => {
+          const p = userPosts[key];
+          const row = document.createElement("div");
+          row.className = "custom-post-item";
+          row.innerHTML = `
+            <div>
+              <span style="font-family: var(--font-pixel); font-size: 0.65rem; color: #fff;">${escapeHtml(p.title)}</span>
+              <span style="font-family: var(--font-terminal); font-size: 0.95rem; color: var(--neon-cyan); margin-left: 8px;">[${escapeHtml(p.categoryLabel)}] • ${escapeHtml(p.date)}</span>
+            </div>
+            <div style="display: flex; gap: 6px;">
+              <button type="button" class="deck-btn deck-btn-secondary" style="padding: 4px 8px; font-size: 0.58rem;" data-action="read" data-id="${p.id}">[READ]</button>
+              <button type="button" class="deck-btn deck-btn-tertiary" style="padding: 4px 8px; font-size: 0.58rem;" data-action="copy" data-id="${p.id}">[COPY CODE]</button>
+              <button type="button" class="deck-btn deck-btn-danger" style="padding: 4px 8px; font-size: 0.58rem;" data-action="delete" data-id="${p.id}">[DELETE]</button>
+            </div>
+          `;
+
+          row.querySelector('[data-action="read"]').addEventListener("click", () => {
+            setMode("browse");
+            loadPost(p.id);
+            document.getElementById("article-window").scrollIntoView({ behavior: "smooth" });
+          });
+
+          row.querySelector('[data-action="copy"]').addEventListener("click", () => {
+            const codeSnippet = `${p.id}: ${JSON.stringify(p, null, 2)},`;
+            navigator.clipboard.writeText(codeSnippet).then(() => {
+              playChime(750);
+              showToast(`📋 COPIED CODE FOR [${p.title.substring(0, 15)}...]`);
+            });
+          });
+
+          row.querySelector('[data-action="delete"]').addEventListener("click", () => {
+            if (confirm(`Delete custom dispatch "${p.title}"?`)) {
+              const currentSaved = getSavedUserPosts();
+              delete currentSaved[p.id];
+              saveUserPosts(currentSaved);
+              rebuildSelectorOptions();
+              renderUserPostsManager();
+              loadPost("post1");
+              playChime(440);
+              showToast("🗑️ CUSTOM DISPATCH REMOVED.");
+            }
+          });
+
+          listEl.appendChild(row);
+        });
+      }
+
+      // Initial Setup
+      rebuildSelectorOptions();
       loadPost("post1");
+      updatePreview();
+
+      // Hash Routing Support (#compose, #create, or #post1..post6)
+      function handleHashRouting() {
+        const hash = (window.location.hash || "").toLowerCase();
+        if (hash === "#compose" || hash === "#create" || hash === "#new") {
+          setMode("compose");
+        } else if (hash.startsWith("#post") || hash.startsWith("#custom_")) {
+          setMode("browse");
+          const targetId = window.location.hash.substring(1);
+          const all = getAllPosts();
+          if (all[targetId]) {
+            loadPost(targetId);
+          }
+        }
+      }
+      handleHashRouting();
+      window.addEventListener("hashchange", handleHashRouting);
 
       // Unlock Gym Badge for visiting /posts/
       try {
