@@ -394,7 +394,7 @@
     <section class="retro-window">
       <div class="retro-titlebar">
         <div class="retro-titlebar-left">
-          <span>💬</span> SHARE YOUR THOUGHTS // GUESTBOOK_WELCOME.TXT
+          <span>[MSG]</span> SHARE YOUR THOUGHTS // GUESTBOOK_WELCOME.TXT
         </div>
         <div class="retro-titlebar-controls">
           <span class="retro-btn">_</span>
@@ -405,24 +405,77 @@
 
       <div class="retro-window-body" style="font-size: 0.9rem; line-height: 1.5; color: #cbd5e1;">
         <p>
-          Welcome to the station guestbook! Got feedback on the site, want to say hello, or trade links? Drop your handle below, link your own Neocities or personal website, pick a retro pixel sticker, and leave a message.
+          Welcome to the station guestbook! Got feedback on the site, want to say hello, or trade links? Anyone from across the internet can sign our live Atabook guestbook below, or transmit a local dispatch!
         </p>
         <p style="color: var(--neon-cyan); font-family: var(--font-pixel); font-size: 0.65rem;">
-          ★ ALL SIGNATURES ARE STORED IN THE STATION LOCAL LEDGER. SPAM OR HARASSMENT IS FLUSHED TO /DEV/NULL.
+          ★ ALL SIGNATURES ARE PERSISTED GLOBALLY VIA ATABOOK. ZERO FAKE COMMENTS // SPAM IS FLUSHED TO /DEV/NULL.
         </p>
       </div>
 
       <div class="retro-window-footer">
         <span>GUESTBOOK PROTOCOL: ACTIVE</span>
-        <span>VISITORS WELCOME</span>
+        <span>REAL VISITORS WELCOME</span>
       </div>
     </section>
 
-    <!-- WINDOW 2: SIGN THE GUESTBOOK FORM -->
+    <!-- WINDOW 2: GLOBAL LIVE ATABOOK GUESTBOOK -->
     <section class="retro-window">
       <div class="retro-titlebar">
         <div class="retro-titlebar-left">
-          <span>✍️</span> SIGN THE GUESTBOOK // TRANSMIT_SIGNATURE.EXE
+          <span>[LIVE]</span> GLOBAL LIVE GUESTBOOK // ATABOOK.ORG
+        </div>
+        <div class="retro-titlebar-controls">
+          <span class="retro-btn">_</span>
+          <span class="retro-btn">□</span>
+          <span class="retro-btn close">×</span>
+        </div>
+      </div>
+
+      <div class="retro-window-body" style="padding: 14px;">
+        <div class="atabook-guide-card" style="background: #110524; border: 1px solid var(--neon-cyan); padding: 12px 16px; margin-bottom: 14px; font-size: 0.85rem; line-height: 1.5; color: #cbd5e1;">
+          <p style="margin: 0 0 6px 0; font-family: var(--font-pixel); font-size: 0.68rem; color: var(--neon-yellow);">
+            ★ REAL LIVE GUESTBOOK (POWERED BY ATABOOK FOR INDIEWEB &amp; NEOCITIES):
+          </p>
+          <p style="margin: 0 0 8px 0;">
+            Any visitor from across the internet can sign this guestbook live! Your entries will persist globally on Atabook's cloud servers.
+          </p>
+          <div style="font-family: var(--font-pixel); font-size: 0.62rem; color: var(--neon-pink);">
+            [★ TO CLAIM YOUR HANDLE: Register "ihateuponds" for free at <a href="https://atabook.org" target="_blank" rel="noopener noreferrer" style="color: var(--neon-cyan); text-decoration: underline;">atabook.org</a> so your personal ledger streams live here!]
+          </div>
+        </div>
+
+        <div class="atabook-frame-container" style="width: 100%; height: 700px; border: 2px solid var(--neon-purple); background: #06010d; position: relative;">
+          <iframe
+            src="https://ihateuponds.atabook.org/"
+            id="atabook-live-frame"
+            title="Ponds Atabook Live Guestbook"
+            style="width: 100%; height: 100%; border: none;"
+            allowtransparency="yes"
+            scrolling="auto"
+          ></iframe>
+        </div>
+
+        <div style="margin-top: 12px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+          <a href="https://ihateuponds.atabook.org/" target="_blank" rel="noopener noreferrer" class="submit-btn" style="text-decoration: none; padding: 8px 16px; font-size: 0.68rem; display: inline-block;">
+            ★ OPEN ATABOOK IN NEW TAB ↗
+          </a>
+          <span style="font-family: var(--font-pixel); font-size: 0.62rem; color: var(--text-muted);">
+            SECURITY: 100% SPAM FILTERED // ZERO BOT SPOOFING
+          </span>
+        </div>
+      </div>
+
+      <div class="retro-window-footer">
+        <span>SERVICE: ATABOOK CLOUD // NEOCITIES COMPLIANT</span>
+        <span>STATUS: 200 OK</span>
+      </div>
+    </section>
+
+    <!-- WINDOW 3: LOCAL STATION DISPATCH SIGNATURE -->
+    <section class="retro-window">
+      <div class="retro-titlebar">
+        <div class="retro-titlebar-left">
+          <span>[SIGN]</span> LOCAL STATION DISPATCH // TRANSMIT_SIGNATURE.EXE
         </div>
         <div class="retro-titlebar-controls">
           <span class="retro-btn">_</span>
@@ -492,11 +545,11 @@
       </div>
     </section>
 
-    <!-- WINDOW 3: GUESTBOOK LEDGER -->
+    <!-- WINDOW 4: GUESTBOOK LEDGER -->
     <section class="retro-window">
       <div class="retro-titlebar">
         <div class="retro-titlebar-left">
-          <span>📜</span> VISITOR LEDGER // RECENT SIGNATURES
+          <span>[LEDGER]</span> VISITOR LEDGER // RECENT SIGNATURES
         </div>
         <div class="retro-titlebar-controls">
           <span class="retro-btn">_</span>
@@ -507,12 +560,12 @@
 
       <div class="retro-window-body">
         <div class="ledger-feed" id="ledger-feed-target">
-          <!-- Populated by JavaScript and pre-seeded entries -->
+          <!-- Populated by JavaScript -->
         </div>
       </div>
 
       <div class="retro-window-footer">
-        <span id="ledger-count-meta">SIGNATURES RECORDED: 4</span>
+        <span id="ledger-count-meta">SIGNATURES RECORDED: 0</span>
         <span>ARCHIVE SYNCED</span>
       </div>
     </section>
@@ -637,44 +690,11 @@
         });
       });
 
-      // Default Seeded Signatures
-      const SEEDED_ENTRIES = [
-        {
-          name: "ransei_void",
-          url: "https://ransei.neocities.org",
-          avatar: "spiral",
-          date: "2026-08-30 22:15 EDT",
-          message: "Found your site through the webring! The 3D Pokemon card tilt and PS1 LSD Dream Emulator shrine are incredible. Keep the indie web alive!"
-        },
-        {
-          name: "glitch_kitten",
-          url: "",
-          avatar: "cat",
-          date: "2026-08-27 18:40 EDT",
-          message: "That baby g shock track on your WebAMP playlist slaps so hard. Your custom rig specs in the fastfetch terminal are super clean!"
-        },
-        {
-          name: "arch_neophyte",
-          url: "https://neocities.org",
-          avatar: "terminal",
-          date: "2026-08-22 03:12 EDT",
-          message: "Arch + Hyprland is the only way to run a machine. Glad to see another 240BPM producer fighting against algorithmic feed brainrot."
-        },
-        {
-          name: "pixel_dreamer",
-          url: "",
-          avatar: "mimikyu",
-          date: "2026-08-19 14:05 EDT",
-          message: "Grabbed your 88x31 button code and pinned it to my sidebar! Love the ghost trainer aesthetic."
-        }
-      ];
-
       function loadEntries() {
         try {
-          const userSaved = JSON.parse(localStorage.getItem("ponds_guestbook_entries") || "[]");
-          return [...userSaved, ...SEEDED_ENTRIES];
+          return JSON.parse(localStorage.getItem("ponds_guestbook_entries") || "[]");
         } catch(e) {
-          return SEEDED_ENTRIES;
+          return [];
         }
       }
 
@@ -686,6 +706,16 @@
 
         if (countMeta) countMeta.textContent = `SIGNATURES RECORDED: ${list.length}`;
         target.innerHTML = "";
+
+        if (list.length === 0) {
+          target.innerHTML = `
+            <div class="ledger-empty-msg" style="text-align: center; padding: 32px 14px; color: var(--text-muted); font-family: var(--font-pixel); font-size: 0.72rem; line-height: 1.8;">
+              [LEDGER EMPTY // NO SIGNATURES RECORDED YET]<br>
+              <span style="color: var(--neon-cyan);">TRANSMIT THE FIRST ENTRY ABOVE OR SIGN VIA ATABOOK!</span>
+            </div>
+          `;
+          return;
+        }
 
         list.forEach(entry => {
           const avatarSrc = AVATAR_MAP[entry.avatar] || AVATAR_MAP["gengar"];

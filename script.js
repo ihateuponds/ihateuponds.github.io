@@ -1477,10 +1477,80 @@ document.addEventListener('DOMContentLoaded', () => {
   renderGymBadges();
 
   /* ------------------------------------------------------------------------
-     STATION SHOUTBOX / CHATBOX ENGINE
+     STATION SHOUTBOX & CBOX LIVE CHAT ENGINE
      ------------------------------------------------------------------------ */
   const shoutboxForm = document.getElementById('shoutbox-form');
   const shoutboxFeed = document.getElementById('shoutbox-feed');
+  const btnChatCbox = document.getElementById('btn-chat-cbox');
+  const btnChatLocal = document.getElementById('btn-chat-local');
+  const btnChatCfg = document.getElementById('btn-chat-cfg');
+  const cboxPanel = document.getElementById('cbox-panel');
+  const localPanel = document.getElementById('local-panel');
+  const cboxFrame = document.getElementById('cbox-live-frame');
+  const cboxPrompt = document.getElementById('cbox-setup-prompt');
+  const btnEnterCbox = document.getElementById('btn-enter-cbox');
+
+  function updateCboxFrame() {
+    const boxId = localStorage.getItem('ponds_cbox_id') || '';
+    const boxTag = localStorage.getItem('ponds_cbox_tag') || '';
+    if (boxId && boxTag) {
+      if (cboxFrame) {
+        cboxFrame.src = `https://www3.cbox.ws/box/?boxid=${encodeURIComponent(boxId)}&boxtag=${encodeURIComponent(boxTag)}`;
+        cboxFrame.style.display = 'block';
+      }
+      if (cboxPrompt) cboxPrompt.style.display = 'none';
+    } else {
+      if (cboxFrame) cboxFrame.style.display = 'none';
+      if (cboxPrompt) cboxPrompt.style.display = 'block';
+    }
+  }
+
+  function promptCboxCredentials() {
+    const currentId = localStorage.getItem('ponds_cbox_id') || '';
+    const currentTag = localStorage.getItem('ponds_cbox_tag') || '';
+    const newId = prompt('Enter your Cbox BoxID (from cbox.ws dashboard):', currentId);
+    if (newId === null) return;
+    const newTag = prompt('Enter your Cbox BoxTag (e.g. JAK2V9):', currentTag);
+    if (newTag === null) return;
+
+    if (newId.trim() && newTag.trim()) {
+      localStorage.setItem('ponds_cbox_id', newId.trim());
+      localStorage.setItem('ponds_cbox_tag', newTag.trim());
+      updateCboxFrame();
+      playSfx('badge');
+    }
+  }
+
+  if (btnChatCfg) btnChatCfg.addEventListener('click', promptCboxCredentials);
+  if (btnEnterCbox) btnEnterCbox.addEventListener('click', promptCboxCredentials);
+
+  if (btnChatCbox && btnChatLocal && cboxPanel && localPanel) {
+    btnChatCbox.addEventListener('click', () => {
+      btnChatCbox.style.background = 'var(--neon-pink)';
+      btnChatCbox.style.color = '#fff';
+      btnChatCbox.style.borderColor = '#fff';
+      btnChatLocal.style.background = '#140526';
+      btnChatLocal.style.color = 'var(--neon-cyan)';
+      btnChatLocal.style.borderColor = 'var(--neon-purple)';
+      cboxPanel.style.display = 'block';
+      localPanel.style.display = 'none';
+      playSfx('click');
+    });
+
+    btnChatLocal.addEventListener('click', () => {
+      btnChatLocal.style.background = 'var(--neon-pink)';
+      btnChatLocal.style.color = '#fff';
+      btnChatLocal.style.borderColor = '#fff';
+      btnChatCbox.style.background = '#140526';
+      btnChatCbox.style.color = 'var(--neon-cyan)';
+      btnChatCbox.style.borderColor = 'var(--neon-purple)';
+      localPanel.style.display = 'block';
+      cboxPanel.style.display = 'none';
+      playSfx('click');
+    });
+  }
+
+  updateCboxFrame();
 
   function loadShouts() {
     try {
@@ -1492,7 +1562,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function renderShouts() {
     if (!shoutboxFeed) return;
+    shoutboxFeed.innerHTML = '';
     const userShouts = loadShouts();
+    if (userShouts.length === 0) {
+      shoutboxFeed.innerHTML = '<div class="shout-empty-notice" style="color: var(--text-muted); font-style: italic; padding: 16px 8px; font-family: var(--font-body); font-size: 0.82rem; text-align: center;">[NO TRANSMISSIONS YET // TRANSMIT FIRST DISPATCH]</div>';
+      return;
+    }
     userShouts.forEach(shout => {
       const line = document.createElement('div');
       line.className = 'shout-line';
@@ -1525,6 +1600,9 @@ document.addEventListener('DOMContentLoaded', () => {
       try {
         localStorage.setItem('ponds_shoutbox_data', JSON.stringify(saved));
       } catch(e) {}
+
+      const emptyNotice = shoutboxFeed.querySelector('.shout-empty-notice');
+      if (emptyNotice) emptyNotice.remove();
 
       const line = document.createElement('div');
       line.className = 'shout-line';

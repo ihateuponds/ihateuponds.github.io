@@ -748,21 +748,42 @@
           <div class="washi-tape pink-tape">CBOX_SHOUTBOX.NET</div>
           <div class="card-header">
             <h2 class="card-title">★ STATION SHOUTBOX</h2>
-            <span class="pkmn-sub">Drop a live message or handle!</span>
+            <span class="pkmn-sub">Live global web chat powered by Cbox!</span>
           </div>
 
-          <div class="shoutbox-feed" id="shoutbox-feed">
-            <div class="shout-line"><span class="shout-time">[02:14]</span> <span class="shout-user">&lt;kumi_core&gt;</span> <span class="shout-text">yo loving the 3d card inspector on this site!</span></div>
-            <div class="shout-line"><span class="shout-time">[03:41]</span> <span class="shout-user">&lt;void_walker&gt;</span> <span class="shout-text">what switches are in that keyboard on the rig page?</span></div>
-            <div class="shout-line"><span class="shout-time">[04:19]</span> <span class="shout-user">&lt;neonet_99&gt;</span> <span class="shout-text">added your 88x31 badge to my neocities links page!</span></div>
-            <div class="shout-line"><span class="shout-time">[05:02]</span> <span class="shout-user" style="color: var(--neon-pink);">&lt;ihateuponds&gt;</span> <span class="shout-text">welcome to the station! grab an mp3 from the player and make yourself at home :3</span></div>
+          <!-- Dual Chat Switcher -->
+          <div class="chat-switch-bar" style="display: flex; gap: 6px; margin-bottom: 10px; flex-wrap: wrap;">
+            <button type="button" id="btn-chat-cbox" class="chat-tab-btn active" style="font-family: var(--font-pixel); font-size: 0.6rem; padding: 5px 9px; background: var(--neon-pink); color: #fff; border: 1px solid #fff; cursor: pointer;">★ LIVE CBOX (GLOBAL)</button>
+            <button type="button" id="btn-chat-local" class="chat-tab-btn" style="font-family: var(--font-pixel); font-size: 0.6rem; padding: 5px 9px; background: #140526; color: var(--neon-cyan); border: 1px solid var(--neon-purple); cursor: pointer;">[STATION DISPATCH]</button>
+            <button type="button" id="btn-chat-cfg" class="chat-tab-btn" style="font-family: var(--font-pixel); font-size: 0.6rem; padding: 5px 9px; background: #0c0418; color: var(--neon-yellow); border: 1px solid var(--neon-yellow); cursor: pointer; margin-left: auto;">[*] LINK CBOX ID</button>
           </div>
 
-          <form id="shoutbox-form" class="shoutbox-form">
-            <input type="text" id="shout-name" class="shout-input-name" placeholder="Handle" maxlength="20" required />
-            <input type="text" id="shout-msg" class="shout-input-msg" placeholder="Drop a message..." maxlength="140" required />
-            <button type="submit" class="shout-btn-send">SEND</button>
-          </form>
+          <!-- Live Cbox Web Chat Panel -->
+          <div id="cbox-panel" style="width: 100%; border: 1px solid var(--neon-purple); background: #090214; margin-bottom: 6px;">
+            <div id="cbox-setup-prompt" style="padding: 24px 14px; text-align: center; font-family: var(--font-pixel); font-size: 0.68rem; line-height: 1.8; color: #cbd5e1; background: #0a0214; display: none;">
+              <div style="color: var(--neon-yellow); margin-bottom: 8px;">★ REAL LIVE GLOBAL CHATBOX (POWERED BY CBOX) ★</div>
+              <p style="font-family: var(--font-body); font-size: 0.85rem; color: #cbd5e1; margin-bottom: 14px;">
+                Connect your free Cbox room so real visitors from around the world can chat live!
+              </p>
+              <div style="display: flex; justify-content: center; gap: 8px; flex-wrap: wrap;">
+                <a href="https://www.cbox.ws" target="_blank" rel="noopener noreferrer" class="shout-btn-send" style="text-decoration: none; display: inline-block; padding: 6px 12px;">1. GET FREE CBOX (30 SEC) ↗</a>
+                <button type="button" id="btn-enter-cbox" class="shout-btn-send" style="background: var(--neon-cyan); color: #000; padding: 6px 12px; cursor: pointer;">2. ENTER BOXID &amp; BOXTAG</button>
+              </div>
+            </div>
+            <iframe id="cbox-live-frame" src="" width="100%" height="320" allowtransparency="yes" allow="autoplay" frameborder="0" marginheight="0" marginwidth="0" scrolling="auto" style="width: 100%; height: 320px; border: none; display: block;"></iframe>
+          </div>
+
+          <!-- Local Station Dispatch Container (0 fake comments) -->
+          <div id="local-panel" style="display: none;">
+            <div class="shoutbox-feed" id="shoutbox-feed">
+              <div class="shout-empty-notice" style="color: var(--text-muted); font-style: italic; padding: 16px 8px; font-family: var(--font-body); font-size: 0.82rem; text-align: center;">[NO TRANSMISSIONS YET // TRANSMIT FIRST DISPATCH]</div>
+            </div>
+            <form id="shoutbox-form" class="shoutbox-form">
+              <input type="text" id="shout-name" class="shout-input-name" placeholder="Handle" maxlength="20" required />
+              <input type="text" id="shout-msg" class="shout-input-msg" placeholder="Drop a message..." maxlength="140" required />
+              <button type="submit" class="shout-btn-send">SEND</button>
+            </form>
+          </div>
         </section>
 
       </div>
