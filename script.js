@@ -1490,9 +1490,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const cboxPrompt = document.getElementById('cbox-setup-prompt');
   const btnEnterCbox = document.getElementById('btn-enter-cbox');
 
+  const DEFAULT_CBOX_ID = '3560113';
+  const DEFAULT_CBOX_TAG = '2LNz2J';
+
   function updateCboxFrame() {
-    const boxId = localStorage.getItem('ponds_cbox_id') || '';
-    const boxTag = localStorage.getItem('ponds_cbox_tag') || '';
+    const boxId = localStorage.getItem('ponds_cbox_id') || DEFAULT_CBOX_ID;
+    const boxTag = localStorage.getItem('ponds_cbox_tag') || DEFAULT_CBOX_TAG;
     if (boxId && boxTag) {
       if (cboxFrame) {
         cboxFrame.src = `https://www3.cbox.ws/box/?boxid=${encodeURIComponent(boxId)}&boxtag=${encodeURIComponent(boxTag)}`;
@@ -1506,11 +1509,11 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function promptCboxCredentials() {
-    const currentId = localStorage.getItem('ponds_cbox_id') || '';
-    const currentTag = localStorage.getItem('ponds_cbox_tag') || '';
+    const currentId = localStorage.getItem('ponds_cbox_id') || DEFAULT_CBOX_ID;
+    const currentTag = localStorage.getItem('ponds_cbox_tag') || DEFAULT_CBOX_TAG;
     const newId = prompt('Enter your Cbox BoxID (from cbox.ws dashboard):', currentId);
     if (newId === null) return;
-    const newTag = prompt('Enter your Cbox BoxTag (e.g. JAK2V9):', currentTag);
+    const newTag = prompt('Enter your Cbox BoxTag (from cbox.ws dashboard):', currentTag);
     if (newTag === null) return;
 
     if (newId.trim() && newTag.trim()) {
