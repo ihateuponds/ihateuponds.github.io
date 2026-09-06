@@ -155,4 +155,11 @@
     shard.addEventListener("dblclick", triggerDreamWarp);
   });
 
+  // Unlock Marsh Badge for visiting LSD Realm
+  try {
+    let badges = JSON.parse(localStorage.getItem("ponds_gym_badges") || "{}");
+    badges["marsh"] = true;
+    localStorage.setItem("ponds_gym_badges", JSON.stringify(badges));
+  } catch(e) {}
+
 })();

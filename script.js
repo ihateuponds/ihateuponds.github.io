@@ -499,7 +499,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { text: "[SYS_ADMIN / NEET]", color: "pink" },
         { text: "[OPSEC / DEFENSE]", color: "cyan" }
       ],
-      bio: "Welcome to my website :3 my names Paul but i go by Ponds online, Im from SC and Im in school for Cybersecurity. I love hyperpop, EDM, and metal music. Im pretty open to making friends but Im lowkey anxious as fuck so bare with me."
+      bio: "Welcome to my website :3 I go by Ponds online, Im from SC and Im in school for Cybersecurity. I love hyperpop, EDM, and metal music. Im pretty open to making friends but Im lowkey anxious as fuck so bare with me."
     },
     status: {
       mood: "Lowkey Anxious & Overstimulated",
@@ -1386,6 +1386,155 @@ document.addEventListener('DOMContentLoaded', () => {
       if (policyModal && policyModal.classList.contains('active')) closePolicy();
     }
   });
+
+  /* ------------------------------------------------------------------------
+     POKÉMON BOOSTER PACK & BADGE CASE ENGINE
+     ------------------------------------------------------------------------ */
+  const BOOSTER_POOL = [
+    { name: "Gengar VMAX (Alt Art)", set: "Fusion Strike #271", rarity: "Secret Rare Alt Art", img: "https://images.pokemontcg.io/swsh8/271_hires.png" },
+    { name: "Umbreon VMAX (Moonbreon)", set: "Evolving Skies #215", rarity: "Special Secret Art", img: "https://images.pokemontcg.io/swsh7/215_hires.png" },
+    { name: "Giratina V (Alt Art)", set: "Lost Origin #186", rarity: "Alternate Art Ultra Rare", img: "https://images.pokemontcg.io/swsh11/186_hires.png" },
+    { name: "Rayquaza VMAX (Alt Art)", set: "Evolving Skies #218", rarity: "Secret Rare Alt Art", img: "https://images.pokemontcg.io/swsh7/218_hires.png" },
+    { name: "Mewtwo & Mew GX", set: "Unified Minds #242", rarity: "Rainbow Secret Rare", img: "https://images.pokemontcg.io/sm11/242_hires.png" },
+    { name: "Gholdengo ex (SIR)", set: "Paradox Rift #252", rarity: "Special Illustration Rare", img: "https://images.pokemontcg.io/sv4/252_hires.png" },
+    { name: "Skeledirge ex (SIR)", set: "Paldea Evolved #258", rarity: "Special Illustration Rare", img: "https://images.pokemontcg.io/sv2/258_hires.png" },
+    { name: "Sabrina Gengar", set: "Gym Heroes #14", rarity: "Holo Vintage Rare", img: "https://images.pokemontcg.io/gym1/14_hires.png" }
+  ];
+
+  const btnRipBooster = document.getElementById('btn-rip-booster');
+  const packPullsContainer = document.getElementById('pack-pulls-container');
+
+  if (btnRipBooster && packPullsContainer) {
+    btnRipBooster.addEventListener('click', () => {
+      playSfx('powerup');
+      btnRipBooster.textContent = "★ PACK OPENED! RIP ANOTHER? ★";
+      packPullsContainer.style.display = 'grid';
+      packPullsContainer.innerHTML = '';
+
+      // Pick 3 unique random cards
+      const shuffled = [...BOOSTER_POOL].sort(() => 0.5 - Math.random());
+      const pulls = shuffled.slice(0, 3);
+
+      pulls.forEach(card => {
+        const cardEl = document.createElement('div');
+        cardEl.className = 'pulled-card';
+        cardEl.innerHTML = `
+          <img src="${card.img}" alt="${escapeHtml(card.name)}" loading="lazy" />
+          <span class="pulled-card-name">${escapeHtml(card.name)}</span>
+          <span class="pulled-card-rarity">${escapeHtml(card.rarity)}</span>
+        `;
+        packPullsContainer.appendChild(cardEl);
+      });
+
+      // Unlock Soul Badge
+      unlockGymBadge('soul');
+    });
+  }
+
+  // Gym Badges Management
+  function getGymBadges() {
+    try {
+      return JSON.parse(localStorage.getItem('ponds_gym_badges') || '{"boulder": true}');
+    } catch(e) {
+      return { boulder: true };
+    }
+  }
+
+  function unlockGymBadge(badgeName) {
+    try {
+      const badges = getGymBadges();
+      badges[badgeName] = true;
+      localStorage.setItem('ponds_gym_badges', JSON.stringify(badges));
+      renderGymBadges();
+    } catch(e) {}
+  }
+
+  function renderGymBadges() {
+    const badges = getGymBadges();
+    const slots = document.querySelectorAll('.gym-badge-slot');
+    let count = 0;
+
+    slots.forEach(slot => {
+      const badgeKey = slot.dataset.badge;
+      if (badges[badgeKey]) {
+        slot.classList.remove('locked');
+        slot.classList.add('unlocked');
+        count++;
+      } else {
+        slot.classList.add('locked');
+        slot.classList.remove('unlocked');
+      }
+    });
+
+    const countText = document.getElementById('badge-count-text');
+    if (countText) {
+      countText.textContent = `UNLOCKED: ${count}/8`;
+    }
+  }
+
+  // Initial badge check (always unlock boulder on root)
+  unlockGymBadge('boulder');
+  renderGymBadges();
+
+  /* ------------------------------------------------------------------------
+     STATION SHOUTBOX / CHATBOX ENGINE
+     ------------------------------------------------------------------------ */
+  const shoutboxForm = document.getElementById('shoutbox-form');
+  const shoutboxFeed = document.getElementById('shoutbox-feed');
+
+  function loadShouts() {
+    try {
+      return JSON.parse(localStorage.getItem('ponds_shoutbox_data') || '[]');
+    } catch(e) {
+      return [];
+    }
+  }
+
+  function renderShouts() {
+    if (!shoutboxFeed) return;
+    const userShouts = loadShouts();
+    userShouts.forEach(shout => {
+      const line = document.createElement('div');
+      line.className = 'shout-line';
+      line.innerHTML = `<span class="shout-time">[${escapeHtml(shout.time)}]</span> <span class="shout-user" style="color: var(--neon-cyan);">&lt;${escapeHtml(shout.name)}&gt;</span> <span class="shout-text">${escapeHtml(shout.msg)}</span>`;
+      shoutboxFeed.appendChild(line);
+    });
+    shoutboxFeed.scrollTop = shoutboxFeed.scrollHeight;
+  }
+
+  if (shoutboxForm && shoutboxFeed) {
+    renderShouts();
+
+    shoutboxForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const nameInput = document.getElementById('shout-name');
+      const msgInput = document.getElementById('shout-msg');
+      if (!nameInput || !msgInput) return;
+
+      const name = nameInput.value.trim();
+      const msg = msgInput.value.trim();
+      if (!name || !msg) return;
+
+      playSfx('click');
+      const now = new Date();
+      const timeStr = String(now.getHours()).padStart(2, '0') + ':' + String(now.getMinutes()).padStart(2, '0');
+
+      const newShout = { name, msg, time: timeStr };
+      const saved = loadShouts();
+      saved.push(newShout);
+      try {
+        localStorage.setItem('ponds_shoutbox_data', JSON.stringify(saved));
+      } catch(e) {}
+
+      const line = document.createElement('div');
+      line.className = 'shout-line';
+      line.innerHTML = `<span class="shout-time">[${timeStr}]</span> <span class="shout-user" style="color: var(--neon-pink);">&lt;${escapeHtml(name)}&gt;</span> <span class="shout-text">${escapeHtml(msg)}</span>`;
+      shoutboxFeed.appendChild(line);
+      shoutboxFeed.scrollTop = shoutboxFeed.scrollHeight;
+
+      msgInput.value = '';
+    });
+  }
 
   render();
 });

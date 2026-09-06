@@ -217,4 +217,11 @@
   updateClock();
   setInterval(updateClock, 1000);
   markTodayRow();
+
+  // Unlock Cascade Badge
+  try {
+    let badges = JSON.parse(localStorage.getItem("ponds_gym_badges") || "{}");
+    badges["cascade"] = true;
+    localStorage.setItem("ponds_gym_badges", JSON.stringify(badges));
+  } catch(e) {}
 })();

@@ -120,7 +120,7 @@
             <span class="accent-pill cyan">[OPSEC / DEFENSE]</span>
           </p>
           <p class="hero-bio" id="hero-bio-text">
-            Welcome to my website :3 my names Paul but i go by Ponds online, Im from SC and Im in school for Cybersecurity. I love hyperpop, EDM, and metal music. Im pretty open to making friends but Im lowkey anxious as fuck so bare with me.
+            Welcome to my website :3 I go by Ponds online, Im from SC and Im in school for Cybersecurity. I love hyperpop, EDM, and metal music. Im pretty open to making friends but Im lowkey anxious as fuck so bare with me.
           </p>
         </div>
       </div>
@@ -287,6 +287,21 @@
               <span class="link-name">StrawPage Portal</span>
               <span class="link-arrow">[VIEW]</span>
             </a>
+            <a href="about/" class="neon-link-btn" style="border-color: var(--neon-pink);">
+              <span class="link-icon">[ABOUT]</span>
+              <span class="link-name">Operator Bio &amp; FAQ</span>
+              <span class="link-arrow">/about/</span>
+            </a>
+            <a href="posts/" class="neon-link-btn" style="border-color: var(--neon-cyan);">
+              <span class="link-icon">[POSTS]</span>
+              <span class="link-name">Dispatches &amp; Archives</span>
+              <span class="link-arrow">/posts/</span>
+            </a>
+            <a href="guestbook/" class="neon-link-btn" style="border-color: var(--neon-yellow);">
+              <span class="link-icon">[GUESTBOOK]</span>
+              <span class="link-name">Signatures &amp; Ledger</span>
+              <span class="link-arrow">/guestbook/</span>
+            </a>
             <a href="support/" class="neon-link-btn support-btn">
               <span class="link-icon">[SUPPORT]</span>
               <span class="link-name">Tech Support Intake</span>
@@ -321,13 +336,13 @@
 
           <div class="polaroids-grid" id="polaroids-grid">
             <!-- Polaroid 1 -->
-            <div class="polaroid-card" style="transform: rotate(-3deg);" data-full="./photos/IMG_20260222_213811_475.jpg" data-title="Paul // Ponds" data-sub="Affliction Fit • SC // 2026">
+            <div class="polaroid-card" style="transform: rotate(-3deg);" data-full="./photos/IMG_20260222_213811_475.jpg" data-title="Ponds" data-sub="Affliction Fit • SC // 2026">
               <div class="polaroid-tape"></div>
               <div class="polaroid-img-frame">
                 <img src="./photos/IMG_20260222_213811_475.jpg" alt="Ponds in Affliction Fit" class="polaroid-img" />
               </div>
               <div class="polaroid-caption-area">
-                <span class="polaroid-title">★ Paul // Ponds</span>
+                <span class="polaroid-title">★ Ponds</span>
                 <span class="polaroid-date">Affliction Fit • SC // 2026</span>
               </div>
             </div>
@@ -578,13 +593,76 @@
           </div>
         </section>
 
+        <!-- CARD: POKÉMON BOOSTER PACK & BADGE CASE -->
+        <section class="booster-pack-card">
+          <div class="washi-tape purple-tape">BOOSTER_PACK.PKMN</div>
+          <div class="card-header">
+            <h2 class="card-title">★ CYBER BOOSTER PACK &amp; BADGE CASE</h2>
+            <span class="pkmn-sub">Click to rip open 3 holographic cards!</span>
+          </div>
+
+          <div class="booster-pack-cta-box">
+            <p style="font-family: var(--font-pixel); font-size: 0.65rem; color: var(--neon-cyan);">
+              CYBER VOID EDITION // 1ST EDITION FOIL
+            </p>
+            <button id="btn-rip-booster" class="btn-rip-pack">
+              ★ RIP OPEN CYBER BOOSTER PACK ★
+            </button>
+            <div id="pack-pulls-container" class="pack-pulls-reveal" style="display: none;">
+              <!-- 3 cards revealed here -->
+            </div>
+          </div>
+
+          <!-- Kanto Gym Badge Case -->
+          <div class="badge-case-container">
+            <div class="badge-case-header">
+              <span>KANTO - CYBER BADGE CASE</span>
+              <span id="badge-count-text">UNLOCKED: 1/8</span>
+            </div>
+            <div class="badge-case-grid">
+              <div class="gym-badge-slot unlocked" data-badge="boulder" title="Boulder Badge (Unlocked: Homepage)">
+                <span class="badge-icon-glyph">🪨</span>
+                <span class="badge-name-label">BOULDER</span>
+              </div>
+              <div class="gym-badge-slot locked" data-badge="cascade" title="Cascade Badge (Unlocked: Support Intake)">
+                <span class="badge-icon-glyph">💧</span>
+                <span class="badge-name-label">CASCADE</span>
+              </div>
+              <div class="gym-badge-slot locked" data-badge="thunder" title="Thunder Badge (Unlocked: Linux Bench)">
+                <span class="badge-icon-glyph">⚡</span>
+                <span class="badge-name-label">THUNDER</span>
+              </div>
+              <div class="gym-badge-slot locked" data-badge="rainbow" title="Rainbow Badge (Unlocked: Operator Bio /about/)">
+                <span class="badge-icon-glyph">🌈</span>
+                <span class="badge-name-label">RAINBOW</span>
+              </div>
+              <div class="gym-badge-slot locked" data-badge="soul" title="Soul Badge (Unlocked: Guestbook / Rip Pack)">
+                <span class="badge-icon-glyph">💖</span>
+                <span class="badge-name-label">SOUL</span>
+              </div>
+              <div class="gym-badge-slot locked" data-badge="marsh" title="Marsh Badge (Unlocked: LSD Realm /lsd/)">
+                <span class="badge-icon-glyph">👁️</span>
+                <span class="badge-name-label">MARSH</span>
+              </div>
+              <div class="gym-badge-slot locked" data-badge="volcano" title="Volcano Badge (Unlocked: Games Shrine /games/)">
+                <span class="badge-icon-glyph">🔥</span>
+                <span class="badge-name-label">VOLCANO</span>
+              </div>
+              <div class="gym-badge-slot locked" data-badge="earth" title="Earth Badge (Unlocked: Posts Archive /posts/)">
+                <span class="badge-icon-glyph">🌍</span>
+                <span class="badge-name-label">EARTH</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <!-- CARD: 88x31 WEB BUTTONS & BLINKIES -->
         <section class="scrap-card badge-card">
           <div class="card-pin top-left"></div>
           <div class="card-pin top-right"></div>
           
           <div class="card-header">
-            <h2 class="card-title">★ WEB BUTTONS & BLINKIES</h2>
+            <h2 class="card-title">★ WEB BUTTONS &amp; BLINKIES</h2>
             <span class="badge-count">RETRO 88x31</span>
           </div>
 
@@ -624,12 +702,67 @@
 
           <!-- Site Button Code Generator -->
           <div class="site-link-code-box">
-            <label for="embed-code-area" class="code-label">Link to this site (88x31 button):</label>
+            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+              <img src="button.svg" alt="Ponds 88x31 Button" width="88" height="31" style="border: 1px solid var(--neon-purple);" />
+              <label for="embed-code-area" class="code-label" style="margin: 0;">Link to this site (88x31 button):</label>
+            </div>
             <div class="code-copy-row">
-              <input type="text" id="embed-code-area" readonly value='<a href="https://ihateuponds.neocities.org"><img src="https://ihateuponds.neocities.org/button.gif" alt="Ponds" /></a>' class="code-input" />
+              <input type="text" id="embed-code-area" readonly value='<a href="https://ihateuponds.neocities.org" target="_blank"><img src="https://ihateuponds.neocities.org/button.svg" alt="Ponds" width="88" height="31" /></a>' class="code-input" />
               <button id="btn-copy-code" class="copy-btn">COPY</button>
             </div>
           </div>
+
+          <!-- Neocities Webrings Widget -->
+          <div class="webrings-box">
+            <div style="font-family: var(--font-pixel); font-size: 0.62rem; color: var(--neon-yellow); margin-bottom: 4px;">
+              ★ NEOCITIES WEBRING NETWORK:
+            </div>
+            <div class="webring-item-row">
+              <span class="webring-title">RETRONAUT WEBRING:</span>
+              <div class="webring-nav-links">
+                <a href="https://webring.dinhe.net/prev/https://ihateuponds.neocities.org" target="_blank" rel="noopener noreferrer" class="webring-link">← PREV</a>
+                <a href="https://webring.dinhe.net/" target="_blank" rel="noopener noreferrer" class="webring-link">[HUB]</a>
+                <a href="https://webring.dinhe.net/next/https://ihateuponds.neocities.org" target="_blank" rel="noopener noreferrer" class="webring-link">NEXT →</a>
+              </div>
+            </div>
+            <div class="webring-item-row">
+              <span class="webring-title">HOTLINE WEBRING:</span>
+              <div class="webring-nav-links">
+                <a href="https://hotlinewebring.club/" target="_blank" rel="noopener noreferrer" class="webring-link">← PREV</a>
+                <a href="https://hotlinewebring.club/" target="_blank" rel="noopener noreferrer" class="webring-link">[HOTLINE]</a>
+                <a href="https://hotlinewebring.club/" target="_blank" rel="noopener noreferrer" class="webring-link">NEXT →</a>
+              </div>
+            </div>
+            <div class="webring-item-row">
+              <span class="webring-title">NEOCITIES SURF:</span>
+              <div class="webring-nav-links">
+                <a href="https://neocities.org/browse" target="_blank" rel="noopener noreferrer" class="webring-link">[BROWSE]</a>
+                <a href="https://neocities.org" target="_blank" rel="noopener noreferrer" class="webring-link">? RANDOM</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- CARD: RETRO CHATBOX / SHOUTBOX -->
+        <section class="chatbox-card">
+          <div class="washi-tape pink-tape">CBOX_SHOUTBOX.NET</div>
+          <div class="card-header">
+            <h2 class="card-title">★ STATION SHOUTBOX</h2>
+            <span class="pkmn-sub">Drop a live message or handle!</span>
+          </div>
+
+          <div class="shoutbox-feed" id="shoutbox-feed">
+            <div class="shout-line"><span class="shout-time">[02:14]</span> <span class="shout-user">&lt;kumi_core&gt;</span> <span class="shout-text">yo loving the 3d card inspector on this site!</span></div>
+            <div class="shout-line"><span class="shout-time">[03:41]</span> <span class="shout-user">&lt;void_walker&gt;</span> <span class="shout-text">what switches are in that keyboard on the rig page?</span></div>
+            <div class="shout-line"><span class="shout-time">[04:19]</span> <span class="shout-user">&lt;neonet_99&gt;</span> <span class="shout-text">added your 88x31 badge to my neocities links page!</span></div>
+            <div class="shout-line"><span class="shout-time">[05:02]</span> <span class="shout-user" style="color: var(--neon-pink);">&lt;ihateuponds&gt;</span> <span class="shout-text">welcome to the station! grab an mp3 from the player and make yourself at home :3</span></div>
+          </div>
+
+          <form id="shoutbox-form" class="shoutbox-form">
+            <input type="text" id="shout-name" class="shout-input-name" placeholder="Handle" maxlength="20" required />
+            <input type="text" id="shout-msg" class="shout-input-msg" placeholder="Drop a message..." maxlength="140" required />
+            <button type="submit" class="shout-btn-send">SEND</button>
+          </form>
         </section>
 
       </div>

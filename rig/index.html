@@ -242,11 +242,14 @@
         <span style="color: var(--neon-pink);">// HARDWARE_RIG</span>
       </a>
       <div class="subpage-links-group">
-        <a href="../" class="subpage-nav-link">[← ROOT SCRAPBOOK]</a>
-        <a href="../support/" class="subpage-nav-link">[TECH SUPPORT]</a>
-        <a href="../rig/" class="subpage-nav-link active">[HARDWARE BENCH]</a>
-        <a href="../games/" class="subpage-nav-link">[GAMES SHRINE]</a>
-        <a href="../lsd/" class="subpage-nav-link">[LSD REALM]</a>
+        <a href="../" class="subpage-nav-link">[← ROOT]</a>
+        <a href="../about/" class="subpage-nav-link">[ABOUT]</a>
+        <a href="../posts/" class="subpage-nav-link">[POSTS]</a>
+        <a href="../games/" class="subpage-nav-link">[GAMES]</a>
+        <a href="../rig/" class="subpage-nav-link active">[RIG]</a>
+        <a href="../lsd/" class="subpage-nav-link">[LSD]</a>
+        <a href="../guestbook/" class="subpage-nav-link">[GUESTBOOK]</a>
+        <a href="../support/" class="subpage-nav-link">[SUPPORT]</a>
       </div>
     </nav>
 
@@ -417,5 +420,13 @@
     </footer>
 
   </div>
+
+  <script>
+    try {
+      let badges = JSON.parse(localStorage.getItem('ponds_gym_badges') || '{}');
+      badges['thunder'] = true;
+      localStorage.setItem('ponds_gym_badges', JSON.stringify(badges));
+    } catch(e) {}
+  </script>
 </body>
 </html>

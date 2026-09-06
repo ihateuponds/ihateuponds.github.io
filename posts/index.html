@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>★ PONDS // POSTS &amp; DISPATCHES ★ ARCHIVES &amp; LOGS ★</title>
+  <meta name="description" content="Ponds personal writing dispatch: Retro gaming, Arch Linux, 240BPM hyperpop sound design, and 3 AM night journals." />
+  <meta name="theme-color" content="#8b00ff" />
+
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Press+Start+2P&family=Share+Tech+Mono&family=Silkscreen:wght@400;700&family=VT323&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+
+  <!-- OpenGraph / Social Embed Metadata -->
+  <meta property="og:title" content="★ PONDS // POSTS &amp; DISPATCHES ★ ARCHIVES &amp; LOGS ★" />
+  <meta property="og:description" content="Ponds personal writing dispatch: Retro gaming, Arch Linux, 240BPM hyperpop sound design, and 3 AM night journals." />
+  <meta property="og:url" content="https://ihateuponds.neocities.org/posts/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://ihateuponds.neocities.org/avatar.jpeg" />
+
+  <style>
+    .subpage-container {
+      max-width: 1100px;
+      margin: 20px auto 60px;
+      padding: 0 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      position: relative;
+      z-index: 10;
+    }
+
+    /* Subpage Top Bar */
+    .subpage-nav-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(18, 7, 32, 0.95);
+      border: 2px solid var(--neon-purple);
+      box-shadow: 4px 4px 0 #000;
+      padding: 12px 18px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .subpage-brand {
+      font-family: var(--font-pixel);
+      font-size: 0.8rem;
+      color: var(--neon-cyan);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .subpage-brand:hover {
+      color: #fff;
+    }
+
+    .subpage-telemetry {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .telemetry-link {
+      font-family: var(--font-pixel);
+      font-size: 0.65rem;
+      text-decoration: none;
+      padding: 6px 10px;
+      border: 1px solid var(--neon-purple);
+      background: rgba(10, 4, 18, 0.85);
+      color: var(--text-main);
+      transition: all 0.15s ease;
+    }
+    .telemetry-link:hover, .telemetry-link.active {
+      background: var(--neon-pink);
+      color: #fff;
+      border-color: #fff;
+      box-shadow: 0 0 8px var(--neon-pink-glow);
+    }
+
+    /* Retro Window Base */
+    .retro-window {
+      background: rgba(18, 7, 32, 0.95);
+      border: 2px solid var(--neon-purple);
+      box-shadow: 5px 5px 0 #000;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .retro-titlebar {
+      background: linear-gradient(90deg, #3d0859, #800080 50%, #b8006e);
+      color: #fff;
+      padding: 6px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: var(--font-pixel);
+      font-size: 0.72rem;
+      letter-spacing: 0.5px;
+      border-bottom: 2px solid #000;
+      user-select: none;
+    }
+
+    .retro-titlebar-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .retro-titlebar-controls {
+      display: flex;
+      gap: 6px;
+    }
+
+    .retro-btn {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      line-height: 14px;
+      text-align: center;
+      background: #c0c0c0;
+      color: #000;
+      border: 1px outset #fff;
+      font-size: 10px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .retro-btn:active {
+      border: 1px inset #fff;
+    }
+    .retro-btn.close {
+      background: #ff5555;
+      color: #fff;
+    }
+
+    .retro-window-body {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .retro-window-footer {
+      background: rgba(12, 4, 22, 0.95);
+      border-top: 1px solid rgba(157, 78, 221, 0.3);
+      padding: 6px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: var(--font-terminal);
+      font-size: 1.05rem;
+      color: var(--neon-cyan);
+    }
+
+    /* Category Cards Grid */
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 16px;
+    }
+
+    .category-card {
+      background: rgba(12, 4, 24, 0.85);
+      border: 2px solid var(--neon-purple);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      position: relative;
+    }
+    .category-card:hover, .category-card.selected {
+      border-color: var(--neon-pink);
+      background: rgba(30, 8, 48, 0.95);
+      transform: translateY(-2px);
+      box-shadow: 0 0 12px var(--neon-pink-glow);
+    }
+
+    .cat-badge {
+      font-family: var(--font-pixel);
+      font-size: 0.62rem;
+      color: var(--neon-yellow);
+    }
+
+    .cat-title {
+      font-family: var(--font-silk);
+      font-size: 0.95rem;
+      color: #fff;
+      margin: 0;
+    }
+
+    .cat-desc {
+      font-size: 0.82rem;
+      color: #cbd5e1;
+      line-height: 1.4;
+      flex-grow: 1;
+    }
+
+    .cat-action-btn {
+      font-family: var(--font-pixel);
+      font-size: 0.65rem;
+      background: #180829;
+      color: var(--neon-cyan);
+      border: 1px solid var(--neon-cyan);
+      padding: 6px 10px;
+      text-align: center;
+      margin-top: 6px;
+    }
+    .category-card:hover .cat-action-btn {
+      background: var(--neon-cyan);
+      color: #000;
+    }
+
+    /* Post Selector Navigation Bar */
+    .post-dropdown-panel {
+      background: rgba(20, 6, 36, 0.95);
+      border: 2px solid var(--neon-cyan);
+      padding: 14px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      box-shadow: 4px 4px 0 #000;
+    }
+
+    .post-dropdown-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .dropdown-label {
+      font-family: var(--font-pixel);
+      font-size: 0.7rem;
+      color: var(--neon-yellow);
+      white-space: nowrap;
+    }
+
+    .post-select-input {
+      flex: 1;
+      min-width: 240px;
+      background: #090314;
+      color: #fff;
+      font-family: var(--font-body);
+      font-size: 0.88rem;
+      padding: 8px 12px;
+      border: 1px solid var(--neon-purple);
+      outline: none;
+    }
+    .post-select-input:focus {
+      border-color: var(--neon-cyan);
+      box-shadow: 0 0 8px var(--neon-cyan-glow);
+    }
+
+    .filter-tabs-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .filter-tab {
+      font-family: var(--font-pixel);
+      font-size: 0.6rem;
+      background: #0d041a;
+      color: var(--text-muted);
+      border: 1px solid var(--neon-purple);
+      padding: 4px 8px;
+      cursor: pointer;
+    }
+    .filter-tab.active, .filter-tab:hover {
+      background: var(--neon-purple);
+      color: #fff;
+    }
+
+    /* Article Reader Display Window */
+    .article-header {
+      border-bottom: 2px dashed rgba(157, 78, 221, 0.4);
+      padding-bottom: 14px;
+      margin-bottom: 16px;
+    }
+
+    .article-tagline-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 6px;
+      flex-wrap: wrap;
+    }
+
+    .article-category-badge {
+      font-family: var(--font-pixel);
+      font-size: 0.62rem;
+      padding: 3px 8px;
+      background: var(--neon-pink);
+      color: #fff;
+    }
+
+    .article-meta-date {
+      font-family: var(--font-terminal);
+      font-size: 1.1rem;
+      color: var(--neon-cyan);
+    }
+
+    .article-title-heading {
+      font-family: var(--font-silk);
+      font-size: 1.4rem;
+      color: #fff;
+      line-height: 1.3;
+      margin: 8px 0;
+    }
+
+    .article-body-content {
+      font-family: var(--font-body);
+      font-size: 0.92rem;
+      line-height: 1.7;
+      color: #e2e8f0;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .article-body-content p {
+      margin: 0;
+    }
+
+    .article-body-content h3 {
+      font-family: var(--font-pixel);
+      font-size: 0.8rem;
+      color: var(--neon-yellow);
+      margin-top: 10px;
+    }
+
+    .article-callout {
+      background: rgba(12, 4, 24, 0.7);
+      border-left: 3px solid var(--neon-cyan);
+      padding: 12px 16px;
+      font-style: italic;
+      color: #a5f3fc;
+    }
+
+    .code-block {
+      background: #06020c;
+      border: 1px solid rgba(157, 78, 221, 0.4);
+      padding: 12px;
+      font-family: var(--font-body);
+      font-size: 0.82rem;
+      color: #4ade80;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Ambient Interactive Canvas -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- Top Navigation Bar -->
+  <header class="top-nav-bar">
+    <a href="../" class="nav-brand" style="text-decoration: none; color: inherit;" title="Return to Root">
+      <span class="status-dot"></span>
+      <span class="brand-text">PONDS.SYS // POSTS</span>
+    </a>
+    
+    <div class="marquee-wrapper">
+      <div class="marquee-content">
+        <span>★ POST ARCHIVE // DISPATCHES FROM THE CYBER VOID ★ RETRO GAMING ★ ARCH LINUX &amp; HARDWARE ★ 240BPM HYPERPOP ★ NIGHT LOGS ★ NO ALGORITHMIC FEEDS ★</span>
+      </div>
+    </div>
+
+    <div class="nav-controls">
+      <button id="btn-sound-toggle" class="control-btn" title="Toggle Sound FX">
+        <span class="btn-icon">[SFX]</span> <span class="btn-label">SFX: ON</span>
+      </button>
+      <button id="btn-crt-toggle" class="control-btn" title="Toggle CRT Scanline Effect">
+        <span class="btn-icon">[CRT]</span> <span class="btn-label">CRT: ON</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main class="subpage-container">
+
+    <!-- Subpage Navigation Strip -->
+    <nav class="subpage-nav-bar" aria-label="Breadcrumb and Subpage Links">
+      <a href="../" class="subpage-brand">
+        <span>[← ROOT // PONDS.SYS]</span>
+      </a>
+      <div class="subpage-telemetry">
+        <a href="../about/" class="telemetry-link">[ABOUT]</a>
+        <a href="../posts/" class="telemetry-link active">[POSTS]</a>
+        <a href="../games/" class="telemetry-link">[GAMES]</a>
+        <a href="../rig/" class="telemetry-link">[RIG]</a>
+        <a href="../lsd/" class="telemetry-link">[LSD]</a>
+        <a href="../guestbook/" class="telemetry-link">[GUESTBOOK]</a>
+        <a href="../support/" class="telemetry-link">[SUPPORT]</a>
+      </div>
+    </nav>
+
+    <!-- SECTION 1: ABOUT CATEGORIES RETRO WINDOW -->
+    <section class="retro-window">
+      <div class="retro-titlebar">
+        <div class="retro-titlebar-left">
+          <span>📁</span> POST CATEGORIES // WHAT YOU CAN FIND HERE
+        </div>
+        <div class="retro-titlebar-controls">
+          <span class="retro-btn">_</span>
+          <span class="retro-btn">□</span>
+          <span class="retro-btn close">×</span>
+        </div>
+      </div>
+
+      <div class="retro-window-body">
+        <p style="font-size: 0.9rem; color: #cbd5e1; line-height: 1.5;">
+          Welcome to the personal dispatch terminal. Below you can find the four core categories of articles published on this station. Click any category card to filter, or choose directly from the interactive dropdown menu underneath to read the full entry.
+        </p>
+
+        <div class="categories-grid">
+          <!-- Card 1 -->
+          <div class="category-card" data-category="gaming">
+            <span class="cat-badge">01 // ARCHIVE</span>
+            <h3 class="cat-title">🎮 Retro Gaming</h3>
+            <p class="cat-desc">PS1 hardware quirks, Pokémon competitive theory, LSD Dream Emulator analysis, and GBA ROM preservation.</p>
+            <div class="cat-action-btn">FILTER CATEGORY ▶</div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="category-card" data-category="tech">
+            <span class="cat-badge">02 // ARCHIVE</span>
+            <h3 class="cat-title">📟 Tech &amp; Linux</h3>
+            <p class="cat-desc">Arch Linux configs, Hyprland Wayland setups, custom liquid cooling loops, and magnetic keyboard tuning.</p>
+            <div class="cat-action-btn">FILTER CATEGORY ▶</div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="category-card" data-category="audio">
+            <span class="cat-badge">03 // ARCHIVE</span>
+            <h3 class="cat-title">💀 Hyperpop Lab</h3>
+            <p class="cat-desc">240BPM synth composition, vocal chain distortion in Reaper, underground scene history, and chiptune soundscapes.</p>
+            <div class="cat-action-btn">FILTER CATEGORY ▶</div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="category-card" data-category="void">
+            <span class="cat-badge">04 // ARCHIVE</span>
+            <h3 class="cat-title">🌙 The Void &amp; Logs</h3>
+            <p class="cat-desc">3 AM musings, liminal architecture photos, anti-algorithm manifestos, and diary notes from South Carolina.</p>
+            <div class="cat-action-btn">FILTER CATEGORY ▶</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="retro-window-footer">
+        <span>ARCHIVE INDEX: 6 DISPATCHES ONLINE</span>
+        <span>RSS PROTOCOL: COMING SOON</span>
+      </div>
+    </section>
+
+    <!-- SECTION 2: MANIFESTO // ABOUT MY PRINCIPLES -->
+    <section class="retro-window">
+      <div class="retro-titlebar">
+        <div class="retro-titlebar-left">
+          <span>📜</span> ABOUT MY PRINCIPLES // WHY I POST HERE
+        </div>
+        <div class="retro-titlebar-controls">
+          <span class="retro-btn">_</span>
+          <span class="retro-btn">□</span>
+          <span class="retro-btn close">×</span>
+        </div>
+      </div>
+
+      <div class="retro-window-body" style="font-size: 0.9rem; line-height: 1.6; color: #cbd5e1;">
+        <p>
+          Over recent years, the commercial internet has devolved into a handful of closed corporate silos driven by aggressive recommendation algorithms, biometric tracking, and artificial engagement farming. Platforms prioritize rage and ad clicks over genuine creativity.
+        </p>
+        <p>
+          I refuse to let corporate servers harvest my thoughts or reduce my creative work to content fodder. This website is hosted on Neocities as an independent digital sanctuary: hand-crafted with raw HTML, CSS, and vanilla JavaScript. No surveillance beacons, no sponsor popups, and no algorithmic feeds. Just real webcraft for real human beings.
+        </p>
+      </div>
+
+      <div class="retro-window-footer">
+        <span>MANIFESTO STATUS: VERIFIED // INDIEWEB FOREVER</span>
+      </div>
+    </section>
+
+    <!-- SECTION 3: DROPDOWN BAR & ARTICLE VIEWER -->
+    <div class="post-dropdown-panel">
+      <div class="post-dropdown-row">
+        <label for="contentSelector" class="dropdown-label">CHOOSE POST TO READ:</label>
+        <select id="contentSelector" class="post-select-input">
+          <option value="post1">01. Dissecting LSD Dream Emulator: The PS1 Hardware Architecture of Chaos</option>
+          <option value="post2">02. Competitive Ghost Types: Why Gholdengo &amp; Mimikyu Broke Gen 9</option>
+          <option value="post3">03. Why Arch Linux &amp; Hyprland Are My Daily Driver</option>
+          <option value="post4">04. Custom Hardware Philosophy: Rapid-Trigger Switches &amp; Liquid Loops</option>
+          <option value="post5">05. Producing at 240 BPM: Building Distorted Vocal Chains in Reaper</option>
+          <option value="post6">06. 3 AM Musings: The Death of Centralized Feeds and Return to Neocities</option>
+        </select>
+      </div>
+
+      <div class="filter-tabs-row">
+        <span class="filter-tab active" data-filter="all">[ALL POSTS]</span>
+        <span class="filter-tab" data-filter="gaming">[GAMING]</span>
+        <span class="filter-tab" data-filter="tech">[TECH &amp; LINUX]</span>
+        <span class="filter-tab" data-filter="audio">[HYPERPOP]</span>
+        <span class="filter-tab" data-filter="void">[THE VOID]</span>
+      </div>
+    </div>
+
+    <!-- SECTION 4: FULL ARTICLE CONTAINER -->
+    <article class="retro-window" id="article-window">
+      <div class="retro-titlebar">
+        <div class="retro-titlebar-left">
+          <span>📖</span> <span id="article-window-title">DISPATCH // READING VIEW</span>
+        </div>
+        <div class="retro-titlebar-controls">
+          <span class="retro-btn">_</span>
+          <span class="retro-btn">□</span>
+          <span class="retro-btn close">×</span>
+        </div>
+      </div>
+
+      <div class="retro-window-body" id="article-content-target">
+        <!-- Rendered dynamically by JavaScript -->
+      </div>
+
+      <div class="retro-window-footer">
+        <span id="article-footer-meta">AUTHOR: PONDS // STATION LOG #001</span>
+        <span>TERMINAL STATUS: 200 OK</span>
+      </div>
+    </article>
+
+  </main>
+
+  <!-- Retro CRT Scanline Overlay -->
+  <div id="crt-overlay" class="crt-layer active"></div>
+
+  <!-- Audio and Interactive Post Engine -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Sound FX Engine
+      let sfxEnabled = true;
+      let audioCtx = null;
+
+      function initAudio() {
+        if (!audioCtx) {
+          const AudioContext = window.AudioContext || window.webkitAudioContext;
+          audioCtx = new AudioContext();
+        }
+        if (audioCtx.state === "suspended") {
+          audioCtx.resume();
+        }
+      }
+
+      function playChime(freq = 600) {
+        if (!sfxEnabled) return;
+        try {
+          initAudio();
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.type = "triangle";
+          osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+          osc.frequency.exponentialRampToValueAtTime(freq * 1.5, audioCtx.currentTime + 0.08);
+          gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.1);
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+          osc.start();
+          osc.stop(audioCtx.currentTime + 0.1);
+        } catch(e) {}
+      }
+
+      const sfxBtn = document.getElementById("btn-sound-toggle");
+      if (sfxBtn) {
+        sfxBtn.addEventListener("click", () => {
+          sfxEnabled = !sfxEnabled;
+          sfxBtn.querySelector(".btn-label").textContent = sfxEnabled ? "SFX: ON" : "SFX: OFF";
+          playChime(sfxEnabled ? 880 : 440);
+        });
+      }
+
+      // CRT Toggle
+      const crtBtn = document.getElementById("btn-crt-toggle");
+      const crtLayer = document.getElementById("crt-overlay");
+      if (crtBtn && crtLayer) {
+        crtBtn.addEventListener("click", () => {
+          crtLayer.classList.toggle("active");
+          const isOn = crtLayer.classList.contains("active");
+          crtBtn.querySelector(".btn-label").textContent = isOn ? "CRT: ON" : "CRT: OFF";
+          playChime(isOn ? 750 : 500);
+        });
+      }
+
+      // Star Canvas
+      const canvas = document.getElementById("bg-canvas");
+      if (canvas) {
+        const ctx = canvas.getContext("2d");
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
+
+        const stars = Array.from({ length: 90 }, () => ({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          size: Math.random() * 2 + 1,
+          color: Math.random() > 0.4 ? "#9d4edd" : (Math.random() > 0.5 ? "#ff007f" : "#00f5d4"),
+          speed: Math.random() * 0.4 + 0.1
+        }));
+
+        window.addEventListener("resize", () => {
+          width = canvas.width = window.innerWidth;
+          height = canvas.height = window.innerHeight;
+        });
+
+        function renderStars() {
+          ctx.clearRect(0, 0, width, height);
+          for (let s of stars) {
+            s.y += s.speed;
+            if (s.y > height) {
+              s.y = 0;
+              s.x = Math.random() * width;
+            }
+            ctx.fillStyle = s.color;
+            ctx.fillRect(s.x, s.y, s.size, s.size);
+          }
+          requestAnimationFrame(renderStars);
+        }
+        renderStars();
+      }
+
+      // Articles Database
+      const POSTS_DATA = {
+        post1: {
+          id: "post1",
+          title: "Dissecting LSD Dream Emulator: The PS1 Hardware Architecture of Chaos",
+          category: "gaming",
+          categoryLabel: "01 // RETRO GAMING",
+          date: "AUGUST 24, 2026",
+          readTime: "5 MIN READ",
+          footerMeta: "AUTHOR: PONDS // STATION LOG #001",
+          html: '<div class="article-header"><div class="article-tagline-row"><span class="article-category-badge">01 // RETRO GAMING</span><span class="article-meta-date">TIMESTAMP: AUGUST 24, 2026 // 5 MIN READ</span></div><h2 class="article-title-heading">Dissecting LSD Dream Emulator: The PS1 Hardware Architecture of Chaos</h2></div><div class="article-body-content"><p>In 1998, Osamu Sato and Asmik Ace Entertainment released <em>LSD: Dream Emulator</em> exclusively in Japan for the original Sony PlayStation. While modern internet culture treats it as a bizarre meme game or creepypasta fuel, digging into how Sato utilized the PS1 limited hardware reveals an astonishing piece of interactive software architecture.</p><div class="article-callout">"There are no rules, no linear goals, and no scoreboards. You are simply traversing a procedurally warping dreamscape generated from Hiroko Nishikawa decade-long dream journal."</div><h3>THE LINK SYSTEM &amp; TEXTURE SWAPPING</h3><p>The PS1 had only 2MB of system RAM and 1MB of video VRAM. Most games used this memory for strict level streaming. Sato engine, however, treated every wall, prop, and entity as a collision portal. Touching any surface triggers the Link mechanism, instantaneously flushing the current scene buffer and generating a new node according to the Dream Chart (Upper/Lower/Dynamic/Static).</p><p>Even more fascinating is the texture-swapping algorithm. As your day counter advances, the engine randomly substitutes texture maps from different stages onto unfamiliar geometry. Faces appear on sidewalks, eye textures map onto stone walls, and skies glitch into dithered noise patterns. It turns hardware limitations into an authentic analog nightmare.</p><h3>WHY IT MATTERS TODAY</h3><p>In an era dominated by hyper-polished 80-hour open-world games with endless quest markers, <em>LSD: Dream Emulator</em> stands as a monument to radical creative freedom. It reminds us that video games can be pure emotional surrealism rather than dopamine-optimizing Skinner boxes.</p></div>'
+        },
+        post2: {
+          id: "post2",
+          title: "Competitive Ghost Types: Why Gholdengo & Mimikyu Broke Gen 9",
+          category: "gaming",
+          categoryLabel: "01 // RETRO GAMING",
+          date: "JULY 18, 2026",
+          readTime: "6 MIN READ",
+          footerMeta: "AUTHOR: PONDS // STATION LOG #002",
+          html: '<div class="article-header"><div class="article-tagline-row"><span class="article-category-badge">01 // RETRO GAMING</span><span class="article-meta-date">TIMESTAMP: JULY 18, 2026 // 6 MIN READ</span></div><h2 class="article-title-heading">Competitive Ghost Types: Why Gholdengo &amp; Mimikyu Broke Gen 9</h2></div><div class="article-body-content"><p>I have been playing competitive Pokémon since Generation 4, but Generation 9 (Scarlet and Violet) did something unprecedented for Ghost-type trainers: it made them the uncontested kings of high-tier competitive play.</p><h3>THE ANOMALY CALLED GHOLDENGO</h3><p>National Dex #1000, Gholdengo, represents one of the most polarizing design choices Game Freak has ever made. Steel/Ghost typing already provides 9 resistances and 3 complete immunities (Normal, Fighting, Poison). But pair that typing with its signature ability, <em>Good as Gold</em>, and the meta shifts entirely.</p><div class="code-block">Ability: Good as Gold<br>Effect: Completely immune to ALL opponent status moves.<br>Blocks: Defog, Spore, Taunt, Will-O-Wisp, Thunder Wave, Toxic, Encore, Whirlwind.</div><p>Because Defog cannot target Gholdengo, hazard stacking becomes an oppressive win condition. With Make It Rain hitting like a tactical nuke (120 BP Steel special attack) and Nasty Plot setting up on switches, Gholdengo redefined both singles and doubles formats.</p><h3>MIMIKYU: THE ETERNAL ANCHOR</h3><p>And then we have Mimikyu. Even after the Disguise ability nerf (which now deals 1/8th self-damage when popped), having a guaranteed free turn of setup or disruption remains absurd. Whether running Swords Dance + Shadow Sneak or Trick Room + Curse, Mimikyu proves that disguise and mystery beat brute stats every single time.</p></div>'
+        },
+        post3: {
+          id: "post3",
+          title: "Why Arch Linux & Hyprland Are My Daily Driver",
+          category: "tech",
+          categoryLabel: "02 // TECH & LINUX",
+          date: "JUNE 29, 2026",
+          readTime: "7 MIN READ",
+          footerMeta: "AUTHOR: PONDS // STATION LOG #003",
+          html: '<div class="article-header"><div class="article-tagline-row"><span class="article-category-badge">02 // TECH &amp; LINUX</span><span class="article-meta-date">TIMESTAMP: JUNE 29, 2026 // 7 MIN READ</span></div><h2 class="article-title-heading">Why Arch Linux &amp; Hyprland Are My Daily Driver</h2></div><div class="article-body-content"><p>Every year, Microsoft pushes Windows further toward an advertising delivery network disguised as an operating system. When Windows 11 began inserting sponsored app recommendations into the Start menu and collecting telemetry on every keystroke, I wiped my boot drive and committed 100% to Arch Linux.</p><h3>THE PURITY OF THE ZEN KERNEL &amp; HYPRLAND</h3><p>Running the Linux Zen kernel with Hyprland as a dynamic tiling Wayland compositor completely changes how you interact with a workstation. Everything moves at the speed of thought:</p><ul style="padding-left: 20px; line-height: 1.6;"><li><strong>Super + Enter:</strong> Spawns an instant Kitty terminal with zsh.</li><li><strong>Super + D:</strong> Fuzzy search across every script and executable with rofi.</li><li><strong>Flawless 165Hz VRR:</strong> Smooth Wayland rendering with zero desktop tearing or input lag.</li></ul><div class="article-callout">"An operating system should be an invisible, razor-sharp tool that obeys your exact instructions, not a corporate landlord trying to sell you OneDrive subscriptions."</div><p>Arch rolling release model means I am always on the absolute bleeding edge of hardware drivers for my RTX 4080 Super and Ryzen 7800X3D. With pacman and the Arch User Repository (AUR), installing any software is a single terminal command away.</p></div>'
+        },
+        post4: {
+          id: "post4",
+          title: "Custom Hardware Philosophy: Rapid-Trigger Switches & Liquid Loops",
+          category: "tech",
+          categoryLabel: "02 // TECH & LINUX",
+          date: "MAY 14, 2026",
+          readTime: "4 MIN READ",
+          footerMeta: "AUTHOR: PONDS // STATION LOG #004",
+          html: '<div class="article-header"><div class="article-tagline-row"><span class="article-category-badge">02 // TECH &amp; LINUX</span><span class="article-meta-date">TIMESTAMP: MAY 14, 2026 // 4 MIN READ</span></div><h2 class="article-title-heading">Custom Hardware Philosophy: Rapid-Trigger Switches &amp; Liquid Loops</h2></div><div class="article-body-content"><p>A lot of people build PCs just to check off benchmark numbers. For me, hardware is an extension of tactile craft. If you spend 8+ hours a day at a desk coding, gaming, or producing music, your peripherals and acoustic profile dictate your state of mind.</p><h3>MAGNETIC HALL EFFECT VS MECHANICAL SWITCHES</h3><p>I used standard mechanical switches (Cherry MX, Gateron, Holy Pandas) for years. But switching to the Wooting 60HE with Lekker magnetic Hall effect switches broke my brain. Because actuation is measured through continuous magnetic flux rather than physical metal leaf contact, you can configure:</p><ul style="padding-left: 20px; line-height: 1.6;"><li><strong>0.1mm Actuation:</strong> The instant you feather a key, the input registers.</li><li><strong>Rapid Trigger:</strong> The switch resets dynamically the millisecond your finger moves upwards, eliminating physical reset travel time entirely.</li></ul><p>Pair that with a silent dual-radiator cooling loop and a high-end DAC/Amp stack (Schiit Modi+ and Magni+ powering Sennheiser HD600s), and your workstation transforms into a tranquil, ultra-responsive cockpit.</p></div>'
+        },
+        post5: {
+          id: "post5",
+          title: "Producing at 240 BPM: Building Distorted Vocal Chains in Reaper",
+          category: "audio",
+          categoryLabel: "03 // HYPERPOP LAB",
+          date: "APRIL 02, 2026",
+          readTime: "5 MIN READ",
+          footerMeta: "AUTHOR: PONDS // STATION LOG #005",
+          html: '<div class="article-header"><div class="article-tagline-row"><span class="article-category-badge">03 // HYPERPOP LAB</span><span class="article-meta-date">TIMESTAMP: APRIL 02, 2026 // 5 MIN READ</span></div><h2 class="article-title-heading">Producing at 240 BPM: Building Distorted Vocal Chains in Reaper</h2></div><div class="article-body-content"><p>Hyperpop, digicore, and breakcore share one common trait: they take traditional mixing rules and gleefully set them on fire. If your kick drum isn\'t squaring off the master bus, you aren\'t doing it right.</p><h3>THE SECRET INGREDIENTS OF GLITCH VOCALS</h3><p>People often ask how artists like Glitch Gum, cr1tter, and Alice Gas achieve that razor-sharp, crystalline, yet intensely clipped vocal tone. Here is the chain I run inside Reaper:</p><div class="code-block">1. Pitch Shifting: Formant shifted +3 to +5 semitones with Little AlterBoy.<br>2. Hard Autotune: 0ms retune speed, maximum scale snap.<br>3. OTT (Multiband Dynamics): 40% depth, crushing highs and lows into a solid block.<br>4. Soft Clipper / Bitcrusher: Decimort 2 set to 12-bit rate reduction for that nostalgic Y2K digital grit.<br>5. Stereo Widening: MicroShift with subtle chorus detune.</div><p>When you slam this processed vocal over a frantic 240 BPM gabber kick or sliced Amen break, it cuts through the sonic chaos like a laser beam. Music should feel alive, chaotic, and unapologetically intense.</p></div>'
+        },
+        post6: {
+          id: "post6",
+          title: "3 AM Musings: The Death of Centralized Feeds and Return to Neocities",
+          category: "void",
+          categoryLabel: "04 // THE VOID",
+          date: "FEBRUARY 19, 2026",
+          readTime: "4 MIN READ",
+          footerMeta: "AUTHOR: PONDS // STATION LOG #006",
+          html: '<div class="article-header"><div class="article-tagline-row"><span class="article-category-badge">04 // THE VOID</span><span class="article-meta-date">TIMESTAMP: FEBRUARY 19, 2026 // 4 MIN READ</span></div><h2 class="article-title-heading">3 AM Musings: The Death of Centralized Feeds and Return to Neocities</h2></div><div class="article-body-content"><p>It is 3:15 AM in South Carolina. The monitors are glowing, an iced coffee sits next to my keyboard, and Spotify is shuffling between nu-metal riffs and hyperpop breakbeats.</p><p>I was looking through old archives of the web from 2002: GeoCities homepages, Angelfire webrings, custom MIDI background tracks, and amateur fan shrines. People spent hours coding clunky table layouts just to share their passion for an obscure anime or their pet iguana. Nobody was doing it for brand sponsorships. Nobody was doing it to optimize engagement metrics.</p><div class="article-callout">"We traded the eccentricity and freedom of the personal web for centralized feeds that make us miserable. Neocities is our rebellion."</div><p>Building this website has been one of the most therapeutic projects I have ever worked on. Adding 88x31 pixel buttons, embedding an MP3 player, creating an interactive Pokémon card inspect system, and styling retro windows reminded me why I fell in love with computers in the first place.</p><p>If you are reading this on your own screen tonight: thank you for stopping by. Check out the guestbook, leave a signature, and build something of your own.</p></div>'
+        }
+      };
+
+      const selector = document.getElementById("contentSelector");
+      const target = document.getElementById("article-content-target");
+      const windowTitle = document.getElementById("article-window-title");
+      const footerMeta = document.getElementById("article-footer-meta");
+
+      function loadPost(postId) {
+        const post = POSTS_DATA[postId] || POSTS_DATA["post1"];
+        if (target && post) {
+          target.innerHTML = post.html;
+          if (windowTitle) windowTitle.textContent = "READING: " + post.title.substring(0, 45) + "...";
+          if (footerMeta) footerMeta.textContent = post.footerMeta;
+          playChime(650);
+        }
+      }
+
+      if (selector) {
+        selector.addEventListener("change", (e) => {
+          loadPost(e.target.value);
+        });
+      }
+
+      // Filter tabs handling
+      const filterTabs = document.querySelectorAll(".filter-tab");
+      const categoryCards = document.querySelectorAll(".category-card");
+
+      filterTabs.forEach(tab => {
+        tab.addEventListener("click", () => {
+          filterTabs.forEach(t => t.classList.remove("active"));
+          tab.classList.add("active");
+          const filter = tab.dataset.filter;
+
+          // Update selector options
+          if (selector) {
+            Array.from(selector.options).forEach(opt => {
+              const post = POSTS_DATA[opt.value];
+              if (filter === "all" || (post && post.category === filter)) {
+                opt.style.display = "";
+              } else {
+                opt.style.display = "none";
+              }
+            });
+            // Pick first visible
+            const firstVis = Array.from(selector.options).find(opt => opt.style.display !== "none");
+            if (firstVis) {
+              selector.value = firstVis.value;
+              loadPost(firstVis.value);
+            }
+          }
+          playChime(700);
+        });
+      });
+
+      // Category Cards Click
+      categoryCards.forEach(card => {
+        card.addEventListener("click", () => {
+          const cat = card.dataset.category;
+          const targetTab = document.querySelector('.filter-tab[data-filter="' + cat + '"]');
+          if (targetTab) {
+            targetTab.click();
+            document.getElementById("article-window").scrollIntoView({ behavior: "smooth" });
+          }
+        });
+      });
+
+      // Initial Load
+      loadPost("post1");
+
+      // Unlock Gym Badge for visiting /posts/
+      try {
+        let badges = JSON.parse(localStorage.getItem("ponds_gym_badges") || "{}");
+        badges["earth"] = true;
+        localStorage.setItem("ponds_gym_badges", JSON.stringify(badges));
+      } catch(e) {}
+
+      // Click chime for buttons
+      document.querySelectorAll("button, a, select").forEach(el => {
+        el.addEventListener("click", () => playChime(750));
+      });
+    });
+  </script>
+</body>
+</html>
