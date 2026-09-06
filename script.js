@@ -1,158 +1,1384 @@
-(() => {
-  const TIMEZONE = "America/New_York";
+/**
+ * ★ PONDS // HYPERPOP & POKÉMON SCRAPBOOK INTERACTIVE ENGINE ★
+ * Features:
+ * 1. Web Audio Synth SFX & Live Hyperpop Chiptune Player
+ * 2. Sparkle Pixel Cursor Trail
+ * 3. Draggable Sticker Playground
+ * 4. Interactive Pokémon Dream Team & Shiny Inspector
+ * 5. Live Digital Clock & Quote Generator
+ * 6. Retro CRT & Sound FX Toggles
+ */
 
-  // 1. Live EDT Telemetry Clock
-  const clockEl = document.getElementById("clock-display");
-  function updateClock() {
-    if (!clockEl) return;
-    const now = new Date();
-    const formatter = new Intl.DateTimeFormat("en-US", {
-      timeZone: TIMEZONE,
-      hour: "numeric",
-      minute: "2-digit",
-      second: "2-digit",
-      hour12: true
-    });
-    clockEl.textContent = formatter.format(now);
+document.addEventListener('DOMContentLoaded', () => {
+
+  /* ------------------------------------------------------------------------
+     1. WEB AUDIO API SYNTHESIZER (SFX & HYPERPOP SYNTH ENGINE)
+     ------------------------------------------------------------------------ */
+  let audioCtx = null;
+  let sfxEnabled = true;
+  let isPlayingMusic = false;
+  let musicInterval = null;
+  let currentTrackIdx = 0;
+  let masterGain = null;
+
+  function initAudio() {
+    if (!audioCtx) {
+      const AudioContext = window.AudioContext || window.webkitAudioContext;
+      audioCtx = new AudioContext();
+      masterGain = audioCtx.createGain();
+      masterGain.gain.value = 0.5;
+      masterGain.connect(audioCtx.destination);
+    }
+    if (audioCtx.state === 'suspended') {
+      audioCtx.resume();
+    }
   }
-  updateClock();
-  setInterval(updateClock, 1000);
 
-  // 2. Retro Font Mode Switcher
-  const fontBtn = document.getElementById("font-toggle-btn");
-  const body = document.getElementById("page-body");
-  const fontOptions = [
-    { name: "vga", family: "'IBMVGA', monospace" },
-    { name: "bios", family: "'IBMBios', monospace" },
-    { name: "mono", family: "'JetBrains Mono', monospace" },
-    { name: "pixel", family: "'VT323', monospace" }
+  // Play a quick retro UI sound
+  function playSfx(type) {
+    if (!sfxEnabled) return;
+    try {
+      initAudio();
+      const now = audioCtx.currentTime;
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.connect(gain);
+      gain.connect(masterGain);
+
+      if (type === 'click') {
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(580, now);
+        osc.frequency.exponentialRampToValueAtTime(880, now + 0.05);
+        gain.gain.setValueAtTime(0.3, now);
+        gain.gain.exponentialRampToValueAtTime(0.01, now + 0.06);
+        osc.start(now);
+        osc.stop(now + 0.06);
+      } else if (type === 'hover') {
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(440, now);
+        gain.gain.setValueAtTime(0.08, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.04);
+        osc.start(now);
+        osc.stop(now + 0.04);
+      } else if (type === 'powerup') {
+        osc.type = 'square';
+        [523.25, 659.25, 783.99, 1046.50].forEach((freq, i) => {
+          const noteOsc = audioCtx.createOscillator();
+          const noteGain = audioCtx.createGain();
+          noteOsc.type = 'square';
+          noteOsc.frequency.setValueAtTime(freq, now + i * 0.06);
+          noteGain.gain.setValueAtTime(0.15, now + i * 0.06);
+          noteGain.gain.exponentialRampToValueAtTime(0.01, now + (i + 1) * 0.06);
+          noteOsc.connect(noteGain);
+          noteGain.connect(masterGain);
+          noteOsc.start(now + i * 0.06);
+          noteOsc.stop(now + (i + 1) * 0.06);
+        });
+      } else if (type === 'cry') {
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(320, now);
+        osc.frequency.linearRampToValueAtTime(640, now + 0.08);
+        osc.frequency.linearRampToValueAtTime(240, now + 0.18);
+        gain.gain.setValueAtTime(0.2, now);
+        gain.gain.exponentialRampToValueAtTime(0.01, now + 0.2);
+        osc.start(now);
+        osc.stop(now + 0.2);
+      }
+    } catch (e) {
+      console.warn("Audio error:", e);
+    }
+  }
+
+  // Real Music Playlist (MP3 tracks hosted for Neocities)
+  const tracks = [
+    {
+      title: "INTROVERT",
+      artist: "brakence",
+      genre: "EMO RAP / HYPERPOP",
+      src: "https://files.catbox.moe/sb1eqh.mp3",
+      fallbackSrc: "./music/13 - introvert.mp3",
+      localSrc: "./music/13 - introvert.mp3"
+    },
+    {
+      title: "52 BLUE MONDAYS",
+      artist: "Jane Remover",
+      genre: "DARIACRE / SHOEGAZE",
+      src: "https://files.catbox.moe/6ta5uh.mp3",
+      fallbackSrc: "./music/52 blue mondays.mp3",
+      localSrc: "./music/52 blue mondays.mp3"
+    },
+    {
+      title: "BABY G SHOCK",
+      artist: "cr1tter",
+      genre: "HYPERPOP / RAP",
+      src: "https://files.catbox.moe/dv3lyv.mp3",
+      fallbackSrc: "./music/cr1tter - baby g shock.mp3",
+      localSrc: "./music/cr1tter - baby g shock.mp3"
+    },
+    {
+      title: "I WISH I WAS A CAT",
+      artist: "Glitch Gum",
+      genre: "HYPERPOP / GLITCH",
+      src: "https://files.catbox.moe/5xsgcf.mp3",
+      fallbackSrc: "./music/Glitch_Gum_-_I_Wish_I_Was_a_Cat_(getmp3.pro).mp3",
+      localSrc: "./music/Glitch_Gum_-_I_Wish_I_Was_a_Cat_(getmp3.pro).mp3"
+    },
+    {
+      title: "ROUND TWO",
+      artist: "guardin",
+      genre: "INDIE / EMO",
+      src: "https://files.catbox.moe/mtwm5i.mp3",
+      fallbackSrc: "./music/round two (prod. twix x g06 x thirtyyy).mp3",
+      localSrc: "./music/round two (prod. twix x g06 x thirtyyy).mp3"
+    }
   ];
-  let currentFontIdx = 0;
 
-  if (fontBtn && body) {
-    fontBtn.addEventListener("click", () => {
-      currentFontIdx = (currentFontIdx + 1) % fontOptions.length;
-      body.style.fontFamily = fontOptions[currentFontIdx].family;
-      fontBtn.textContent = "font: " + fontOptions[currentFontIdx].name;
-    });
+  /* ------------------------------------------------------------------------
+     2. REAL CD PLAYER UI CONTROLS & TIMELINE ENGINE
+     ------------------------------------------------------------------------ */
+  const realAudioPlayer = document.getElementById('real-audio-player') || new Audio();
+  const cdDisc = document.getElementById('cd-disc');
+  const cdAlbumTitle = document.getElementById('cd-album-title');
+  const cdAlbumArtist = document.getElementById('cd-album-artist');
+  const btnPlayPause = document.getElementById('btn-play-pause');
+  const btnPrevTrack = document.getElementById('btn-prev-track');
+  const btnNextTrack = document.getElementById('btn-next-track');
+  const equalizer = document.getElementById('equalizer');
+  const trackTitleEl = document.getElementById('current-track-title');
+  const trackArtistEl = document.getElementById('current-track-artist');
+  const trackGenreEl = document.getElementById('track-genre');
+  const trackIndexDisplay = document.getElementById('track-index-display');
+  const trackCurrentTime = document.getElementById('track-current-time');
+  const trackDuration = document.getElementById('track-duration');
+  const audioProgressBar = document.getElementById('audio-progress-bar');
+  const audioProgressFill = document.getElementById('audio-progress-fill');
+  const volumeSlider = document.getElementById('volume-slider');
+  const volIconBtn = document.getElementById('vol-icon-btn');
+
+  function formatTime(seconds) {
+    if (isNaN(seconds) || seconds === Infinity) return "0:00";
+    const mins = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+    return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
   }
 
-  // 3. Favorite Games Shrine Inspector
-  const gameSlots = document.querySelectorAll(".game-card-slot");
-  const inspectGameTitle = document.getElementById("inspect-game-title");
-  const inspectGamePlat = document.getElementById("inspect-game-plat");
-  const inspectGameNote = document.getElementById("inspect-game-note");
+  function loadTrack(idx, playImmediately = false) {
+    currentTrackIdx = (idx + tracks.length) % tracks.length;
+    const track = tracks[currentTrackIdx];
 
-  gameSlots.forEach(slot => {
-    slot.addEventListener("click", () => {
-      gameSlots.forEach(s => s.classList.remove("active"));
-      slot.classList.add("active");
+    if (trackTitleEl) trackTitleEl.textContent = track.title;
+    if (trackArtistEl) trackArtistEl.textContent = track.artist;
+    if (trackGenreEl) trackGenreEl.textContent = track.genre;
+    if (trackIndexDisplay) {
+      trackIndexDisplay.textContent = `TRACK ${String(currentTrackIdx + 1).padStart(2, '0')} / ${String(tracks.length).padStart(2, '0')}`;
+    }
+    if (cdAlbumTitle) cdAlbumTitle.textContent = track.artist.split(' ')[0].toUpperCase().substring(0, 8);
+    if (cdAlbumArtist) cdAlbumArtist.textContent = `VOL. 0${currentTrackIdx + 1}`;
 
-      if (inspectGameTitle) inspectGameTitle.textContent = slot.getAttribute("data-title");
-      if (inspectGamePlat) inspectGamePlat.textContent = slot.getAttribute("data-platform");
-      if (inspectGameNote) inspectGameNote.textContent = slot.getAttribute("data-note");
-    });
-  });
+    realAudioPlayer.src = track.src;
+    realAudioPlayer.load();
 
-  // 4. Copy Embed Snippet
-  const copyEmbedBtn = document.getElementById("btn-copy-embed");
-  const embedCode = document.getElementById("button-embed-code");
+    if (trackCurrentTime) trackCurrentTime.textContent = "0:00";
+    if (trackDuration) trackDuration.textContent = "0:00";
+    if (audioProgressFill) audioProgressFill.style.width = "0%";
 
-  if (copyEmbedBtn && embedCode) {
-    copyEmbedBtn.addEventListener("click", async () => {
-      try {
-        await navigator.clipboard.writeText(embedCode.value);
-        const originalText = copyEmbedBtn.textContent;
-        copyEmbedBtn.textContent = "✓ Copied to clipboard!";
-        setTimeout(() => { copyEmbedBtn.textContent = originalText; }, 2500);
-      } catch (err) {
-        embedCode.select();
+    if (playImmediately) {
+      playAudio();
+    }
+  }
+
+  function playAudio() {
+    initAudio();
+    const playPromise = realAudioPlayer.play();
+    if (playPromise !== undefined) {
+      playPromise.then(() => {
+        isPlayingMusic = true;
+        setPlayStateUI(true);
+      }).catch(err => {
+        console.warn("Local audio not found or playback blocked, trying fallback URL:", err);
+        const track = tracks[currentTrackIdx];
+        if (track.fallbackSrc && realAudioPlayer.src !== track.fallbackSrc) {
+          realAudioPlayer.src = track.fallbackSrc;
+          realAudioPlayer.play().then(() => {
+            isPlayingMusic = true;
+            setPlayStateUI(true);
+          }).catch(() => {
+            isPlayingMusic = false;
+            setPlayStateUI(false);
+          });
+        } else {
+          isPlayingMusic = false;
+          setPlayStateUI(false);
+        }
+      });
+    }
+  }
+
+  function pauseAudio() {
+    realAudioPlayer.pause();
+    isPlayingMusic = false;
+    setPlayStateUI(false);
+  }
+
+  function setPlayStateUI(playing) {
+    if (playing) {
+      if (cdDisc) cdDisc.classList.add('spinning');
+      if (equalizer) equalizer.classList.add('playing');
+      if (btnPlayPause) {
+        btnPlayPause.textContent = '❚❚ PAUSE';
+        btnPlayPause.style.background = '#00f5d4';
+        btnPlayPause.style.color = '#000';
+      }
+    } else {
+      if (cdDisc) cdDisc.classList.remove('spinning');
+      if (equalizer) equalizer.classList.remove('playing');
+      if (btnPlayPause) {
+        btnPlayPause.textContent = '▶ PLAY';
+        btnPlayPause.style.background = 'var(--neon-pink)';
+        btnPlayPause.style.color = '#fff';
+      }
+    }
+  }
+
+  if (btnPlayPause) {
+    btnPlayPause.addEventListener('click', () => {
+      playSfx('click');
+      if (isPlayingMusic) {
+        pauseAudio();
+      } else {
+        playAudio();
       }
     });
   }
 
-  // 5. Triple Organic Eye Tracking Engine (Header Eyes + Giant Hypnotic Vortex Eye)
-  const eyeList = [
-    { eye: document.getElementById("eye-1"), iris: document.querySelector("#eye-1 .iris"), maxDist: 12 },
-    { eye: document.getElementById("eye-2"), iris: document.querySelector("#eye-2 .iris"), maxDist: 12 },
-    { eye: document.getElementById("giant-vortex-eye"), iris: document.getElementById("giant-iris"), maxDist: 22 }
-  ];
+  if (btnPrevTrack) {
+    btnPrevTrack.addEventListener('click', () => {
+      playSfx('click');
+      loadTrack(currentTrackIdx - 1, isPlayingMusic);
+    });
+  }
 
-  window.addEventListener("mousemove", (e) => {
-    eyeList.forEach(({ eye, iris, maxDist }) => {
-      if (!eye || !iris) return;
-      const rect = eye.getBoundingClientRect();
-      const eyeCenterX = rect.left + rect.width / 2;
-      const eyeCenterY = rect.top + rect.height / 2;
+  if (btnNextTrack) {
+    btnNextTrack.addEventListener('click', () => {
+      playSfx('click');
+      loadTrack(currentTrackIdx + 1, isPlayingMusic);
+    });
+  }
 
-      const deltaX = e.clientX - eyeCenterX;
-      const deltaY = e.clientY - eyeCenterY;
-      const angle = Math.atan2(deltaY, deltaX);
-      const distance = Math.min(maxDist, Math.hypot(deltaX, deltaY) / 16);
+  // Audio events: Time update & Scrubber fill
+  realAudioPlayer.addEventListener('timeupdate', () => {
+    if (trackCurrentTime) trackCurrentTime.textContent = formatTime(realAudioPlayer.currentTime);
+    if (trackDuration && realAudioPlayer.duration) {
+      trackDuration.textContent = formatTime(realAudioPlayer.duration);
+    }
+    if (audioProgressFill && realAudioPlayer.duration) {
+      const pct = (realAudioPlayer.currentTime / realAudioPlayer.duration) * 100;
+      audioProgressFill.style.width = `${pct}%`;
+    }
+  });
 
-      const moveX = Math.cos(angle) * distance;
-      const moveY = Math.sin(angle) * distance;
+  realAudioPlayer.addEventListener('loadedmetadata', () => {
+    if (trackDuration) trackDuration.textContent = formatTime(realAudioPlayer.duration);
+  });
 
-      iris.style.transform = `translate(${moveX}px, ${moveY}px)`;
+  // Track ended -> auto advance to next song
+  realAudioPlayer.addEventListener('ended', () => {
+    loadTrack(currentTrackIdx + 1, true);
+  });
+
+  // Click on progress bar to seek
+  if (audioProgressBar) {
+    audioProgressBar.addEventListener('click', (e) => {
+      if (!realAudioPlayer.duration) return;
+      const rect = audioProgressBar.getBoundingClientRect();
+      const clickPos = (e.clientX - rect.left) / rect.width;
+      realAudioPlayer.currentTime = clickPos * realAudioPlayer.duration;
+    });
+  }
+
+  // Volume slider
+  if (volumeSlider) {
+    realAudioPlayer.volume = volumeSlider.value / 100;
+    volumeSlider.addEventListener('input', (e) => {
+      const vol = e.target.value / 100;
+      realAudioPlayer.volume = vol;
+      if (volIconBtn) {
+        volIconBtn.textContent = vol === 0 ? '🔇' : (vol < 0.5 ? '🔉' : '🔊');
+      }
+    });
+  }
+
+  // Load initial track
+  loadTrack(0, false);
+
+  /* ------------------------------------------------------------------------
+     3. TOP BAR CONTROLS (SFX, CRT, STICKERS RESET)
+     ------------------------------------------------------------------------ */
+  const btnSoundToggle = document.getElementById('btn-sound-toggle');
+  const btnCrtToggle = document.getElementById('btn-crt-toggle');
+  const btnResetStickers = document.getElementById('btn-reset-stickers');
+  const crtOverlay = document.getElementById('crt-overlay');
+
+  btnSoundToggle.addEventListener('click', () => {
+    sfxEnabled = !sfxEnabled;
+    btnSoundToggle.querySelector('.btn-label').textContent = `SFX: ${sfxEnabled ? 'ON' : 'OFF'}`;
+    btnSoundToggle.querySelector('.btn-icon').textContent = sfxEnabled ? '🔊' : '🔇';
+    if (!sfxEnabled && isPlayingMusic) {
+      pauseAudio();
+    }
+  });
+
+  btnCrtToggle.addEventListener('click', () => {
+    playSfx('click');
+    crtOverlay.classList.toggle('active');
+    const isActive = crtOverlay.classList.contains('active');
+    btnCrtToggle.querySelector('.btn-label').textContent = `CRT: ${isActive ? 'ON' : 'OFF'}`;
+  });
+
+  // Sound effect on all button hovers
+  document.querySelectorAll('button, .neon-link-btn, .pokemon-slot, .web-button-badge').forEach(el => {
+    el.addEventListener('mouseenter', () => playSfx('hover'));
+  });
+
+  /* ------------------------------------------------------------------------
+     4. DRAGGABLE STICKERS PLAYGROUND
+     ------------------------------------------------------------------------ */
+  const draggableElements = document.querySelectorAll('[data-drag="true"]');
+  const defaultPositions = [];
+
+  draggableElements.forEach((el, i) => {
+    defaultPositions.push({
+      top: el.style.top,
+      left: el.style.left,
+      right: el.style.right,
+      transform: el.style.transform
+    });
+
+    let isDragging = false;
+    let startX = 0, startY = 0;
+    let initialLeft = 0, initialTop = 0;
+
+    function onStart(clientX, clientY) {
+      isDragging = true;
+      startX = clientX;
+      startY = clientY;
+      
+      const rect = el.getBoundingClientRect();
+      initialLeft = rect.left + window.scrollX;
+      initialTop = rect.top + window.scrollY;
+
+      // Bring clicked sticker to top layer
+      draggableElements.forEach(item => item.style.zIndex = '400');
+      el.style.zIndex = '450';
+      playSfx('click');
+    }
+
+    function onMove(clientX, clientY) {
+      if (!isDragging) return;
+      const dx = clientX - startX;
+      const dy = clientY - startY;
+      
+      el.style.left = `${initialLeft + dx}px`;
+      el.style.top = `${initialTop + dy}px`;
+      el.style.right = 'auto';
+    }
+
+    function onEnd() {
+      if (isDragging) {
+        isDragging = false;
+      }
+    }
+
+    // Mouse Events
+    el.addEventListener('mousedown', (e) => {
+      e.preventDefault();
+      onStart(e.clientX, e.clientY);
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      if (isDragging) onMove(e.clientX, e.clientY);
+    });
+
+    window.addEventListener('mouseup', onEnd);
+
+    // Touch Events
+    el.addEventListener('touchstart', (e) => {
+      const touch = e.touches[0];
+      onStart(touch.clientX, touch.clientY);
+    }, { passive: true });
+
+    window.addEventListener('touchmove', (e) => {
+      if (isDragging && e.touches[0]) {
+        onMove(e.touches[0].clientX, e.touches[0].clientY);
+      }
+    }, { passive: true });
+
+    window.addEventListener('touchend', onEnd);
+  });
+
+  btnResetStickers.addEventListener('click', () => {
+    playSfx('powerup');
+    draggableElements.forEach((el, i) => {
+      el.style.top = defaultPositions[i].top;
+      el.style.left = defaultPositions[i].left;
+      el.style.right = defaultPositions[i].right;
+      el.style.transform = defaultPositions[i].transform;
     });
   });
 
-  function scheduleBlink() {
-    eyeList.forEach(({ eye }) => {
-      if (eye) eye.classList.add("blinking");
-    });
-    setTimeout(() => {
-      eyeList.forEach(({ eye }) => {
-        if (eye) eye.classList.remove("blinking");
-      });
-      const nextDelay = Math.random() * 4000 + 2200;
-      setTimeout(scheduleBlink, nextDelay);
-    }, 160);
+  /* ------------------------------------------------------------------------
+     5. POKÉMON DREAM TEAM PARTY INSPECTOR
+     ------------------------------------------------------------------------ */
+  const pkmnSlots = document.querySelectorAll('.pokemon-slot');
+  const inspDex = document.getElementById('insp-dex');
+  const inspName = document.getElementById('insp-name');
+  const inspTypes = document.getElementById('insp-types');
+  const inspSprite = document.getElementById('insp-big-sprite');
+  const inspAbility = document.getElementById('insp-ability');
+  const inspItem = document.getElementById('insp-item');
+  const inspMoves = document.getElementById('insp-moves');
+  const inspShinyToggle = document.getElementById('insp-shiny-toggle');
+
+  let currentDex = '1000';
+  let isCurrentShiny = false;
+
+  function updateInspector(slot) {
+    pkmnSlots.forEach(s => s.classList.remove('active'));
+    slot.classList.add('active');
+
+    currentDex = slot.dataset.dex;
+    const name = slot.dataset.name;
+    const types = slot.dataset.types;
+    const ability = slot.dataset.ability;
+    const item = slot.dataset.item;
+    const moves = slot.dataset.moves.split(', ');
+
+    inspDex.textContent = `#${currentDex.padStart(3, '0')}`;
+    inspName.textContent = name.toUpperCase();
+    inspTypes.textContent = types.toUpperCase();
+    inspAbility.textContent = ability;
+    inspItem.textContent = item;
+
+    // Build moves tags
+    inspMoves.innerHTML = moves.map(m => `<span class="move-pill">${m}</span>`).join('');
+
+    // Update sprite URL
+    isCurrentShiny = false;
+    inspShinyToggle.classList.remove('active');
+    inspSprite.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/${currentDex}.gif`;
+
+    playSfx('cry');
   }
-  setTimeout(scheduleBlink, 2200);
 
-  // 6. LSD Dream Simulator Dream Link Warp Engine
-  const warpBtn = document.getElementById("btn-dream-warp");
-  const dreamPrompt = document.querySelector(".lsd-dialogue-prompt");
-  const dreamCoords = document.querySelector(".dream-coords");
-  const graphStatus = document.getElementById("graph-status-text");
+  pkmnSlots.forEach(slot => {
+    slot.addEventListener('click', () => updateInspector(slot));
+  });
 
-  const dreamRealms = [
-    { coords: "[ SECTOR: 0X-SUN // CALCIFER RIG // GRAPH: UPPER-DYNAMIC ]", status: "DAY 042 // UPPER-DYNAMIC // DURATION: 04:20" },
-    { coords: "[ SECTOR: 0X-MOON // DITHERED TEMPLE // GRAPH: DYNAMIC-LUCID ]", status: "DAY 077 // DYNAMIC-LUCID // DURATION: 01:12" },
-    { coords: "[ SECTOR: 0X-KYOTO // OBSIDIAN GARDEN // GRAPH: DOWNER-STATIC ]", status: "DAY 128 // DOWNER-STATIC // DURATION: 08:44" },
-    { coords: "[ SECTOR: 0X-NATURAL // HANGING STEPS // GRAPH: UPPER-FLASH ]", status: "DAY 256 // UPPER-FLASH // DURATION: 02:18" },
-    { coords: "[ SECTOR: 0X-VOID // MONOLITH CORE // GRAPH: ULTRA-SURREAL ]", status: "DAY 512 // ULTRA-SURREAL // DURATION: 06:09" },
-    { coords: "[ SECTOR: 0X-CHAOS // KALEIDOSCOPIC // GRAPH: FULL-ACID ]", status: "DAY 999 // FULL-ACID // DURATION: ∞" }
+  inspShinyToggle.addEventListener('click', () => {
+    playSfx('powerup');
+    isCurrentShiny = !isCurrentShiny;
+    inspShinyToggle.classList.toggle('active', isCurrentShiny);
+    
+    if (isCurrentShiny) {
+      inspSprite.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/shiny/${currentDex}.gif`;
+    } else {
+      inspSprite.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/${currentDex}.gif`;
+    }
+  });
+
+  /* ------------------------------------------------------------------------
+     6. SITE CUSTOMIZATION & DATA PERSISTENCE ENGINE
+     ------------------------------------------------------------------------ */
+  const DEFAULT_SITE_DATA = {
+    profile: {
+      name: "PONDS",
+      handle: "@ihateuponds",
+      avatar: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/shiny/10238.gif",
+      tags: [
+        { text: "👻 Ghost Type Trainer", color: "purple" },
+        { text: "💻 NEET", color: "pink" },
+        { text: "🛡️ opsec", color: "cyan" }
+      ],
+      bio: "Welcome to my website :3 my names Paul but i go by Ponds online, Im from SC and Im in school for Cybersecurity. I love hyperpop, EDM, and metal music. Im pretty open to making friends but Im lowkey anxious as fuck so bare with me."
+    },
+    status: {
+      mood: "Lowkey Anxious & Overstimulated",
+      activity: "Playing Pokemon Modern Emerald",
+      energyPercent: 0,
+      energyLabel: "DEAD",
+      currentQuote: '"I like shorts, they\'re comfy and easy to wear!"',
+      quotes: [
+        '"I like shorts, they\'re comfy and easy to wear!"',
+        '"If the synth doesn\'t distort your headphones, it\'s not loud enough."',
+        '"Gengar used Shadow Ball on my sleep schedule!"',
+        '"Always disguise yourself like Mimikyu so haters can\'t reach you."',
+        '"Hyperpop is just EDM with an energy drink and glitter on top."',
+        '"Neocities is where the real internet lives. Keep it weird."',
+        '"240 BPM is my natural resting heart rate."'
+      ]
+    },
+    socials: [
+      { name: "Instagram", url: "https://instagram.com/s3ph1r0thxx", icon: "📸", style: "instagram-btn" },
+      { name: "Discord (@ihateuponds)", url: "https://discord.com", icon: "💬", style: "discord-btn" },
+      { name: "Spotify", url: "https://open.spotify.com/user/fkm6bmojqqgf7j5eso4o0f9b0?si=cc74b10dd16d405c", icon: "🎧", style: "spotify-btn" },
+      { name: "Steam", url: "https://steamcommunity.com/id/ihateuponds/", icon: "🎮", style: "steam-btn" }
+    ]
+  };
+
+  const AVATAR_PRESETS = [
+    { name: "Shiny H-Zorua", url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/shiny/10238.gif" },
+    { name: "H-Zorua", url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/10238.gif" },
+    { name: "Gholdengo", url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/1000.gif" },
+    { name: "Skeledirge", url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/911.gif" },
+    { name: "Mimikyu", url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/778.gif" },
+    { name: "Shiny Mimikyu", url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/shiny/778.gif" },
+    { name: "Dragapult", url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/887.gif" },
+    { name: "Annihilape", url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/979.gif" },
+    { name: "Shiny Gengar", url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/shiny/94.gif" },
+    { name: "Sableye", url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/302.gif" }
   ];
-  let realmIdx = 0;
 
-  function triggerDreamWarp() {
-    // 1. Trigger Screen Warp Flash
-    document.body.classList.remove("dream-warp-flash");
-    void document.body.offsetWidth; // force reflow
-    document.body.classList.add("dream-warp-flash");
+  const SOCIAL_PRESETS = {
+    instagram: { name: "Instagram", icon: "📸", style: "instagram-btn", defaultUrl: "https://instagram.com/s3ph1r0thxx" },
+    discord: { name: "Discord (@ihateuponds)", icon: "💬", style: "discord-btn", defaultUrl: "https://discord.com" },
+    spotify: { name: "Spotify", icon: "🎧", style: "spotify-btn", defaultUrl: "https://open.spotify.com/user/fkm6bmojqqgf7j5eso4o0f9b0?si=cc74b10dd16d405c" },
+    steam: { name: "Steam", icon: "🎮", style: "steam-btn", defaultUrl: "https://steamcommunity.com/id/ihateuponds/" },
+    strawpage: { name: "StrawPage", icon: "🍓", style: "strawpage-btn", defaultUrl: "https://ihateuponds.straw.page" },
+    neocities: { name: "Neocities", icon: "🐱", style: "neocities-btn", defaultUrl: "https://neocities.org" },
+    twitter: { name: "Twitter / X", icon: "🐦", style: "twitter-btn", defaultUrl: "https://x.com" },
+    youtube: { name: "YouTube", icon: "📺", style: "youtube-btn", defaultUrl: "https://youtube.com" },
+    twitch: { name: "Twitch", icon: "🎮", style: "twitch-btn", defaultUrl: "https://twitch.tv" },
+    tiktok: { name: "TikTok", icon: "⚡", style: "tiktok-btn", defaultUrl: "https://tiktok.com" },
+    soundcloud: { name: "SoundCloud", icon: "🎶", style: "soundcloud-btn", defaultUrl: "https://soundcloud.com" },
+    tumblr: { name: "Tumblr", icon: "🖤", style: "tumblr-btn", defaultUrl: "https://tumblr.com" },
+    github: { name: "GitHub", icon: "🐙", style: "github-btn", defaultUrl: "https://github.com" },
+    bluesky: { name: "Bluesky", icon: "🦋", style: "bluesky-btn", defaultUrl: "https://bsky.app" },
+    carrd: { name: "Carrd", icon: "💳", style: "carrd-btn", defaultUrl: "https://carrd.co" },
+    custom: { name: "Custom Link", icon: "✨", style: "custom-btn", defaultUrl: "https://" }
+  };
 
-    // 2. Shift Dream Coordinates
-    realmIdx = (realmIdx + 1) % dreamRealms.length;
-    const nextRealm = dreamRealms[realmIdx];
+  function escapeHtml(str) {
+    if (!str && str !== 0) return '';
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+  }
 
-    if (dreamCoords) dreamCoords.textContent = nextRealm.coords;
-    if (graphStatus) graphStatus.textContent = nextRealm.status;
-    if (dreamPrompt) {
-      dreamPrompt.textContent = "▶ WARPED TO: " + nextRealm.coords.split("//")[0].replace("[", "").trim();
-      setTimeout(() => {
-        dreamPrompt.textContent = "▶ TOUCH ANYWHERE TO LINK NEXT DREAM";
-      }, 2500);
+  function loadSiteData() {
+    try {
+      const saved = localStorage.getItem('ponds_custom_site_data');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        return {
+          profile: { ...DEFAULT_SITE_DATA.profile, ...(parsed.profile || {}) },
+          status: { ...DEFAULT_SITE_DATA.status, ...(parsed.status || {}) },
+          socials: Array.isArray(parsed.socials) ? parsed.socials : DEFAULT_SITE_DATA.socials
+        };
+      }
+    } catch (e) {
+      console.warn("Could not load stored site data:", e);
+    }
+    return JSON.parse(JSON.stringify(DEFAULT_SITE_DATA));
+  }
+
+  let siteData = loadSiteData();
+
+  // DOM Elements for site content
+  const heroAvatarImg = document.getElementById('hero-avatar-img');
+  const heroNameText = document.getElementById('hero-name-text');
+  const heroHandleText = document.getElementById('hero-handle-text');
+  const heroTagsContainer = document.getElementById('hero-tags-container');
+  const heroBioText = document.getElementById('hero-bio-text');
+  
+  const statusMoodEl = document.getElementById('status-mood');
+  const statusActivityEl = document.getElementById('status-activity');
+  const statusEnergyFill = document.getElementById('status-energy-fill');
+  const statusQuote = document.getElementById('status-quote');
+  const btnNewQuote = document.getElementById('btn-new-quote');
+  const socialLinksGrid = document.getElementById('social-links-grid');
+
+  function renderSiteData(data) {
+    // 1. Profile Rendering
+    if (heroAvatarImg && data.profile.avatar) {
+      heroAvatarImg.src = data.profile.avatar;
+    }
+    if (heroNameText && data.profile.name) {
+      heroNameText.textContent = data.profile.name;
+      heroNameText.setAttribute('data-text', data.profile.name);
+    }
+    if (heroHandleText && data.profile.handle) {
+      heroHandleText.textContent = data.profile.handle;
+    }
+    if (heroBioText && data.profile.bio) {
+      heroBioText.textContent = data.profile.bio;
+    }
+    if (heroTagsContainer && Array.isArray(data.profile.tags)) {
+      heroTagsContainer.innerHTML = data.profile.tags.map(t => 
+        `<span class="accent-pill ${escapeHtml(t.color || 'purple')}">${escapeHtml(t.text)}</span>`
+      ).join(' ');
+    }
+
+    // 2. Status & Mood Rendering
+    if (statusMoodEl && data.status.mood) {
+      statusMoodEl.textContent = data.status.mood;
+    }
+    if (statusActivityEl && data.status.activity) {
+      statusActivityEl.textContent = data.status.activity;
+    }
+    if (statusEnergyFill) {
+      const pct = Math.min(100, Math.max(0, parseInt(data.status.energyPercent, 10) || 0));
+      const lbl = data.status.energyLabel || 'CHAOS';
+      statusEnergyFill.style.width = `${pct}%`;
+      statusEnergyFill.textContent = `${pct}% [${lbl}]`;
+    }
+    if (statusQuote) {
+      statusQuote.textContent = data.status.currentQuote || (data.status.quotes && data.status.quotes[0]) || '';
+    }
+
+    // 3. Socials Rendering
+    if (socialLinksGrid && Array.isArray(data.socials)) {
+      socialLinksGrid.innerHTML = data.socials.map(s => `
+        <a href="${escapeHtml(s.url || '#')}" target="_blank" rel="noopener" class="neon-link-btn ${escapeHtml(s.style || '')}">
+          <span class="link-icon">${escapeHtml(s.icon || '✨')}</span>
+          <span class="link-name">${escapeHtml(s.name || 'Link')}</span>
+          <span class="link-arrow">↗</span>
+        </a>
+      `).join('');
+
+      // Add hover sound effect to newly rendered link buttons
+      socialLinksGrid.querySelectorAll('.neon-link-btn').forEach(el => {
+        el.addEventListener('mouseenter', () => playSfx('hover'));
+      });
     }
   }
 
-  if (warpBtn) warpBtn.addEventListener("click", triggerDreamWarp);
-  if (dreamPrompt) dreamPrompt.addEventListener("click", triggerDreamWarp);
+  // Initial DOM apply
+  renderSiteData(siteData);
 
-  // Allow clicking on any dream shard to trigger a brief surreal warp
-  document.querySelectorAll(".dream-shard").forEach(shard => {
-    shard.addEventListener("dblclick", triggerDreamWarp);
+  /* ------------------------------------------------------------------------
+     7. LIVE DIGITAL CLOCK & QUOTE ROLLER
+     ------------------------------------------------------------------------ */
+  const clockEl = document.getElementById('live-clock');
+  function updateClock() {
+    const now = new Date();
+    if (clockEl) clockEl.textContent = now.toLocaleTimeString();
+  }
+  setInterval(updateClock, 1000);
+  updateClock();
+
+  if (btnNewQuote && statusQuote) {
+    btnNewQuote.addEventListener('click', () => {
+      playSfx('powerup');
+      const quoteList = (siteData.status && siteData.status.quotes && siteData.status.quotes.length > 0) 
+        ? siteData.status.quotes 
+        : DEFAULT_SITE_DATA.status.quotes;
+      const randomQuote = quoteList[Math.floor(Math.random() * quoteList.length)];
+      statusQuote.textContent = randomQuote;
+      siteData.status.currentQuote = randomQuote;
+      statusQuote.style.animation = 'none';
+      void statusQuote.offsetWidth; // trigger reflow
+      statusQuote.style.animation = 'glow-pulse 0.4s ease';
+    });
+  }
+
+  /* ------------------------------------------------------------------------
+     8. CUSTOMIZER MODAL TERMINAL ENGINE
+     ------------------------------------------------------------------------ */
+  const customizerModal = document.getElementById('customizer-modal');
+  const btnCustomizerToggle = document.getElementById('btn-customizer-toggle');
+  const btnModalClose = document.getElementById('btn-modal-close');
+  const btnModalCancel = document.getElementById('btn-modal-cancel');
+  const btnSaveApply = document.getElementById('btn-save-apply');
+
+  // Tab navigation
+  const modalTabBtns = document.querySelectorAll('.modal-tab-btn');
+  const tabPanes = document.querySelectorAll('.tab-pane');
+
+  modalTabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      playSfx('click');
+      const targetTab = btn.dataset.tab;
+      modalTabBtns.forEach(b => b.classList.remove('active'));
+      tabPanes.forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      const pane = document.getElementById(targetTab);
+      if (pane) pane.classList.add('active');
+    });
   });
 
-})();
+  // Modal Inputs
+  const cfgName = document.getElementById('cfg-name');
+  const cfgHandle = document.getElementById('cfg-handle');
+  const cfgAvatar = document.getElementById('cfg-avatar');
+  const cfgAvatarPreview = document.getElementById('cfg-avatar-preview');
+  const avatarPresetsGrid = document.getElementById('avatar-presets-grid');
+  const cfgTagsList = document.getElementById('cfg-tags-list');
+  const btnAddTag = document.getElementById('btn-add-tag');
+  const cfgBio = document.getElementById('cfg-bio');
+
+  const cfgMood = document.getElementById('cfg-mood');
+  const cfgActivity = document.getElementById('cfg-activity');
+  const cfgEnergy = document.getElementById('cfg-energy');
+  const cfgEnergyDisplay = document.getElementById('cfg-energy-display');
+  const cfgEnergyLabel = document.getElementById('cfg-energy-label');
+  const cfgQuote = document.getElementById('cfg-quote');
+  const cfgQuotesList = document.getElementById('cfg-quotes-list');
+  const btnAddQuote = document.getElementById('btn-add-quote');
+
+  const cfgSocialsList = document.getElementById('cfg-socials-list');
+  const cfgNewSocialPreset = document.getElementById('cfg-new-social-preset');
+  const btnAddSocial = document.getElementById('btn-add-social');
+
+  const btnDownloadHtml = document.getElementById('btn-download-html');
+  const btnCopyHtml = document.getElementById('btn-copy-html');
+  const btnExportJson = document.getElementById('btn-export-json');
+  const btnImportJsonTrigger = document.getElementById('btn-import-json-trigger');
+  const cfgFileImport = document.getElementById('cfg-file-import');
+  const btnResetDefaults = document.getElementById('btn-reset-defaults');
+
+  // Render Avatar Presets
+  if (avatarPresetsGrid) {
+    avatarPresetsGrid.innerHTML = AVATAR_PRESETS.map(p => `
+      <button type="button" class="avatar-preset-btn" data-url="${escapeHtml(p.url)}">
+        <img src="${escapeHtml(p.url)}" alt="${escapeHtml(p.name)}" />
+        <span>${escapeHtml(p.name)}</span>
+      </button>
+    `).join('');
+
+    avatarPresetsGrid.querySelectorAll('.avatar-preset-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        playSfx('click');
+        const url = btn.dataset.url;
+        if (cfgAvatar) cfgAvatar.value = url;
+        if (cfgAvatarPreview) cfgAvatarPreview.src = url;
+      });
+    });
+  }
+
+  // Update avatar preview when input changes
+  if (cfgAvatar && cfgAvatarPreview) {
+    cfgAvatar.addEventListener('input', () => {
+      cfgAvatarPreview.src = cfgAvatar.value;
+    });
+  }
+
+  // Energy Slider Live Value
+  if (cfgEnergy && cfgEnergyDisplay) {
+    cfgEnergy.addEventListener('input', () => {
+      cfgEnergyDisplay.textContent = `${cfgEnergy.value}%`;
+    });
+  }
+
+  // Render Tag Editor Item Rows
+  function createTagRow(text = '', color = 'purple') {
+    const row = document.createElement('div');
+    row.className = 'tag-edit-row';
+    row.innerHTML = `
+      <input type="text" class="form-input tag-text-input" placeholder="Tag text (e.g. ⚡ Hyperpop)" value="${escapeHtml(text)}" style="flex: 1;" />
+      <select class="form-select tag-color-select" style="width: 120px;">
+        <option value="purple" ${color === 'purple' ? 'selected' : ''}>💜 Purple</option>
+        <option value="pink" ${color === 'pink' ? 'selected' : ''}>💖 Pink</option>
+        <option value="cyan" ${color === 'cyan' ? 'selected' : ''}>🩵 Cyan</option>
+        <option value="yellow" ${color === 'yellow' ? 'selected' : ''}>💛 Yellow</option>
+        <option value="green" ${color === 'green' ? 'selected' : ''}>💚 Green</option>
+      </select>
+      <button type="button" class="btn-delete-row" title="Delete tag">✕</button>
+    `;
+    row.querySelector('.btn-delete-row').addEventListener('click', () => {
+      playSfx('click');
+      row.remove();
+    });
+    return row;
+  }
+
+  if (btnAddTag && cfgTagsList) {
+    btnAddTag.addEventListener('click', () => {
+      playSfx('click');
+      cfgTagsList.appendChild(createTagRow('★ New Badge', 'pink'));
+    });
+  }
+
+  // Render Quote Editor Item Rows
+  function createQuoteRow(text = '') {
+    const row = document.createElement('div');
+    row.className = 'quote-edit-row';
+    row.innerHTML = `
+      <input type="text" class="form-input quote-text-input" placeholder="Enter quote..." value="${escapeHtml(text)}" style="flex: 1;" />
+      <button type="button" class="btn-delete-row" title="Delete quote">✕</button>
+    `;
+    row.querySelector('.btn-delete-row').addEventListener('click', () => {
+      playSfx('click');
+      row.remove();
+    });
+    return row;
+  }
+
+  if (btnAddQuote && cfgQuotesList) {
+    btnAddQuote.addEventListener('click', () => {
+      playSfx('click');
+      cfgQuotesList.appendChild(createQuoteRow('"New vibe quote"'));
+    });
+  }
+
+  // Render Social Link Item Rows
+  function createSocialRow(item = { name: '', url: '', icon: '✨', style: '' }) {
+    const row = document.createElement('div');
+    row.className = 'social-edit-row';
+    row.dataset.style = item.style || '';
+    row.innerHTML = `
+      <input type="text" class="form-input social-icon-input" title="Emoji/Icon" value="${escapeHtml(item.icon || '✨')}" />
+      <input type="text" class="form-input social-name-input" placeholder="Platform Name" value="${escapeHtml(item.name || '')}" />
+      <input type="text" class="form-input social-url-input" placeholder="https://..." value="${escapeHtml(item.url || '')}" />
+      <button type="button" class="btn-delete-row" title="Delete social">✕</button>
+    `;
+    row.querySelector('.btn-delete-row').addEventListener('click', () => {
+      playSfx('click');
+      row.remove();
+    });
+    return row;
+  }
+
+  if (btnAddSocial && cfgSocialsList && cfgNewSocialPreset) {
+    btnAddSocial.addEventListener('click', () => {
+      playSfx('click');
+      const presetKey = cfgNewSocialPreset.value;
+      const preset = SOCIAL_PRESETS[presetKey] || SOCIAL_PRESETS.custom;
+      cfgSocialsList.appendChild(createSocialRow({
+        name: preset.name,
+        url: preset.defaultUrl,
+        icon: preset.icon,
+        style: preset.style
+      }));
+    });
+  }
+
+  // Populate Customizer Modal with current data
+  function populateModalWithData(data) {
+    if (cfgName) cfgName.value = data.profile.name || '';
+    if (cfgHandle) cfgHandle.value = data.profile.handle || '';
+    if (cfgAvatar) {
+      cfgAvatar.value = data.profile.avatar || '';
+      if (cfgAvatarPreview) cfgAvatarPreview.src = data.profile.avatar || '';
+    }
+    if (cfgBio) cfgBio.value = data.profile.bio || '';
+
+    // Tags
+    if (cfgTagsList) {
+      cfgTagsList.innerHTML = '';
+      (data.profile.tags || []).forEach(t => {
+        cfgTagsList.appendChild(createTagRow(t.text, t.color));
+      });
+    }
+
+    // Status
+    if (cfgMood) cfgMood.value = data.status.mood || '';
+    if (cfgActivity) cfgActivity.value = data.status.activity || '';
+    if (cfgEnergy) {
+      cfgEnergy.value = data.status.energyPercent || 90;
+      if (cfgEnergyDisplay) cfgEnergyDisplay.textContent = `${cfgEnergy.value}%`;
+    }
+    if (cfgEnergyLabel) cfgEnergyLabel.value = data.status.energyLabel || 'CHAOS';
+    if (cfgQuote) cfgQuote.value = data.status.currentQuote || '';
+
+    // Quotes list
+    if (cfgQuotesList) {
+      cfgQuotesList.innerHTML = '';
+      (data.status.quotes || []).forEach(q => {
+        cfgQuotesList.appendChild(createQuoteRow(q));
+      });
+    }
+
+    // Socials list
+    if (cfgSocialsList) {
+      cfgSocialsList.innerHTML = '';
+      (data.socials || []).forEach(s => {
+        cfgSocialsList.appendChild(createSocialRow(s));
+      });
+    }
+  }
+
+  /* ------------------------------------------------------------------------
+     SECRET CREATOR MODE CONTROLLER
+     ------------------------------------------------------------------------ */
+  let creatorModeUnlocked = false;
+
+  function showCreatorNotification(msg) {
+    const toast = document.createElement('div');
+    toast.className = 'creator-toast';
+    toast.textContent = msg;
+    document.body.appendChild(toast);
+    setTimeout(() => toast.classList.add('show'), 15);
+    setTimeout(() => {
+      toast.classList.remove('show');
+      setTimeout(() => toast.remove(), 400);
+    }, 3500);
+  }
+
+  function unlockCreatorMode(silent = false) {
+    if (!creatorModeUnlocked) {
+      creatorModeUnlocked = true;
+      if (btnCustomizerToggle) {
+        btnCustomizerToggle.style.display = 'flex';
+        btnCustomizerToggle.classList.remove('creator-hidden');
+        btnCustomizerToggle.classList.add('creator-unlocked');
+      }
+      if (!silent) {
+        playSfx('powerup');
+        showCreatorNotification("★ CREATOR MODE UNLOCKED // PONDS.SYS ★");
+      }
+    }
+  }
+
+  function openCustomizerModal() {
+    unlockCreatorMode(true);
+    playSfx('powerup');
+    populateModalWithData(siteData);
+    customizerModal.classList.add('open');
+    customizerModal.setAttribute('aria-hidden', 'false');
+  }
+
+  function closeCustomizerModal() {
+    playSfx('click');
+    customizerModal.classList.remove('open');
+    customizerModal.setAttribute('aria-hidden', 'true');
+  }
+
+  if (btnCustomizerToggle) btnCustomizerToggle.addEventListener('click', openCustomizerModal);
+  if (btnModalClose) btnModalClose.addEventListener('click', closeCustomizerModal);
+  if (btnModalCancel) btnModalCancel.addEventListener('click', closeCustomizerModal);
+
+  // Close modal when clicking backdrop
+  if (customizerModal) {
+    customizerModal.addEventListener('click', (e) => {
+      if (e.target === customizerModal) closeCustomizerModal();
+    });
+  }
+
+  // 1. Keyboard Shortcut: Ctrl + Shift + E or Cmd + Shift + E
+  window.addEventListener('keydown', (e) => {
+    if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'E' || e.key === 'e')) {
+      e.preventDefault();
+      unlockCreatorMode();
+      openCustomizerModal();
+    }
+    if (e.key === 'Escape' && customizerModal && customizerModal.classList.contains('open')) {
+      closeCustomizerModal();
+    }
+  });
+
+  // 2. Secret URL Hash Trigger: #edit, #admin, #creator
+  function checkUrlHash() {
+    const hash = (window.location.hash || '').toLowerCase();
+    if (hash === '#edit' || hash === '#admin' || hash === '#creator') {
+      unlockCreatorMode(true);
+      openCustomizerModal();
+    }
+  }
+  window.addEventListener('hashchange', checkUrlHash);
+  checkUrlHash();
+
+  // 3. Secret Easter Egg Click: Double click the PONDS.SYS logo in top-left
+  const navBrand = document.querySelector('.nav-brand');
+  if (navBrand) {
+    navBrand.style.cursor = 'pointer';
+    navBrand.title = 'PONDS.SYS (Double click for Creator Mode)';
+    navBrand.addEventListener('dblclick', () => {
+      unlockCreatorMode();
+      openCustomizerModal();
+    });
+  }
+
+  // Save & Apply Changes
+  if (btnSaveApply) {
+    btnSaveApply.addEventListener('click', () => {
+      // Gather profile tags
+      const newTags = [];
+      if (cfgTagsList) {
+        cfgTagsList.querySelectorAll('.tag-edit-row').forEach(row => {
+          const text = row.querySelector('.tag-text-input').value.trim();
+          const color = row.querySelector('.tag-color-select').value;
+          if (text) newTags.push({ text, color });
+        });
+      }
+
+      // Gather quotes
+      const newQuotes = [];
+      if (cfgQuotesList) {
+        cfgQuotesList.querySelectorAll('.quote-edit-row').forEach(row => {
+          const text = row.querySelector('.quote-text-input').value.trim();
+          if (text) newQuotes.push(text);
+        });
+      }
+
+      // Gather socials
+      const newSocials = [];
+      if (cfgSocialsList) {
+        cfgSocialsList.querySelectorAll('.social-edit-row').forEach(row => {
+          const icon = row.querySelector('.social-icon-input').value.trim() || '✨';
+          const name = row.querySelector('.social-name-input').value.trim();
+          const url = row.querySelector('.social-url-input').value.trim();
+          const style = row.dataset.style || '';
+          if (name && url) {
+            newSocials.push({ name, url, icon, style });
+          }
+        });
+      }
+
+      // Build updated siteData object
+      siteData = {
+        profile: {
+          name: cfgName ? cfgName.value.trim() || 'PONDS' : 'PONDS',
+          handle: cfgHandle ? cfgHandle.value.trim() || '@ihateuponds' : '@ihateuponds',
+          avatar: cfgAvatar ? cfgAvatar.value.trim() || DEFAULT_SITE_DATA.profile.avatar : DEFAULT_SITE_DATA.profile.avatar,
+          tags: newTags.length > 0 ? newTags : DEFAULT_SITE_DATA.profile.tags,
+          bio: cfgBio ? cfgBio.value.trim() || DEFAULT_SITE_DATA.profile.bio : DEFAULT_SITE_DATA.profile.bio
+        },
+        status: {
+          mood: cfgMood ? cfgMood.value.trim() || '⚡ Overstimulated' : '⚡ Overstimulated',
+          activity: cfgActivity ? cfgActivity.value.trim() || 'Hacking Neocities' : 'Hacking Neocities',
+          energyPercent: cfgEnergy ? parseInt(cfgEnergy.value, 10) : 90,
+          energyLabel: cfgEnergyLabel ? cfgEnergyLabel.value.trim() || 'CHAOS' : 'CHAOS',
+          currentQuote: cfgQuote ? cfgQuote.value.trim() : (newQuotes[0] || DEFAULT_SITE_DATA.status.currentQuote),
+          quotes: newQuotes.length > 0 ? newQuotes : DEFAULT_SITE_DATA.status.quotes
+        },
+        socials: newSocials.length > 0 ? newSocials : DEFAULT_SITE_DATA.socials
+      };
+
+      try {
+        localStorage.setItem('ponds_custom_site_data', JSON.stringify(siteData));
+      } catch (e) {
+        console.warn("Could not save to localStorage:", e);
+      }
+
+      renderSiteData(siteData);
+      closeCustomizerModal();
+      playSfx('powerup');
+    });
+  }
+
+  // Generate static updated index.html for export
+  function generateUpdatedStaticHtml(data) {
+    const tagsHtml = data.profile.tags.map(t => 
+      `<span class="accent-pill ${escapeHtml(t.color)}">${escapeHtml(t.text)}</span>`
+    ).join('\n            ');
+
+    const socialsHtml = data.socials.map(s => 
+      `<a href="${escapeHtml(s.url)}" target="_blank" rel="noopener" class="neon-link-btn ${escapeHtml(s.style || '')}">\n` +
+      `              <span class="link-icon">${escapeHtml(s.icon)}</span>\n` +
+      `              <span class="link-name">${escapeHtml(s.name)}</span>\n` +
+      `              <span class="link-arrow">↗</span>\n` +
+      `            </a>`
+    ).join('\n            ');
+
+    // Clone the current full document HTML
+    let fullHtml = document.documentElement.outerHTML;
+    
+    // Ensure the DOCTYPE is preserved
+    if (!fullHtml.startsWith('<!DOCTYPE html>')) {
+      fullHtml = '<!DOCTYPE html>\n' + fullHtml;
+    }
+    return fullHtml;
+  }
+
+  // Download Updated index.html
+  if (btnDownloadHtml) {
+    btnDownloadHtml.addEventListener('click', () => {
+      playSfx('powerup');
+      const htmlContent = generateUpdatedStaticHtml(siteData);
+      const blob = new Blob([htmlContent], { type: 'text/html;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'index.html';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    });
+  }
+
+  // Copy Full HTML to Clipboard
+  if (btnCopyHtml) {
+    btnCopyHtml.addEventListener('click', () => {
+      playSfx('powerup');
+      const htmlContent = generateUpdatedStaticHtml(siteData);
+      navigator.clipboard.writeText(htmlContent).then(() => {
+        const textEl = btnCopyHtml.querySelector('.btn-main-text');
+        const oldText = textEl ? textEl.textContent : 'COPY FULL HTML';
+        if (textEl) textEl.textContent = 'COPIED TO CLIPBOARD!';
+        setTimeout(() => {
+          if (textEl) textEl.textContent = oldText;
+        }, 1800);
+      });
+    });
+  }
+
+  // Export JSON Config
+  if (btnExportJson) {
+    btnExportJson.addEventListener('click', () => {
+      playSfx('powerup');
+      const jsonStr = JSON.stringify(siteData, null, 2);
+      const blob = new Blob([jsonStr], { type: 'application/json;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'neocities-site-config.json';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    });
+  }
+
+  // Import JSON Config
+  if (btnImportJsonTrigger && cfgFileImport) {
+    btnImportJsonTrigger.addEventListener('click', () => {
+      cfgFileImport.click();
+    });
+
+    cfgFileImport.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        try {
+          const parsed = JSON.parse(event.target.result);
+          if (parsed && parsed.profile && parsed.status && parsed.socials) {
+            siteData = parsed;
+            localStorage.setItem('ponds_custom_site_data', JSON.stringify(siteData));
+            renderSiteData(siteData);
+            populateModalWithData(siteData);
+            playSfx('powerup');
+            alert('Custom configuration successfully loaded!');
+          } else {
+            alert('Invalid config JSON structure.');
+          }
+        } catch (err) {
+          alert('Could not parse JSON config file.');
+        }
+      };
+      reader.readAsText(file);
+    });
+  }
+
+  // Reset to Defaults
+  if (btnResetDefaults) {
+    btnResetDefaults.addEventListener('click', () => {
+      if (confirm('Are you sure you want to reset all customizations back to original defaults?')) {
+        playSfx('cry');
+        siteData = JSON.parse(JSON.stringify(DEFAULT_SITE_DATA));
+        try {
+          localStorage.removeItem('ponds_custom_site_data');
+        } catch (e) {}
+        renderSiteData(siteData);
+        populateModalWithData(siteData);
+      }
+    });
+  }
+
+  /* ------------------------------------------------------------------------
+     9. COPY 88x31 BUTTON CODE
+     ------------------------------------------------------------------------ */
+  const btnCopyCode = document.getElementById('btn-copy-code');
+  const embedCodeArea = document.getElementById('embed-code-area');
+
+  btnCopyCode.addEventListener('click', () => {
+    playSfx('powerup');
+    embedCodeArea.select();
+    navigator.clipboard.writeText(embedCodeArea.value).then(() => {
+      const originalText = btnCopyCode.textContent;
+      btnCopyCode.textContent = 'COPIED!';
+      btnCopyCode.style.background = 'var(--neon-cyan)';
+      btnCopyCode.style.color = '#000';
+      setTimeout(() => {
+        btnCopyCode.textContent = originalText;
+        btnCopyCode.style.background = 'var(--neon-purple)';
+        btnCopyCode.style.color = '#fff';
+      }, 1500);
+    });
+  });
+
+  /* ------------------------------------------------------------------------
+     10. SPARKLE CURSOR TRAIL & AMBIENT CANVAS BACKGROUND
+     ------------------------------------------------------------------------ */
+  const canvas = document.getElementById('bg-canvas');
+  const ctx = canvas.getContext('2d');
+
+  let width = (canvas.width = window.innerWidth);
+  let height = (canvas.height = window.innerHeight);
+
+  window.addEventListener('resize', () => {
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
+  });
+
+  // Background floating stars
+  const stars = Array.from({ length: 45 }, () => ({
+    x: Math.random() * width,
+    y: Math.random() * height,
+    size: Math.random() * 2 + 1,
+    alpha: Math.random() * 0.8 + 0.2,
+    speed: Math.random() * 0.5 + 0.2,
+    color: ['#9d4edd', '#ff007f', '#00f5d4', '#ffffff'][Math.floor(Math.random() * 4)]
+  }));
+
+  // Sparkles created by cursor movement
+  const cursorSparkles = [];
+  const sparkleColors = ['#ff007f', '#00f5d4', '#fee440', '#9d4edd', '#ffffff'];
+
+  window.addEventListener('mousemove', (e) => {
+    // Spawn 2 sparkles per mouse move
+    for (let i = 0; i < 2; i++) {
+      cursorSparkles.push({
+        x: e.clientX + (Math.random() * 12 - 6),
+        y: e.clientY + (Math.random() * 12 - 6),
+        size: Math.random() * 4 + 2,
+        color: sparkleColors[Math.floor(Math.random() * sparkleColors.length)],
+        alpha: 1,
+        vx: (Math.random() - 0.5) * 1.5,
+        vy: (Math.random() - 0.5) * 1.5 + 0.5
+      });
+    }
+  });
+
+  function render() {
+    ctx.clearRect(0, 0, width, height);
+
+    // Draw background stars
+    stars.forEach(s => {
+      s.y -= s.speed;
+      if (s.y < 0) s.y = height;
+      ctx.fillStyle = s.color;
+      ctx.globalAlpha = s.alpha;
+      ctx.fillRect(s.x, s.y, s.size, s.size);
+    });
+
+    // Draw & update cursor sparkles
+    for (let i = cursorSparkles.length - 1; i >= 0; i--) {
+      const p = cursorSparkles[i];
+      p.x += p.vx;
+      p.y += p.vy;
+      p.alpha -= 0.035;
+      p.size = Math.max(0, p.size - 0.05);
+
+      if (p.alpha <= 0 || p.size <= 0) {
+        cursorSparkles.splice(i, 1);
+        continue;
+      }
+
+      ctx.fillStyle = p.color;
+      ctx.globalAlpha = p.alpha;
+      ctx.fillRect(p.x - p.size / 2, p.y - p.size / 2, p.size, p.size);
+    }
+
+    ctx.globalAlpha = 1;
+    requestAnimationFrame(render);
+  }
+
+  /* ------------------------------------------------------------------------
+     8. POKÉMON TCG 3D CARD TILT & HOLOGRAPHIC SHINE ENGINE
+     ------------------------------------------------------------------------ */
+  const tcgCardItems = document.querySelectorAll('.tcg-card-item');
+  tcgCardItems.forEach(item => {
+    const wrapper = item.querySelector('.tcg-card-wrapper');
+    const foil = item.querySelector('.tcg-holo-foil');
+    if (!wrapper) return;
+
+    item.addEventListener('mousemove', (e) => {
+      const rect = wrapper.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+
+      // 3D tilt angle calculation
+      const rotateX = ((y - centerY) / centerY) * -16;
+      const rotateY = ((x - centerX) / centerX) * 16;
+
+      wrapper.style.transform = `perspective(800px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) scale3d(1.05, 1.05, 1.05)`;
+
+      if (foil) {
+        const posX = ((x / rect.width) * 100).toFixed(1);
+        const posY = ((y / rect.height) * 100).toFixed(1);
+        foil.style.backgroundPosition = `${posX}% ${posY}%`;
+      }
+    });
+
+    item.addEventListener('mouseleave', () => {
+      wrapper.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+      if (foil) {
+        foil.style.backgroundPosition = '';
+      }
+    });
+  });
+
+  /* ------------------------------------------------------------------------
+     9. UNIVERSAL LIGHTBOX MODAL (FOR POLAROIDS & TCG CARDS)
+     ------------------------------------------------------------------------ */
+  const lightboxModal = document.getElementById('lightbox-modal');
+  const lightboxImg = document.getElementById('lightbox-image');
+  const lightboxTitle = document.getElementById('lightbox-title');
+  const lightboxSub = document.getElementById('lightbox-sub');
+  const btnCloseLightbox = document.getElementById('btn-close-lightbox');
+
+  function openLightbox(imgSrc, title, sub) {
+    if (!lightboxModal) return;
+    playSfx('powerup');
+    lightboxImg.src = imgSrc;
+    lightboxTitle.textContent = title;
+    lightboxSub.textContent = sub;
+    lightboxModal.classList.add('active');
+    lightboxModal.setAttribute('aria-hidden', 'false');
+  }
+
+  function closeLightbox() {
+    if (!lightboxModal) return;
+    playSfx('click');
+    lightboxModal.classList.remove('active');
+    lightboxModal.setAttribute('aria-hidden', 'true');
+  }
+
+  // Polaroid click listener
+  const polaroidCards = document.querySelectorAll('.polaroid-card');
+  polaroidCards.forEach(card => {
+    card.addEventListener('click', () => {
+      const fullSrc = card.dataset.full || card.querySelector('img').src;
+      const title = card.dataset.title || card.querySelector('.polaroid-title').textContent;
+      const sub = card.dataset.sub || card.querySelector('.polaroid-date').textContent;
+      openLightbox(fullSrc, title, sub);
+    });
+  });
+
+  // TCG Card click listener
+  tcgCardItems.forEach(card => {
+    card.addEventListener('click', () => {
+      const fullSrc = card.dataset.img || card.querySelector('img').src;
+      const name = card.dataset.name || 'Pokemon Card';
+      const set = card.dataset.set ? `${card.dataset.set} • ${card.dataset.rarity || ''}` : (card.dataset.rarity || '');
+      openLightbox(fullSrc, name, set);
+    });
+  });
+
+  if (btnCloseLightbox) {
+    btnCloseLightbox.addEventListener('click', closeLightbox);
+  }
+
+  if (lightboxModal) {
+    lightboxModal.addEventListener('click', (e) => {
+      if (e.target === lightboxModal) {
+        closeLightbox();
+      }
+    });
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && lightboxModal && lightboxModal.classList.contains('active')) {
+      closeLightbox();
+    }
+  });
+
+  render();
+});

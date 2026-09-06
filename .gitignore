@@ -4,3 +4,4 @@
 *.bak
 *.iso
 node_modules/
+*.mp3

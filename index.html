@@ -1,506 +1,861 @@
 <!DOCTYPE html>
 <html lang="en">
-<!--
-  ============================================================
-  PONDS' CAVE // LSD DREAM EMULATOR TOTAL OVERHAUL
-  100% NON-BOXY POLYGONAL FRAGMENTS & ACID NEON PSYCHEDELIA
-  HOSTED ON NEOCITIES: https://ihateuponds.neocities.org/
-  ============================================================
--->
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>★ PONDS' CAVE // LSD DREAM EMULATOR ★</title>
-  <meta name="description" content="Ponds' personal liminal webcore portal: LSD Dream Emulator overhaul, non-boxy polygonal shards, giant flashy gifs, and hypnotic eye vortex.">
-  <meta name="theme-color" content="#ff007f">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>★ PONDS // @ihateuponds ★ HYPERPOP & POKÉMON SCRAPBOOK ★</title>
+  <meta name="description" content="Ponds' personal hyperpop & ghost-type Pokémon scrapbook: retro CD player, 3D TCG binder, and photo vault." />
+  <meta name="theme-color" content="#8b00ff" />
+  
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
 
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <!-- OpenGraph / Social Embed Metadata -->
+  <meta property="og:title" content="★ PONDS // @ihateuponds ★ HYPERPOP & POKÉMON SCRAPBOOK ★" />
+  <meta property="og:description" content="Ponds' personal hyperpop & ghost-type Pokémon scrapbook: retro CD player, 3D TCG binder, and photo vault." />
+  <meta property="og:url" content="https://ihateuponds.neocities.org/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://ihateuponds.neocities.org/avatar.jpeg" />
+
+  <!-- Fonts: Retro Pixel & Cyber Monospace -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=VT323&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Silkscreen:wght@400;700&family=JetBrains+Mono:wght@400;600;700&family=Share+Tech+Mono&family=VT323&display=swap" rel="stylesheet">
   
-  <!-- OpenGraph / Social Embed Metadata (Discord, Telegram, iMessage) -->
-  <meta property="og:title" content="★ PONDS' CAVE // LSD DREAM EMULATOR ★">
-  <meta property="og:description" content="Ponds' personal liminal webcore portal: LSD Dream Emulator overhaul, non-boxy polygonal shards, favorite games shrine, and hardware lab.">
-  <meta property="og:url" content="https://ihateuponds.neocities.org/">
-  <meta property="og:type" content="website">
-  <meta property="og:image" content="https://ihateuponds.neocities.org/avatar.jpeg">
-
-  <link rel="stylesheet" href="style.css">
-  <script src="script.js" defer></script>
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body id="page-body">
+<body class="theme-purple-black">
 
-  <!-- Ambient CRT Scanline Layer -->
-  <div class="crt-vignette" aria-hidden="true"></div>
+  <!-- Scanline CRT Overlay (Toggleable) -->
+  <div id="crt-overlay" class="crt-layer active"></div>
 
-  <div class="site-wrapper">
+  <!-- Ambient Interactive Canvas (Stars, Sparkles, Cyber Grid) -->
+  <canvas id="bg-canvas"></canvas>
 
-    <!-- Top URL / Telemetry Bar -->
-    <div class="top-url-bar" style="border-color: var(--acid-cyan); box-shadow: 0 0 14px rgba(0, 240, 255, 0.4);">
-      <div class="url-breadcrumb">
-        <span class="url-arrow" style="color: var(--acid-pink);">➤</span>
-        <a href="./" class="url-domain" style="text-decoration: none;" title="Return to Home">https://ihateuponds.neocities.org</a><span class="url-path">/lsd_dream_emulator</span>
-      </div>
-      <div class="top-bar-meta">
-        <span class="clock-display">[ EDT: <span id="clock-display">--:--:--</span> ]</span>
-        <button id="font-toggle-btn" class="mini-tag-btn" title="Toggle Font">font: vga</button>
-      </div>
-    </div>
-
-    <!-- Main Header Banner with Flanking Tracking Eyeballs -->
-    <header class="retro-header dream-header shard-poly-1" style="margin-bottom: 8px;">
-      <div class="header-content-wrap">
-        
-        <!-- Left Eyeball Entity -->
-        <div class="eye-cluster" id="eye-cluster-left" aria-hidden="true">
-          <div class="organic-eye" id="eye-1">
-            <div class="sclera">
-              <div class="veins"></div>
-              <div class="iris">
-                <div class="pupil"></div>
-                <div class="glint"></div>
-              </div>
-            </div>
-            <div class="eyelid-shutter"></div>
-          </div>
-        </div>
-
-        <div class="header-titles">
-          <div class="header-decor-row">
-            <img src="assets/decors/pixel-wing.png" alt="pixel wing decor" class="header-wing left-wing pixel-img">
-            <h1 class="glitch-title rainbow-text" title="welcome to ponds' cave"><a href="./" style="color: inherit; text-decoration: none;">★ PONDS' CAVE ★</a></h1>
-            <img src="assets/decors/pixel-wing.png" alt="pixel wing decor" class="header-wing right-wing pixel-img">
-          </div>
-          <p class="header-tagline" style="color: var(--acid-cyan); font-weight: bold; text-shadow: 0 0 8px rgba(0, 240, 255, 0.6);">
-            Local NEET Catboy // LSD Dream Emulator Realm :3
-          </p>
-          <div class="dream-coords">[ SECTOR: 0X-SUN // CALCIFER RIG // GRAPH: UPPER-DYNAMIC ]</div>
-          
-          <!-- LSD Dream Graph Radar HUD -->
-          <div class="dream-graph-hud">
-            <span class="graph-quad-dot"></span>
-            <span id="graph-status-text">DAY 042 // UPPER-DYNAMIC // DURATION: 04:20</span>
-          </div>
-        </div>
-
-        <!-- Right Eyeball Entity -->
-        <div class="eye-cluster" id="eye-cluster-right" aria-hidden="true">
-          <div class="organic-eye" id="eye-2">
-            <div class="sclera">
-              <div class="veins"></div>
-              <div class="iris">
-                <div class="pupil"></div>
-                <div class="glint"></div>
-              </div>
-            </div>
-            <div class="eyelid-shutter"></div>
-          </div>
-        </div>
-
-      </div>
-    </header>
-
-    <!-- Marquee Ticker -->
-    <div class="marquee-bar" style="border: 2px solid var(--acid-pink); box-shadow: 0 0 15px rgba(255, 0, 127, 0.4);">
-      <div class="marquee-label" style="background: var(--acid-pink); color: #fff;">🗨 DREAM LOG:</div>
+  <!-- Top Floating Retro Control Bar -->
+  <header class="top-nav-bar">
+    <a href="./" class="nav-brand" style="text-decoration: none; color: inherit;" title="Return to Home">
+      <span class="status-dot"></span>
+      <span class="brand-text">PONDS.SYS // v2.0</span>
+    </a>
+    
+    <div class="marquee-wrapper">
       <div class="marquee-content">
-        <span class="marquee-text" style="color: var(--acid-lime);">Idk what to put here, LOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOLOL</span>
+        <span>★ WELCOME TO PONDS' SCRAPBOOK ★ GHOST TYPE DREAM TEAM &amp; TCG BINDER ★ PHOTO VAULT ★ HYPERPOP &amp; METAL RADIO ONLINE ★ CYBERSECURITY SPECIALIST ★ DRAG ANY STICKER TO CUSTOMIZE ★ @ihateuponds ★</span>
       </div>
     </div>
 
-    <!-- NON-BOXY CRYSTAL PORTAL LINKS (MidiFreak Style) -->
-    <div class="crystal-portals-row">
-      <a href="support/" class="crystal-portal-card card-support rotateA">
-        <div style="font-family: var(--font-bios); font-size: 0.8rem; color: var(--acid-cyan); font-weight: bold;">📟 SUBPAGE REALM 01</div>
-        <div style="font-size: 1.15rem; font-weight: bold; color: #fff; margin: 4px 0;">Tech Support Workstation ↗</div>
-        <p style="font-size: 0.8rem; color: #cbd5e1; margin: 0;">Interactive Hyprland TUI terminal with weekly schedule &amp; anti-bot crash intake.</p>
-      </a>
+    <div class="nav-controls">
+      <!-- Secret Creator Mode: Revealed via Ctrl+Shift+E, #edit hash, or double-clicking PONDS.SYS -->
+      <button id="btn-customizer-toggle" class="control-btn customizer-btn creator-hidden" title="Creator Customizer Terminal" style="display: none;">
+        <span class="btn-icon">⚙️</span> <span class="btn-label">CUSTOMIZE</span>
+      </button>
+      <button id="btn-sound-toggle" class="control-btn" title="Toggle Sound FX">
+        <span class="btn-icon">🔊</span> <span class="btn-label">SFX: ON</span>
+      </button>
+      <button id="btn-crt-toggle" class="control-btn" title="Toggle CRT Scanline Effect">
+        <span class="btn-icon">📺</span> <span class="btn-label">CRT: ON</span>
+      </button>
+      <button id="btn-reset-stickers" class="control-btn" title="Reset Sticker Positions">
+        <span class="btn-icon">✨</span> <span class="btn-label">RESET STICKERS</span>
+      </button>
+    </div>
+  </header>
 
-      <a href="games/" class="crystal-portal-card card-games rotateB">
-        <div style="font-family: var(--font-bios); font-size: 0.8rem; color: var(--acid-pink); font-weight: bold;">🎮 SUBPAGE REALM 02</div>
-        <div style="font-size: 1.15rem; font-weight: bold; color: #fff; margin: 4px 0;">Favorite Games Shrine ↗</div>
-        <p style="font-size: 0.8rem; color: #cbd5e1; margin: 0;">PSX memory card lounge exploring Kingdom Hearts 2, Pokémon SoulSilver, Stardew, DDR, and more.</p>
-      </a>
-
-      <a href="rig/" class="crystal-portal-card card-rig rotateC">
-        <div style="font-family: var(--font-bios); font-size: 0.8rem; color: var(--acid-yellow); font-weight: bold;">🖥 SUBPAGE REALM 03</div>
-        <div style="font-size: 1.15rem; font-weight: bold; color: #fff; margin: 4px 0;">Hardware &amp; Linux Bench ↗</div>
-        <p style="font-size: 0.8rem; color: #cbd5e1; margin: 0;">Ryzen 7 5700X, RX 6700 XT, CachyOS BORE scheduler, PipeWire Pro-Audio, and WinDbg triage.</p>
-      </a>
+  <!-- Draggable Sticker Playground Container -->
+  <div id="sticker-container" class="sticker-layer">
+    <!-- Draggable Sticker 1: Holographic Washi Tape -->
+    <div class="draggable-item tape-sticker" style="top: 85px; left: 4%; transform: rotate(-8deg);" data-drag="true">
+      <div class="tape-strip">★ HYPERPOP ★</div>
     </div>
 
-    <!-- ================= THE HYPNOTIC EYE VORTEX (GIANT CENTERPIECE) ================= -->
-    <section class="hypnotic-vortex-portal">
-      <div class="vortex-spin-bg"></div>
-      
-      <div class="vortex-content">
-        <h2 class="rainbow-text" style="font-size: 1.6rem; letter-spacing: 0.1em; text-transform: uppercase;">
-          🌀 THE HYPNOTIC EYE VORTEX 🌀
-        </h2>
+    <!-- Draggable Sticker 2: Gengar Pixel Badge -->
+    <div class="draggable-item pixel-badge-sticker" style="top: 240px; right: 3%; transform: rotate(12deg);" data-drag="true">
+      <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/94.gif" alt="Gengar Sprite" class="sticker-img" />
+      <span class="sticker-caption">#094 GENGAR</span>
+    </div>
 
-        <!-- Giant Tracking Eye in the Vortex -->
-        <div class="giant-vortex-eye" id="giant-vortex-eye">
-          <div class="sclera">
-            <div class="veins"></div>
-            <div class="giant-iris" id="giant-iris">
-              <div class="giant-pupil">
-                <div class="giant-glint"></div>
-              </div>
-            </div>
+    <!-- Draggable Sticker 3: Warning Neon Tag -->
+    <div class="draggable-item tag-sticker" style="top: 620px; left: 2%; transform: rotate(-15deg);" data-drag="true">
+      <div class="warning-badge">⚠️ CAUTION: 240 BPM</div>
+    </div>
+
+    <!-- Draggable Sticker 4: Shiny Mimikyu Pin -->
+    <div class="draggable-item pin-sticker" style="top: 820px; right: 4%; transform: rotate(-5deg);" data-drag="true">
+      <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/shiny/778.gif" alt="Shiny Mimikyu" class="sticker-img" />
+      <span class="sticker-sub">SHINY // 778</span>
+    </div>
+
+    <!-- Draggable Sticker 5: Glitch Heart -->
+    <div class="draggable-item heart-sticker" style="top: 1180px; left: 3%; transform: rotate(10deg);" data-drag="true">
+      <div class="holo-heart">💜 [BASS_BOOST] 💜</div>
+    </div>
+  </div>
+
+  <!-- Main Scrapbook Container -->
+  <main class="scrapbook-layout">
+
+    <!-- HERO HEADER CARD -->
+    <!-- ✏️ EDIT PROFILE & BIO IN CUSTOMIZER MODAL OR BELOW -->
+    <section class="scrap-card hero-card holo-border">
+      <div class="card-pin top-left"></div>
+      <div class="card-pin top-right"></div>
+      
+      <div class="hero-content">
+        <div class="avatar-box">
+          <div class="avatar-glow"></div>
+          <div class="avatar-frame">
+            <img id="hero-avatar-img" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/shiny/10238.gif" alt="Ponds Avatar Shiny Hisuian Zorua" class="avatar-sprite" />
           </div>
-          <div class="eyelid-shutter"></div>
+          <span class="badge-online">LVL 99</span>
         </div>
 
-        <p style="font-family: var(--font-bios); font-size: 0.95rem; color: var(--acid-cyan); max-width: 600px; text-shadow: 0 0 8px rgba(0, 240, 255, 0.7);">
-          YOU ARE NOW LINKED TO THE CENTRAL DREAM APPARATUS. GAZE INTO THE EYE TO ALIGN WITH THE FREQUENCY OF CALCIFER.
-        </p>
-
-        <!-- Interactive Dream Warp Button -->
-        <button class="btn-dream-warp" id="btn-dream-warp">
-          <span>⚡ LINK NEXT DREAM (WARP) ⚡</span>
-        </button>
-
-        <div style="font-family: var(--font-vga); font-size: 0.75rem; color: var(--acid-lime); letter-spacing: 0.08em;">
-          [ DOUBLE-CLICK ANY DREAM SHARD TO WARP // TOUCH ENTITIES TO LINK DIMENSIONS ]
+        <div class="hero-details">
+          <div class="title-row">
+            <h1 class="glitch-text" id="hero-name-text" data-text="PONDS">PONDS</h1>
+            <span class="tag-handle" id="hero-handle-text">@ihateuponds</span>
+          </div>
+          <p class="hero-subtitle" id="hero-tags-container">
+            <span class="accent-pill purple">👻 Ghost Type Trainer</span>
+            <span class="accent-pill pink">💻 NEET</span>
+            <span class="accent-pill cyan">🛡️ opsec</span>
+          </p>
+          <p class="hero-bio" id="hero-bio-text">
+            Welcome to my website :3 my names Paul but i go by Ponds online, Im from SC and Im in school for Cybersecurity. I love hyperpop, EDM, and metal music. Im pretty open to making friends but Im lowkey anxious as fuck so bare with me.
+          </p>
         </div>
       </div>
     </section>
 
-    <!-- ================= ASYMMETRICAL POLYGONAL DREAM SHARDS ================= -->
-    <div class="dream-fragment-canvas">
+    <!-- TWO-COLUMN SCRAPBOOK GRID -->
+    <div class="scrap-columns">
 
-      <!-- SHARD ROW 1: DIALOGUE APPARATUS (POLY 1) + TO-DO MANIFESTO (POLY 2) -->
-      <div class="shard-row-split-left">
+      <!-- LEFT COLUMN -->
+      <div class="column-left">
 
-        <!-- Shard 1: LSD Dream Simulator Dialogue Box -->
-        <div class="dream-shard shard-poly-1 rotateA" id="welcome">
-          <div class="lsd-dialogue-header" style="background: rgba(255, 0, 127, 0.2); border-bottom: 2px solid var(--acid-pink);">
-            <div class="lsd-speaker-meta">
-              <img src="assets/decors/cat-kumi.gif" alt="pixel cat" class="lsd-speaker-sprite pixel-img">
-              <span class="lsd-speaker-name" style="color: var(--acid-cyan);">[ PONDS // LOCAL NEET CATBOY ]</span>
+        <!-- CARD: RETRO CD MUSIC PLAYER -->
+        <section class="scrap-card player-card">
+          <div class="washi-tape pink-tape">MUSIC_DECK.EXE</div>
+          
+          <div class="card-header">
+            <h2 class="card-title">★ RETRO CD DECK</h2>
+            <span class="card-status-led live"></span>
+          </div>
+
+          <!-- Real HTML5 Audio Player Element -->
+          <audio id="real-audio-player" preload="metadata"></audio>
+
+          <div class="cd-player-body">
+            <!-- Realistic Holographic Rotating CD -->
+            <div class="cd-visual-container">
+              <div class="cd-disc" id="cd-disc">
+                <div class="cd-iridescent-shine"></div>
+                <div class="cd-label">
+                  <span class="cd-album-title" id="cd-album-title">ROTATION</span>
+                  <span class="cd-album-artist" id="cd-album-artist">VOL. 01</span>
+                  <div class="cd-center-hole"></div>
+                </div>
+              </div>
             </div>
-            <span class="lsd-sector-tag" style="color: var(--acid-yellow);">[ DAY 042 // DREAM SECTOR: LIMINAL ]</span>
-          </div>
-          <div class="lsd-dialogue-body">
-            <p class="lsd-speech-line font-main" style="color: #fff; font-size: 1.1rem; font-weight: bold;">
-              Hey, welcome to my personal website :3
-            </p>
-            <p class="lsd-speech-line">
-              I made this space as a personal home for everything I'm into: cybersecurity, tinkering with Linux, gaming, and helping people troubleshoot their PC problems.
-            </p>
-            <p class="lsd-speech-line">
-              I go by Ponds online and I'm in school for Cybersecurity. I love hyperpop, EDM, and metal music. I'm pretty open to making friends but I'm lowkey anxious as fuck so bear with me.
-            </p>
-            <div class="lsd-prompt-row" style="border-top: 1px dashed var(--acid-lime); margin-top: 14px; padding-top: 10px;">
-              <span class="lsd-dialogue-prompt" style="color: var(--acid-lime); cursor: pointer;">
-                ▶ TOUCH ANYWHERE TO LINK NEXT DREAM
-              </span>
+
+            <!-- Track Info & Visualizer -->
+            <div class="track-info-panel">
+              <div class="track-meta">
+                <span class="track-label">NOW PLAYING:</span>
+                <h3 id="current-track-title" class="track-title">INTROVERT</h3>
+                <p id="current-track-artist" class="track-artist">brakence</p>
+                <div class="track-tags">
+                  <span class="bpm-tag" id="track-genre">EMO RAP / HYPERPOP</span>
+                  <span class="genre-tag" id="track-index-display">TRACK 01 / 05</span>
+                </div>
+              </div>
+
+              <!-- Real Audio Progress Bar & Scrubber -->
+              <div class="track-progress-container">
+                <span class="time-display" id="track-current-time">0:00</span>
+                <div class="progress-bar-track" id="audio-progress-bar" title="Click to seek">
+                  <div class="progress-bar-current" id="audio-progress-fill" style="width: 0%;"></div>
+                </div>
+                <span class="time-display" id="track-duration">0:00</span>
+              </div>
+
+              <!-- Animated Equalizer Bars -->
+              <div class="equalizer-bars" id="equalizer">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+              </div>
+
+              <!-- Player Controls -->
+              <div class="player-controls">
+                <button class="music-btn" id="btn-prev-track" title="Previous Track">⏮</button>
+                <button class="music-btn play-btn" id="btn-play-pause" title="Play / Pause Audio">▶ PLAY</button>
+                <button class="music-btn" id="btn-next-track" title="Next Track">⏭</button>
+                <div class="volume-container">
+                  <span class="vol-icon" id="vol-icon-btn" title="Volume">🔊</span>
+                  <input type="range" id="volume-slider" min="0" max="100" value="75" class="neon-slider" />
+                </div>
+              </div>
             </div>
           </div>
-        </div>
 
-        <!-- Shard 2: Sitely To-Do Manifesto -->
-        <div class="dream-shard shard-poly-2 rotateB">
-          <div class="card-header" style="border-bottom: 2px solid var(--acid-lime); margin-bottom: 12px;">
-            <span class="header-icon">📝</span>
-            <span class="header-title" style="color: var(--acid-lime);">dream objectives // to-do</span>
+          <!-- Artist Shoutout Cloud -->
+          <div class="artist-cloud">
+            <span class="cloud-title">ROTATION:</span>
+            <span class="artist-tag">brakence</span>
+            <span class="artist-tag">Jane Remover</span>
+            <span class="artist-tag">cr1tter</span>
+            <span class="artist-tag">Glitch Gum</span>
+            <span class="artist-tag">guardin</span>
+            <span class="artist-tag">Bring Me The Horizon</span>
+            <span class="artist-tag">Femtanyl</span>
+            <span class="artist-tag">Suicide Silence</span>
           </div>
-          <ul class="todo-list">
-            <li class="todo-done" style="color: var(--acid-lime);"><span class="check">☑</span> install windows on a separate partition</li>
-            <li class="todo-done" style="color: var(--acid-lime);"><span class="check">☑</span> build custom website for neocities</li>
-            <li style="color: var(--acid-pink);"><span class="check">☐</span> finish my homework</li>
-            <li style="color: var(--acid-yellow);"><span class="check">☐</span> get that bag</li>
-            <li style="color: var(--acid-cyan);"><span class="check">☐</span> find new games to play</li>
-            <li style="color: #fff;"><span class="check">☐</span> complete pokemon unbound playthrough</li>
-          </ul>
+        </section>
 
-          <div class="note-scribble rotateA" style="background: rgba(255, 255, 0, 0.15); border-color: var(--acid-yellow); color: var(--acid-yellow);">
-            📌 <strong>REMINDER:</strong> water crops in stardew, finish homework &amp; get that bag :3
+        <!-- CARD: LIVE STATUS & MOOD WIDGET -->
+        <!-- ✏️ EDIT MOOD, ACTIVITY, AND ENERGY IN CUSTOMIZER MODAL OR BELOW -->
+        <section class="scrap-card status-card">
+          <div class="card-pin top-left"></div>
+          <div class="card-header">
+            <h2 class="card-title">★ STATUS & MOOD RADAR</h2>
+            <span class="live-clock" id="live-clock">00:00:00 AM</span>
           </div>
-        </div>
+
+          <div class="status-grid">
+            <div class="status-item">
+              <span class="status-label">CURRENT MOOD:</span>
+              <span class="status-value glow-pink" id="status-mood">Lowkey Anxious &amp; Overstimulated</span>
+            </div>
+            <div class="status-item">
+              <span class="status-label">ACTIVITY:</span>
+              <span class="status-value glow-purple" id="status-activity">Playing Pokemon Modern Emerald</span>
+            </div>
+            <div class="status-item">
+              <span class="status-label">ENERGY LEVEL:</span>
+              <div class="progress-bar-container">
+                <div class="progress-bar-fill" id="status-energy-fill" style="width: 0%;">0% [DEAD]</div>
+              </div>
+            </div>
+            <div class="status-item quote-box">
+              <span class="status-label">THOUGHT OF THE DAY:</span>
+              <p class="quote-text" id="status-quote">"I like shorts, they're comfy and easy to wear!"</p>
+              <button class="glitch-button-sm" id="btn-new-quote">✨ ROLL NEW VIBE</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- CARD: SOCIAL PORTALS & BUTTONS -->
+        <!-- ✏️ EDIT SOCIALS IN CUSTOMIZER MODAL OR BELOW -->
+        <section class="scrap-card links-card">
+          <div class="washi-tape cyan-tape">EXTERNAL_PORTALS</div>
+          <div class="card-header">
+            <h2 class="card-title">★ CONNECT WITH ME</h2>
+          </div>
+
+          <div class="social-links-grid" id="social-links-grid">
+            <a href="https://discord.com/users/ihateuponds" target="_blank" rel="noopener noreferrer" class="neon-link-btn discord-btn" title="Discord: ihateuponds">
+              <span class="link-icon">💬</span>
+              <span class="link-name">Discord (@ihateuponds)</span>
+              <span class="link-arrow">↗</span>
+            </a>
+            <a href="https://instagram.com/s3ph1r0thxx" target="_blank" rel="noopener noreferrer" class="neon-link-btn instagram-btn">
+              <span class="link-icon">📸</span>
+              <span class="link-name">Instagram</span>
+              <span class="link-arrow">↗</span>
+            </a>
+            <a href="https://open.spotify.com/user/fkm6bmojqqgf7j5eso4o0f9b0?si=cc74b10dd16d405c" target="_blank" rel="noopener noreferrer" class="neon-link-btn spotify-btn">
+              <span class="link-icon">🎧</span>
+              <span class="link-name">Spotify</span>
+              <span class="link-arrow">↗</span>
+            </a>
+            <a href="https://steamcommunity.com/id/ihateuponds/" target="_blank" rel="noopener noreferrer" class="neon-link-btn steam-btn">
+              <span class="link-icon">🎮</span>
+              <span class="link-name">Steam</span>
+              <span class="link-arrow">↗</span>
+            </a>
+            <a href="https://ihateuponds.straw.page" target="_blank" rel="noopener noreferrer" class="neon-link-btn straw-btn">
+              <span class="link-icon">🍓</span>
+              <span class="link-name">StrawPage</span>
+              <span class="link-arrow">↗</span>
+            </a>
+            <a href="support/" class="neon-link-btn support-btn">
+              <span class="link-icon">📟</span>
+              <span class="link-name">Tech Support Intake ↗</span>
+              <span class="link-arrow">/support/</span>
+            </a>
+            <a href="rig/" class="neon-link-btn rig-btn">
+              <span class="link-icon">🖥</span>
+              <span class="link-name">Linux &amp; Hardware Bench ↗</span>
+              <span class="link-arrow">/rig/</span>
+            </a>
+            <a href="games/" class="neon-link-btn games-btn">
+              <span class="link-icon">🎮</span>
+              <span class="link-name">Games Shrine ↗</span>
+              <span class="link-arrow">/games/</span>
+            </a>
+            <a href="lsd/" class="neon-link-btn lsd-btn">
+              <span class="link-icon">🌀</span>
+              <span class="link-name">LSD Dream Realm ↗</span>
+              <span class="link-arrow">/lsd/</span>
+            </a>
+          </div>
+        </section>
+
+        <!-- CARD: PHOTO VAULT & POLAROIDS -->
+        <!-- ✏️ DROP YOUR PHOTOS IN ./photos/ OR EDIT BELOW -->
+        <section class="scrap-card photos-card">
+          <div class="washi-tape pink-tape">PHOTO_VAULT.RAW</div>
+          <div class="card-header">
+            <h2 class="card-title">★ POLAROID SNAPSHOTS</h2>
+            <span class="pkmn-sub">Click a photo to expand!</span>
+          </div>
+
+          <div class="polaroids-grid" id="polaroids-grid">
+            <!-- Polaroid 1 -->
+            <div class="polaroid-card" style="transform: rotate(-3deg);" data-full="./photos/IMG_20260222_213811_475.jpg" data-title="Paul // Ponds" data-sub="Affliction Fit • SC // 2026">
+              <div class="polaroid-tape"></div>
+              <div class="polaroid-img-frame">
+                <img src="./photos/IMG_20260222_213811_475.jpg" alt="Ponds in Affliction Fit" class="polaroid-img" />
+              </div>
+              <div class="polaroid-caption-area">
+                <span class="polaroid-title">★ Paul // Ponds</span>
+                <span class="polaroid-date">Affliction Fit • SC // 2026</span>
+              </div>
+            </div>
+
+            <!-- Polaroid 2 -->
+            <div class="polaroid-card" style="transform: rotate(2.5deg);" data-full="./photos/Snapchat-107247740.jpg" data-title="Ghost Trainer Vibe" data-sub="Eyeliner &amp; Spikes • CYBER_LAB">
+              <div class="polaroid-tape"></div>
+              <div class="polaroid-img-frame">
+                <img src="./photos/Snapchat-107247740.jpg" alt="Ghost Trainer Vibe" class="polaroid-img" />
+              </div>
+              <div class="polaroid-caption-area">
+                <span class="polaroid-title">★ Ghost Trainer Vibe</span>
+                <span class="polaroid-date">Eyeliner &amp; Spikes • CYBER_LAB</span>
+              </div>
+            </div>
+
+            <!-- Polaroid 3 -->
+            <div class="polaroid-card" style="transform: rotate(-2deg);" data-full="./photos/Snapchat-1823553247.jpg" data-title="Shin-chan Corner" data-sub="Late Night Room • 3 AM">
+              <div class="polaroid-tape"></div>
+              <div class="polaroid-img-frame">
+                <img src="./photos/Snapchat-1823553247.jpg" alt="Shin-chan Corner" class="polaroid-img" />
+              </div>
+              <div class="polaroid-caption-area">
+                <span class="polaroid-title">★ Shin-chan Corner</span>
+                <span class="polaroid-date">Late Night Room • 3 AM</span>
+              </div>
+            </div>
+
+            <!-- Polaroid 4 -->
+            <div class="polaroid-card" style="transform: rotate(3.5deg);" data-full="./photos/Snapchat-58797931.jpg" data-title="Paleface Swiss" data-sub="Night Drive • OPSEC">
+              <div class="polaroid-tape"></div>
+              <div class="polaroid-img-frame">
+                <img src="./photos/Snapchat-58797931.jpg" alt="Paleface Swiss Night Drive" class="polaroid-img" />
+              </div>
+              <div class="polaroid-caption-area">
+                <span class="polaroid-title">★ Paleface Swiss</span>
+                <span class="polaroid-date">Night Drive • OPSEC</span>
+              </div>
+            </div>
+          </div>
+        </section>
 
       </div>
 
-      <!-- SHARD ROW 2: SPECIMEN BIO (DIAMOND) + GAMES SHRINE (SKEW) -->
-      <div class="shard-row-split-right">
+      <!-- RIGHT COLUMN -->
+      <div class="column-right">
 
-        <!-- Shard 3: Specimen Bio (Diamond Polygon) -->
-        <div class="dream-shard shard-poly-diamond rotateC" id="about">
-          <div class="card-header" style="border-bottom: 2px solid var(--acid-cyan); margin-bottom: 12px;">
-            <span class="header-icon">✦</span>
-            <span class="header-title" style="color: var(--acid-cyan);">specimen // ponds</span>
+        <!-- CARD: POKÉMON DREAM TEAM PARTY ROSTER -->
+        <section class="scrap-card pokemon-card">
+          <div class="washi-tape purple-tape">DREAM_TEAM.PKMN</div>
+          <div class="card-header">
+            <h2 class="card-title">★ GHOST TYPE DREAM TEAM</h2>
+            <span class="pkmn-sub">Click a Pokémon to inspect!</span>
           </div>
 
-          <div class="profile-avatar-row">
-            <div class="avatar-frame">
-              <a href="./" title="Ponds - Return to Home"><img src="avatar.jpeg" alt="Ponds avatar cat in ushanka" class="pixel-avatar" width="72" height="72" style="border: 2px solid var(--acid-pink); box-shadow: 0 0 12px var(--acid-pink);"></a>
-            </div>
-            <div class="profile-quick-tags">
-              <span class="profile-name font-cyan" style="font-size: 1.3rem;">Ponds</span>
-              <span class="profile-sub" style="color: var(--acid-pink);">@ihateuponds</span>
-              <span class="tag-pill tag-online" style="background: var(--acid-lime); color: #000; font-weight: bold;">● OPEN FOR DMS</span>
-            </div>
-          </div>
-
-          <div class="pill-tags-row" style="margin: 12px 0;">
-            <span class="accent-pill purple">👻 Ghost Trainer</span>
-            <span class="accent-pill pink">💻 NEET</span>
-            <span class="accent-pill cyan">🛡️ opsec</span>
-          </div>
-
-          <div class="info-list">
-            <div class="info-row">
-              <span class="info-k">studying:</span>
-              <span class="info-v font-cyan">Cybersecurity</span>
-            </div>
-            <div class="info-row">
-              <span class="info-k">primary os:</span>
-              <span class="info-v font-green">CachyOS Linux</span>
-            </div>
-            <div class="info-row">
-              <span class="info-k">discord:</span>
-              <span class="info-v font-cyan">@ihateuponds</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Shard 4: Favorite Games Shrine (Skewed Polygon) -->
-        <div class="dream-shard shard-poly-skew rotateA" id="games">
-          <div class="card-header" style="border-bottom: 2px solid var(--acid-pink); margin-bottom: 12px;">
-            <span class="header-icon">🎮</span>
-            <span class="header-title" style="color: var(--acid-pink);">retrogaming specimen tray</span>
-          </div>
-          <p class="card-subtitle">Click a cartridge to inspect, or visit the full lounge at <a href="games/" class="font-cyan">/games/</a>:</p>
-
-          <div class="games-shrine-grid">
-            <div class="game-card-slot active" data-title="Kingdom Hearts II" data-platform="PlayStation 2" data-genre="Action RPG" data-note="Absolute peak PS2 combat, Roxas prologue, Drive Forms, and Yoko Shimomura's soundtrack. No game has ever matched its movement.">
-              <div class="game-badge-plat plat-ps2">PS2</div>
-              <div class="game-slot-title">Kingdom Hearts II</div>
-              <div class="game-slot-sub font-cyan">Action RPG</div>
+          <div class="pokemon-party-grid">
+            <!-- Pokemon 1: Gholdengo -->
+            <div class="pokemon-slot active" data-pokemon="gholdengo" data-dex="1000" data-name="Gholdengo" data-types="Steel / Ghost" data-level="100" data-item="Covert Cloak" data-ability="Good as Gold" data-moves="Make It Rain, Shadow Ball, Nasty Plot, Recover" data-shiny="false">
+              <div class="sprite-holder">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/1000.gif" alt="Gholdengo" class="party-sprite" />
+              </div>
+              <span class="slot-name">Gholdengo</span>
+              <span class="slot-type steel-type">STEEL</span>
             </div>
 
-            <div class="game-card-slot" data-title="Pokémon SoulSilver" data-platform="Nintendo DS" data-genre="RPG / Adventure" data-note="The undisputed pinnacle of 2D Pokémon. Walking Pokémon sprite behind you, two entire regions (Johto + Kanto), the Pokéwalker, and peak DS pixel art.">
-              <div class="game-badge-plat plat-nds">NDS</div>
-              <div class="game-slot-title">Pokémon SoulSilver</div>
-              <div class="game-slot-sub font-green">RPG / Adventure</div>
+            <!-- Pokemon 2: Skeledirge -->
+            <div class="pokemon-slot" data-pokemon="skeledirge" data-dex="911" data-name="Skeledirge" data-types="Fire / Ghost" data-level="99" data-item="Throat Spray" data-ability="Unaware" data-moves="Torch Song, Shadow Ball, Slack Off, Earth Power" data-shiny="false">
+              <div class="sprite-holder">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/911.gif" alt="Skeledirge" class="party-sprite" />
+              </div>
+              <span class="slot-name">Skeledirge</span>
+              <span class="slot-type fire-type">FIRE</span>
             </div>
 
-            <div class="game-card-slot" data-title="Stardew Valley" data-platform="PC / Multi" data-genre="Farming / Life Sim" data-note="The ultimate comfort game. Endless modding, soundtrack on loop, Skull Cavern stress, and the coziest rainy day vibes on earth.">
-              <div class="game-badge-plat plat-pc">PC</div>
-              <div class="game-slot-title">Stardew Valley</div>
-              <div class="game-slot-sub font-amber">Farming / Sim</div>
+            <!-- Pokemon 3: Mimikyu -->
+            <div class="pokemon-slot" data-pokemon="mimikyu" data-dex="778" data-name="Mimikyu" data-types="Ghost / Fairy" data-level="98" data-item="Disguise Patch" data-ability="Disguise" data-moves="Play Rough, Shadow Claw, Swords Dance, Shadow Sneak" data-shiny="true">
+              <div class="sprite-holder">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/778.gif" alt="Mimikyu" class="party-sprite" />
+              </div>
+              <span class="slot-name">Mimikyu</span>
+              <span class="slot-type fairy-type">FAIRY</span>
             </div>
 
-            <div class="game-card-slot" data-title="DanceDanceRevolution / StepMania" data-platform="Arcade / PC" data-genre="Rhythm Game" data-note="Rhythm game perfection. Playing custom simfiles on StepMania, speed mods, and burning calories at 200+ BPM with custom themes.">
-              <div class="game-badge-plat plat-arcade">Arcade / PC</div>
-              <div class="game-slot-title">DDR / StepMania</div>
-              <div class="game-slot-sub font-pink">Rhythm Game</div>
+            <!-- Pokemon 4: Sableye -->
+            <div class="pokemon-slot" data-pokemon="sableye" data-dex="302" data-name="Sableye" data-types="Dark / Ghost" data-level="95" data-item="Leftovers" data-ability="Prankster" data-moves="Will-O-Wisp, Foul Play, Recover, Knock Off" data-shiny="false">
+              <div class="sprite-holder">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/302.gif" alt="Sableye" class="party-sprite" />
+              </div>
+              <span class="slot-name">Sableye</span>
+              <span class="slot-type dark-type">DARK</span>
             </div>
 
-            <div class="game-card-slot" data-title="Starbound" data-platform="PC" data-genre="Space Sandbox" data-note="Exploring infinite procedurally generated planets, building space stations, Novakids, and the incredible synth-orchestral OST.">
-              <div class="game-badge-plat plat-pc">PC</div>
-              <div class="game-slot-title">Starbound</div>
-              <div class="game-slot-sub font-cyan">Space Sandbox</div>
+            <!-- Pokemon 5: Dragapult -->
+            <div class="pokemon-slot" data-pokemon="dragapult" data-dex="887" data-name="Dragapult" data-types="Dragon / Ghost" data-level="100" data-item="Choice Specs" data-ability="Infiltrator" data-moves="Draco Meteor, Shadow Ball, Flamethrower, U-turn" data-shiny="false">
+              <div class="sprite-holder">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/887.gif" alt="Dragapult" class="party-sprite" />
+              </div>
+              <span class="slot-name">Dragapult</span>
+              <span class="slot-type dragon-type">DRAGON</span>
             </div>
 
-            <div class="game-card-slot" data-title="Pokémon Channel" data-platform="Nintendo GameCube" data-genre="Virtual Pet / Nostalgia" data-note="The most unhinged nostalgic GameCube gem. Watching anime on a CRT TV with Pikachu, collecting Nice Cards, and Smeargle painting.">
-              <div class="game-badge-plat plat-gcn">GameCube</div>
-              <div class="game-slot-title">Pokémon Channel</div>
-              <div class="game-slot-sub font-amber">Virtual Pet</div>
-            </div>
-
-            <div class="game-card-slot" data-title="Sonic Adventure 2" data-platform="Dreamcast / GameCube" data-genre="Platformer / Chao" data-note="City Escape, Live and Learn, speedrunning Hero/Dark stories, and spending 400 hours raising immortal Chaos in the Chao Garden.">
-              <div class="game-badge-plat plat-gcn">DC / GCN</div>
-              <div class="game-slot-title">Sonic Adventure 2</div>
-              <div class="game-slot-sub font-cyan">Platformer / Chao</div>
-            </div>
-
-            <div class="game-card-slot" data-title="LittleBigPlanet 2" data-platform="PlayStation 3" data-genre="Creative Sandbox" data-note="The creative peak of the PS3 era. The logic microchips, Sackboy customization, and the golden age of community-made levels.">
-              <div class="game-badge-plat plat-ps3">PS3</div>
-              <div class="game-slot-title">LittleBigPlanet 2</div>
-              <div class="game-slot-sub font-pink">Creative Sandbox</div>
+            <!-- Pokemon 6: Annihilape -->
+            <div class="pokemon-slot" data-pokemon="annihilape" data-dex="979" data-name="Annihilape" data-types="Fighting / Ghost" data-level="98" data-item="Leftovers" data-ability="Defiant" data-moves="Rage Fist, Drain Punch, Bulk Up, Taunt" data-shiny="false">
+              <div class="sprite-holder">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/979.gif" alt="Annihilape" class="party-sprite" />
+              </div>
+              <span class="slot-name">Annihilape</span>
+              <span class="slot-type fighting-type">FIGHT</span>
             </div>
           </div>
 
-          <!-- Interactive Game Detail Box -->
-          <div class="game-inspector psx-dialogue" id="game-inspector" style="margin-top: 14px; border-color: var(--acid-pink);">
+          <!-- Interactive Inspector Subpanel -->
+          <div class="pokemon-inspector-box" id="pkmn-inspector">
             <div class="inspector-header">
-              <span id="inspect-game-title" class="font-cyan">Kingdom Hearts II</span>
-              <span id="inspect-game-plat" class="badge-plat-pill">PlayStation 2</span>
+              <div class="inspector-title-group">
+                <span class="dex-tag" id="insp-dex">#1000</span>
+                <h3 class="insp-name" id="insp-name">GHOLDENGO</h3>
+                <span class="insp-types" id="insp-types">STEEL / GHOST</span>
+              </div>
+              <button class="shiny-toggle-btn" id="insp-shiny-toggle" title="Toggle Shiny Sprite">✨ SHINY</button>
             </div>
-            <p id="inspect-game-note" class="game-note-text">
-              Absolute peak PS2 combat, Roxas prologue, Drive Forms, and Yoko Shimomura's soundtrack. No game has ever matched its movement.
-            </p>
-          </div>
 
-          <div style="margin-top: 14px; text-align: right;">
-            <a href="games/" class="retro-btn btn-sm" style="border-color: var(--acid-pink); color: #fff;">🎮 launch full games shrine subpage ↗</a>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- SHARD ROW 3: HARDWARE BENCH (POLY 3) + INTERESTS (DIAMOND) -->
-      <div class="shard-row-split-left">
-
-        <!-- Shard 5: Hardware Bench -->
-        <div class="dream-shard shard-poly-3 rotateB" id="rig">
-          <div class="card-header" style="border-bottom: 2px solid var(--acid-yellow); margin-bottom: 12px;">
-            <span class="header-icon">⚙️</span>
-            <span class="header-title" style="color: var(--acid-yellow);">hardware lab // calcifer</span>
-          </div>
-
-          <table class="specs-table" style="width: 100%;">
-            <tbody>
-              <tr>
-                <td class="spec-label">PRIMARY OS</td>
-                <td class="spec-value font-green">CachyOS Linux (Kernel 7.2, BORE CPU Scheduler)</td>
-              </tr>
-              <tr>
-                <td class="spec-label">HARDWARE RIG</td>
-                <td class="spec-value font-amber">AMD Ryzen 7 5700X + Radeon RX 6700 XT + 32GB RAM</td>
-              </tr>
-              <tr>
-                <td class="spec-label">WINDOW MGR</td>
-                <td class="spec-value font-cyan">Hyprland (Wayland Compositor)</td>
-              </tr>
-              <tr>
-                <td class="spec-label">DUAL BOOT</td>
-                <td class="spec-value">Windows 11 Pro (Separate Partition)</td>
-              </tr>
-            </tbody>
-          </table>
-
-          <div class="note-scribble neon rotateA" style="margin-top: 14px;">
-            ⚙️ <strong>KERNEL:</strong> cachyos linux 7.2 running smooth &bull; proton-ge ready
-          </div>
-
-          <div style="margin-top: 14px; text-align: right;">
-            <a href="rig/" class="retro-btn btn-sm" style="border-color: var(--acid-yellow); color: #fff;">🖥 inspect full triage lab &amp; specs ↗</a>
-          </div>
-        </div>
-
-        <!-- Shard 6: Interests -->
-        <div class="dream-shard shard-poly-diamond rotateC" id="interests">
-          <div class="card-header" style="border-bottom: 2px solid var(--acid-lime); margin-bottom: 12px;">
-            <span class="header-icon">🕹️</span>
-            <span class="header-title" style="color: var(--acid-lime);">knowledge nodes</span>
-          </div>
-
-          <div style="display: flex; flex-direction: column; gap: 10px;">
-            <div class="interest-box liminal-box" style="padding: 12px; border-left: 3px solid var(--acid-cyan);">
-              <h4 class="interest-title font-cyan">🛡️ Cybersecurity &amp; Opsec</h4>
-              <p style="font-size: 0.84rem;">Studying defensive security, threat modeling, privacy, and packet analysis.</p>
-            </div>
-            <div class="interest-box liminal-box" style="padding: 12px; border-left: 3px solid var(--acid-green);">
-              <h4 class="interest-title font-green">🔧 Hardware &amp; OS Triage</h4>
-              <p style="font-size: 0.84rem;">BSOD minidump analysis, WinDbg, memory overclocks, and crash triage.</p>
-            </div>
-            <div class="interest-box liminal-box" style="padding: 12px; border-left: 3px solid var(--acid-pink);">
-              <h4 class="interest-title font-pink">🕹️ Pokémon ROM Hacks</h4>
-              <p style="font-size: 0.84rem;">Played Pokémon Unbound, Glazed, Modern Emerald, and Storm Silver.</p>
+            <div class="inspector-body">
+              <div class="inspector-sprite-frame">
+                <img id="insp-big-sprite" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/1000.gif" alt="Inspected Pokemon" />
+              </div>
+              <div class="inspector-stats">
+                <p><strong>ABILITY:</strong> <span id="insp-ability">Good as Gold</span></p>
+                <p><strong>HELD ITEM:</strong> <span id="insp-item">Covert Cloak</span></p>
+                <div class="move-pool">
+                  <strong>MOVESET:</strong>
+                  <div class="move-tags" id="insp-moves">
+                    <span class="move-pill">Make It Rain</span>
+                    <span class="move-pill">Shadow Ball</span>
+                    <span class="move-pill">Nasty Plot</span>
+                    <span class="move-pill">Recover</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
+        </section>
 
-      </div>
-
-      <!-- SHARD 7: GIANT FLASHY GIFS & BLINKIE VAULT (FULL-WIDTH POLYGON) -->
-      <div class="dream-shard shard-poly-diamond rotateA" id="stamps" style="padding: 28px;">
-        <div class="card-header" style="border-bottom: 2px solid var(--acid-pink); margin-bottom: 16px;">
-          <span class="header-icon">🎨</span>
-          <span class="header-title rainbow-text" style="font-size: 1.25rem;">surreal flashy gifs &amp; blinkie vault</span>
-        </div>
-
-        <!-- Giant Flashy GIFs Gallery -->
-        <div class="giant-gifs-banner">
-          <img src="assets/stamps/eyes.gif" alt="Eyes" class="giant-gif-item pixel-img" title="Organic Moving Eyes">
-          <img src="assets/stamps/spiral.gif" alt="Hypnotic Spiral" class="giant-gif-item pixel-img" title="Hypnotic Spiral">
-          <img src="assets/stamps/noise.gif" alt="CRT Static" class="giant-gif-item pixel-img" title="CRT Noise">
-          <img src="assets/decors/cat-kumi.gif" alt="Kumi Cat" class="giant-gif-item pixel-img" title="Pixel Cat Entity">
-          <img src="assets/stamps/hellgato.png" alt="Hellgato" class="giant-gif-item pixel-img" title="Hellgato">
-          <img src="assets/stamps/paranoid.gif" alt="Paranoid" class="giant-gif-item pixel-img" title="Paranoid">
-          <img src="assets/stamps/gba.gif" alt="GBA" class="giant-gif-item pixel-img" title="Game Boy Advance">
-          <img src="assets/stamps/kitty-rainbow.gif" alt="Rainbow Cat" class="giant-gif-item pixel-img" title="Rainbow Cat">
-        </div>
-
-        <hr class="card-divider" style="margin: 16px 0; border-color: var(--acid-purple);">
-
-        <p class="card-subtitle">vintage animated web 1.0 blinkies &amp; dream glyphs:</p>
-        
-        <!-- Curated Retro Animated Blinkies -->
-        <div class="vault-blinkies-row">
-          <img src="assets/blinkies/arch.gif" alt="Arch Linux" class="pixel-img blinkie-asset" title="Arch Linux Powered">
-          <img src="assets/blinkies/linux_powered.gif" alt="Linux Powered" class="pixel-img blinkie-asset" title="Linux Powered">
-          <img src="assets/blinkies/cyberworld.gif" alt="Cyberworld" class="pixel-img blinkie-asset" title="Cyberworld">
-          <img src="assets/blinkies/win95.gif" alt="Windows 95" class="pixel-img blinkie-asset" title="Windows 95">
-          <img src="assets/blinkies/terminal.gif" alt="Terminal" class="pixel-img blinkie-asset" title="Terminal">
-          <img src="assets/blinkies/beepboop.gif" alt="Beep Boop" class="pixel-img blinkie-asset" title="Beep Boop">
-          <img src="assets/blinkies/lilguy.gif" alt="Lil Guy" class="pixel-img blinkie-asset" title="Lil Guy">
-          <img src="assets/blinkies/alien.gif" alt="Alien" class="pixel-img blinkie-asset" title="Pink Alien">
-          <img src="assets/blinkies/stressed.gif" alt="Stressed" class="pixel-img blinkie-asset" title="Stressed">
-          <img src="assets/blinkies/yippee.gif" alt="Yippee" class="pixel-img blinkie-asset" title="Yippee">
-          <img src="assets/blinkies/lainpower.gif" alt="Lain Power" class="pixel-img blinkie-asset" title="Lain Power">
-          <img src="assets/blinkies/bestcomp.gif" alt="Best Computer" class="pixel-img blinkie-asset" title="Best Computer">
-          <img src="assets/blinkies/notepad.gif" alt="Notepad" class="pixel-img blinkie-asset" title="Coded in Notepad">
-          <img src="button.svg" alt="Ponds Cave Button" class="pixel-img blinkie-asset" title="Ponds' Cave 88x31">
-        </div>
-
-        <hr class="card-divider" style="margin: 16px 0; border-color: var(--acid-pink);">
-
-        <!-- 88x31 Button Embed (Points to Neocities!) -->
-        <div style="text-align: center; margin-top: 14px;">
-          <p class="card-subtitle">grab my 88x31 button for your neocities:</p>
-          <div class="button-preview" style="margin: 8px auto;">
-            <img src="button.svg" alt="ihateuponds button" width="88" height="31" class="pixel-img" style="box-shadow: 0 0 10px var(--acid-pink);">
+        <!-- CARD: POKÉMON TCG BINDER & GRAILS -->
+        <section class="scrap-card tcg-card">
+          <div class="washi-tape purple-tape">TCG_GRAILS.HOLO</div>
+          <div class="card-header">
+            <h2 class="card-title">★ POKÉMON TCG BINDER</h2>
+            <span class="pkmn-sub">Hover for 3D holo foil! Click to inspect.</span>
           </div>
-          <textarea class="embed-box" readonly rows="2" id="button-embed-code">&lt;a href="https://ihateuponds.neocities.org/" target="_blank"&gt;&lt;img src="https://ihateuponds.neocities.org/button.svg" alt="ihateuponds"&gt;&lt;/a&gt;</textarea>
-          <button id="btn-copy-embed" class="retro-btn btn-sm" style="margin-top: 6px;">📋 copy embed code</button>
-        </div>
-      </div>
 
-      <!-- SHARD: CONTACT / TRANSMISSION LINES -->
-      <div class="dream-shard shard-poly-skew rotateB" id="socials" style="padding: 24px;">
-        <div class="card-header" style="border-bottom: 2px solid var(--acid-cyan); margin-bottom: 16px;">
-          <span class="header-icon">🌐</span>
-          <span class="header-title" style="color: var(--acid-cyan);">transmission lines // contact</span>
-        </div>
-        <div class="card-body">
-          <div class="contact-links" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px;">
-            <a href="https://discord.com/users/ihateuponds" target="_blank" rel="noopener noreferrer" class="contact-btn btn-discord">
-              <span>💬 Discord: @ihateuponds</span>
-            </a>
-            <a href="https://instagram.com/s3ph1r0thxx" target="_blank" rel="noopener noreferrer" class="contact-btn btn-instagram">
-              <span>📸 Instagram: s3ph1r0thxx</span>
-            </a>
-            <a href="https://steamcommunity.com/id/ihateuponds/" target="_blank" rel="noopener noreferrer" class="contact-btn btn-steam">
-              <span>🎮 Steam: ihateuponds</span>
-            </a>
-            <a href="https://open.spotify.com/user/fkm6bmojqqgf7j5eso4o0f9b0?si=cc74b10dd16d405c" target="_blank" rel="noopener noreferrer" class="contact-btn btn-spotify">
-              <span>🎧 Spotify Profile</span>
-            </a>
-            <a href="https://ihateuponds.straw.page" target="_blank" rel="noopener noreferrer" class="contact-btn btn-straw">
-              <span>🍓 StrawPage</span>
-            </a>
-            <a href="support/" class="contact-btn btn-support">
-              <span>📟 Submit Tech Ticket (/support/) ↗</span>
-            </a>
+          <div class="tcg-grid" id="tcg-grid">
+            <!-- Card 1: Jessie & James Full Art -->
+            <div class="tcg-card-item" data-name="Jessie & James (Full Art)" data-set="Hidden Fates #68/68" data-rarity="Ultra Rare Full Art Supporter" data-img="https://images.pokemontcg.io/sm115/68_hires.png">
+              <div class="tcg-card-wrapper">
+                <img src="https://images.pokemontcg.io/sm115/68_hires.png" alt="Jessie and James Full Art" class="tcg-card-img" />
+                <div class="tcg-holo-foil"></div>
+              </div>
+              <div class="tcg-card-meta">
+                <span class="tcg-card-name">Jessie &amp; James</span>
+                <span class="tcg-rarity-badge">FULL ART // HF</span>
+              </div>
+            </div>
+
+            <!-- Card 2: Gengar & Mimikyu GX -->
+            <div class="tcg-card-item" data-name="Gengar & Mimikyu GX" data-set="Sun & Moon Team Up #53/181" data-rarity="Ultra Rare Tag Team GX" data-img="https://images.pokemontcg.io/sm9/53_hires.png">
+              <div class="tcg-card-wrapper">
+                <img src="https://images.pokemontcg.io/sm9/53_hires.png" alt="Gengar and Mimikyu GX" class="tcg-card-img" />
+                <div class="tcg-holo-foil"></div>
+              </div>
+              <div class="tcg-card-meta">
+                <span class="tcg-card-name">Gengar &amp; Mimikyu GX</span>
+                <span class="tcg-rarity-badge">TAG TEAM #53</span>
+              </div>
+            </div>
+
+            <!-- Card 3: Charizard & Braixen GX PSA 10 Tag Team -->
+            <div class="tcg-card-item" data-name="Charizard & Braixen GX (Tag Team)" data-set="Cosmic Eclipse #22/236" data-rarity="PSA 10 Gem Mint • Tag Team GX" data-img="https://images.pokemontcg.io/sm12/22_hires.png">
+              <div class="tcg-card-wrapper">
+                <img src="https://images.pokemontcg.io/sm12/22_hires.png" alt="Charizard and Braixen GX Tag Team" class="tcg-card-img" />
+                <div class="tcg-holo-foil"></div>
+              </div>
+              <div class="tcg-card-meta">
+                <span class="tcg-card-name">Charizard &amp; Braixen</span>
+                <span class="tcg-rarity-badge">TAG TEAM #22</span>
+              </div>
+            </div>
+
+            <!-- Card 4: Allister Full Art Trainer -->
+            <div class="tcg-card-item" data-name="Allister (Full Art Trainer)" data-set="Vivid Voltage #179/185" data-rarity="Full Art Supporter" data-img="https://images.pokemontcg.io/swsh4/179_hires.png">
+              <div class="tcg-card-wrapper">
+                <img src="https://images.pokemontcg.io/swsh4/179_hires.png" alt="Allister Full Art Trainer" class="tcg-card-img" />
+                <div class="tcg-holo-foil"></div>
+              </div>
+              <div class="tcg-card-meta">
+                <span class="tcg-card-name">Allister</span>
+                <span class="tcg-rarity-badge">FA TRAINER</span>
+              </div>
+            </div>
+
+            <!-- Card 5: Gengar Full Art Lost Origin -->
+            <div class="tcg-card-item" data-name="Gengar (Trainer Gallery)" data-set="Lost Origin #TG06/TG30" data-rarity="Trainer Gallery Character Rare" data-img="https://images.pokemontcg.io/swsh11tg/TG06_hires.png">
+              <div class="tcg-card-wrapper">
+                <img src="https://images.pokemontcg.io/swsh11tg/TG06_hires.png" alt="Gengar Trainer Gallery Lost Origin" class="tcg-card-img" />
+                <div class="tcg-holo-foil"></div>
+              </div>
+              <div class="tcg-card-meta">
+                <span class="tcg-card-name">Gengar (TG06)</span>
+                <span class="tcg-rarity-badge">TRAINER GALLERY</span>
+              </div>
+            </div>
+
+            <!-- Card 6: Gengar VMAX Fusion Strike -->
+            <div class="tcg-card-item" data-name="Gengar VMAX" data-set="Fusion Strike #157/264" data-rarity="VMAX Ultra Rare" data-img="https://images.pokemontcg.io/swsh8/157_hires.png">
+              <div class="tcg-card-wrapper">
+                <img src="https://images.pokemontcg.io/swsh8/157_hires.png" alt="Gengar VMAX Fusion Strike" class="tcg-card-img" />
+                <div class="tcg-holo-foil"></div>
+              </div>
+              <div class="tcg-card-meta">
+                <span class="tcg-card-name">Gengar VMAX #157</span>
+                <span class="tcg-rarity-badge">VMAX ULTRA RARE</span>
+              </div>
+            </div>
+
+            <!-- Card 7: Minun Illustration Rare -->
+            <div class="tcg-card-item" data-name="Minun (Illustration Rare)" data-set="Paradox Rift #194/182" data-rarity="Illustration Rare" data-img="https://images.pokemontcg.io/sv4/194_hires.png">
+              <div class="tcg-card-wrapper">
+                <img src="https://images.pokemontcg.io/sv4/194_hires.png" alt="Minun Illustration Rare Paradox Rift" class="tcg-card-img" />
+                <div class="tcg-holo-foil"></div>
+              </div>
+              <div class="tcg-card-meta">
+                <span class="tcg-card-name">Minun (IR)</span>
+                <span class="tcg-rarity-badge">ILLUS RARE</span>
+              </div>
+            </div>
+
+            <!-- Card 8: Gwynn SIR Pitch Black -->
+            <div class="tcg-card-item" data-name="Gwynn (Special Illustration Rare)" data-set="Pitch Black #119/084" data-rarity="Special Illustration Rare (SAR)" data-img="https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpci/PBL/PBL_119_R_EN_LG.png">
+              <div class="tcg-card-wrapper">
+                <img src="https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpci/PBL/PBL_119_R_EN_LG.png" alt="Gwynn SIR Pitch Black" class="tcg-card-img" />
+                <div class="tcg-holo-foil"></div>
+              </div>
+              <div class="tcg-card-meta">
+                <span class="tcg-card-name">Gwynn (SIR)</span>
+                <span class="tcg-rarity-badge">PITCH BLACK SIR</span>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
+        </section>
 
+        <!-- CARD: 88x31 WEB BUTTONS & BLINKIES -->
+        <section class="scrap-card badge-card">
+          <div class="card-pin top-left"></div>
+          <div class="card-pin top-right"></div>
+          
+          <div class="card-header">
+            <h2 class="card-title">★ WEB BUTTONS & BLINKIES</h2>
+            <span class="badge-count">RETRO 88x31</span>
+          </div>
+
+          <div class="button-wall-grid">
+            <div class="web-button-badge button-pokemon">
+              <span class="btn-text-top">POKEMON</span>
+              <span class="btn-text-bot">TRAINER</span>
+            </div>
+            <div class="web-button-badge button-hyperpop">
+              <span class="btn-text-top">HYPER</span>
+              <span class="btn-text-bot">POP 240BPM</span>
+            </div>
+            <div class="web-button-badge button-neocities">
+              <span class="btn-text-top">HOSTED ON</span>
+              <span class="btn-text-bot">NEOCITIES</span>
+            </div>
+            <div class="web-button-badge button-gengar">
+              <span class="btn-text-top">GHOST</span>
+              <span class="btn-text-bot">TYPE GYM</span>
+            </div>
+            <div class="web-button-badge button-webcore">
+              <span class="btn-text-top">BEST VIEWED</span>
+              <span class="btn-text-bot">AT NIGHT</span>
+            </div>
+            <div class="web-button-badge button-y2k">
+              <span class="btn-text-top">GLITCH</span>
+              <span class="btn-text-bot">AESTHETIC</span>
+            </div>
+          </div>
+
+          <!-- Blinkie Banner Strip -->
+          <div class="blinkies-strip">
+            <div class="blinkie-box blink-fast">★ HYPERPOP ★</div>
+            <div class="blinkie-box blink-slow">👻 GHOST GANG 👻</div>
+            <div class="blinkie-box blink-alt">★ DONT INTERACT ★</div>
+          </div>
+
+          <!-- Site Button Code Generator -->
+          <div class="site-link-code-box">
+            <label for="embed-code-area" class="code-label">Link to this site (88x31 button):</label>
+            <div class="code-copy-row">
+              <input type="text" id="embed-code-area" readonly value='<a href="https://ihateuponds.neocities.org"><img src="https://ihateuponds.neocities.org/button.gif" alt="Ponds" /></a>' class="code-input" />
+              <button id="btn-copy-code" class="copy-btn">COPY</button>
+            </div>
+          </div>
+        </section>
+
+      </div>
     </div>
 
-    <!-- Retro Footer -->
-    <footer class="retro-footer shard-poly-diamond" style="margin-top: 24px; border: 2px solid var(--acid-cyan); box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);">
-      <div class="footer-inner">
-        <p style="color: var(--acid-yellow); font-weight: bold;">★ ihateuponds.neocities.org &bull; lsd dream emulator sector 2026 &bull; link to awaken ★</p>
-        <p class="footer-sub">hand-crafted with html, css &amp; javascript &bull; zero tracking cookies &bull; powered by cachyos linux</p>
+    <!-- FOOTER -->
+    <footer class="scrap-footer">
+      <p class="footer-text">
+        HAND-CRAFTED FOR <strong>PONDS</strong> // DESIGNED FOR NEOCITIES & INDIEWEB // POWERED BY 💜 & HYPERPOP
+      </p>
+      <div class="footer-badges">
+        <span>★ POKÉMON © NINTENDO / GAME FREAK ★</span>
+        <span>★ 2026 HYPER_SYSTEM ★</span>
       </div>
     </footer>
 
+  </main>
+
+  <!-- =========================================================================
+       UNIVERSAL LIGHTBOX MODAL (FOR POLAROIDS & TCG CARDS)
+       ========================================================================= -->
+  <div id="lightbox-modal" class="lightbox-backdrop" aria-hidden="true">
+    <div class="lightbox-container">
+      <button id="btn-close-lightbox" class="lightbox-close-btn" title="Close Lightbox">✕ CLOSE</button>
+      <div class="lightbox-img-wrapper">
+        <img id="lightbox-image" src="" alt="Expanded View" class="lightbox-img" />
+      </div>
+      <div class="lightbox-info">
+        <h3 id="lightbox-title" class="lightbox-title">TITLE</h3>
+        <p id="lightbox-sub" class="lightbox-sub">SUBTITLE</p>
+      </div>
+    </div>
   </div>
 
+  <!-- =========================================================================
+       CUSTOMIZATION TERMINAL MODAL
+       ========================================================================= -->
+  <div id="customizer-modal" class="modal-backdrop" aria-hidden="true">
+    <div class="customizer-window">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <div class="modal-title">
+          <span class="modal-icon">⚙️</span>
+          <span>SITE CUSTOMIZATION TERMINAL // PONDS.SYS</span>
+        </div>
+        <button id="btn-modal-close" class="modal-close-btn" title="Close modal">✕</button>
+      </div>
+
+      <!-- Modal Tabs -->
+      <div class="modal-tabs">
+        <button class="modal-tab-btn active" data-tab="tab-profile">🪪 Profile & Bio</button>
+        <button class="modal-tab-btn" data-tab="tab-status">⚡ Status & Mood</button>
+        <button class="modal-tab-btn" data-tab="tab-socials">🌐 Social Portals</button>
+        <button class="modal-tab-btn" data-tab="tab-export">💾 Save & Export</button>
+      </div>
+
+      <!-- Modal Content Body -->
+      <div class="modal-body">
+        
+        <!-- TAB 1: PROFILE & BIO -->
+        <div id="tab-profile" class="tab-pane active">
+          <div class="form-row-2">
+            <div class="form-group">
+              <label class="form-label" for="cfg-name">Display Name:</label>
+              <input type="text" id="cfg-name" class="form-input" placeholder="e.g. PONDS" />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="cfg-handle">Handle / Username:</label>
+              <input type="text" id="cfg-handle" class="form-input" placeholder="e.g. @ihateuponds" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="cfg-avatar">Avatar Image / Sprite URL:</label>
+            <div class="avatar-input-row">
+              <input type="text" id="cfg-avatar" class="form-input" placeholder="https://... or click a preset below" />
+              <img id="cfg-avatar-preview" class="cfg-avatar-preview" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/shiny/94.gif" alt="Avatar preview" />
+            </div>
+            <div class="avatar-presets-label">★ Quick Pokémon Presets:</div>
+            <div class="avatar-presets-grid" id="avatar-presets-grid">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Subtitle Badges / Tags:</label>
+            <div id="cfg-tags-list" class="tag-manager-list">
+              <!-- Dynamically populated -->
+            </div>
+            <button type="button" id="btn-add-tag" class="btn-secondary-sm">+ Add Subtitle Tag</button>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="cfg-bio">Bio / About Me Text:</label>
+            <textarea id="cfg-bio" class="form-textarea" rows="4" placeholder="Write your scrapbook bio here..."></textarea>
+          </div>
+        </div>
+
+        <!-- TAB 2: STATUS & MOOD -->
+        <div id="tab-status" class="tab-pane">
+          <div class="form-group">
+            <label class="form-label" for="cfg-mood">Current Mood:</label>
+            <input type="text" id="cfg-mood" class="form-input" placeholder="e.g. ⚡ Overstimulated & Hyperfocused" />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="cfg-activity">Current Activity:</label>
+            <input type="text" id="cfg-activity" class="form-input" placeholder="e.g. Coding Neocities sites at 3 AM" />
+          </div>
+
+          <div class="form-row-2">
+            <div class="form-group">
+              <label class="form-label" for="cfg-energy">Energy Level: <span id="cfg-energy-display" class="highlight-val">92%</span></label>
+              <input type="range" id="cfg-energy" min="0" max="100" value="92" class="neon-slider" />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="cfg-energy-label">Energy Vibe Tag:</label>
+              <input type="text" id="cfg-energy-label" class="form-input" placeholder="e.g. CHAOS, MAX, CHILL" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="cfg-quote">Featured Thought of the Day:</label>
+            <input type="text" id="cfg-quote" class="form-input" placeholder="e.g. 'If the synth doesn't distort...'" />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">"Roll New Vibe" Quotes Bank:</label>
+            <p class="form-hint">Quotes randomly chosen when clicking the "✨ Roll New Vibe" button.</p>
+            <div id="cfg-quotes-list" class="quote-manager-list">
+              <!-- Dynamically populated -->
+            </div>
+            <button type="button" id="btn-add-quote" class="btn-secondary-sm">+ Add Quote</button>
+          </div>
+        </div>
+
+        <!-- TAB 3: SOCIAL PORTALS -->
+        <div id="tab-socials" class="tab-pane">
+          <div class="socials-intro-box">
+            <p>Customize which socials and links appear on your site. Choose your platforms, icons, and URLs:</p>
+          </div>
+
+          <div id="cfg-socials-list" class="socials-manager-list">
+            <!-- Dynamically populated -->
+          </div>
+
+          <div class="add-social-bar">
+            <select id="cfg-new-social-preset" class="form-select">
+              <option value="strawpage">🍓 StrawPage</option>
+              <option value="discord">💬 Discord</option>
+              <option value="spotify">🎧 Spotify</option>
+              <option value="neocities">🐱 Neocities</option>
+              <option value="instagram">📸 Instagram</option>
+              <option value="twitter">🐦 Twitter / X</option>
+              <option value="youtube">📺 YouTube</option>
+              <option value="twitch">🎮 Twitch</option>
+              <option value="tiktok">⚡ TikTok</option>
+              <option value="soundcloud">🎶 SoundCloud</option>
+              <option value="tumblr">🖤 Tumblr</option>
+              <option value="github">🐙 GitHub</option>
+              <option value="bluesky">🦋 Bluesky</option>
+              <option value="carrd">💳 Carrd</option>
+              <option value="custom">✨ Custom Link</option>
+            </select>
+            <button type="button" id="btn-add-social" class="btn-neon-action">+ Add Selected Social</button>
+          </div>
+        </div>
+
+        <!-- TAB 4: SAVE & EXPORT -->
+        <div id="tab-export" class="tab-pane">
+          <div class="export-guide-card">
+            <h3>★ HOW PERSISTENCE & NEOCITIES UPLOAD WORKS</h3>
+            <p><strong>1. Instant Live Preview:</strong> Clicking <em>"Save & Apply"</em> instantly saves your changes in your browser's <code>localStorage</code> so whenever you refresh, all your customizations remain active!</p>
+            <p><strong>2. Direct Neocities Upload:</strong> To make sure your custom bio, mood radar, and socials appear for <em>every visitor on Neocities</em>, click <strong>"📥 Download Updated index.html"</strong> below and upload that file to your Neocities dashboard!</p>
+          </div>
+
+          <div class="export-actions-grid">
+            <button type="button" id="btn-download-html" class="export-big-btn download-btn">
+              <span class="big-icon">📥</span>
+              <div class="btn-text-group">
+                <span class="btn-main-text">DOWNLOAD index.html</span>
+                <span class="btn-sub-text">Ready to upload straight to Neocities</span>
+              </div>
+            </button>
+
+            <button type="button" id="btn-copy-html" class="export-big-btn copy-btn-export">
+              <span class="big-icon">📋</span>
+              <div class="btn-text-group">
+                <span class="btn-main-text">COPY FULL HTML</span>
+                <span class="btn-sub-text">Copy entire code to clipboard</span>
+              </div>
+            </button>
+
+            <button type="button" id="btn-export-json" class="export-big-btn json-btn">
+              <span class="big-icon">💾</span>
+              <div class="btn-text-group">
+                <span class="btn-main-text">EXPORT CONFIG (JSON)</span>
+                <span class="btn-sub-text">Save your custom site data backup</span>
+              </div>
+            </button>
+
+            <button type="button" id="btn-import-json-trigger" class="export-big-btn import-btn">
+              <span class="big-icon">📂</span>
+              <div class="btn-text-group">
+                <span class="btn-main-text">IMPORT CONFIG (JSON)</span>
+                <span class="btn-sub-text">Load previously saved data</span>
+              </div>
+              <input type="file" id="cfg-file-import" accept=".json" style="display: none;" />
+            </button>
+          </div>
+
+          <div class="reset-section">
+            <button type="button" id="btn-reset-defaults" class="btn-danger-sm">🔄 Reset All to Original Defaults</button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="modal-footer">
+        <button type="button" id="btn-modal-cancel" class="btn-modal-secondary">Cancel</button>
+        <button type="button" id="btn-save-apply" class="btn-modal-primary">💾 SAVE & APPLY</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
