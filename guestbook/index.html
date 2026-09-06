@@ -390,11 +390,11 @@
       </div>
     </nav>
 
-    <!-- WINDOW 1: WELCOME & GUIDELINES -->
+    <!-- SINGLE UNIFIED GUESTBOOK WINDOW (EXACT RANSEI ARCHITECTURE) -->
     <section class="retro-window">
       <div class="retro-titlebar">
         <div class="retro-titlebar-left">
-          <span>[MSG]</span> SHARE YOUR THOUGHTS // GUESTBOOK_WELCOME.TXT
+          <span>★</span> STATION GUESTBOOK // OPERATOR_LEDGER.TXT
         </div>
         <div class="retro-titlebar-controls">
           <span class="retro-btn">_</span>
@@ -403,167 +403,52 @@
         </div>
       </div>
 
-      <div class="retro-window-body" style="font-size: 0.9rem; line-height: 1.5; color: #cbd5e1;">
-        <p>
-          Welcome to the station guestbook! Got feedback on the site, want to say hello, or trade links? Anyone from across the internet can sign our live Atabook guestbook below, or transmit a local dispatch!
-        </p>
-        <p style="color: var(--neon-cyan); font-family: var(--font-pixel); font-size: 0.65rem;">
-          ★ ALL SIGNATURES ARE PERSISTED GLOBALLY VIA ATABOOK. ZERO FAKE COMMENTS // SPAM IS FLUSHED TO /DEV/NULL.
-        </p>
-      </div>
-
-      <div class="retro-window-footer">
-        <span>GUESTBOOK PROTOCOL: ACTIVE</span>
-        <span>REAL VISITORS WELCOME</span>
-      </div>
-    </section>
-
-    <!-- WINDOW 2: GLOBAL LIVE ATABOOK GUESTBOOK -->
-    <section class="retro-window">
-      <div class="retro-titlebar">
-        <div class="retro-titlebar-left">
-          <span>[LIVE]</span> GLOBAL LIVE GUESTBOOK // ATABOOK.ORG
-        </div>
-        <div class="retro-titlebar-controls">
-          <span class="retro-btn">_</span>
-          <span class="retro-btn">□</span>
-          <span class="retro-btn close">×</span>
-        </div>
-      </div>
-
-      <div class="retro-window-body" style="padding: 14px;">
-        <div class="atabook-guide-card" style="background: #110524; border: 1px solid var(--neon-cyan); padding: 12px 16px; margin-bottom: 14px; font-size: 0.85rem; line-height: 1.5; color: #cbd5e1;">
-          <p style="margin: 0 0 6px 0; font-family: var(--font-pixel); font-size: 0.68rem; color: var(--neon-yellow);">
-            ★ REAL LIVE GUESTBOOK (POWERED BY ATABOOK FOR INDIEWEB &amp; NEOCITIES):
-          </p>
-          <p style="margin: 0;">
-            Any visitor from across the internet can sign below! All submissions persist globally on Atabook's cloud servers with anti-spam protection.
-          </p>
-        </div>
-
-        <div class="atabook-frame-container" style="width: 100%; height: 700px; border: 2px solid var(--neon-purple); background: #06010d; position: relative;">
-          <iframe
-            src="https://ihateuponds.atabook.org/"
-            id="atabook-live-frame"
-            title="Ponds Atabook Live Guestbook"
-            style="width: 100%; height: 100%; border: none;"
-            allowtransparency="yes"
-            scrolling="auto"
-          ></iframe>
-        </div>
-
-        <div style="margin-top: 12px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
-          <a href="https://ihateuponds.atabook.org/" target="_blank" rel="noopener noreferrer" class="submit-btn" style="text-decoration: none; padding: 8px 16px; font-size: 0.68rem; display: inline-block;">
-            ★ OPEN ATABOOK IN NEW TAB ↗
-          </a>
-          <span style="font-family: var(--font-pixel); font-size: 0.62rem; color: var(--text-muted);">
-            SECURITY: 100% SPAM FILTERED // ZERO BOT SPOOFING
-          </span>
-        </div>
-      </div>
-
-      <div class="retro-window-footer">
-        <span>SERVICE: ATABOOK CLOUD // NEOCITIES COMPLIANT</span>
-        <span>STATUS: 200 OK</span>
-      </div>
-    </section>
-
-    <!-- WINDOW 3: LOCAL STATION DISPATCH SIGNATURE -->
-    <section class="retro-window">
-      <div class="retro-titlebar">
-        <div class="retro-titlebar-left">
-          <span>[SIGN]</span> LOCAL STATION DISPATCH // TRANSMIT_SIGNATURE.EXE
-        </div>
-        <div class="retro-titlebar-controls">
-          <span class="retro-btn">_</span>
-          <span class="retro-btn">□</span>
-          <span class="retro-btn close">×</span>
-        </div>
-      </div>
-
-      <div class="retro-window-body">
-        <form id="guestbook-form" class="guestbook-form">
-          
-          <div class="form-row-grid">
-            <div class="input-group">
-              <label for="gb-name" class="input-label">NAME / HANDLE (*):</label>
-              <input type="text" id="gb-name" class="retro-input" placeholder="e.g. kumi_core" required maxlength="30" />
-            </div>
-
-            <div class="input-group">
-              <label for="gb-url" class="input-label">WEBSITE / NEOCITIES URL (OPTIONAL):</label>
-              <input type="url" id="gb-url" class="retro-input" placeholder="https://yourname.neocities.org" maxlength="80" />
-            </div>
+      <!-- Split Intro Header inside the window -->
+      <div class="retro-window-body" style="border-bottom: 1px solid var(--neon-purple); background: rgba(14, 5, 26, 0.85); padding: 18px 20px;">
+        <div style="display: flex; gap: 20px; align-items: center; justify-content: space-between; flex-wrap: wrap;">
+          <div style="flex: 1; min-width: 260px;">
+            <p style="margin: 0 0 8px 0; font-family: var(--font-pixel); font-size: 0.72rem; color: var(--neon-yellow);">
+              ★ SHARE YOUR THOUGHTS &amp; LEAVE YOUR MARK:
+            </p>
+            <p style="margin: 0 0 8px 0; font-size: 0.9rem; line-height: 1.5; color: #cbd5e1;">
+              Got feedback on the scrapbook, want to trade 88x31 badges, or just say hello? Drop a signature below! Your message is broadcast live to the global IndieWeb ledger.
+            </p>
+            <p style="margin: 0; font-family: var(--font-pixel); font-size: 0.62rem; color: var(--neon-cyan);">
+              ★ ALL ENTRIES PERSIST GLOBALLY // POWERED BY ATABOOK CLOUD
+            </p>
           </div>
-
-          <div class="avatar-picker-area">
-            <span class="input-label">CHOOSE YOUR PIXEL STAMP AVATAR:</span>
-            <div class="avatar-options-grid" id="avatar-picker">
-              <div class="avatar-option selected" data-avatar="gengar" title="Gengar">
-                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/94.gif" alt="Gengar" />
-              </div>
-              <div class="avatar-option" data-avatar="mimikyu" title="Mimikyu">
-                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/778.gif" alt="Mimikyu" />
-              </div>
-              <div class="avatar-option" data-avatar="gholdengo" title="Gholdengo">
-                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/1000.gif" alt="Gholdengo" />
-              </div>
-              <div class="avatar-option" data-avatar="terminal" title="Terminal">
-                <img src="../assets/blinkies/terminal.gif" alt="Terminal" />
-              </div>
-              <div class="avatar-option" data-avatar="alien" title="Alien">
-                <img src="../assets/blinkies/alien.gif" alt="Alien" />
-              </div>
-              <div class="avatar-option" data-avatar="cat" title="Cat Kumi">
-                <img src="../assets/decors/cat-kumi.gif" alt="Cat" />
-              </div>
-              <div class="avatar-option" data-avatar="win95" title="Win95">
-                <img src="../assets/blinkies/win95.gif" alt="Win95" />
-              </div>
-              <div class="avatar-option" data-avatar="spiral" title="Spiral">
-                <img src="../assets/stamps/spiral.gif" alt="Spiral" />
-              </div>
-            </div>
+          <div style="text-align: center; border: 2px solid var(--neon-pink); padding: 4px; background: #000; box-shadow: 0 0 10px var(--neon-pink-glow);">
+            <img src="../avatar.jpeg" alt="Ponds Avatar" style="width: 72px; height: 72px; object-fit: cover; display: block;" />
+            <div style="font-family: var(--font-pixel); font-size: 0.55rem; color: var(--neon-pink); margin-top: 4px;">. PONDS</div>
           </div>
+        </div>
+      </div>
 
-          <div class="input-group">
-            <label for="gb-message" class="input-label">MESSAGE (*):</label>
-            <textarea id="gb-message" class="retro-textarea" rows="3" placeholder="Drop a greeting, your favorite album, or tech notes..." required maxlength="400"></textarea>
-          </div>
+      <!-- Live Atabook Stream inside the window -->
+      <div class="retro-window-body" style="padding: 0; background: #090314;">
+        <iframe
+          src="https://ihateuponds.atabook.org/"
+          id="atabook-live-frame"
+          title="Ponds Atabook Live Guestbook"
+          style="width: 100%; height: 720px; border: none; display: block; background: transparent;"
+          allowtransparency="yes"
+          scrolling="auto"
+        ></iframe>
+      </div>
 
-          <button type="submit" class="submit-btn">
-            ★ TRANSMIT SIGNATURE TO LEDGER ★
-          </button>
-        </form>
+      <!-- Action Footer -->
+      <div style="padding: 12px 18px; background: #0c0418; border-top: 1px solid rgba(121, 40, 202, 0.4); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+        <a href="https://ihateuponds.atabook.org/" target="_blank" rel="noopener noreferrer" class="submit-btn" style="text-decoration: none; padding: 6px 14px; font-size: 0.65rem; display: inline-block;">
+          ★ OPEN GUESTBOOK FULLSCREEN ↗
+        </a>
+        <span style="font-family: var(--font-pixel); font-size: 0.6rem; color: var(--text-muted);">
+          ATABOOK PROTOCOL // ZERO FAKE ENTRIES
+        </span>
       </div>
 
       <div class="retro-window-footer">
-        <span>VALIDATION: CLIENT-SIDE ENCRYPTED</span>
-      </div>
-    </section>
-
-    <!-- WINDOW 4: GUESTBOOK LEDGER -->
-    <section class="retro-window">
-      <div class="retro-titlebar">
-        <div class="retro-titlebar-left">
-          <span>[LEDGER]</span> VISITOR LEDGER // RECENT SIGNATURES
-        </div>
-        <div class="retro-titlebar-controls">
-          <span class="retro-btn">_</span>
-          <span class="retro-btn">□</span>
-          <span class="retro-btn close">×</span>
-        </div>
-      </div>
-
-      <div class="retro-window-body">
-        <div class="ledger-feed" id="ledger-feed-target">
-          <!-- Populated by JavaScript -->
-        </div>
-      </div>
-
-      <div class="retro-window-footer">
-        <span id="ledger-count-meta">SIGNATURES RECORDED: 0</span>
-        <span>ARCHIVE SYNCED</span>
+        <span>GUESTBOOK PROTOCOL: ONLINE</span>
+        <span>VISITORS: UNRESTRICTED</span>
       </div>
     </section>
 
@@ -664,134 +549,12 @@
         renderStars();
       }
 
-      // Avatar Mapping
-      const AVATAR_MAP = {
-        gengar: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/94.gif",
-        mimikyu: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/778.gif",
-        gholdengo: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/1000.gif",
-        terminal: "../assets/blinkies/terminal.gif",
-        alien: "../assets/blinkies/alien.gif",
-        cat: "../assets/decors/cat-kumi.gif",
-        win95: "../assets/blinkies/win95.gif",
-        spiral: "../assets/stamps/spiral.gif"
-      };
-
-      let selectedAvatarKey = "gengar";
-      const avatarOptions = document.querySelectorAll(".avatar-option");
-      avatarOptions.forEach(opt => {
-        opt.addEventListener("click", () => {
-          avatarOptions.forEach(o => o.classList.remove("selected"));
-          opt.classList.add("selected");
-          selectedAvatarKey = opt.dataset.avatar;
-          playChime(720);
-        });
-      });
-
-      function loadEntries() {
-        try {
-          return JSON.parse(localStorage.getItem("ponds_guestbook_entries") || "[]");
-        } catch(e) {
-          return [];
-        }
-      }
-
-      function renderEntries() {
-        const list = loadEntries();
-        const target = document.getElementById("ledger-feed-target");
-        const countMeta = document.getElementById("ledger-count-meta");
-        if (!target) return;
-
-        if (countMeta) countMeta.textContent = `SIGNATURES RECORDED: ${list.length}`;
-        target.innerHTML = "";
-
-        if (list.length === 0) {
-          target.innerHTML = `
-            <div class="ledger-empty-msg" style="text-align: center; padding: 32px 14px; color: var(--text-muted); font-family: var(--font-pixel); font-size: 0.72rem; line-height: 1.8;">
-              [LEDGER EMPTY // NO SIGNATURES RECORDED YET]<br>
-              <span style="color: var(--neon-cyan);">TRANSMIT THE FIRST ENTRY ABOVE OR SIGN VIA ATABOOK!</span>
-            </div>
-          `;
-          return;
-        }
-
-        list.forEach(entry => {
-          const avatarSrc = AVATAR_MAP[entry.avatar] || AVATAR_MAP["gengar"];
-          const urlBadge = entry.url 
-            ? `<a href="${entry.url}" target="_blank" rel="noopener noreferrer" class="entry-url-badge">[VISIT SITE ↗]</a>`
-            : "";
-
-          const item = document.createElement("div");
-          item.className = "ledger-entry";
-          item.innerHTML = `
-            <div class="entry-avatar-frame">
-              <img src="${avatarSrc}" alt="${entry.avatar}" class="entry-avatar-img" />
-            </div>
-            <div class="entry-content">
-              <div class="entry-header-row">
-                <div style="display: flex; align-items: center; gap: 8px;">
-                  <span class="entry-author">${escapeHtml(entry.name)}</span>
-                  ${urlBadge}
-                </div>
-                <span class="entry-time">${entry.date}</span>
-              </div>
-              <p class="entry-msg">${escapeHtml(entry.message)}</p>
-            </div>
-          `;
-          target.appendChild(item);
-        });
-      }
-
-      function escapeHtml(str) {
-        if (!str) return "";
-        return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
-      }
-
-      // Form Submit
-      const form = document.getElementById("guestbook-form");
-      if (form) {
-        form.addEventListener("submit", (e) => {
-          e.preventDefault();
-          const nameInput = document.getElementById("gb-name");
-          const urlInput = document.getElementById("gb-url");
-          const msgInput = document.getElementById("gb-message");
-
-          if (!nameInput.value.trim() || !msgInput.value.trim()) return;
-
-          const now = new Date();
-          const dateStr = now.toISOString().replace("T", " ").substring(0, 16) + " EDT";
-
-          const newEntry = {
-            name: nameInput.value.trim(),
-            url: urlInput.value.trim(),
-            avatar: selectedAvatarKey,
-            date: dateStr,
-            message: msgInput.value.trim()
-          };
-
-          try {
-            const userSaved = JSON.parse(localStorage.getItem("ponds_guestbook_entries") || "[]");
-            userSaved.unshift(newEntry);
-            localStorage.setItem("ponds_guestbook_entries", JSON.stringify(userSaved));
-          } catch(e) {}
-
-          // Play success chime
-          playChime(880);
-          setTimeout(() => playChime(1040), 120);
-
-          form.reset();
-          renderEntries();
-
-          // Unlock Gym Badge for signing guestbook
-          try {
-            let badges = JSON.parse(localStorage.getItem("ponds_gym_badges") || "{}");
-            badges["soul"] = true; // Soul badge for leaving a signature
-            localStorage.setItem("ponds_gym_badges", JSON.stringify(badges));
-          } catch(e) {}
-        });
-      }
-
-      // Initial Render
-      renderEntries();
+      // Unlock Gym Badge for exploring guestbook
+      try {
+        let badges = JSON.parse(localStorage.getItem("ponds_gym_badges") || "{}");
+        badges["soul"] = true; // Soul badge for visiting guestbook
+        localStorage.setItem("ponds_gym_badges", JSON.stringify(badges));
+      } catch(e) {}
 
       // Click chime for buttons
       document.querySelectorAll("button, a").forEach(el => {
