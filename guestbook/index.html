@@ -139,6 +139,50 @@
       color: #fff;
     }
 
+    /* Retro Window Interactive States */
+    .retro-window.is-collapsed .retro-window-body,
+    .retro-window.is-collapsed .retro-window-footer {
+      display: none !important;
+    }
+    .retro-window.is-maximized {
+      position: fixed !important;
+      top: 24px !important;
+      left: 24px !important;
+      right: 24px !important;
+      bottom: 24px !important;
+      z-index: 9999 !important;
+      max-width: none !important;
+      max-height: none !important;
+      margin: 0 !important;
+      overflow-y: auto !important;
+      box-shadow: 0 0 30px rgba(247, 37, 133, 0.6), 0 0 0 1000px rgba(5, 2, 10, 0.85) !important;
+    }
+    .retro-restore-bar {
+      position: fixed;
+      bottom: 16px;
+      right: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      z-index: 9998;
+    }
+    .retro-restore-chip {
+      font-family: var(--font-pixel);
+      font-size: 0.62rem;
+      background: #140726;
+      color: var(--neon-cyan);
+      border: 1px solid var(--neon-pink);
+      padding: 6px 12px;
+      cursor: pointer;
+      box-shadow: 2px 2px 0 #000;
+      transition: all 0.15s ease;
+    }
+    .retro-restore-chip:hover {
+      background: var(--neon-pink);
+      color: #fff;
+      transform: translateY(-2px);
+    }
+
     .retro-window-body {
       padding: 20px;
       display: flex;
@@ -644,6 +688,69 @@
         badges["soul"] = true; // Soul badge for visiting guestbook
         localStorage.setItem("ponds_gym_badges", JSON.stringify(badges));
       } catch(e) {}
+
+      // Interactive Retro Window Controls Engine
+      function setupRetroWindowControls() {
+        let restoreBar = document.getElementById("retro-restore-bar");
+        if (!restoreBar) {
+          restoreBar = document.createElement("div");
+          restoreBar.id = "retro-restore-bar";
+          restoreBar.className = "retro-restore-bar";
+          document.body.appendChild(restoreBar);
+        }
+
+        document.querySelectorAll(".retro-window").forEach((win, winIdx) => {
+          const titlebar = win.querySelector(".retro-titlebar");
+          if (!titlebar) return;
+          const titleLeft = titlebar.querySelector(".retro-titlebar-left");
+          const winTitle = titleLeft ? titleLeft.textContent.replace(/[\n\r\t]+/g, ' ').trim() : `WINDOW #${winIdx + 1}`;
+
+          const btnMin = win.querySelector(".retro-titlebar-controls .retro-btn:nth-child(1)");
+          const btnMax = win.querySelector(".retro-titlebar-controls .retro-btn:nth-child(2)");
+          const btnClose = win.querySelector(".retro-titlebar-controls .retro-btn.close") || win.querySelector(".retro-titlebar-controls .retro-btn:nth-child(3)");
+
+          if (btnMin) {
+            btnMin.title = "Minimize / Collapse Window";
+            btnMin.onclick = (e) => {
+              e.stopPropagation();
+              const isCollapsed = win.classList.toggle("is-collapsed");
+              btnMin.textContent = isCollapsed ? "+" : "_";
+              playChime(isCollapsed ? 520 : 680);
+            };
+          }
+
+          if (btnMax) {
+            btnMax.title = "Maximize / Windowed View";
+            btnMax.onclick = (e) => {
+              e.stopPropagation();
+              const isMax = win.classList.toggle("is-maximized");
+              btnMax.textContent = isMax ? "▣" : "□";
+              playChime(isMax ? 850 : 600);
+            };
+          }
+
+          if (btnClose) {
+            btnClose.title = "Close Window";
+            btnClose.onclick = (e) => {
+              e.stopPropagation();
+              win.style.display = "none";
+              playChime(420);
+
+              const chip = document.createElement("button");
+              chip.type = "button";
+              chip.className = "retro-restore-chip";
+              chip.textContent = `[RESTORE: ${winTitle.substring(0, 22)}]`;
+              chip.onclick = () => {
+                win.style.display = "";
+                chip.remove();
+                playChime(750);
+              };
+              restoreBar.appendChild(chip);
+            };
+          }
+        });
+      }
+      setupRetroWindowControls();
 
       // Click chime for buttons
       document.querySelectorAll("button, a").forEach(el => {

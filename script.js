@@ -296,7 +296,26 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Volume slider
+  // Volume slider and mute toggle
+  let lastVolume = 0.75;
+  if (volIconBtn) {
+    volIconBtn.style.cursor = 'pointer';
+    volIconBtn.addEventListener('click', () => {
+      if (realAudioPlayer.volume > 0) {
+        lastVolume = realAudioPlayer.volume;
+        realAudioPlayer.volume = 0;
+        if (volumeSlider) volumeSlider.value = 0;
+        volIconBtn.textContent = '[MUTE]';
+      } else {
+        const restoreVol = lastVolume > 0 ? lastVolume : 0.75;
+        realAudioPlayer.volume = restoreVol;
+        if (volumeSlider) volumeSlider.value = Math.round(restoreVol * 100);
+        volIconBtn.textContent = restoreVol < 0.5 ? '[VOL-]' : '[VOL+]';
+      }
+      playSfx('click');
+    });
+  }
+
   if (volumeSlider) {
     realAudioPlayer.volume = volumeSlider.value / 100;
     volumeSlider.addEventListener('input', (e) => {
@@ -307,6 +326,23 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+
+  // Make rotation artist tags clickable to play artist track
+  const artistTags = document.querySelectorAll('.artist-tag');
+  artistTags.forEach(tag => {
+    tag.style.cursor = 'pointer';
+    tag.title = `Play ${tag.textContent.trim()}`;
+    tag.addEventListener('click', () => {
+      const name = tag.textContent.trim().toLowerCase();
+      const matchIdx = tracks.findIndex(t => t.artist.toLowerCase().includes(name));
+      if (matchIdx !== -1) {
+        loadTrack(matchIdx, true);
+        playSfx('powerup');
+      } else {
+        playSfx('click');
+      }
+    });
+  });
 
   // Load initial track
   loadTrack(0, false);
@@ -1387,6 +1423,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  function checkHashPolicy() {
+    const hash = window.location.hash.toLowerCase();
+    if (hash === '#terms-modal' || hash === '#terms') {
+      openPolicy('terms');
+    } else if (hash === '#privacy-modal' || hash === '#privacy') {
+      openPolicy('privacy');
+    }
+  }
+  window.addEventListener('hashchange', checkHashPolicy);
+  checkHashPolicy();
+
   /* ------------------------------------------------------------------------
      POKÉMON BOOSTER PACK & BADGE CASE ENGINE
      ------------------------------------------------------------------------ */
@@ -1418,11 +1465,16 @@ document.addEventListener('DOMContentLoaded', () => {
       pulls.forEach(card => {
         const cardEl = document.createElement('div');
         cardEl.className = 'pulled-card';
+        cardEl.style.cursor = 'pointer';
+        cardEl.title = `Click to inspect ${card.name}`;
         cardEl.innerHTML = `
           <img src="${card.img}" alt="${escapeHtml(card.name)}" loading="lazy" />
           <span class="pulled-card-name">${escapeHtml(card.name)}</span>
           <span class="pulled-card-rarity">${escapeHtml(card.rarity)}</span>
         `;
+        cardEl.addEventListener('click', () => {
+          openLightbox(card.img, card.name, `${card.set} • ${card.rarity}`);
+        });
         packPullsContainer.appendChild(cardEl);
       });
 
@@ -1432,6 +1484,17 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Gym Badges Management
+  const BADGE_HINTS = {
+    boulder: "BOULDER BADGE: Unlocked at station root!",
+    cascade: "CASCADE BADGE: Earned by visiting Tech Support (/support/)!",
+    thunder: "THUNDER BADGE: Earned by visiting Linux Bench (/rig/)!",
+    rainbow: "RAINBOW BADGE: Earned by reading Operator Bio (/about/)!",
+    soul: "SOUL BADGE: Earned by signing Guestbook or Ripping Booster Pack!",
+    marsh: "MARSH BADGE: Earned by entering LSD Dream Realm (/lsd/)!",
+    volcano: "VOLCANO BADGE: Earned by exploring Games Shrine (/games/)!",
+    earth: "EARTH BADGE: Earned by browsing Post Archive (/posts/)!"
+  };
+
   function getGymBadges() {
     try {
       return JSON.parse(localStorage.getItem('ponds_gym_badges') || '{"boulder": true}');
@@ -1456,6 +1519,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     slots.forEach(slot => {
       const badgeKey = slot.dataset.badge;
+      slot.style.cursor = 'pointer';
       if (badges[badgeKey]) {
         slot.classList.remove('locked');
         slot.classList.add('unlocked');
@@ -1464,6 +1528,17 @@ document.addEventListener('DOMContentLoaded', () => {
         slot.classList.add('locked');
         slot.classList.remove('unlocked');
       }
+
+      // Remove existing listener clone
+      slot.onclick = () => {
+        if (badges[badgeKey]) {
+          playSfx('badge');
+          showCreatorNotification(`★ ${BADGE_HINTS[badgeKey] || badgeKey.toUpperCase()} ★`);
+        } else {
+          playSfx('click');
+          showCreatorNotification(`[LOCKED] ${BADGE_HINTS[badgeKey] || 'Explore station to unlock!'}`);
+        }
+      };
     });
 
     const countText = document.getElementById('badge-count-text');

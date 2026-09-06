@@ -18,6 +18,27 @@
   updateClock();
   setInterval(updateClock, 1000);
 
+  // Audio Feedback Engine
+  let audioCtx = null;
+  function playChime(freq = 600) {
+    try {
+      const AudioContext = window.AudioContext || window.webkitAudioContext;
+      if (!audioCtx) audioCtx = new AudioContext();
+      if (audioCtx.state === "suspended") audioCtx.resume();
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = "triangle";
+      osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(freq * 1.4, audioCtx.currentTime + 0.08);
+      gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.1);
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.start();
+      osc.stop(audioCtx.currentTime + 0.1);
+    } catch(e) {}
+  }
+
   // 2. Retro Font Mode Switcher
   const fontBtn = document.getElementById("font-toggle-btn");
   const body = document.getElementById("page-body");
@@ -34,6 +55,7 @@
       currentFontIdx = (currentFontIdx + 1) % fontOptions.length;
       body.style.fontFamily = fontOptions[currentFontIdx].family;
       fontBtn.textContent = "font: " + fontOptions[currentFontIdx].name;
+      playChime(720);
     });
   }
 
@@ -64,6 +86,7 @@
         await navigator.clipboard.writeText(embedCode.value);
         const originalText = copyEmbedBtn.textContent;
         copyEmbedBtn.textContent = "[OK] Copied to clipboard!";
+        playChime(800);
         setTimeout(() => { copyEmbedBtn.textContent = originalText; }, 2500);
       } catch (err) {
         embedCode.select();
@@ -145,6 +168,7 @@
         dreamPrompt.textContent = "▶ TOUCH ANYWHERE TO LINK NEXT DREAM";
       }, 2500);
     }
+    playChime(640);
   }
 
   if (warpBtn) warpBtn.addEventListener("click", triggerDreamWarp);
@@ -161,5 +185,10 @@
     badges["marsh"] = true;
     localStorage.setItem("ponds_gym_badges", JSON.stringify(badges));
   } catch(e) {}
+
+  // Click chime for buttons & links
+  document.querySelectorAll("button, a").forEach(el => {
+    el.addEventListener("click", () => playChime(750));
+  });
 
 })();

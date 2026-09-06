@@ -417,11 +417,50 @@
   </div>
 
   <script>
-    try {
-      let badges = JSON.parse(localStorage.getItem('ponds_gym_badges') || '{}');
-      badges['volcano'] = true;
-      localStorage.setItem('ponds_gym_badges', JSON.stringify(badges));
-    } catch(e) {}
+    document.addEventListener("DOMContentLoaded", () => {
+      // Sound FX Engine
+      let audioCtx = null;
+      function playChime(freq = 600) {
+        try {
+          const AudioContext = window.AudioContext || window.webkitAudioContext;
+          if (!audioCtx) audioCtx = new AudioContext();
+          if (audioCtx.state === "suspended") audioCtx.resume();
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.type = "triangle";
+          osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+          osc.frequency.exponentialRampToValueAtTime(freq * 1.4, audioCtx.currentTime + 0.08);
+          gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.1);
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+          osc.start();
+          osc.stop(audioCtx.currentTime + 0.1);
+        } catch(e) {}
+      }
+
+      // Interactive Game Cards Click
+      document.querySelectorAll(".game-vault-item").forEach(item => {
+        item.style.cursor = "pointer";
+        item.addEventListener("click", () => {
+          document.querySelectorAll(".game-vault-item").forEach(i => i.style.borderColor = "var(--neon-purple)");
+          item.style.borderColor = "var(--neon-pink)";
+          playChime(700);
+        });
+      });
+
+      // Unlock Gym Badge for visiting /games/
+      try {
+        let badges = JSON.parse(localStorage.getItem('ponds_gym_badges') || '{}');
+        badges['volcano'] = true;
+        localStorage.setItem('ponds_gym_badges', JSON.stringify(badges));
+      } catch(e) {}
+
+      // Click chime for buttons & links
+      document.querySelectorAll("button, a").forEach(el => {
+        el.addEventListener("click", () => playChime(750));
+      });
+    });
   </script>
 </body>
 </html>

@@ -31,6 +31,37 @@
     btn.addEventListener("click", () => switchTab("pane-ticket"));
   });
 
+  // Bottom Statusline Navigation Buttons
+  document.querySelectorAll(".status-nav-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const target = btn.getAttribute("data-tab");
+      if (target) switchTab(target);
+    });
+  });
+
+  // Top Window Control Buttons
+  const dotClose = document.querySelector(".ctrl-dot.close");
+  const dotMin = document.querySelector(".ctrl-dot.minimize");
+  const dotMax = document.querySelector(".ctrl-dot.maximize");
+  const termFrame = document.querySelector(".terminal-frame");
+  const termBody = document.querySelector(".terminal-body");
+
+  if (dotClose) {
+    dotClose.addEventListener("click", () => {
+      window.location.href = "../";
+    });
+  }
+  if (dotMin && termBody) {
+    dotMin.addEventListener("click", () => {
+      termBody.style.display = termBody.style.display === "none" ? "" : "none";
+    });
+  }
+  if (dotMax && termFrame) {
+    dotMax.addEventListener("click", () => {
+      termFrame.classList.toggle("is-maximized");
+    });
+  }
+
   // Keyboard Shortcuts for TUI navigation (1, 2, 3)
   window.addEventListener("keydown", (e) => {
     const active = document.activeElement;
