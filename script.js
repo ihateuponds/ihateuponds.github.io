@@ -1618,143 +1618,19 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ------------------------------------------------------------------------
      STATION SHOUTBOX & CBOX LIVE CHAT ENGINE
      ------------------------------------------------------------------------ */
-  const shoutboxForm = document.getElementById('shoutbox-form');
-  const shoutboxFeed = document.getElementById('shoutbox-feed');
-  const btnChatCbox = document.getElementById('btn-chat-cbox');
-  const btnChatLocal = document.getElementById('btn-chat-local');
-  const btnChatCfg = document.getElementById('btn-chat-cfg');
-  const cboxPanel = document.getElementById('cbox-panel');
-  const localPanel = document.getElementById('local-panel');
   const cboxFrame = document.getElementById('cbox-live-frame');
-  const cboxPrompt = document.getElementById('cbox-setup-prompt');
-  const btnEnterCbox = document.getElementById('btn-enter-cbox');
-
   const DEFAULT_CBOX_ID = '3560113';
   const DEFAULT_CBOX_TAG = '2LNz2J';
 
   function updateCboxFrame() {
+    if (!cboxFrame) return;
     const boxId = localStorage.getItem('ponds_cbox_id') || DEFAULT_CBOX_ID;
     const boxTag = localStorage.getItem('ponds_cbox_tag') || DEFAULT_CBOX_TAG;
-    if (boxId && boxTag) {
-      if (cboxFrame) {
-        cboxFrame.src = `https://www3.cbox.ws/box/?boxid=${encodeURIComponent(boxId)}&boxtag=${encodeURIComponent(boxTag)}`;
-        cboxFrame.style.display = 'block';
-      }
-      if (cboxPrompt) cboxPrompt.style.display = 'none';
-    } else {
-      if (cboxFrame) cboxFrame.style.display = 'none';
-      if (cboxPrompt) cboxPrompt.style.display = 'block';
-    }
-  }
-
-  function promptCboxCredentials() {
-    const currentId = localStorage.getItem('ponds_cbox_id') || DEFAULT_CBOX_ID;
-    const currentTag = localStorage.getItem('ponds_cbox_tag') || DEFAULT_CBOX_TAG;
-    const newId = prompt('Enter your Cbox BoxID (from cbox.ws dashboard):', currentId);
-    if (newId === null) return;
-    const newTag = prompt('Enter your Cbox BoxTag (from cbox.ws dashboard):', currentTag);
-    if (newTag === null) return;
-
-    if (newId.trim() && newTag.trim()) {
-      localStorage.setItem('ponds_cbox_id', newId.trim());
-      localStorage.setItem('ponds_cbox_tag', newTag.trim());
-      updateCboxFrame();
-      playSfx('badge');
-    }
-  }
-
-  if (btnChatCfg) btnChatCfg.addEventListener('click', promptCboxCredentials);
-  if (btnEnterCbox) btnEnterCbox.addEventListener('click', promptCboxCredentials);
-
-  if (btnChatCbox && btnChatLocal && cboxPanel && localPanel) {
-    btnChatCbox.addEventListener('click', () => {
-      btnChatCbox.style.background = 'var(--neon-pink)';
-      btnChatCbox.style.color = '#fff';
-      btnChatCbox.style.borderColor = '#fff';
-      btnChatLocal.style.background = '#140526';
-      btnChatLocal.style.color = 'var(--neon-cyan)';
-      btnChatLocal.style.borderColor = 'var(--neon-purple)';
-      cboxPanel.style.display = 'block';
-      localPanel.style.display = 'none';
-      playSfx('click');
-    });
-
-    btnChatLocal.addEventListener('click', () => {
-      btnChatLocal.style.background = 'var(--neon-pink)';
-      btnChatLocal.style.color = '#fff';
-      btnChatLocal.style.borderColor = '#fff';
-      btnChatCbox.style.background = '#140526';
-      btnChatCbox.style.color = 'var(--neon-cyan)';
-      btnChatCbox.style.borderColor = 'var(--neon-purple)';
-      localPanel.style.display = 'block';
-      cboxPanel.style.display = 'none';
-      playSfx('click');
-    });
+    cboxFrame.src = `https://www3.cbox.ws/box/?boxid=${encodeURIComponent(boxId)}&boxtag=${encodeURIComponent(boxTag)}`;
+    cboxFrame.style.display = 'block';
   }
 
   updateCboxFrame();
-
-  function loadShouts() {
-    try {
-      return JSON.parse(localStorage.getItem('ponds_shoutbox_data') || '[]');
-    } catch(e) {
-      return [];
-    }
-  }
-
-  function renderShouts() {
-    if (!shoutboxFeed) return;
-    shoutboxFeed.innerHTML = '';
-    const userShouts = loadShouts();
-    if (userShouts.length === 0) {
-      shoutboxFeed.innerHTML = '<div class="shout-empty-notice" style="color: var(--text-muted); font-style: italic; padding: 16px 8px; font-family: var(--font-body); font-size: 0.82rem; text-align: center;">[NO TRANSMISSIONS YET // TRANSMIT FIRST DISPATCH]</div>';
-      return;
-    }
-    userShouts.forEach(shout => {
-      const line = document.createElement('div');
-      line.className = 'shout-line';
-      line.innerHTML = `<span class="shout-time">[${escapeHtml(shout.time)}]</span> <span class="shout-user" style="color: var(--neon-cyan);">&lt;${escapeHtml(shout.name)}&gt;</span> <span class="shout-text">${escapeHtml(shout.msg)}</span>`;
-      shoutboxFeed.appendChild(line);
-    });
-    shoutboxFeed.scrollTop = shoutboxFeed.scrollHeight;
-  }
-
-  if (shoutboxForm && shoutboxFeed) {
-    renderShouts();
-
-    shoutboxForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const nameInput = document.getElementById('shout-name');
-      const msgInput = document.getElementById('shout-msg');
-      if (!nameInput || !msgInput) return;
-
-      const name = nameInput.value.trim();
-      const msg = msgInput.value.trim();
-      if (!name || !msg) return;
-
-      playSfx('click');
-      const now = new Date();
-      const timeStr = String(now.getHours()).padStart(2, '0') + ':' + String(now.getMinutes()).padStart(2, '0');
-
-      const newShout = { name, msg, time: timeStr };
-      const saved = loadShouts();
-      saved.push(newShout);
-      try {
-        localStorage.setItem('ponds_shoutbox_data', JSON.stringify(saved));
-      } catch(e) {}
-
-      const emptyNotice = shoutboxFeed.querySelector('.shout-empty-notice');
-      if (emptyNotice) emptyNotice.remove();
-
-      const line = document.createElement('div');
-      line.className = 'shout-line';
-      line.innerHTML = `<span class="shout-time">[${timeStr}]</span> <span class="shout-user" style="color: var(--neon-pink);">&lt;${escapeHtml(name)}&gt;</span> <span class="shout-text">${escapeHtml(msg)}</span>`;
-      shoutboxFeed.appendChild(line);
-      shoutboxFeed.scrollTop = shoutboxFeed.scrollHeight;
-
-      msgInput.value = '';
-    });
-  }
 
   render();
 });
