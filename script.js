@@ -554,10 +554,12 @@ document.addEventListener('DOMContentLoaded', () => {
       ]
     },
     socials: [
-      { name: "Instagram", url: "https://instagram.com/s3ph1r0thxx", icon: "[INSTA]", style: "instagram-btn" },
-      { name: "Discord (@ihateuponds)", url: "https://discord.com", icon: "[DISCORD]", style: "discord-btn" },
-      { name: "Spotify", url: "https://open.spotify.com/user/fkm6bmojqqgf7j5eso4o0f9b0?si=cc74b10dd16d405c", icon: "[SPOTIFY]", style: "spotify-btn" },
-      { name: "Steam", url: "https://steamcommunity.com/id/ihateuponds/", icon: "[STEAM]", style: "steam-btn" }
+      { name: "Discord (@ihateuponds)", url: "https://discord.com/users/ihateuponds", icon: "[DISCORD]", style: "discord-btn" },
+      { name: "Instagram (s3ph1r0thxx)", url: "https://instagram.com/s3ph1r0thxx", icon: "[INSTA]", style: "instagram-btn" },
+      { name: "Spotify (Heavy Rotation)", url: "https://open.spotify.com/user/fkm6bmojqqgf7j5eso4o0f9b0?si=cc74b10dd16d405c", icon: "[SPOTIFY]", style: "spotify-btn" },
+      { name: "Steam (ihateuponds)", url: "https://steamcommunity.com/id/ihateuponds/", icon: "[STEAM]", style: "steam-btn" },
+      { name: "StrawPage Portal", url: "https://ihateuponds.straw.page", icon: "[STRAW]", style: "strawpage-btn" },
+      { name: "GitHub (@ihateuponds)", url: "https://github.com/ihateuponds", icon: "[GITHUB]", style: "github-btn" }
     ]
   };
 
@@ -575,19 +577,19 @@ document.addEventListener('DOMContentLoaded', () => {
   ];
 
   const SOCIAL_PRESETS = {
-    instagram: { name: "Instagram", icon: "[INSTA]", style: "instagram-btn", defaultUrl: "https://instagram.com/s3ph1r0thxx" },
-    discord: { name: "Discord (@ihateuponds)", icon: "[DISCORD]", style: "discord-btn", defaultUrl: "https://discord.com" },
-    spotify: { name: "Spotify", icon: "[SPOTIFY]", style: "spotify-btn", defaultUrl: "https://open.spotify.com/user/fkm6bmojqqgf7j5eso4o0f9b0?si=cc74b10dd16d405c" },
-    steam: { name: "Steam", icon: "[STEAM]", style: "steam-btn", defaultUrl: "https://steamcommunity.com/id/ihateuponds/" },
-    strawpage: { name: "StrawPage", icon: "[STRAW]", style: "strawpage-btn", defaultUrl: "https://ihateuponds.straw.page" },
-    neocities: { name: "Neocities", icon: "[NEOCITIES]", style: "neocities-btn", defaultUrl: "https://neocities.org" },
+    instagram: { name: "Instagram (s3ph1r0thxx)", icon: "[INSTA]", style: "instagram-btn", defaultUrl: "https://instagram.com/s3ph1r0thxx" },
+    discord: { name: "Discord (@ihateuponds)", icon: "[DISCORD]", style: "discord-btn", defaultUrl: "https://discord.com/users/ihateuponds" },
+    spotify: { name: "Spotify (Heavy Rotation)", icon: "[SPOTIFY]", style: "spotify-btn", defaultUrl: "https://open.spotify.com/user/fkm6bmojqqgf7j5eso4o0f9b0?si=cc74b10dd16d405c" },
+    steam: { name: "Steam (ihateuponds)", icon: "[STEAM]", style: "steam-btn", defaultUrl: "https://steamcommunity.com/id/ihateuponds/" },
+    strawpage: { name: "StrawPage Portal", icon: "[STRAW]", style: "strawpage-btn", defaultUrl: "https://ihateuponds.straw.page" },
+    neocities: { name: "Neocities Profile", icon: "[NEOCITIES]", style: "neocities-btn", defaultUrl: "https://neocities.org/site/ihateuponds" },
     twitter: { name: "Twitter / X", icon: "[TWITTER]", style: "twitter-btn", defaultUrl: "https://x.com" },
     youtube: { name: "YouTube", icon: "[YOUTUBE]", style: "youtube-btn", defaultUrl: "https://youtube.com" },
     twitch: { name: "Twitch", icon: "[TWITCH]", style: "twitch-btn", defaultUrl: "https://twitch.tv" },
     tiktok: { name: "TikTok", icon: "[TIKTOK]", style: "tiktok-btn", defaultUrl: "https://tiktok.com" },
     soundcloud: { name: "SoundCloud", icon: "[SOUNDCLOUD]", style: "soundcloud-btn", defaultUrl: "https://soundcloud.com" },
     tumblr: { name: "Tumblr", icon: "[TUMBLR]", style: "tumblr-btn", defaultUrl: "https://tumblr.com" },
-    github: { name: "GitHub", icon: "[GITHUB]", style: "github-btn", defaultUrl: "https://github.com" },
+    github: { name: "GitHub (@ihateuponds)", icon: "[GITHUB]", style: "github-btn", defaultUrl: "https://github.com/ihateuponds" },
     bluesky: { name: "Bluesky", icon: "[BLUESKY]", style: "bluesky-btn", defaultUrl: "https://bsky.app" },
     carrd: { name: "Carrd", icon: "[CARRD]", style: "carrd-btn", defaultUrl: "https://carrd.co" },
     custom: { name: "Custom Link", icon: "[LINK]", style: "custom-btn", defaultUrl: "https://" }
@@ -608,10 +610,30 @@ document.addEventListener('DOMContentLoaded', () => {
       const saved = localStorage.getItem('ponds_custom_site_data');
       if (saved) {
         const parsed = JSON.parse(saved);
+        let loadedSocials = Array.isArray(parsed.socials) && parsed.socials.length > 0 ? parsed.socials : DEFAULT_SITE_DATA.socials;
+
+        // Auto-fix generic discord link if present from previous sessions
+        loadedSocials = loadedSocials.map(s => {
+          if (s.url === "https://discord.com" || s.url === "https://discord.gg") {
+            return { ...s, url: "https://discord.com/users/ihateuponds", name: s.name.includes("@ihateuponds") ? s.name : "Discord (@ihateuponds)" };
+          }
+          return s;
+        });
+
+        // Ensure StrawPage and GitHub exist if they were not in older presets
+        const hasStraw = loadedSocials.some(s => (s.url && s.url.includes("straw.page")) || (s.name && s.name.toLowerCase().includes("straw")));
+        if (!hasStraw) {
+          loadedSocials.push({ name: "StrawPage Portal", url: "https://ihateuponds.straw.page", icon: "[STRAW]", style: "strawpage-btn" });
+        }
+        const hasGithub = loadedSocials.some(s => (s.url && s.url.includes("github.com/ihateuponds")));
+        if (!hasGithub) {
+          loadedSocials.push({ name: "GitHub (@ihateuponds)", url: "https://github.com/ihateuponds", icon: "[GITHUB]", style: "github-btn" });
+        }
+
         return {
           profile: { ...DEFAULT_SITE_DATA.profile, ...(parsed.profile || {}) },
           status: { ...DEFAULT_SITE_DATA.status, ...(parsed.status || {}) },
-          socials: Array.isArray(parsed.socials) ? parsed.socials : DEFAULT_SITE_DATA.socials
+          socials: loadedSocials
         };
       }
     } catch (e) {
@@ -689,6 +711,11 @@ document.addEventListener('DOMContentLoaded', () => {
         el.addEventListener('mouseenter', () => playSfx('hover'));
       });
     }
+
+    // Add hover sound effects to all station portal links
+    document.querySelectorAll('#site-portals-grid .neon-link-btn, .subpage-nav-bar .telemetry-link, .footer-subpages-nav a').forEach(el => {
+      el.addEventListener('mouseenter', () => playSfx('hover'));
+    });
   }
 
   // Initial DOM apply

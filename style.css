@@ -276,6 +276,59 @@ body {
 }
 
 /* --------------------------------------------------------------------------
+   SUBPAGE & STATION NAVIGATION BAR
+   -------------------------------------------------------------------------- */
+.subpage-nav-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(18, 7, 32, 0.95);
+  border: 2px solid var(--neon-purple);
+  box-shadow: 4px 4px 0 #000;
+  padding: 12px 18px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.subpage-brand {
+  font-family: var(--font-pixel);
+  font-size: 0.8rem;
+  color: var(--neon-cyan);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.subpage-brand:hover {
+  color: #fff;
+}
+
+.subpage-telemetry {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.telemetry-link {
+  font-family: var(--font-pixel);
+  font-size: 0.65rem;
+  text-decoration: none;
+  padding: 6px 10px;
+  border: 1px solid var(--neon-purple);
+  background: rgba(10, 4, 18, 0.85);
+  color: var(--text-main);
+  transition: all 0.15s ease;
+  box-shadow: 2px 2px 0 #000;
+}
+.telemetry-link:hover, .telemetry-link.active {
+  background: var(--neon-pink);
+  color: #fff;
+  border-color: #fff;
+  box-shadow: 0 0 8px var(--neon-pink-glow);
+}
+
+/* --------------------------------------------------------------------------
    SCRAPBOOK MAIN CONTAINER & CARDS
    -------------------------------------------------------------------------- */
 .scrapbook-layout {
@@ -1177,7 +1230,7 @@ body {
 /* --------------------------------------------------------------------------
    CARD: SOCIAL LINKS & PORTALS
    -------------------------------------------------------------------------- */
-.social-links-grid {
+.social-links-grid, .site-portals-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 12px;
@@ -1215,6 +1268,10 @@ body {
 .rig-btn:hover { border-color: #f59e0b; color: #f59e0b; }
 .games-btn:hover { border-color: var(--neon-pink); color: var(--neon-pink); }
 .lsd-btn:hover { border-color: var(--neon-cyan); color: var(--neon-cyan); }
+.about-btn:hover { border-color: #f72585; color: #f72585; }
+.posts-btn:hover { border-color: #4cc9f0; color: #4cc9f0; }
+.guestbook-btn:hover { border-color: #ffee00; color: #ffee00; }
+.github-btn:hover { border-color: #ffffff; color: #ffffff; }
 
 /* --------------------------------------------------------------------------
    FOOTER
@@ -1338,7 +1395,7 @@ body {
     grid-template-columns: repeat(2, 1fr);
   }
   
-  .social-links-grid {
+  .social-links-grid, .site-portals-grid {
     grid-template-columns: 1fr;
   }
   

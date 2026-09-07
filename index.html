@@ -94,6 +94,23 @@
   <!-- Main Scrapbook Container -->
   <main class="scrapbook-layout">
 
+    <!-- Top Station Navigation Strip -->
+    <nav class="subpage-nav-bar" aria-label="Main Station Navigation">
+      <a href="./" class="subpage-brand" title="Station Root">
+        <span>★ PONDS.SYS</span>
+        <span style="color: var(--neon-pink);">// ROOT</span>
+      </a>
+      <div class="subpage-telemetry">
+        <a href="about/" class="telemetry-link" title="Operator Bio &amp; FAQ">[ABOUT ME]</a>
+        <a href="rig/" class="telemetry-link" title="Hardware Bench &amp; Dotfiles">[LINUX SETUP]</a>
+        <a href="games/" class="telemetry-link" title="Retro Battlestation &amp; Games">[GAMING SHRINE]</a>
+        <a href="lsd/" class="telemetry-link" title="LSD Dream Simulator">[LSD REALM]</a>
+        <a href="posts/" class="telemetry-link" title="Blog &amp; Cyber Logs">[POSTS]</a>
+        <a href="guestbook/" class="telemetry-link" title="Station Guestbook &amp; Ledger">[GUESTBOOK]</a>
+        <a href="support/" class="telemetry-link" title="Tech Support Intake">[TECH SUPPORT]</a>
+      </div>
+    </nav>
+
     <!-- HERO HEADER CARD -->
     <!-- [EDIT] EDIT PROFILE & BIO IN CUSTOMIZER MODAL OR BELOW -->
     <section class="scrap-card hero-card holo-border">
@@ -253,12 +270,60 @@
           </div>
         </section>
 
-        <!-- CARD: SOCIAL PORTALS & BUTTONS -->
+        <!-- CARD: STATION DIRECTORY & SUBPAGE PORTALS -->
+        <section class="scrap-card directory-card">
+          <div class="washi-tape purple-tape">SECTOR_DIRECTORIES.SYS</div>
+          <div class="card-header">
+            <h2 class="card-title">★ STATION DIRECTORY // SUBPAGES</h2>
+            <span class="pkmn-sub">Explore all sectors of Ponds' site</span>
+          </div>
+
+          <div class="site-portals-grid" id="site-portals-grid">
+            <a href="about/" class="neon-link-btn about-btn">
+              <span class="link-icon">[ABOUT]</span>
+              <span class="link-name">About Me &amp; FAQ</span>
+              <span class="link-arrow">/about/</span>
+            </a>
+            <a href="rig/" class="neon-link-btn rig-btn">
+              <span class="link-icon">[LINUX]</span>
+              <span class="link-name">Linux Setup &amp; Rig</span>
+              <span class="link-arrow">/rig/</span>
+            </a>
+            <a href="games/" class="neon-link-btn games-btn">
+              <span class="link-icon">[GAMES]</span>
+              <span class="link-name">Gaming Shrine &amp; Retro</span>
+              <span class="link-arrow">/games/</span>
+            </a>
+            <a href="lsd/" class="neon-link-btn lsd-btn">
+              <span class="link-icon">[LSD]</span>
+              <span class="link-name">LSD Dream Simulator</span>
+              <span class="link-arrow">/lsd/</span>
+            </a>
+            <a href="posts/" class="neon-link-btn posts-btn">
+              <span class="link-icon">[POSTS]</span>
+              <span class="link-name">Dispatches &amp; Cyber Logs</span>
+              <span class="link-arrow">/posts/</span>
+            </a>
+            <a href="guestbook/" class="neon-link-btn guestbook-btn">
+              <span class="link-icon">[GUESTBOOK]</span>
+              <span class="link-name">Station Ledger &amp; Book</span>
+              <span class="link-arrow">/guestbook/</span>
+            </a>
+            <a href="support/" class="neon-link-btn support-btn">
+              <span class="link-icon">[SUPPORT]</span>
+              <span class="link-name">Tech Support Intake</span>
+              <span class="link-arrow">/support/</span>
+            </a>
+          </div>
+        </section>
+
+        <!-- CARD: SOCIAL PORTALS & EXTERNAL SATELLITES -->
         <!-- [EDIT] EDIT SOCIALS IN CUSTOMIZER MODAL OR BELOW -->
         <section class="scrap-card links-card">
           <div class="washi-tape cyan-tape">EXTERNAL_PORTALS</div>
           <div class="card-header">
-            <h2 class="card-title">★ CONNECT WITH ME</h2>
+            <h2 class="card-title">★ CONNECT WITH ME // SOCIALS</h2>
+            <span class="pkmn-sub">Direct comms &amp; networks</span>
           </div>
 
           <div class="social-links-grid" id="social-links-grid">
@@ -282,45 +347,15 @@
               <span class="link-name">ihateuponds</span>
               <span class="link-arrow">[PROFILE]</span>
             </a>
-            <a href="https://ihateuponds.straw.page" target="_blank" rel="noopener noreferrer" class="neon-link-btn straw-btn">
+            <a href="https://ihateuponds.straw.page" target="_blank" rel="noopener noreferrer" class="neon-link-btn strawpage-btn">
               <span class="link-icon">[STRAWPAGE]</span>
               <span class="link-name">StrawPage Portal</span>
               <span class="link-arrow">[VIEW]</span>
             </a>
-            <a href="about/" class="neon-link-btn" style="border-color: var(--neon-pink);">
-              <span class="link-icon">[ABOUT]</span>
-              <span class="link-name">Operator Bio &amp; FAQ</span>
-              <span class="link-arrow">/about/</span>
-            </a>
-            <a href="posts/" class="neon-link-btn" style="border-color: var(--neon-cyan);">
-              <span class="link-icon">[POSTS]</span>
-              <span class="link-name">Dispatches &amp; Archives</span>
-              <span class="link-arrow">/posts/</span>
-            </a>
-            <a href="guestbook/" class="neon-link-btn" style="border-color: var(--neon-yellow);">
-              <span class="link-icon">[GUESTBOOK]</span>
-              <span class="link-name">Signatures &amp; Ledger</span>
-              <span class="link-arrow">/guestbook/</span>
-            </a>
-            <a href="support/" class="neon-link-btn support-btn">
-              <span class="link-icon">[SUPPORT]</span>
-              <span class="link-name">Tech Support Intake</span>
-              <span class="link-arrow">/support/</span>
-            </a>
-            <a href="rig/" class="neon-link-btn rig-btn">
-              <span class="link-icon">[BENCH]</span>
-              <span class="link-name">Linux &amp; Hardware Bench</span>
-              <span class="link-arrow">/rig/</span>
-            </a>
-            <a href="games/" class="neon-link-btn games-btn">
-              <span class="link-icon">[RETRO]</span>
-              <span class="link-name">Games Shrine</span>
-              <span class="link-arrow">/games/</span>
-            </a>
-            <a href="lsd/" class="neon-link-btn lsd-btn">
-              <span class="link-icon">[LSD_REALM]</span>
-              <span class="link-name">LSD Dream Simulator</span>
-              <span class="link-arrow">/lsd/</span>
+            <a href="https://github.com/ihateuponds" target="_blank" rel="noopener noreferrer" class="neon-link-btn github-btn">
+              <span class="link-icon">[GITHUB]</span>
+              <span class="link-name">@ihateuponds</span>
+              <span class="link-arrow">[CODE]</span>
             </a>
           </div>
         </section>
@@ -793,6 +828,15 @@
       <div class="footer-badges">
         <span>★ POKÉMON © NINTENDO / GAME FREAK ★</span>
         <span>★ 2026 HYPER_SYSTEM ★</span>
+      </div>
+      <div class="footer-subpages-nav" style="display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin: 4px 0;">
+        <a href="about/" class="footer-policy-btn">[ABOUT ME]</a>
+        <a href="rig/" class="footer-policy-btn">[LINUX SETUP]</a>
+        <a href="games/" class="footer-policy-btn">[GAMING SHRINE]</a>
+        <a href="lsd/" class="footer-policy-btn">[LSD REALM]</a>
+        <a href="posts/" class="footer-policy-btn">[POSTS]</a>
+        <a href="guestbook/" class="footer-policy-btn">[GUESTBOOK]</a>
+        <a href="support/" class="footer-policy-btn">[TECH SUPPORT]</a>
       </div>
       <div class="footer-legal-links">
         <button type="button" id="btn-open-terms" class="footer-policy-btn">[INDIEWEB TERMS]</button>
