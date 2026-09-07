@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>★ PONDS // COMMENT BOX FRAME ★</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Press+Start+2P&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    body {
+      background: #090314;
+      color: #e2e8f0;
+      font-family: var(--font-body, monospace);
+      padding: 16px;
+      margin: 0;
+    }
+    #HCB_comment_box {
+      font-family: var(--font-body) !important;
+      color: #e2e8f0 !important;
+      background: transparent !important;
+      padding: 0 !important;
+      margin: 0 !important;
+    }
+    #HCB_comment_box * {
+      box-sizing: border-box !important;
+      font-family: var(--font-body) !important;
+    }
+    #HCB_comment_box h3 {
+      font-family: var(--font-pixel) !important;
+      font-size: 0.85rem !important;
+      color: var(--neon-cyan) !important;
+      letter-spacing: 1px !important;
+      margin: 0 0 20px 0 !important;
+      padding-bottom: 10px !important;
+      border-bottom: 1px dashed var(--neon-purple) !important;
+      text-shadow: 0 0 8px rgba(0, 240, 255, 0.4) !important;
+    }
+    #HCB_comment_box form#hcb_form {
+      background: rgba(14, 5, 26, 0.95) !important;
+      border: 1px dashed var(--neon-purple) !important;
+      padding: 20px !important;
+      margin-bottom: 28px !important;
+      box-shadow: 4px 4px 0 #000 !important;
+    }
+    #HCB_comment_box #hcb_form_name_container {
+      margin-bottom: 14px !important;
+    }
+    #HCB_comment_box label {
+      font-family: var(--font-pixel) !important;
+      font-size: 0.65rem !important;
+      color: var(--neon-yellow) !important;
+      margin-bottom: 6px !important;
+      display: block !important;
+      text-transform: uppercase !important;
+    }
+    #HCB_comment_box input[type="text"],
+    #HCB_comment_box input[type="password"],
+    #HCB_comment_box input[type="email"],
+    #HCB_comment_box textarea {
+      background: #05020a !important;
+      border: 1px solid var(--neon-purple) !important;
+      color: #ffffff !important;
+      padding: 10px 14px !important;
+      font-family: var(--font-body) !important;
+      font-size: 0.88rem !important;
+      outline: none !important;
+      border-radius: 0px !important;
+      width: 100% !important;
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.7) !important;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
+      margin-bottom: 12px !important;
+    }
+    #HCB_comment_box input[type="text"]:focus,
+    #HCB_comment_box textarea:focus {
+      border-color: var(--neon-cyan) !important;
+      box-shadow: 0 0 10px rgba(0, 240, 255, 0.35) !important;
+      background: #080312 !important;
+    }
+    #HCB_comment_box textarea {
+      min-height: 110px !important;
+      resize: vertical !important;
+    }
+    #HCB_comment_box .btn,
+    #HCB_comment_box input[type="submit"],
+    #HCB_comment_box input.submit {
+      font-family: var(--font-pixel) !important;
+      font-size: 0.72rem !important;
+      background: linear-gradient(90deg, #9d4edd, #ff007f) !important;
+      color: #ffffff !important;
+      border: 2px solid #ffffff !important;
+      padding: 10px 20px !important;
+      cursor: pointer !important;
+      box-shadow: 3px 3px 0 #000000 !important;
+      text-shadow: none !important;
+      border-radius: 0 !important;
+      transition: all 0.15s ease !important;
+      display: inline-block !important;
+      margin-top: 6px !important;
+    }
+    #HCB_comment_box .btn:hover,
+    #HCB_comment_box input[type="submit"]:hover {
+      background: linear-gradient(90deg, #ff007f, #00f5d4) !important;
+      color: #000000 !important;
+      transform: translateY(-2px) !important;
+      box-shadow: 3px 5px 0 #000000 !important;
+    }
+    #HCB_comment_box .comment {
+      background: rgba(12, 4, 22, 0.92) !important;
+      border: 1px solid var(--neon-purple) !important;
+      box-shadow: 4px 4px 0 #000 !important;
+      padding: 16px 20px !important;
+      margin-bottom: 18px !important;
+      position: relative !important;
+      transition: border-color 0.2s ease !important;
+    }
+    #HCB_comment_box .comment:hover {
+      border-color: var(--neon-pink) !important;
+    }
+    #HCB_comment_box .comment .author {
+      font-family: var(--font-pixel) !important;
+      font-size: 0.72rem !important;
+      color: var(--neon-yellow) !important;
+      margin: 0 0 10px 0 !important;
+      border-bottom: 1px dashed rgba(157, 78, 221, 0.4) !important;
+      padding-bottom: 8px !important;
+    }
+    #HCB_comment_box .comment blockquote {
+      font-family: var(--font-body) !important;
+      font-size: 0.9rem !important;
+      line-height: 1.55 !important;
+      color: #f1f5f9 !important;
+      margin: 12px 0 !important;
+      padding: 8px 14px !important;
+      background: rgba(5, 2, 10, 0.6) !important;
+      border-left: 3px solid var(--neon-cyan) !important;
+      word-break: break-word !important;
+    }
+  </style>
+</head>
+<body>
+  <!-- begin wwww.htmlcommentbox.com -->
+  <div id="HCB_comment_box"><a href="http://www.htmlcommentbox.com">Comment Form</a> is loading comments...</div>
+  <link rel="stylesheet" type="text/css" href="https://www.htmlcommentbox.com/static/skins/bootstrap/twitter-bootstrap.css?v=0" />
+  <script type="text/javascript" id="hcb">
+    /*<!--*/
+    if(!window.hcb_user){
+      window.hcb_user={
+        PAGE: "https://ihateuponds.neocities.org/guestbook/",
+        comments_header: '★ VISITOR ENTRIES // PERSISTENT LOGS',
+        name_label: 'Handle / Callsign',
+        content_label: 'Transmit your message or leave feedback for Ponds...',
+        submit: '★ TRANSMIT SIGNATURE',
+        no_comments_msg: '★ STATION LOG EMPTY // BE THE FIRST TO SIGN THE GUESTBOOK!'
+      };
+    }
+    (function(){
+      var s=document.createElement("script"),
+          l=hcb_user.PAGE || (""+window.location).replace(/'/g,"%27"),
+          h="https://www.htmlcommentbox.com";
+      s.setAttribute("type","text/javascript");
+      s.setAttribute("src", h+"/jread?page="+encodeURIComponent(l).replace("+","%2B")+"&mod=%241%24wq1rdBcg%24gCYT%2FAPY804yNfQqHUMl6."+"&opts=16798&num=10&ts=1788670361705");
+      if (typeof s!="undefined") document.getElementsByTagName("head")[0].appendChild(s);
+    })();
+    /*-->*/
+  </script>
+  <!-- end www.htmlcommentbox.com -->
+</body>
+</html>

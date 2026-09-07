@@ -202,6 +202,197 @@
       color: var(--neon-cyan);
     }
 
+    /* Guestbook Sign Form */
+    .guestbook-form {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      background: rgba(10, 4, 18, 0.85);
+      border: 1px dashed var(--neon-purple);
+      padding: 18px;
+    }
+
+    .form-row-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    @media (max-width: 650px) {
+      .form-row-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .input-label {
+      font-family: var(--font-pixel);
+      font-size: 0.65rem;
+      color: var(--neon-yellow);
+    }
+
+    .retro-input, .retro-textarea {
+      background: #05020a;
+      border: 1px solid var(--neon-purple);
+      color: #fff;
+      padding: 8px 12px;
+      font-family: var(--font-body);
+      font-size: 0.88rem;
+      outline: none;
+    }
+    .retro-input:focus, .retro-textarea:focus {
+      border-color: var(--neon-cyan);
+      box-shadow: 0 0 8px var(--neon-cyan-glow);
+    }
+
+    .avatar-picker-area {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .avatar-options-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(48px, 1fr));
+      gap: 8px;
+    }
+
+    .avatar-option {
+      background: #140726;
+      border: 2px solid #331557;
+      padding: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      height: 48px;
+    }
+    .avatar-option img {
+      max-width: 36px;
+      max-height: 36px;
+      image-rendering: pixelated;
+    }
+    .avatar-option.selected, .avatar-option:hover {
+      border-color: var(--neon-pink);
+      background: rgba(255, 0, 127, 0.2);
+      box-shadow: 0 0 8px var(--neon-pink-glow);
+      transform: scale(1.05);
+    }
+
+    .submit-btn {
+      font-family: var(--font-pixel);
+      font-size: 0.72rem;
+      background: linear-gradient(90deg, #9d4edd, #ff007f);
+      color: #fff;
+      border: 2px solid #fff;
+      padding: 12px;
+      cursor: pointer;
+      box-shadow: 3px 3px 0 #000;
+      transition: all 0.15s ease;
+      text-align: center;
+    }
+    .submit-btn:hover {
+      background: linear-gradient(90deg, #ff007f, #00f5d4);
+      color: #000;
+      transform: translateY(-2px);
+    }
+
+    /* Ledger Feed */
+    .ledger-feed {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .ledger-entry {
+      background: rgba(12, 4, 22, 0.9);
+      border: 1px solid var(--neon-purple);
+      box-shadow: 3px 3px 0 #000;
+      padding: 14px;
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: 14px;
+      align-items: start;
+    }
+
+    .entry-avatar-frame {
+      width: 52px;
+      height: 52px;
+      border: 2px solid var(--neon-cyan);
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .entry-avatar-img {
+      max-width: 44px;
+      max-height: 44px;
+      image-rendering: pixelated;
+    }
+
+    .entry-content {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .entry-header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+      border-bottom: 1px dashed rgba(157, 78, 221, 0.3);
+      padding-bottom: 6px;
+    }
+
+    .entry-author {
+      font-family: var(--font-pixel);
+      font-size: 0.72rem;
+      color: var(--neon-yellow);
+    }
+
+    .entry-url-badge {
+      font-family: var(--font-pixel);
+      font-size: 0.58rem;
+      background: #180829;
+      color: var(--neon-cyan);
+      border: 1px solid var(--neon-cyan);
+      padding: 2px 6px;
+      text-decoration: none;
+    }
+    .entry-url-badge:hover {
+      background: var(--neon-cyan);
+      color: #000;
+    }
+
+    .entry-time {
+      font-family: var(--font-terminal);
+      font-size: 1.05rem;
+      color: var(--text-muted);
+    }
+
+    .entry-msg {
+      font-family: var(--font-body);
+      font-size: 0.88rem;
+      line-height: 1.45;
+      color: #e2e8f0;
+      word-break: break-word;
+    }
+
+    .atabook-frame-container {
+      width: 100%;
+      height: 750px;
+      background: #06010d;
+      position: relative;
+    }
+
     /* =========================================================
        NATIVE HTML COMMENT BOX CYBERPUNK RETRO OVERRIDES
        ========================================================= */
@@ -528,70 +719,126 @@
         </div>
       </div>
 
-      <!-- Dual Tab Channel Switcher -->
+      <!-- 4-Channel Tab Switcher -->
       <div class="guestbook-tab-bar" style="display: flex; gap: 8px; padding: 10px 18px; background: rgba(10, 4, 20, 0.95); border-bottom: 1px solid var(--neon-purple); flex-wrap: wrap;">
-        <button type="button" id="btn-tab-hcb" class="gb-tab-btn active" style="font-family: var(--font-pixel); font-size: 0.65rem; padding: 6px 14px; background: var(--neon-pink); color: #fff; border: 1px solid #fff; cursor: pointer; box-shadow: 0 0 8px var(--neon-pink-glow);">
-          ★ GUESTBOOK COMMENTS (PERSISTENT)
+        <button type="button" id="btn-tab-atabook" class="gb-tab-btn active" style="font-family: var(--font-pixel); font-size: 0.65rem; padding: 8px 14px; background: var(--neon-pink); color: #fff; border: 1px solid #fff; cursor: pointer; box-shadow: 0 0 8px var(--neon-pink-glow);">
+          ★ ATABOOK GUESTBOOK (RECOMMENDED)
         </button>
-        <button type="button" id="btn-tab-cbox" class="gb-tab-btn" style="font-family: var(--font-pixel); font-size: 0.65rem; padding: 6px 14px; background: #140526; color: var(--neon-cyan); border: 1px solid var(--neon-purple); cursor: pointer;">
+        <button type="button" id="btn-tab-ledger" class="gb-tab-btn" style="font-family: var(--font-pixel); font-size: 0.65rem; padding: 8px 14px; background: #140526; color: var(--neon-cyan); border: 1px solid var(--neon-purple); cursor: pointer;">
+          ★ STATION VISITOR LEDGER (IN-PAGE)
+        </button>
+        <button type="button" id="btn-tab-cbox" class="gb-tab-btn" style="font-family: var(--font-pixel); font-size: 0.65rem; padding: 8px 14px; background: #140526; color: var(--neon-cyan); border: 1px solid var(--neon-purple); cursor: pointer;">
           💬 LIVE CBOX CHAT (REAL-TIME)
+        </button>
+        <button type="button" id="btn-tab-hcb" class="gb-tab-btn" style="font-family: var(--font-pixel); font-size: 0.65rem; padding: 8px 14px; background: #140526; color: var(--neon-cyan); border: 1px solid var(--neon-purple); cursor: pointer;">
+          ★ HTML COMMENT BOX
         </button>
       </div>
 
-      <!-- PANEL 1: Native In-DOM Live Guestbook Stream -->
-      <div id="panel-gb-comments">
-        <!-- Split Intro Header inside the window -->
-        <div class="retro-window-body" style="border-bottom: 1px solid var(--neon-purple); background: rgba(14, 5, 26, 0.85); padding: 18px 20px;">
-          <div style="display: flex; gap: 20px; align-items: center; justify-content: space-between; flex-wrap: wrap;">
-            <div style="flex: 1; min-width: 260px;">
-              <p style="margin: 0 0 8px 0; font-family: var(--font-pixel); font-size: 0.72rem; color: var(--neon-yellow);">
-                ★ SHARE YOUR THOUGHTS &amp; LEAVE YOUR MARK:
+      <!-- PANEL 1: Atabook Cloud Guestbook (Zero CSP Blocks) -->
+      <div id="panel-gb-atabook">
+        <div class="retro-window-body" style="border-bottom: 1px solid var(--neon-purple); background: rgba(14, 5, 26, 0.85); padding: 16px 20px;">
+          <div style="display: flex; gap: 16px; align-items: center; justify-content: space-between; flex-wrap: wrap;">
+            <div style="flex: 1; min-width: 240px;">
+              <p style="margin: 0 0 6px 0; font-family: var(--font-pixel); font-size: 0.72rem; color: var(--neon-yellow);">
+                ★ OFFICIAL GLOBAL GUESTBOOK // ATABOOK NETWORK:
               </p>
-              <p style="margin: 0 0 8px 0; font-size: 0.9rem; line-height: 1.5; color: #cbd5e1;">
-                Got feedback on the scrapbook, want to trade 88x31 badges, or just say hello? Drop a signature below! Your message is broadcast live to the global IndieWeb ledger.
+              <p style="margin: 0 0 8px 0; font-size: 0.88rem; line-height: 1.5; color: #cbd5e1;">
+                Sign Ponds's official guestbook! Leave your handle, message, and site link. Free of CSP restrictions and permanently archived on the IndieWeb.
               </p>
-              <p style="margin: 0; font-family: var(--font-pixel); font-size: 0.62rem; color: var(--neon-cyan);">
-                ★ ALL ENTRIES PERSIST GLOBALLY // POWERED BY HTML COMMENT BOX
-              </p>
+              <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+                <span style="font-family: var(--font-pixel); font-size: 0.58rem; color: var(--neon-cyan); background: #140726; border: 1px solid var(--neon-cyan); padding: 4px 8px;">
+                  HOST: IHATEUPONDS.ATABOOK.ORG
+                </span>
+                <a href="https://ihateuponds.atabook.org/" target="_blank" rel="noopener noreferrer" class="entry-url-badge" style="display: inline-flex; align-items: center; gap: 4px; padding: 4px 10px;">
+                  <span>[OPEN FULLSCREEN ↗]</span>
+                </a>
+              </div>
             </div>
             <div style="text-align: center; border: 2px solid var(--neon-pink); padding: 4px; background: #000; box-shadow: 0 0 10px var(--neon-pink-glow);">
-              <img src="../avatar.jpeg" alt="Ponds Avatar" style="width: 72px; height: 72px; object-fit: cover; display: block;" />
+              <img src="../avatar.jpeg" alt="Ponds Avatar" style="width: 64px; height: 64px; object-fit: cover; display: block;" />
               <div style="font-family: var(--font-pixel); font-size: 0.55rem; color: var(--neon-pink); margin-top: 4px;">. PONDS</div>
             </div>
           </div>
         </div>
-
-        <div class="retro-window-body" style="padding: 24px; background: #090314;">
-          <!-- begin wwww.htmlcommentbox.com -->
-          <div id="HCB_comment_box"><a href="http://www.htmlcommentbox.com">Comment Form</a> is loading comments...</div>
-          <link rel="stylesheet" type="text/css" href="https://www.htmlcommentbox.com/static/skins/bootstrap/twitter-bootstrap.css?v=0" />
-          <script type="text/javascript" id="hcb">
-            /*<!--*/
-            if(!window.hcb_user){
-              window.hcb_user={
-                PAGE: "https://ihateuponds.neocities.org/guestbook/",
-                comments_header: '★ VISITOR ENTRIES // PERSISTENT LOGS',
-                name_label: 'Handle / Callsign',
-                content_label: 'Transmit your message or leave feedback for Ponds...',
-                submit: '★ TRANSMIT SIGNATURE',
-                no_comments_msg: '★ STATION LOG EMPTY // BE THE FIRST TO SIGN THE GUESTBOOK!'
-              };
-            }
-            (function(){
-              var s=document.createElement("script"),
-                  l=hcb_user.PAGE || (""+window.location).replace(/'/g,"%27"),
-                  h="https://www.htmlcommentbox.com";
-              s.setAttribute("type","text/javascript");
-              s.setAttribute("src", h+"/jread?page="+encodeURIComponent(l).replace("+","%2B")+"&mod=%241%24wq1rdBcg%24gCYT%2FAPY804yNfQqHUMl6."+"&opts=16798&num=10&ts=1788670361705");
-              if (typeof s!="undefined") document.getElementsByTagName("head")[0].appendChild(s);
-            })();
-            /*-->*/
-          </script>
-          <!-- end www.htmlcommentbox.com -->
+        <div style="background: #06010d; padding: 4px;">
+          <iframe src="https://ihateuponds.atabook.org/" title="Ponds Atabook Guestbook" style="width: 100%; height: 750px; border: 1px solid var(--neon-purple); background: #0b0217; display: block;" allowtransparency="true" loading="lazy"></iframe>
         </div>
       </div>
 
-      <!-- PANEL 2: Live Real-Time Cbox Chat Panel -->
+      <!-- PANEL 2: Native In-DOM Station Ledger -->
+      <div id="panel-gb-ledger" style="display: none; padding: 20px; background: #090314;">
+        <div style="margin-bottom: 18px;">
+          <p style="margin: 0 0 6px 0; font-family: var(--font-pixel); font-size: 0.72rem; color: var(--neon-yellow);">
+            ★ STATION VISITOR LEDGER // IN-PAGE SIGNATURE:
+          </p>
+          <p style="margin: 0; font-size: 0.88rem; line-height: 1.5; color: #cbd5e1;">
+            Leave an instant signature directly in this browser terminal. Pick a retro pixel stamp to accompany your transmission!
+          </p>
+        </div>
+
+        <form id="station-ledger-form" class="guestbook-form" style="margin-bottom: 24px;">
+          <div class="form-row-grid">
+            <div class="input-group">
+              <label class="input-label" for="ledger-name">HANDLE / CALLSIGN *</label>
+              <input type="text" id="ledger-name" class="retro-input" placeholder="e.g. NeoTrainer99" required maxlength="40" />
+            </div>
+            <div class="input-group">
+              <label class="input-label" for="ledger-url">WEBSITE / NEOCITIES URL (OPTIONAL)</label>
+              <input type="text" id="ledger-url" class="retro-input" placeholder="https://..." maxlength="100" />
+            </div>
+          </div>
+
+          <div class="avatar-picker-area">
+            <label class="input-label">CHOOSE PIXEL STAMP / AVATAR</label>
+            <div class="avatar-options-grid" id="avatar-picker-grid">
+              <div class="avatar-option selected" data-avatar="../assets/cards/gengar-gem-pack-3.jpg" title="Gengar Gem Mint Pack 3">
+                <img src="../assets/cards/gengar-gem-pack-3.jpg" alt="Gengar" />
+              </div>
+              <div class="avatar-option" data-avatar="../assets/decors/cat-kumi.gif" title="Kumi Cat">
+                <img src="../assets/decors/cat-kumi.gif" alt="Kumi Cat" />
+              </div>
+              <div class="avatar-option" data-avatar="../assets/stamps/kitty-rainbow.gif" title="Rainbow Kitty">
+                <img src="../assets/stamps/kitty-rainbow.gif" alt="Rainbow Kitty" />
+              </div>
+              <div class="avatar-option" data-avatar="../assets/stamps/tamagotchi.png" title="Tamagotchi">
+                <img src="../assets/stamps/tamagotchi.png" alt="Tamagotchi" />
+              </div>
+              <div class="avatar-option" data-avatar="../assets/stamps/spiral.gif" title="Spiral">
+                <img src="../assets/stamps/spiral.gif" alt="Spiral" />
+              </div>
+              <div class="avatar-option" data-avatar="../assets/blinkies/win95.gif" title="Windows 95">
+                <img src="../assets/blinkies/win95.gif" alt="Win95" />
+              </div>
+              <div class="avatar-option" data-avatar="../assets/blinkies/alien.gif" title="Alien">
+                <img src="../assets/blinkies/alien.gif" alt="Alien" />
+              </div>
+              <div class="avatar-option" data-avatar="../assets/blinkies/lilguy.gif" title="Lil Guy">
+                <img src="../assets/blinkies/lilguy.gif" alt="Lil Guy" />
+              </div>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label class="input-label" for="ledger-msg">TRANSMISSION MESSAGE *</label>
+            <textarea id="ledger-msg" class="retro-textarea" rows="4" placeholder="Drop your thoughts, vibes, or trade request..." required maxlength="500"></textarea>
+          </div>
+
+          <button type="submit" class="submit-btn">★ TRANSMIT SIGNATURE TO LEDGER</button>
+          <div id="ledger-flash-msg" style="display: none; font-family: var(--font-pixel); font-size: 0.65rem; color: var(--neon-cyan); text-align: center; margin-top: 6px;"></div>
+        </form>
+
+        <div style="border-top: 1px dashed var(--neon-purple); padding-top: 18px;">
+          <h4 style="font-family: var(--font-pixel); font-size: 0.72rem; color: var(--neon-cyan); margin: 0 0 14px 0;">
+            ★ LOGGED TRANSMISSIONS (<span id="ledger-count">0</span>)
+          </h4>
+          <div id="ledger-feed-target" class="ledger-feed">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+      </div>
+
+      <!-- PANEL 3: Live Real-Time Cbox Chat Panel -->
       <div id="panel-gb-cbox" style="display: none; padding: 20px; background: #090314;">
         <div style="margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
           <p style="margin: 0; font-family: var(--font-pixel); font-size: 0.68rem; color: var(--neon-yellow);">
@@ -606,9 +853,22 @@
         </div>
       </div>
 
+      <!-- PANEL 4: HTML Comment Box Fallback Frame -->
+      <div id="panel-gb-hcb" style="display: none; padding: 20px; background: #090314;">
+        <div style="margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+          <p style="margin: 0; font-family: var(--font-pixel); font-size: 0.68rem; color: var(--neon-yellow);">
+            ★ HTML COMMENT BOX // STANDALONE ENGINE:
+          </p>
+          <span style="font-family: var(--font-terminal); font-size: 1.05rem; color: var(--neon-cyan);">
+            ISOLATED FRAME PROTOCOL
+          </span>
+        </div>
+        <iframe src="hcb-frame.html" title="HTML Comment Box Frame" style="width: 100%; height: 600px; border: 1px solid var(--neon-purple); background: #090314; display: block;" allowtransparency="true" loading="lazy"></iframe>
+      </div>
+
       <div class="retro-window-footer">
         <span>GUESTBOOK PROTOCOL: ONLINE</span>
-        <span>CHANNELS: COMMENTS &amp; LIVE CHAT</span>
+        <span>CHANNELS: ATABOOK | LEDGER | CBOX | HCB</span>
       </div>
     </section>
 
@@ -779,39 +1039,207 @@
       }
       setupRetroWindowControls();
 
-      // Guestbook Tab Switcher Logic
-      const tabHcb = document.getElementById("btn-tab-hcb");
-      const tabCbox = document.getElementById("btn-tab-cbox");
-      const panelHcb = document.getElementById("panel-gb-comments");
-      const panelCbox = document.getElementById("panel-gb-cbox");
+      // =========================================================================
+      // GUESTBOOK TAB SWITCHER (4 CHANNELS)
+      // =========================================================================
+      const tabs = [
+        { btn: document.getElementById("btn-tab-atabook"), panel: document.getElementById("panel-gb-atabook") },
+        { btn: document.getElementById("btn-tab-ledger"), panel: document.getElementById("panel-gb-ledger") },
+        { btn: document.getElementById("btn-tab-cbox"), panel: document.getElementById("panel-gb-cbox") },
+        { btn: document.getElementById("btn-tab-hcb"), panel: document.getElementById("panel-gb-hcb") }
+      ];
 
-      if (tabHcb && tabCbox && panelHcb && panelCbox) {
-        tabHcb.addEventListener("click", () => {
-          tabHcb.style.background = "var(--neon-pink)";
-          tabHcb.style.color = "#fff";
-          tabHcb.style.borderColor = "#fff";
-          tabHcb.style.boxShadow = "0 0 8px var(--neon-pink-glow)";
-          tabCbox.style.background = "#140526";
-          tabCbox.style.color = "var(--neon-cyan)";
-          tabCbox.style.borderColor = "var(--neon-purple)";
-          tabCbox.style.boxShadow = "none";
-          panelHcb.style.display = "block";
-          panelCbox.style.display = "none";
-          playChime(650);
+      function switchTab(targetIndex) {
+        tabs.forEach((tab, index) => {
+          if (!tab.btn || !tab.panel) return;
+          if (index === targetIndex) {
+            tab.btn.classList.add("active");
+            tab.btn.style.background = "var(--neon-pink)";
+            tab.btn.style.color = "#fff";
+            tab.btn.style.borderColor = "#fff";
+            tab.btn.style.boxShadow = "0 0 8px var(--neon-pink-glow)";
+            tab.panel.style.display = "block";
+          } else {
+            tab.btn.classList.remove("active");
+            tab.btn.style.background = "#140526";
+            tab.btn.style.color = "var(--neon-cyan)";
+            tab.btn.style.borderColor = "var(--neon-purple)";
+            tab.btn.style.boxShadow = "none";
+            tab.panel.style.display = "none";
+          }
         });
+      }
 
-        tabCbox.addEventListener("click", () => {
-          tabCbox.style.background = "var(--neon-pink)";
-          tabCbox.style.color = "#fff";
-          tabCbox.style.borderColor = "#fff";
-          tabCbox.style.boxShadow = "0 0 8px var(--neon-pink-glow)";
-          tabHcb.style.background = "#140526";
-          tabHcb.style.color = "var(--neon-cyan)";
-          tabHcb.style.borderColor = "var(--neon-purple)";
-          tabHcb.style.boxShadow = "none";
-          panelCbox.style.display = "block";
-          panelHcb.style.display = "none";
-          playChime(750);
+      tabs.forEach((tab, index) => {
+        if (tab.btn) {
+          tab.btn.addEventListener("click", () => {
+            switchTab(index);
+            playChime(650 + index * 50);
+          });
+        }
+      });
+
+      // =========================================================================
+      // STATION VISITOR LEDGER (IN-PAGE CLIENT STORAGE ENGINE)
+      // =========================================================================
+      let selectedAvatar = "../assets/cards/gengar-gem-pack-3.jpg";
+      const avatarOptions = document.querySelectorAll(".avatar-option");
+      avatarOptions.forEach(opt => {
+        opt.addEventListener("click", () => {
+          avatarOptions.forEach(o => o.classList.remove("selected"));
+          opt.classList.add("selected");
+          selectedAvatar = opt.getAttribute("data-avatar") || "../assets/cards/gengar-gem-pack-3.jpg";
+          playChime(780);
+        });
+      });
+
+      const LEDGER_STORAGE_KEY = "ponds_guestbook_ledger_v1";
+      const DEFAULT_LEDGER_ENTRIES = [
+        {
+          id: "entry-seed-1",
+          name: "ponds",
+          url: "https://ihateuponds.neocities.org",
+          avatar: "../assets/cards/gengar-gem-pack-3.jpg",
+          time: "2026-09-06 22:30",
+          msg: "welcome to the station guestbook! drop your handle, link your neocities, or leave trade requests anytime! ✨"
+        },
+        {
+          id: "entry-seed-2",
+          name: "ransei",
+          url: "https://ransei.neocities.org",
+          avatar: "../assets/decors/cat-kumi.gif",
+          time: "2026-09-06 18:14",
+          msg: "fellow tcg collector spotted! the gengar gem pack 3 and meowth sir in your binder look so good! <3"
+        },
+        {
+          id: "entry-seed-3",
+          name: "cyber_drifter",
+          url: "",
+          avatar: "../assets/blinkies/terminal.gif",
+          time: "2026-09-05 14:02",
+          msg: "coolest layout on neocities fr. loving the pixel vibes and sfx!"
+        }
+      ];
+
+      function loadLedgerEntries() {
+        try {
+          const stored = localStorage.getItem(LEDGER_STORAGE_KEY);
+          if (stored) {
+            const parsed = JSON.parse(stored);
+            if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+          }
+        } catch (e) {}
+        return DEFAULT_LEDGER_ENTRIES;
+      }
+
+      function saveLedgerEntries(entries) {
+        try {
+          localStorage.setItem(LEDGER_STORAGE_KEY, JSON.stringify(entries));
+        } catch (e) {}
+      }
+
+      function escapeHTML(str) {
+        return String(str || "").replace(/[&<>'"]/g, tag => ({
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          "'": '&#39;',
+          '"': '&quot;'
+        }[tag] || tag));
+      }
+
+      function renderLedgerEntries() {
+        const feedTarget = document.getElementById("ledger-feed-target");
+        const countTarget = document.getElementById("ledger-count");
+        if (!feedTarget) return;
+
+        const entries = loadLedgerEntries();
+        if (countTarget) countTarget.textContent = String(entries.length);
+
+        feedTarget.innerHTML = entries.map(entry => {
+          const authorEscaped = escapeHTML(entry.name || "Anonymous");
+          const msgEscaped = escapeHTML(entry.msg || "");
+          const timeEscaped = escapeHTML(entry.time || "");
+          const avatarSrc = entry.avatar || "../assets/cards/gengar-gem-pack-3.jpg";
+          const urlLink = entry.url && entry.url.trim().length > 0 ?
+            `<a href="${escapeHTML(entry.url)}" target="_blank" rel="noopener noreferrer" class="entry-url-badge">[WEB: ${escapeHTML(entry.url.replace(/^https?:\/\//, '').replace(/\/.*$/, ''))}]</a>` :
+            '';
+
+          return `
+            <div class="ledger-entry">
+              <div class="entry-avatar-frame">
+                <img src="${avatarSrc}" alt="${authorEscaped}" class="entry-avatar-img" />
+              </div>
+              <div class="entry-content">
+                <div class="entry-header-row">
+                  <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+                    <span class="entry-author">${authorEscaped}</span>
+                    ${urlLink}
+                  </div>
+                  <span class="entry-time">${timeEscaped}</span>
+                </div>
+                <div class="entry-msg">${msgEscaped}</div>
+              </div>
+            </div>
+          `;
+        }).join("");
+      }
+
+      // Initial Ledger Render
+      renderLedgerEntries();
+
+      // Handle Ledger Form Submission
+      const ledgerForm = document.getElementById("station-ledger-form");
+      const flashMsg = document.getElementById("ledger-flash-msg");
+      if (ledgerForm) {
+        ledgerForm.addEventListener("submit", (e) => {
+          e.preventDefault();
+          const nameInput = document.getElementById("ledger-name");
+          const urlInput = document.getElementById("ledger-url");
+          const msgInput = document.getElementById("ledger-msg");
+
+          const name = nameInput ? nameInput.value.trim() : "";
+          const url = urlInput ? urlInput.value.trim() : "";
+          const msg = msgInput ? msgInput.value.trim() : "";
+
+          if (!name || !msg) return;
+
+          const now = new Date();
+          const timeStr = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')} ${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+
+          const newEntry = {
+            id: "entry-" + Date.now(),
+            name: name,
+            url: url,
+            avatar: selectedAvatar,
+            time: timeStr,
+            msg: msg
+          };
+
+          const entries = loadLedgerEntries();
+          entries.unshift(newEntry);
+          saveLedgerEntries(entries);
+          renderLedgerEntries();
+
+          // Reset Form
+          ledgerForm.reset();
+          playChime(950);
+
+          // Flash confirmation feedback
+          if (flashMsg) {
+            flashMsg.textContent = "★ SIGNATURE TRANSMITTED & LOGGED TO STATION LEDGER!";
+            flashMsg.style.display = "block";
+            setTimeout(() => {
+              flashMsg.style.display = "none";
+            }, 5000);
+          }
+
+          // Also unlock soul gym badge
+          try {
+            let badges = JSON.parse(localStorage.getItem("ponds_gym_badges") || "{}");
+            badges["soul"] = true;
+            localStorage.setItem("ponds_gym_badges", JSON.stringify(badges));
+          } catch(err) {}
         });
       }
 

@@ -1467,7 +1467,9 @@ document.addEventListener('DOMContentLoaded', () => {
     { name: "Gengar & Mimikyu GX", set: "Team Up #165", rarity: "Alternate Art Tag Team GX", tier: "TAG TEAM GX", img: "https://images.pokemontcg.io/sm9/165_hires.png" },
     { name: "Roaring Moon ex (SIR)", set: "Paradox Rift #251", rarity: "Special Illustration Rare", tier: "SPECIAL IR", img: "https://images.pokemontcg.io/sv4/251_hires.png" },
     { name: "Blastoise (Base Set Holo)", set: "Base Set #2", rarity: "Classic 1st Gen Holo", tier: "CLASSIC BASE", img: "https://images.pokemontcg.io/base1/2_hires.png" },
-    { name: "Venusaur (Base Set Holo)", set: "Base Set #15", rarity: "Classic 1st Gen Holo", tier: "CLASSIC BASE", img: "https://images.pokemontcg.io/base1/15_hires.png" }
+    { name: "Venusaur (Base Set Holo)", set: "Base Set #15", rarity: "Classic 1st Gen Holo", tier: "CLASSIC BASE", img: "https://images.pokemontcg.io/base1/15_hires.png" },
+    { name: "Gengar (Gem Mint Chinese Full Art)", set: "Gem Pack Vol. 3 #0307/07", rarity: "Simplified Chinese Art Rare", tier: "CHINESE AR", img: "assets/cards/gengar-gem-pack-3.jpg" },
+    { name: "Meowth ex (SIR)", set: "Perfect Order #121/088", rarity: "Special Illustration Rare", tier: "SPECIAL IR", img: "assets/cards/meowth-sir-por.png" }
   ];
 
   const btnRipBooster = document.getElementById('btn-rip-booster');
